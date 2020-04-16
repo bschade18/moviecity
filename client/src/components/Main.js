@@ -10,9 +10,9 @@ const Main = ({ logout }) => {
 
   useEffect(() => {
     axios
-      .get('/review')
-      .then(res => setmyMovies(res.data))
-      .catch(err => console.log(err));
+      .get('/reviews')
+      .then((res) => setmyMovies(res.data.data))
+      .catch((err) => console.log(err));
   });
 
   return (
@@ -27,7 +27,7 @@ const Main = ({ logout }) => {
               <p>City</p>
             </div>
             <div className="movie-scroll">
-              {myMovies.map(movie => (
+              {myMovies.map((movie) => (
                 <MyMovies movie={movie} key={movie._id} />
               ))}
             </div>

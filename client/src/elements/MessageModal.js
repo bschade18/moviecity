@@ -7,7 +7,7 @@ import {
   Form,
   FormGroup,
   Label,
-  Input
+  Input,
 } from 'reactstrap';
 
 import axios from 'axios';
@@ -19,7 +19,7 @@ const MessageModal = ({ movie, user }) => {
   const [modal, setModal] = useState(false);
   const [users, setUsers] = useState([]);
 
-  const onSubmitMessage = e => {
+  const onSubmitMessage = (e) => {
     e.preventDefault();
 
     const newMessage = {
@@ -28,25 +28,25 @@ const MessageModal = ({ movie, user }) => {
       movieTitle: movie.original_title,
       message,
       messageDate: new Date(),
-      imageUrl: `${imageUrl}w185${movie.poster_path}`
+      imageUrl: `${imageUrl}w185${movie.poster_path}`,
     };
 
-    axios.post('/message/add', newMessage).then(res => console.log(res.data));
+    axios.post('/messages', newMessage).then((res) => console.log(res.data));
 
     setTimeout(() => (window.location = '/main'), 500);
   };
 
   const toggle = () => setModal(!modal);
 
-  const onChangeRecipient = e => {
+  const onChangeRecipient = (e) => {
     setRecipient(e.target.value);
   };
 
   useEffect(() => {
     axios
       .get('/users')
-      .then(res => setUsers(res.data))
-      .catch(err => console.log(err));
+      .then((res) => setUsers(res.data))
+      .catch((err) => console.log(err));
   });
   return (
     <div>
@@ -68,7 +68,7 @@ const MessageModal = ({ movie, user }) => {
                 id="recipient"
               >
                 <option value="">--Select Friend--</option>
-                {users.map(function(user) {
+                {users.map(function (user) {
                   return (
                     <option key={user.name} value={user.name}>
                       {user.name}
@@ -85,7 +85,7 @@ const MessageModal = ({ movie, user }) => {
                 id="comments"
                 placeholder="Enter comments..."
                 className="mb-3"
-                onChange={e => setMessage(e.target.value)}
+                onChange={(e) => setMessage(e.target.value)}
               />
             </FormGroup>
             <Button color="primary" type="submit" block>

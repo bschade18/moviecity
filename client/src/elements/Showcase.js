@@ -2,9 +2,9 @@ import React from 'react';
 import '../App.css';
 
 const Showcase = ({ image, title }) => {
-  const showcaseStyle = image => ({
+  const showcaseStyle = (image) => ({
     background: `url(${image}) no-repeat center center/cover`,
-    height: '100vh'
+    height: '100vh',
   });
 
   return (

@@ -11,9 +11,9 @@ const Home = ({ authSuccess, isAuthenticated, logout, user }) => {
   const [
     {
       state: { movies, currentPage, heroImage },
-      error
+      error,
     },
-    fetchMovies
+    fetchMovies,
   ] = useHomeFetch();
 
   const loadMoreMovies = () => {

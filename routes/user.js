@@ -1,36 +1,16 @@
-const router = require("express").Router();
-let User = require("../models/user.model");
+const express = require('express');
+const router = express.Router();
 
-// @route GET /user
-// @desc get users
-// @access Public
-router.get("/", (req, res) => {
-  //mongoose command
-  User.find()
-    .then(users => res.json(users))
-    .catch(err => res.status(400).json("Error: " + err));
-});
+const {
+  getUsers,
+  deleteUser,
+  userPhotoUpload,
+} = require('../controllers/user');
 
-module.exports = router;
+router.route('/').get(getUsers);
 
-// @route post /add
-// @desc add users
-// @access Public
-router.post("/add", (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
+router.route('/:id').delete(deleteUser);
 
-  const newUser = new User({
-    name,
-    email,
-    password
-  });
-
-  newUser
-    .save()
-    .then(() => res.json("User added!"))
-    .catch(err => res.status(400).json("Error: " + err));
-});
+router.route('/:id/photo').put(userPhotoUpload);
 
 module.exports = router;

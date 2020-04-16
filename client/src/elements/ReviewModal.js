@@ -31,7 +31,7 @@ const ReviewModal = ({ movie, user }) => {
       movieId: movie.id,
     };
 
-    axios.post('/review/add', newReview).then((res) => console.log(res.data));
+    axios.post('/reviews', newReview).then((res) => console.log(res.data));
     setTimeout(() => (window.location = '/main'), 500);
   };
 

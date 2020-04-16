@@ -17,13 +17,13 @@ const Search = () => {
     {
       state: { movies, currentPage, totalPages },
       loading,
-      error
+      error,
     },
-    fetchMovies
+    fetchMovies,
   ] = useHomeFetch();
   const [search, setSearch] = useState('');
 
-  const searchMovies = search => {
+  const searchMovies = (search) => {
     const endpoint = search ? searchBaseUrl + search : popularBaseUrl;
 
     setSearch(search);
@@ -45,7 +45,7 @@ const Search = () => {
       <Navigation />
       <SearchBar callback={searchMovies} />
       <Grid header={search ? 'Search Results' : 'Popular Movies'}>
-        {movies.map(movie => (
+        {movies.map((movie) => (
           <MovieThumb
             key={movie.id}
             clickable

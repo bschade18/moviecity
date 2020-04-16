@@ -27,7 +27,7 @@ export default class Messages extends Component {
 
   componentDidMount() {
     axios
-      .get('/message/')
+      .get('/messages')
       .then((response) => {
         this.setState({
           messages: response.data,

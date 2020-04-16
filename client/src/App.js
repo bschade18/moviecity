@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from 'react-router-dom';
 
 import Home from './components/Home';
@@ -13,6 +13,7 @@ import Messages from './components/Messages';
 import Error from './components/Error';
 import Movie from './components/Movie';
 import Search from './components/Search';
+import Profile from './components/Profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import axios from 'axios';
@@ -36,15 +37,15 @@ class App extends React.Component {
       isAuthenticated: null,
       user: null,
       isLoading: false,
-      token: localStorage.getItem('token')
+      token: localStorage.getItem('token'),
     };
   }
 
-  authSuccess = user => {
+  authSuccess = (user) => {
     this.setState({
       isAuthenticated: true,
       isLoading: false,
-      user: user
+      user: user,
     });
   };
 
@@ -54,19 +55,19 @@ class App extends React.Component {
 
   loadUser = () => {
     this.setState({
-      isLoading: true
+      isLoading: true,
     });
 
     axios
       .get('/auth/user', this.tokenConfig())
-      .then(res => this.userLoaded(res.data));
+      .then((res) => this.userLoaded(res.data));
   };
 
-  userLoaded = user => {
+  userLoaded = (user) => {
     this.setState({
       isAuthenticated: true,
       isLoading: false,
-      user: user
+      user: user,
     });
   };
 
@@ -75,8 +76,8 @@ class App extends React.Component {
 
     const config = {
       headers: {
-        'Content-type': 'application/json'
-      }
+        'Content-type': 'application/json',
+      },
     };
 
     if (token) {
@@ -90,16 +91,16 @@ class App extends React.Component {
     this.setState({
       isAuthenticated: false,
       user: null,
-      token: null
+      token: null,
     });
 
     window.location = '/';
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -111,7 +112,7 @@ class App extends React.Component {
             <Route
               path="/"
               exact
-              render={props =>
+              render={(props) =>
                 this.state.isAuthenticated ? (
                   <Redirect to="/main" />
                 ) : (
@@ -128,7 +129,7 @@ class App extends React.Component {
 
             <Route
               path="/main"
-              render={props => (
+              render={(props) => (
                 <Main
                   {...props}
                   movies={this.state.movies}
@@ -142,17 +143,22 @@ class App extends React.Component {
               )}
             ></Route>
             <Route
+              path="/profile"
+              render={(props) => <Profile {...props} user={this.state.user} />}
+            ></Route>
+
+            <Route
               path="/messages"
-              render={props => <Messages {...props} user={this.state.user} />}
+              render={(props) => <Messages {...props} user={this.state.user} />}
             ></Route>
             <Route
               path="/search"
-              render={props => <Search {...props} />}
+              render={(props) => <Search {...props} />}
             ></Route>
 
             <Route
               path="/:movieId"
-              render={props => <Movie {...props} user={this.state.user} />}
+              render={(props) => <Movie {...props} user={this.state.user} />}
             ></Route>
 
             <Route component={Error} />
