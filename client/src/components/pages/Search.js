@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
-import { imageUrl, posterSize, popularBaseUrl, searchBaseUrl } from '../config';
+import {
+  imageUrl,
+  posterSize,
+  popularBaseUrl,
+  searchBaseUrl,
+} from '../../config';
 
-import Grid from '../elements/Grid';
-import LoadMoreBtn from '../elements/LoadMoreBtn';
-import MovieThumb from '../elements/MovieThumb';
-import SearchBar from '../elements/SearchBar';
-import Spinner from '../elements/Spinner';
+import Grid from '../../elements/Grid';
+import LoadMoreBtn from '../../elements/LoadMoreBtn';
+import MovieThumb from '../../elements/MovieThumb';
+import SearchBar from '../../elements/SearchBar';
+import Spinner from '../../elements/Spinner';
 
-import Navigation from '../elements/Navigation';
+import Navigation from '../../elements/Navigation';
 
-import { useHomeFetch } from './hooks/useHomeFetch';
-import NoImage from './images/no_image.jpg';
+import { useHomeFetch } from '../hooks/useHomeFetch';
+import NoImage from '../images/no_image.jpg';
 
 const Search = () => {
   const [

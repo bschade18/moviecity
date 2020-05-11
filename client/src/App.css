@@ -2,10 +2,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Abel', sans-serif;
 }
 
 :root {
-  --primary-color: #42c2f5;
+  --primary-color: #003699;
 }
 
 a {
@@ -16,7 +17,20 @@ a {
   text-decoration: none;
 }
 
+/* Navbar */
+.background-primary {
+  background: #003699;
+  color: #fff;
+}
+
+.bobby {
+  padding: 2rem 2rem;
+}
 /* Home */
+
+#showcase-container {
+  height: 400px;
+}
 
 .showcase-content {
   max-width: 1280px;
@@ -32,6 +46,10 @@ a {
   position: absolute;
   bottom: 40px;
   min-height: 100px;
+}
+
+.home-img {
+  border-radius: 10px;
 }
 
 /* Main Page */
@@ -52,7 +70,7 @@ a {
 }
 
 .mainmovies-text {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Abel', sans-serif;
   padding: 10px;
   color: black;
   overflow: hidden;
@@ -76,7 +94,8 @@ a {
   border-bottom: 1px solid #e0e0e0;
   position: sticky;
   top: 0;
-  background: #fff;
+  background: #003699;
+  color: #fff;
   padding: 1rem;
   max-width: 800px;
   font-size: 1.5rem;
@@ -120,7 +139,7 @@ a {
 
 #sidenav-container .sn-item:hover {
   background-color: var(--primary-color);
-  color: #000;
+  color: #fff;
 }
 
 a.btn:focus,
@@ -179,7 +198,7 @@ button.btn:active {
 #search-bar .search-input {
   display: inline-block;
   padding: 0.2rem 0.75rem;
-  width: 95%;
+  width: 98%;
   font-size: 1rem;
   line-height: 1.5;
   color: #495057;
@@ -264,7 +283,7 @@ button.btn:active {
 
 /* Load More Button */
 .load-more-btn {
-  background: #000;
+  background: var(--primary-color);
   width: 25%;
   min-width: 200px;
   height: 70px;
@@ -284,14 +303,14 @@ button.btn:active {
 /* Navigation */
 
 #navigation {
-  background: #353535;
+  background: var(--primary-color);
   color: #fff;
 }
 #navigation .navigation-container {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  max-width: 1280px;
+  max-width: 1140px;
   margin: auto;
   height: 4rem;
   padding: 1rem;
@@ -334,7 +353,7 @@ button.btn:active {
 }
 
 .movieinfo-text {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Abel', sans-serif;
   padding: 40px;
   color: #fff;
   overflow: hidden;

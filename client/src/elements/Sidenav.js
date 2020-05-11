@@ -1,6 +1,5 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import Logout from '../components/auth/Logout';
 import { Link } from 'react-router-dom';
 
 const Sidenav = ({ logout }) => (

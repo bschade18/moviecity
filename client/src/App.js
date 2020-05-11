@@ -6,13 +6,13 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import Home from './components/Home';
-import Main from './components/Main';
-import Messages from './components/Messages';
+import Home from './components/pages/Home';
+import Main from './components/pages/Main';
+import Messages from './components/pages/Messages';
 
 import Error from './components/Error';
 import Movie from './components/Movie';
-import Search from './components/Search';
+import Search from './components/pages/Search';
 import Profile from './components/Profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import { imageUrl, backdropSize, popularBaseUrl } from '../config';
+import { imageUrl, backdropSize, popularBaseUrl } from '../../config';
 
-import Showcase from '../elements/Showcase';
-import Spinner from '../elements/Spinner';
-import Navbar from '../components/Navbar';
+import Showcase from '../../elements/Showcase';
+import Spinner from '../../elements/Spinner';
+import Navbar from '../Navbar';
 
-import { useHomeFetch } from './hooks/useHomeFetch';
+import { useHomeFetch } from '../hooks/useHomeFetch';
 
 const Home = ({ authSuccess, isAuthenticated, logout, user }) => {
   const [

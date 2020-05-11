@@ -3,7 +3,6 @@ import React from 'react';
 import Actor from '../elements/Actor';
 import Grid from '../elements/Grid';
 import MovieInfo from '../elements/MovieInfo';
-import MovieInfoBar from '../elements/MovieInfoBar';
 import Navigation from '../elements/Navigation';
 import Spinner from '../elements/Spinner';
 
@@ -19,11 +18,6 @@ const Movie = ({ match, user }) => {
     <div>
       <Navigation movie={movie.original_title} />
       <MovieInfo movie={movie} user={user} />
-      {/* <MovieInfoBar
-        runtime={movie.runtime}
-        budget={movie.budget}
-        boxoffice={movie.revenue}
-      /> */}
       <Grid header="Cast">
         {movie.actors.map((actor) => (
           <Actor key={actor.credit_id} actor={actor} />

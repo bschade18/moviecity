@@ -19,11 +19,6 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  photo: {
-    // in the db, it's just gonna be the name of the file
-    type: String,
-    default: 'no-photo.jpg',
-  },
 });
 
 module.exports = User = mongoose.model('user', UserSchema);
