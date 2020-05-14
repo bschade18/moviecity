@@ -63,17 +63,19 @@ export default class Messages extends Component {
           </div>
         </div>
         <div className="container">
-          <table className="table table-hover mt-5">
-            <thead>
-              <tr>
-                <th>From</th>
-                <th>Movie</th>
-                <th>Title</th>
-                <th>Message</th>
-              </tr>
-            </thead>
-            <tbody>{this.messagesList()}</tbody>
-          </table>
+          <div className="table-responsive">
+            <table className="table table-hover mt-5">
+              <thead>
+                <tr>
+                  <th>From</th>
+                  <th>Movie</th>
+                  <th>Title</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+              <tbody>{this.messagesList()}</tbody>
+            </table>
+          </div>
         </div>
       </div>
     );

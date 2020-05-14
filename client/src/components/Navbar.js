@@ -72,7 +72,7 @@ const Navbar = ({ isAuthenticated, authSuccess }) => {
   };
 
   return (
-    <nav className="navbar navbar-dark background-primary py-3 navbar-expand-lg">
+    <nav className="navbar navbar-dark background-primary py-3 navbar-expand-sm">
       <div className="container">
         <Link className="navbar-brand" to="/home" href="#">
           <FontAwesome className="fas fa-building" name="city" size="2x" />{' '}

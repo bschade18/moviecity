@@ -38,10 +38,10 @@ const Showcase = ({ image, title }) => {
   return (
     <div className="container">
       <div id="showcase-container" className="row align-items-center mt-5">
-        <div className="col-6">
+        <div className="col-lg-6 d-none d-lg-block">
           <img src={image} alt="movie" className="home-img" />
         </div>
-        <div className="col-5 offset-1">
+        <div className="col-lg-5 offset-1">
           <h3>Create a New Account</h3>
           <form onSubmit={onSubmit}>
             <div className="form-group py-1">
