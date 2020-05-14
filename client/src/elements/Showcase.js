@@ -38,10 +38,10 @@ const Showcase = ({ image, title }) => {
   return (
     <div className="container">
       <div id="showcase-container" className="row align-items-center mt-5">
-        <div className="col-lg-6 d-none d-lg-block">
+        <div className="col-lg-6 d-none d-lg-block mr-3">
           <img src={image} alt="movie" className="home-img" />
         </div>
-        <div className="col-lg-5 offset-1">
+        <div className="col-lg-5 ml-lg-5">
           <h3>Create a New Account</h3>
           <form onSubmit={onSubmit}>
             <div className="form-group py-1">
@@ -84,7 +84,7 @@ const Showcase = ({ image, title }) => {
                 onChange={onChange}
               />
             </div>
-            <button className="btn btn-success" type="submit">
+            <button className="btn btn-success btn-block-sm-only" type="submit">
               Sign Up
             </button>
           </form>

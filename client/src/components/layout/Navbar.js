@@ -1,31 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
+import PropTypes from 'prop-types';
 
 import axios from 'axios';
 
-const Navbar = ({ isAuthenticated, authSuccess }) => {
-  const [modal, setModal] = useState(false);
+const Navbar = ({ authSuccess }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [msg, setMsg] = useState(null);
-
-  useEffect(() => {
-    if (modal) {
-      if (isAuthenticated) {
-        toggle();
-      }
-    }
-  });
-
-  const toggle = () => {
-    clearErrors();
-    setModal(!modal);
-  };
-
-  const clearErrors = () => {
-    setMsg(null);
-  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -59,7 +41,7 @@ const Navbar = ({ isAuthenticated, authSuccess }) => {
     axios
       .post('/auth/login', body, config)
       .then((res) => loginSuccess(res.data))
-      .catch((err) => returnErrors(err.response.data));
+      .catch((err) => console.log(err));
   };
 
   const loginSuccess = (data) => {
@@ -67,21 +49,21 @@ const Navbar = ({ isAuthenticated, authSuccess }) => {
     authSuccess(data.user);
   };
 
-  const returnErrors = (data) => {
-    setMsg(data.msg);
-  };
-
   return (
-    <nav className="navbar navbar-dark background-primary py-3 navbar-expand-sm">
+    <nav className="navbar navbar-dark background-primary py-3">
       <div className="container">
         <Link className="navbar-brand" to="/home" href="#">
-          <FontAwesome className="fas fa-building" name="city" size="2x" />{' '}
-          MovieCity
+          <FontAwesome
+            className="fas fa-building d-none d-md-inline"
+            name="city"
+            size="2x"
+          />{' '}
+          <span>MovieCity</span>
         </Link>
 
-        <form className="form-inline my-2 my-lg-0 ml-auto" onSubmit={onSubmit}>
+        <form className="form-inline" onSubmit={onSubmit}>
           <input
-            className="form-control mr-sm-2"
+            className="form-control my-2 mr-sm-2"
             type="text"
             placeholder="Email"
             aria-label="Email"
@@ -89,7 +71,7 @@ const Navbar = ({ isAuthenticated, authSuccess }) => {
             onChange={onChangeEmail}
           />
           <input
-            className="form-control mr-sm-2"
+            className="form-control my-2 mr-sm-2"
             type="password"
             placeholder="Password"
             aria-label="Password"
@@ -97,7 +79,7 @@ const Navbar = ({ isAuthenticated, authSuccess }) => {
             onChange={onChangePassword}
           />
           <button
-            className="btn btn-outline-success my-2 my-sm-0"
+            className="btn btn-outline-success my-2 my-sm-0 btn-block-sm-only"
             type="submit"
           >
             Log in
@@ -109,6 +91,10 @@ const Navbar = ({ isAuthenticated, authSuccess }) => {
       </div>
     </nav>
   );
+};
+
+Navbar.propTypes = {
+  authSuccess: PropTypes.func.isRequired,
 };
 
 export default Navbar;

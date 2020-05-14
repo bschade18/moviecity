@@ -1,44 +1,26 @@
-import React from 'react';
-import { imageUrl, backdropSize, popularBaseUrl } from '../../config';
-
+import React, { useEffect, useState } from 'react';
 import Showcase from '../../elements/Showcase';
 import Spinner from '../../elements/Spinner';
-import Navbar from '../Navbar';
+import Navbar from '../layout/Navbar';
+import { imageUrl, backdropSize, popularBaseUrl } from '../../config';
 
-import { useHomeFetch } from '../hooks/useHomeFetch';
+const Home = ({ authSuccess }) => {
+  const [image, setImage] = useState('');
 
-const Home = ({ authSuccess, isAuthenticated, logout, user }) => {
-  const [
-    {
-      state: { movies, currentPage, heroImage },
-      error,
-    },
-    fetchMovies,
-  ] = useHomeFetch();
+  useEffect(() => {
+    async function getMovie() {
+      const result = await (await fetch(`${popularBaseUrl}&page=1`)).json();
+      setImage(result.results[0]);
+    }
+    getMovie();
+  }, []);
 
-  const loadMoreMovies = () => {
-    const popularEndpoint = `${popularBaseUrl}&page=${currentPage + 1}`;
-
-    const endpoint = popularEndpoint;
-
-    fetchMovies(endpoint);
-  };
-
-  if (error) return <div>Something went wrong</div>;
-  if (!movies[0]) return <Spinner />;
+  if (!image) return <Spinner />;
 
   return (
     <div>
-      <Navbar
-        authSuccess={authSuccess}
-        isAuthenticated={isAuthenticated}
-        logout={logout}
-        user={user}
-      />
-      <Showcase
-        image={`${imageUrl}${backdropSize}${heroImage.backdrop_path}`}
-        title={heroImage.original_title}
-      />
+      <Navbar authSuccess={authSuccess} />
+      <Showcase image={`${imageUrl}${backdropSize}${image.backdrop_path}`} />
     </div>
   );
 };
