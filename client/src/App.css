@@ -547,3 +547,36 @@ button.btn:active {
 #modalbtn {
   color: orange;
 } */
+
+/* Review Modal */
+/* .rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+  content: '\2605';
+  position: absolute;
+  color: gold;
+} */
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+  color: gold;
+}
+
+/* .hover:hover {
+  color: gold;
+} */
+.checked {
+  color: gold;
+}

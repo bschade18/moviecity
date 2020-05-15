@@ -16,6 +16,23 @@ const MyMovies = ({ movie }) => (
       </div>
       <div className="mainmovies-text">
         <h5>{movie.movieTitle}</h5>
+        <div className="rating">
+          <span
+            className={movie.review >= 1 ? 'fa fa-star checked' : 'd-none'}
+          ></span>
+          <span
+            className={movie.review >= 2 ? 'fa fa-star checked' : 'd-none'}
+          ></span>
+          <span
+            className={movie.review >= 3 ? 'fa fa-star checked' : 'd-none'}
+          ></span>
+          <span
+            className={movie.review >= 4 ? 'fa fa-star checked' : 'd-none'}
+          ></span>
+          <span
+            className={movie.review === 5 ? 'fa fa-star checked' : 'd-none'}
+          ></span>
+        </div>
         <p>{movie.comments}</p>
       </div>
     </div>

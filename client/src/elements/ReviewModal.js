@@ -14,7 +14,7 @@ import axios from 'axios';
 import { imageUrl } from '../config';
 
 const ReviewModal = ({ movie, user }) => {
-  const [review, setReview] = useState('');
+  const [review, setReview] = useState(null);
   const [comments, setComments] = useState('');
   const [modal, setModal] = useState(false);
 
@@ -35,8 +35,8 @@ const ReviewModal = ({ movie, user }) => {
     setTimeout(() => (window.location = '/main'), 500);
   };
 
-  const handleClick = (e) => {
-    setReview(e.target.value);
+  const setStar = (number) => {
+    setReview(number);
   };
 
   const toggle = () => setModal(!modal);
@@ -50,27 +50,39 @@ const ReviewModal = ({ movie, user }) => {
         <ModalHeader toggle={toggle}>Review Movie</ModalHeader>
         <ModalBody>
           <Form onSubmit={onSubmitReview}>
-            <FormGroup>
-              <Button
-                color={review === 'good' ? 'success' : 'secondary'}
-                type="button"
-                value="good"
-                onClick={handleClick}
-              >
-                Loved it!!
-              </Button>
-            </FormGroup>
+            <div className="rating">
+              <span
+                onClick={() => setStar(5)}
+                className={
+                  review === 5 ? 'fa fa-star checked' : 'fa fa-star hover'
+                }
+              ></span>
+              <span
+                onClick={() => setStar(4)}
+                className={
+                  review >= 4 ? 'fa fa-star checked' : 'fa fa-star hover'
+                }
+              ></span>
+              <span
+                onClick={() => setStar(3)}
+                className={
+                  review >= 3 ? 'fa fa-star checked' : 'fa fa-star hover'
+                }
+              ></span>
+              <span
+                onClick={() => setStar(2)}
+                className={
+                  review >= 2 ? 'fa fa-star checked' : 'fa fa-star hover'
+                }
+              ></span>
+              <span
+                onClick={() => setStar(1)}
+                className={
+                  review >= 1 ? 'fa fa-star checked' : 'fa fa-star hover'
+                }
+              ></span>
+            </div>
 
-            <FormGroup>
-              <Button
-                type="button"
-                color={review === 'bad' ? 'danger' : 'secondary'}
-                value="bad"
-                onClick={handleClick}
-              >
-                It's a bust
-              </Button>
-            </FormGroup>
             <FormGroup>
               <Label for="name">Comments</Label>
               <Input
