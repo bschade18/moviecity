@@ -537,33 +537,7 @@ button.btn:active {
   width: 300px;
 }
 
-/* .homepage {
-  position: absolute;
-  top: 50%;
-  left: 0%;
-  border: 2px solid black;
-}
-
-#modalbtn {
-  color: orange;
-} */
-
-/* Review Modal */
-/* .rating {
-  unicode-bidi: bidi-override;
-  direction: rtl;
-}
-.rating > span {
-  display: inline-block;
-  position: relative;
-  width: 1.1em;
-}
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
-  content: '\2605';
-  position: absolute;
-  color: gold;
-} */
+/* 5 star rating */
 
 .rating {
   unicode-bidi: bidi-override;
@@ -574,9 +548,6 @@ button.btn:active {
   color: gold;
 }
 
-/* .hover:hover {
-  color: gold;
-} */
 .checked {
   color: gold;
 }
