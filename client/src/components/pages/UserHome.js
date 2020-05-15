@@ -5,7 +5,7 @@ import MyMovies from '../../elements/MyMovies';
 import Spinner from '../../elements/Spinner';
 import Sidenav from '../../elements/Sidenav';
 
-const Main = ({ logout }) => {
+const UserHome = ({ logout, match }) => {
   const [myMovies, setmyMovies] = useState([]);
 
   useEffect(() => {
@@ -26,12 +26,14 @@ const Main = ({ logout }) => {
           <div className="main">
             <div className="scroll-nav">
               <FontAwesome className="fas fa-building" name="city" size="2x" />
-              <p>MovieCity</p>
+              <p>{match.params.user}</p>
             </div>
             <div className="movie-scroll">
-              {myMovies.map((movie) => (
-                <MyMovies movie={movie} key={movie._id} />
-              ))}
+              {myMovies
+                .filter((movie) => movie.user === match.params.user)
+                .map((movie) => (
+                  <MyMovies movie={movie} key={movie._id} />
+                ))}
             </div>
           </div>
         </div>
@@ -40,4 +42,4 @@ const Main = ({ logout }) => {
   );
 };
 
-export default Main;
+export default UserHome;

@@ -14,6 +14,7 @@ import Error from './components/Error';
 import Movie from './components/Movie';
 import Search from './components/pages/Search';
 import Profile from './components/Profile';
+import UserHome from './components/pages/UserHome';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import axios from 'axios';
@@ -146,6 +147,22 @@ class App extends React.Component {
               path="/profile"
               render={(props) => <Profile {...props} user={this.state.user} />}
             ></Route>
+            <Route
+              exact
+              path="/:movieId"
+              render={(props) => <Movie {...props} user={this.state.user} />}
+            ></Route>
+            <Route
+              exact
+              path="/user/:user"
+              render={(props) => (
+                <UserHome
+                  {...props}
+                  movies={this.state.movies}
+                  logout={this.logout}
+                />
+              )}
+            ></Route>
 
             <Route
               path="/messages"
@@ -154,11 +171,6 @@ class App extends React.Component {
             <Route
               path="/search"
               render={(props) => <Search {...props} />}
-            ></Route>
-
-            <Route
-              path="/:movieId"
-              render={(props) => <Movie {...props} user={this.state.user} />}
             ></Route>
 
             <Route component={Error} />
