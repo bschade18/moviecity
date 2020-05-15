@@ -7,7 +7,7 @@ const popularBaseUrl = `${apiUrl}movie/popular?api_key=${apiKey}`;
 
 const imageUrl = 'https://image.tmdb.org/t/p/';
 
-const backdropSize = 'w500';
+const backdropSize = 'w1280';
 const posterSize = 'w500';
 
 export {
