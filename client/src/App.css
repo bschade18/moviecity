@@ -121,10 +121,30 @@ a {
   grid-template-columns: 1fr 3fr 1fr;
 }
 
+.bottom-nav {
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0;
+  position: fixed;
+  bottom: 0;
+  background: white;
+  color: black;
+  padding: 1rem;
+  /* max-width: 750px; */
+  font-size: 1.5rem;
+  display: none;
+}
+
 @media screen and (max-width: 576px) {
   .scroll-container {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 }
 

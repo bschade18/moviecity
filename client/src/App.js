@@ -144,6 +144,16 @@ class App extends React.Component {
               )}
             ></Route>
             <Route
+              exact
+              path="/messages"
+              render={(props) => <Messages {...props} user={this.state.user} />}
+            ></Route>
+            <Route
+              exact
+              path="/search"
+              render={(props) => <Search {...props} />}
+            ></Route>
+            <Route
               path="/profile"
               render={(props) => <Profile {...props} user={this.state.user} />}
             ></Route>
@@ -162,15 +172,6 @@ class App extends React.Component {
                   logout={this.logout}
                 />
               )}
-            ></Route>
-
-            <Route
-              path="/messages"
-              render={(props) => <Messages {...props} user={this.state.user} />}
-            ></Route>
-            <Route
-              path="/search"
-              render={(props) => <Search {...props} />}
             ></Route>
 
             <Route component={Error} />
