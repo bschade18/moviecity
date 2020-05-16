@@ -67,7 +67,7 @@ a {
 
 #mainmovies-list {
   min-height: 200px;
-  max-width: 800px;
+  /* max-width: 750px; */
   border-bottom: 1px solid #e0e0e0;
   border-right: 1px solid #e0e0e0;
   border-left: 1px solid #e0e0e0;
@@ -106,7 +106,7 @@ a {
   background: #003699;
   color: #fff;
   padding: 1rem;
-  max-width: 800px;
+  /* max-width: 750px; */
   font-size: 1.5rem;
   display: flex;
 }
@@ -118,7 +118,14 @@ a {
 
 .scroll-container {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 3fr 1fr;
+}
+
+@media screen and (max-width: 576px) {
+  .scroll-container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }
 
 .main {
@@ -137,6 +144,18 @@ a {
   align-items: center;
 }
 
+@media screen and (max-width: 576px) {
+  #sidenav-container {
+    display: none;
+  }
+  #sidenav-container .sn-item {
+    display: none;
+  }
+  #user-search {
+    display: none;
+  }
+}
+
 #sidenav-container .sn-item {
   color: black;
   display: block;
@@ -146,8 +165,7 @@ a {
 }
 
 #sidenav-container .sn-item:hover {
-  background-color: var(--primary-color);
-  color: #fff;
+  color: var(--primary-color);
 }
 
 a.btn:focus,
@@ -554,4 +572,24 @@ button.btn:active {
 
 #mainmovies-list .user-link {
   color: black;
+}
+
+/* User Search */
+
+#user-search {
+  width: 20%;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+#user-search-link {
+  color: black;
+}
+
+#user-search-box {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 0;
+  padding-left: 10px;
+  font-weight: bold;
 }

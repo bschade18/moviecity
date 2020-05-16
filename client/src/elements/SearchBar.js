@@ -5,7 +5,7 @@ const SearchBar = ({ callback }) => {
   const [state, setState] = useState('');
   const timeOut = useRef(null);
 
-  const doSearch = event => {
+  const doSearch = (event) => {
     const { value } = event.target;
 
     clearTimeout(timeOut.current);

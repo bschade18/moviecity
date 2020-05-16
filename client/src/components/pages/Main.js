@@ -4,6 +4,7 @@ import axios from 'axios';
 import MyMovies from '../../elements/MyMovies';
 import Spinner from '../../elements/Spinner';
 import Sidenav from '../../elements/Sidenav';
+import UserSearch from '../../elements/UserSearch';
 
 const Main = ({ logout }) => {
   const [myMovies, setmyMovies] = useState([]);
@@ -19,23 +20,22 @@ const Main = ({ logout }) => {
     return <Spinner />;
   }
   return (
-    <div>
-      <div className="main-content">
-        <Sidenav logout={logout} />
-        <div className="scroll-container">
-          <div className="main">
-            <div className="scroll-nav">
-              <FontAwesome className="fas fa-building" name="city" size="2x" />
-              <p>MovieCity</p>
-            </div>
-            <div className="movie-scroll">
-              {myMovies.map((movie) => (
-                <MyMovies movie={movie} key={movie._id} />
-              ))}
-            </div>
+    <div className="main-content">
+      <Sidenav logout={logout} />
+      <div className="scroll-container">
+        <div className="main">
+          <div className="scroll-nav">
+            <FontAwesome className="fas fa-building" name="city" size="2x" />
+            <p>MovieCity</p>
+          </div>
+          <div className="movie-scroll">
+            {myMovies.map((movie) => (
+              <MyMovies movie={movie} key={movie._id} />
+            ))}
           </div>
         </div>
       </div>
+      <UserSearch />
     </div>
   );
 };
