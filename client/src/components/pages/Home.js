@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Showcase from '../../elements/Showcase';
 import Spinner from '../../elements/Spinner';
 import Navbar from '../layout/Navbar';
+import { Redirect } from 'react-router-dom';
 import { imageUrl, backdropSize, popularBaseUrl } from '../../config';
 
-const Home = ({ authSuccess }) => {
+const Home = ({ authSuccess, isAuthenticated }) => {
   const [image, setImage] = useState('');
 
   useEffect(() => {
@@ -15,6 +16,9 @@ const Home = ({ authSuccess }) => {
     getMovie();
   }, []);
 
+  if (isAuthenticated) {
+    return <Redirect to="/main" />;
+  }
   if (!image) return <Spinner />;
 
   return (

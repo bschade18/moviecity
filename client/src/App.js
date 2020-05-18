@@ -45,9 +45,10 @@ class App extends React.Component {
   authSuccess = (user) => {
     this.setState({
       isAuthenticated: true,
-      isLoading: false,
+      isLoading: true,
       user: user,
     });
+    this.loadUser();
   };
 
   componentDidMount() {
@@ -113,19 +114,15 @@ class App extends React.Component {
             <Route
               path="/"
               exact
-              render={(props) =>
-                this.state.isAuthenticated ? (
-                  <Redirect to="/main" />
-                ) : (
-                  <Home
-                    {...props}
-                    authSuccess={this.authSuccess}
-                    isAuthenticated={this.state.isAuthenticated}
-                    logout={this.logout}
-                    user={this.state.user}
-                  />
-                )
-              }
+              render={(props) => (
+                <Home
+                  {...props}
+                  authSuccess={this.authSuccess}
+                  isAuthenticated={this.state.isAuthenticated}
+                  logout={this.logout}
+                  user={this.state.user}
+                />
+              )}
             ></Route>
 
             <Route
@@ -134,12 +131,12 @@ class App extends React.Component {
                 <Main
                   {...props}
                   movies={this.state.movies}
-                  handleSearch={this.handleSearch}
                   handleChange={this.handleChange}
                   search={this.state.search}
-                  setCurrent={this.setCurrent}
+                  user={this.state.user}
                   logout={this.logout}
                   isAuthenticated={this.state.isAuthenticated}
+                  isLoading={this.state.isLoading}
                 />
               )}
             ></Route>
@@ -170,6 +167,8 @@ class App extends React.Component {
                   {...props}
                   movies={this.state.movies}
                   logout={this.logout}
+                  user={this.state.user}
+                  loadUser={this.loadUser}
                 />
               )}
             ></Route>

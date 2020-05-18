@@ -7,19 +7,27 @@ import Sidenav from '../../elements/Sidenav';
 import UserSearch from '../../elements/UserSearch';
 import { Link } from 'react-router-dom';
 
-const Main = ({ logout }) => {
-  const [myMovies, setmyMovies] = useState([]);
+const Main = ({ logout, user, isLoading, isAuthenticated }) => {
+  const [myMovies, setmyMovies] = useState(null);
 
   useEffect(() => {
+    console.log('using effect');
     axios
       .get('/reviews')
       .then((res) => setmyMovies(res.data.data))
       .catch((err) => console.log(err));
-  });
+  }, []);
 
-  if (!myMovies[0]) {
+  // const showMovies = () => {
+  //   return myMovies
+  //     .filter((movie) => user.friends.includes(movie.user))
+  //     .map((movie) => <MyMovies movie={movie} key={movie._id} />);
+  // };
+
+  if (isLoading || !isAuthenticated || myMovies === null || !user) {
     return <Spinner />;
   }
+
   return (
     <div className="main-content">
       <Sidenav logout={logout} />
@@ -30,9 +38,18 @@ const Main = ({ logout }) => {
             <p>MovieCity</p>
           </div>
           <div className="movie-scroll">
-            {myMovies.map((movie) => (
+            {myMovies
+              .filter(
+                (movie) =>
+                  user.friends.includes(movie.user) || user.name === movie.user
+              )
+              .map((movie) => (
+                <MyMovies movie={movie} key={movie._id} />
+              ))}
+            {/* {myMovies.map((movie) => (
               <MyMovies movie={movie} key={movie._id} />
-            ))}
+            ))} */}
+            {/* {showMovies()} */}
           </div>
           <div className="bottom-nav">
             <Link to="/main" className="btn">

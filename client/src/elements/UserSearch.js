@@ -6,16 +6,18 @@ import axios from 'axios';
 const SearchBar = ({}) => {
   const [state, setState] = useState('');
   const [users, setUsers] = useState([]);
+  const timeOut = useRef(null);
 
-  const searchUsers = async (event) => {
+  const searchUsers = (event) => {
     const { value } = event.target;
+    clearTimeout(timeOut.current);
     if (value === '') {
       setUsers([]);
     } else {
-      console.log(value);
-      const res = await axios.get('/users');
-
-      setUsers(res.data);
+      timeOut.current = setTimeout(async () => {
+        const res = await axios.get('/users');
+        setUsers(res.data);
+      }, 500);
     }
     setState(value);
   };

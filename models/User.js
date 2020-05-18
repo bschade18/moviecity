@@ -19,6 +19,7 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  friends: [String],
 });
 
 UserSchema.index({ name: 'text' });

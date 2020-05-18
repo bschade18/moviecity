@@ -109,6 +109,7 @@ a {
   /* max-width: 750px; */
   font-size: 1.5rem;
   display: flex;
+  align-items: center;
 }
 
 .scroll-nav p {
@@ -613,3 +614,13 @@ button.btn:active {
   padding-left: 10px;
   font-weight: bold;
 }
+
+/* 
+.friend-btn:hover {
+  font-size: 0;
+}
+
+.friend-btn:hover:after {
+  content: attr(data-hover);
+  font-size: 1rem;
+} */
