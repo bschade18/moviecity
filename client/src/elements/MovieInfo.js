@@ -10,7 +10,7 @@ const MovieInfo = ({ movie, user }) => {
   // backdrop is a prop to the backdrop style component here
   // see styled movie info styled component
 
-  const movieInfoStyle = backdrop => ({
+  const movieInfoStyle = (backdrop) => ({
     background: movie.backdrop_path
       ? `url(${imageUrl}${backdropSize}${backdrop})`
       : '#000',
@@ -18,7 +18,8 @@ const MovieInfo = ({ movie, user }) => {
     backgroundPosition: 'center',
     width: '100%',
     padding: '40px 20px',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    animation: 'animateMovieinfo 1s',
   });
 
   return (
@@ -34,7 +35,7 @@ const MovieInfo = ({ movie, user }) => {
                 ? `${imageUrl}${posterSize}${movie.poster_path}`
                 : NoImage
             }
-            clickable="false"
+            clickable={false}
           />
         </div>
         <div className="movieinfo-text">
@@ -49,7 +50,7 @@ const MovieInfo = ({ movie, user }) => {
             </div>
             <div className="director">
               <h3>Director{movie.directors.length > 1 ? 's' : ''}</h3>
-              {movie.directors.map(element => (
+              {movie.directors.map((element) => (
                 <p key={element.credit_id}>{element.name}</p>
               ))}
             </div>
