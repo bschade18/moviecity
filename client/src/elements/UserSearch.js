@@ -15,6 +15,7 @@ const SearchBar = () => {
     } else {
       timeOut.current = setTimeout(async () => {
         const res = await axios.get('/users');
+        console.log(res);
         setUsers(res.data);
       }, 500);
     }
