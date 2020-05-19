@@ -15,10 +15,6 @@ exports.getReviews = async (req, res, next) => {
   } catch (error) {
     next(new ErrorResponse('Reviews not found', 404));
   }
-  // Review.find()
-  //   .sort({ reviewDate: -1 })
-  //   .then((reviews) => res.json(reviews))
-  //   .catch((err) => res.status(400).json('Error: ' + err));
 };
 
 // @route POST /reviews
@@ -34,31 +30,9 @@ exports.postReviews = async (req, res, next) => {
       data: review,
     });
   } catch (error) {
+    console.log(error);
     res.status(400).json({
       success: false,
     });
   }
-
-  // const user = req.body.user;
-  // const movieTitle = req.body.movieTitle;
-  // const comments = req.body.comments;
-  // const reviewDate = req.body.reviewDate;
-  // const review = req.body.review;
-  // const imageUrl = req.body.imageUrl;
-  // const movieId = req.body.movieId;
-
-  // const newReview = new Review({
-  //   user,
-  //   movieTitle,
-  //   comments,
-  //   reviewDate,
-  //   review,
-  //   imageUrl,
-  //   movieId,
-  // });
-
-  // newReview
-  //   .save()
-  //   .then(() => res.json('Review added!'))
-  //   .catch((err) => res.status(400).json('Error: ' + err));
 };

@@ -11,9 +11,7 @@ import LoadMoreBtn from '../../elements/LoadMoreBtn';
 import MovieThumb from '../../elements/MovieThumb';
 import SearchBar from '../../elements/SearchBar';
 import Spinner from '../../elements/Spinner';
-
 import Navigation from '../../elements/Navigation';
-
 import { useHomeFetch } from '../hooks/useHomeFetch';
 import NoImage from '../images/no_image.jpg';
 

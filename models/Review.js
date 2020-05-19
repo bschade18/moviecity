@@ -9,11 +9,10 @@ const ReviewSchema = new Schema({
   movieTitle: {
     type: String,
     required: true,
-    unique: true,
   },
   imageUrl: {
     type: String,
-    require: true,
+    required: true,
   },
   comments: {
     type: String,

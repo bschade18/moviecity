@@ -5,22 +5,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { login } from '../../actions/auth';
 
-import axios from 'axios';
-
-const Navbar = ({ authSuccess, login }) => {
+const Navbar = ({ login }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   const user = {
-  //     email,
-  //     password,
-  //   };
-
-  //   login(user);
-  // };
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -29,33 +16,11 @@ const Navbar = ({ authSuccess, login }) => {
     setPassword(e.target.value);
   };
 
-  // const login = (user) => {
-  //   const { email, password } = user;
-
-  //   const config = {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   };
-
-  //   const body = JSON.stringify({ email, password });
-
-  //   axios
-  //     .post('/auth/login', body, config)
-  //     .then((res) => loginSuccess(res.data))
-  //     .catch((err) => console.log(err));
-  // };
-
   const onSubmit = (e) => {
     e.preventDefault();
 
     login({ email, password });
   };
-
-  // const loginSuccess = (data) => {
-  //   localStorage.setItem('token', data.token);
-  //   authSuccess(data.user);
-  // };
 
   return (
     <nav className="navbar navbar-dark background-primary py-3">
@@ -102,7 +67,7 @@ const Navbar = ({ authSuccess, login }) => {
 };
 
 Navbar.propTypes = {
-  authSuccess: PropTypes.func.isRequired,
+  authSuccess: PropTypes.func,
   login: PropTypes.func,
 };
 

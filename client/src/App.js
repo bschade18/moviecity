@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
@@ -10,23 +10,31 @@ import Movie from './components/pages/Movie';
 import UserHome from './components/pages/UserHome';
 import Error from './components/Error';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
+import PrivateRoute from './routing/PrivateRoute';
 
 import store from './store';
 
 import './App.css';
 
 const App = () => {
+  useEffect(() => {
+    setAuthToken(localStorage.token);
+    store.dispatch(loadUser());
+  }, []);
+
   return (
     <Provider store={store}>
       <div>
         <Router>
           <Switch>
             <Route exact path="/" component={Home}></Route>
-            <Route exact path="/main" component={Main}></Route>
-            <Route exact path="/messages" component={Messages}></Route>
-            <Route exact path="/search" component={Search}></Route>
-            <Route exact path="/:movieId" component={Movie}></Route>
-            <Route exact path="/user/:user" component={UserHome}></Route>
+            <PrivateRoute exact path="/main" component={Main} />
+            <PrivateRoute exact path="/messages" component={Messages} />
+            <PrivateRoute exact path="/search" component={Search} />
+            <PrivateRoute exact path="/:movieId" component={Movie} />
+            <PrivateRoute exact path="/user/:user" component={UserHome} />
             <Route component={Error} />
           </Switch>
         </Router>

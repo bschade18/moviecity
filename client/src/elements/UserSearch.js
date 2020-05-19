@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react';
-import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const SearchBar = ({}) => {
+const SearchBar = () => {
   const [state, setState] = useState('');
   const [users, setUsers] = useState([]);
   const timeOut = useRef(null);

@@ -20,12 +20,6 @@ const Main = ({ user, loading, isAuthenticated, logout }) => {
       .catch((err) => console.log(err));
   }, []);
 
-  // const showMovies = () => {
-  //   return myMovies
-  //     .filter((movie) => user.friends.includes(movie.user))
-  //     .map((movie) => <MyMovies movie={movie} key={movie._id} />);
-  // };
-
   if (loading || !isAuthenticated || myMovies === null || !user) {
     return <Spinner />;
   }
@@ -48,10 +42,6 @@ const Main = ({ user, loading, isAuthenticated, logout }) => {
               .map((movie) => (
                 <MyMovies movie={movie} key={movie._id} />
               ))}
-            {/* {myMovies.map((movie) => (
-              <MyMovies movie={movie} key={movie._id} />
-            ))} */}
-            {/* {showMovies()} */}
           </div>
           <div className="bottom-nav">
             <Link to="/main" className="btn">
