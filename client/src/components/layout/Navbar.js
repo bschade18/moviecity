@@ -2,23 +2,25 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { login } from '../../actions/auth';
 
 import axios from 'axios';
 
-const Navbar = ({ authSuccess }) => {
+const Navbar = ({ authSuccess, login }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
 
-    const user = {
-      email,
-      password,
-    };
+  //   const user = {
+  //     email,
+  //     password,
+  //   };
 
-    login(user);
-  };
+  //   login(user);
+  // };
 
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -27,27 +29,33 @@ const Navbar = ({ authSuccess }) => {
     setPassword(e.target.value);
   };
 
-  const login = (user) => {
-    const { email, password } = user;
+  // const login = (user) => {
+  //   const { email, password } = user;
 
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
+  //   const config = {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   };
 
-    const body = JSON.stringify({ email, password });
+  //   const body = JSON.stringify({ email, password });
 
-    axios
-      .post('/auth/login', body, config)
-      .then((res) => loginSuccess(res.data))
-      .catch((err) => console.log(err));
+  //   axios
+  //     .post('/auth/login', body, config)
+  //     .then((res) => loginSuccess(res.data))
+  //     .catch((err) => console.log(err));
+  // };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    login({ email, password });
   };
 
-  const loginSuccess = (data) => {
-    localStorage.setItem('token', data.token);
-    authSuccess(data.user);
-  };
+  // const loginSuccess = (data) => {
+  //   localStorage.setItem('token', data.token);
+  //   authSuccess(data.user);
+  // };
 
   return (
     <nav className="navbar navbar-dark background-primary py-3">
@@ -95,6 +103,7 @@ const Navbar = ({ authSuccess }) => {
 
 Navbar.propTypes = {
   authSuccess: PropTypes.func.isRequired,
+  login: PropTypes.func,
 };
 
-export default Navbar;
+export default connect(null, { login })(Navbar);

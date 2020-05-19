@@ -1,6 +1,9 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { logout } from '../actions/auth';
 
 const Sidenav = ({ logout }) => (
   <div id="sidenav-container">
@@ -31,4 +34,8 @@ const Sidenav = ({ logout }) => (
   </div>
 );
 
-export default Sidenav;
+Sidenav.propTypes = {
+  logout: PropTypes.func,
+};
+
+export default connect(null, { logout })(Sidenav);

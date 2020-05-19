@@ -4,6 +4,8 @@ import Spinner from '../../elements/Spinner';
 import Navbar from '../layout/Navbar';
 import { Redirect } from 'react-router-dom';
 import { imageUrl, backdropSize, popularBaseUrl } from '../../config';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const Home = ({ authSuccess, isAuthenticated }) => {
   const [image, setImage] = useState('');
@@ -29,4 +31,12 @@ const Home = ({ authSuccess, isAuthenticated }) => {
   );
 };
 
-export default Home;
+Home.propTypes = {
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps)(Home);

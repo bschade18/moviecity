@@ -4,8 +4,11 @@ import axios from 'axios';
 import MyMovies from '../../elements/MyMovies';
 import Spinner from '../../elements/Spinner';
 import Sidenav from '../../elements/Sidenav';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { loadUser } from '../../actions/auth';
 
-const UserHome = ({ logout, match, user, loadUser }) => {
+const UserHome = ({ match, user, loadUser }) => {
   const [myMovies, setmyMovies] = useState([]);
 
   useEffect(() => {
@@ -34,7 +37,7 @@ const UserHome = ({ logout, match, user, loadUser }) => {
   return (
     <div>
       <div className="main-content">
-        <Sidenav logout={logout} />
+        <Sidenav />
         <div className="scroll-container">
           <div className="main">
             <div className="scroll-nav">
@@ -69,4 +72,13 @@ const UserHome = ({ logout, match, user, loadUser }) => {
   );
 };
 
-export default UserHome;
+UserHome.propTypes = {
+  user: PropTypes.object,
+  loadUser: PropTypes.func,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, { loadUser })(UserHome);

@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 const Message = (props) => (
@@ -17,67 +19,66 @@ const Message = (props) => (
   </tr>
 );
 
-export default class Messages extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      messages: [],
-    };
-  }
+const Messages = ({ user }) => {
+  const [messages, setMessages] = useState([]);
 
-  componentDidMount() {
+  useEffect(() => {
     axios
       .get('/messages')
       .then((response) => {
-        this.setState({
-          messages: response.data,
-        });
+        setMessages(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  }, []);
 
-  messagesList() {
-    const messages = this.state.messages.filter(
-      (currentmessage) => currentmessage.recipient === this.props.user.name
-    );
+  const messagesList = () => {
+    return messages
+      .filter((currentmessage) => currentmessage.recipient === user.name)
+      .map((currentmessage) => {
+        return <Message message={currentmessage} key={currentmessage._id} />;
+      });
+  };
 
-    return messages.map((currentmessage) => {
-      return <Message message={currentmessage} key={currentmessage._id} />;
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <div id="navigation">
-          <div className="navigation-container">
-            <div className="navigation-content">
-              <Link to="/">
-                <p>Home</p>
-              </Link>
-              <p>|</p>
-              <p>Inbox</p>
-            </div>
-          </div>
-        </div>
-        <div className="container">
-          <div className="table-responsive">
-            <table className="table table-hover mt-5">
-              <thead>
-                <tr>
-                  <th>From</th>
-                  <th>Movie</th>
-                  <th>Title</th>
-                  <th>Message</th>
-                </tr>
-              </thead>
-              <tbody>{this.messagesList()}</tbody>
-            </table>
+  return (
+    <div>
+      <div id="navigation">
+        <div className="navigation-container">
+          <div className="navigation-content">
+            <Link to="/">
+              <p>Home</p>
+            </Link>
+            <p>|</p>
+            <p>Inbox</p>
           </div>
         </div>
       </div>
-    );
-  }
-}
+      <div className="container">
+        <div className="table-responsive">
+          <table className="table table-hover mt-5">
+            <thead>
+              <tr>
+                <th>From</th>
+                <th>Movie</th>
+                <th>Title</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+            <tbody>{messagesList()}</tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+Messages.propTypes = {
+  user: PropTypes.object,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(Messages);
