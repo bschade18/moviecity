@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { register } from '../actions/auth';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import '../App.css';
 
-const Showcase = ({ image, title }) => {
+const Showcase = ({ image, title, register }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,18 +24,20 @@ const Showcase = ({ image, title }) => {
     if (password !== password2) {
       console.log('passwords do not match');
     } else {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
-      const body = JSON.stringify({ name, email, password });
+      // const config = {
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
 
-      axios
-        .post('/auth/register', body, config)
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log('it did not work'));
+      register({ name, email, password });
     }
+
+    // const body = JSON.stringify({ name, email, password });
+
+    // axios
+    //   .post('/auth/register', body, config)
+    //   .then((res) => console.log(res.data))
+    //   .catch((err) => console.log('it did not work'));
   };
 
   return (
@@ -94,6 +99,10 @@ const Showcase = ({ image, title }) => {
   );
 };
 
-export default Showcase;
+Showcase.propTypes = {
+  register: PropTypes.func,
+};
+
+export default connect(null, { register })(Showcase);
 
 /* <img src={image} style={{ width: '100%' }} alt="movie-poster" /> */
