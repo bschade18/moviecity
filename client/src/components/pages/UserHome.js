@@ -58,15 +58,6 @@ const UserHome = ({ match, user, loadUser }) => {
             </button>
           </div>
           <div className="movie-scroll">
-            {/* {myMovies
-              .filter(
-                (movie) =>
-                  user.friends.includes(movie.user) || user.name === movie.user
-              )
-              .map((movie) => (
-                <MyMovies movie={movie} key={movie._id} />
-              ))} */}
-
             {myMovies
               .filter((movie) => {
                 return match.params.user === movie.user;

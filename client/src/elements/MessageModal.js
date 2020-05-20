@@ -68,13 +68,15 @@ const MessageModal = ({ movie, user }) => {
                 id="recipient"
               >
                 <option value="">--Select Friend--</option>
-                {users.map(function (user) {
-                  return (
-                    <option key={user.name} value={user.name}>
-                      {user.name}
-                    </option>
-                  );
-                })}
+                {users
+                  .filter((friend) => user.friends.includes(friend.name))
+                  .map(function (user) {
+                    return (
+                      <option key={user.name} value={user.name}>
+                        {user.name}
+                      </option>
+                    );
+                  })}
               </select>
             </FormGroup>
             <FormGroup>

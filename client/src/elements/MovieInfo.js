@@ -7,9 +7,6 @@ import { posterSize, imageUrl, backdropSize } from '../config';
 import MovieThumb from '../elements/MovieThumb';
 
 const MovieInfo = ({ movie, user }) => {
-  // backdrop is a prop to the backdrop style component here
-  // see styled movie info styled component
-
   const movieInfoStyle = (backdrop) => ({
     background: movie.backdrop_path
       ? `url(${imageUrl}${backdropSize}${backdrop})`
