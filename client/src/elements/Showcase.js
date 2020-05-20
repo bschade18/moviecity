@@ -24,20 +24,8 @@ const Showcase = ({ image, title, register }) => {
     if (password !== password2) {
       console.log('passwords do not match');
     } else {
-      // const config = {
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-
       register({ name, email, password });
     }
-
-    // const body = JSON.stringify({ name, email, password });
-
-    // axios
-    //   .post('/auth/register', body, config)
-    //   .then((res) => console.log(res.data))
-    //   .catch((err) => console.log('it did not work'));
   };
 
   return (
