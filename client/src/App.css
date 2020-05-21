@@ -120,7 +120,9 @@ a {
 
 .scroll-container {
   display: grid;
+
   grid-template-columns: 1fr minmax(0, 3fr) 1fr;
+  /* grid-template-columns: 1fr 3fr 1fr; */
 }
 
 .bottom-nav {
@@ -646,7 +648,7 @@ button.btn:active {
   }
   .scroll-container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .bottom-nav {
