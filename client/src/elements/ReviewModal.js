@@ -39,6 +39,12 @@ const ReviewModal = ({ movie, user }) => {
     setReview(number);
   };
 
+  const renderStar = (number) => (
+    <span
+      onClick={() => setStar(number)}
+      className={review === number ? 'fa fa-star checked' : 'fa fa-star hover'}
+    ></span>
+  );
   const toggle = () => setModal(!modal);
 
   return (
@@ -51,36 +57,11 @@ const ReviewModal = ({ movie, user }) => {
         <ModalBody>
           <Form onSubmit={onSubmitReview}>
             <div className="rating">
-              <span
-                onClick={() => setStar(5)}
-                className={
-                  review === 5 ? 'fa fa-star checked' : 'fa fa-star hover'
-                }
-              ></span>
-              <span
-                onClick={() => setStar(4)}
-                className={
-                  review >= 4 ? 'fa fa-star checked' : 'fa fa-star hover'
-                }
-              ></span>
-              <span
-                onClick={() => setStar(3)}
-                className={
-                  review >= 3 ? 'fa fa-star checked' : 'fa fa-star hover'
-                }
-              ></span>
-              <span
-                onClick={() => setStar(2)}
-                className={
-                  review >= 2 ? 'fa fa-star checked' : 'fa fa-star hover'
-                }
-              ></span>
-              <span
-                onClick={() => setStar(1)}
-                className={
-                  review >= 1 ? 'fa fa-star checked' : 'fa fa-star hover'
-                }
-              ></span>
+              {renderStar(5)}
+              {renderStar(4)}
+              {renderStar(3)}
+              {renderStar(2)}
+              {renderStar(1)}
             </div>
 
             <FormGroup>

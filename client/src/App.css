@@ -82,8 +82,9 @@ a {
   font-family: 'Abel', sans-serif;
   padding: 10px;
   color: black;
-  overflow: hidden;
   margin-left: 1.5rem;
+  word-wrap: break-word;
+  overflow: hidden;
 }
 
 /* competing with movie thumb style */
@@ -119,7 +120,7 @@ a {
 
 .scroll-container {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr minmax(0, 3fr) 1fr;
 }
 
 .bottom-nav {

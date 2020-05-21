@@ -7,8 +7,17 @@ import { posterSize, imageUrl, backdropSize } from '../config';
 import MovieThumb from '../elements/MovieThumb';
 
 const MovieInfo = ({ movie, user }) => {
+  const {
+    backdrop_path,
+    poster_path,
+    title,
+    overview,
+    vote_average,
+    directors,
+  } = movie;
+
   const movieInfoStyle = (backdrop) => ({
-    background: movie.backdrop_path
+    background: backdrop_path
       ? `url(${imageUrl}${backdropSize}${backdrop})`
       : '#000',
     backgroundSize: 'cover',
@@ -20,34 +29,29 @@ const MovieInfo = ({ movie, user }) => {
   });
 
   return (
-    <div
-      className="movieinfo-container"
-      style={movieInfoStyle(movie.backdrop_path)}
-    >
+    <div className="movieinfo-container" style={movieInfoStyle(backdrop_path)}>
       <div className="movieinfo-content">
         <div className="movieinfo-thumb">
           <MovieThumb
             image={
-              movie.poster_path
-                ? `${imageUrl}${posterSize}${movie.poster_path}`
-                : NoImage
+              poster_path ? `${imageUrl}${posterSize}${poster_path}` : NoImage
             }
             clickable={false}
           />
         </div>
         <div className="movieinfo-text">
-          <h1>{movie.title}</h1>
+          <h1>{title}</h1>
           <h3>Plot</h3>
-          <p>{movie.overview}</p>
+          <p>{overview}</p>
 
           <div className="rating-director">
             <div>
               <h3>IMDB Rating</h3>
-              <div className="score">{movie.vote_average}</div>
+              <div className="score">{vote_average}</div>
             </div>
             <div className="director">
-              <h3>Director{movie.directors.length > 1 ? 's' : ''}</h3>
-              {movie.directors.map((element) => (
+              <h3>Director{directors.length > 1 ? 's' : ''}</h3>
+              {directors.map((element) => (
                 <p key={element.credit_id}>{element.name}</p>
               ))}
             </div>

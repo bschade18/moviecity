@@ -1,21 +1,17 @@
-import React from "react";
-import { imageUrl, posterSize } from "../config";
+import React from 'react';
+import { imageUrl, posterSize } from '../config';
 
-import NoImage from "../components/images/no_image.jpg";
+import NoImage from '../components/images/no_image.jpg';
 
-const Actor = ({ actor }) => (
+const Actor = ({ actor: { name, character, profile_path } }) => (
   <div className="actor-container">
     <img
       className="actor-image"
-      src={
-        actor.profile_path
-          ? `${imageUrl}${posterSize}${actor.profile_path}`
-          : NoImage
-      }
+      src={profile_path ? `${imageUrl}${posterSize}${profile_path}` : NoImage}
       alt="actorthumb"
     />
-    <span className="actor-name">{actor.name}</span>
-    <span className="actor-character">{actor.character}</span>
+    <span className="actor-name">{name}</span>
+    <span className="actor-character">{character}</span>
   </div>
 );
 

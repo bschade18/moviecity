@@ -13,11 +13,18 @@ import {
 import axios from 'axios';
 import { imageUrl } from '../config';
 
-const MessageModal = ({ movie, user }) => {
+const MessageModal = ({ movie: { original_title, poster_path }, user }) => {
   const [recipient, setRecipient] = useState('');
   const [message, setMessage] = useState('');
   const [modal, setModal] = useState(false);
   const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('/users')
+      .then((res) => setUsers(res.data))
+      .catch((err) => console.log(err));
+  });
 
   const onSubmitMessage = (e) => {
     e.preventDefault();
@@ -25,10 +32,10 @@ const MessageModal = ({ movie, user }) => {
     const newMessage = {
       sender: user.name,
       recipient,
-      movieTitle: movie.original_title,
+      movieTitle: original_title,
       message,
       messageDate: new Date(),
-      imageUrl: `${imageUrl}w185${movie.poster_path}`,
+      imageUrl: `${imageUrl}w185${poster_path}`,
     };
 
     axios.post('/messages', newMessage).then((res) => console.log(res.data));
@@ -42,12 +49,6 @@ const MessageModal = ({ movie, user }) => {
     setRecipient(e.target.value);
   };
 
-  useEffect(() => {
-    axios
-      .get('/users')
-      .then((res) => setUsers(res.data))
-      .catch((err) => console.log(err));
-  });
   return (
     <div>
       <Button color="primary" onClick={toggle} className="review-movie-btn">
@@ -70,7 +71,7 @@ const MessageModal = ({ movie, user }) => {
                 <option value="">--Select Friend--</option>
                 {users
                   .filter((friend) => user.friends.includes(friend.name))
-                  .map(function (user) {
+                  .map((user) => {
                     return (
                       <option key={user.name} value={user.name}>
                         {user.name}
