@@ -1,6 +1,7 @@
 import React from 'react';
 import ReviewModal from './ReviewModal';
 import MessageModal from './MessageModal';
+import axios from 'axios';
 
 import NoImage from '../components/images/no_image.jpg';
 import { posterSize, imageUrl, backdropSize } from '../config';
@@ -28,6 +29,45 @@ const MovieInfo = ({ movie, user }) => {
     animation: 'animateMovieinfo 1s',
   });
 
+  const addFavorite = (e) => {
+    // e.preventDefault();
+
+    const updateUser = {
+      favorites: [
+        ...user.favorites,
+        { title, imgUrl: `${imageUrl}w185${poster_path}` },
+      ],
+    };
+
+    axios
+      .put(`/users/${user._id}`, updateUser)
+      .then(() => console.log('user updated!'))
+      .catch((err) => console.log(err));
+  };
+
+  const addToWatch = (e) => {
+    // e.preventDefault();
+
+    const updateUser = {
+      watchList: [
+        ...user.watchList,
+        { title, imgUrl: `${imageUrl}w185${poster_path}` },
+      ],
+    };
+
+    console.log(updateUser);
+
+    axios
+      .put(`/users/${user._id}`, updateUser)
+      .then(() => console.log('user updated!'))
+      .catch((err) => console.log(err));
+  };
+  // const renderStar = (number) => (
+  //   <span
+  //     onClick={() => setStar(number)}
+  //     className={review === number ? 'fa fa-star checked' : 'fa fa-star hover'}
+  //   ></span>
+  // );
   return (
     <div className="movieinfo-container" style={movieInfoStyle(backdrop_path)}>
       <div className="movieinfo-content">
@@ -41,6 +81,15 @@ const MovieInfo = ({ movie, user }) => {
         </div>
         <div className="movieinfo-text">
           <h1>{title}</h1>
+          <span
+            className="fa fa-star checked"
+            onClick={() => addFavorite()}
+          ></span>
+          <span> Add as Favorite</span>
+          <div>
+            <i className="fa fa-plus"></i>
+            <span onClick={() => addToWatch()}> Add to Watch List</span>
+          </div>
           <h3>Plot</h3>
           <p>{overview}</p>
 

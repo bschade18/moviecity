@@ -12,6 +12,7 @@ import UserSearch from '../../elements/UserSearch';
 
 const UserHome = ({ match, user, loadUser }) => {
   const [myMovies, setmyMovies] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios
@@ -20,9 +21,14 @@ const UserHome = ({ match, user, loadUser }) => {
       .catch((err) => console.log(err));
   });
 
-  const addFriend = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    axios
+      .get(`/users`)
+      .then((res) => setUsers(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
+  const addFriend = () => {
     const updateUser = {
       friends: [...user.friends, match.params.user],
     };
@@ -33,7 +39,7 @@ const UserHome = ({ match, user, loadUser }) => {
       .catch((err) => console.log(err));
   };
 
-  if (!myMovies[0]) {
+  if (!myMovies[0] || !users[0]) {
     return <Spinner />;
   }
   return (
@@ -99,6 +105,27 @@ const UserHome = ({ match, user, loadUser }) => {
         </div>
       </div>
       <UserSearch />
+      <div className="user-favorites">
+        <div>Favorites</div>
+        {users
+          .filter((user) => {
+            return match.params.user === user.name;
+          })[0]
+          .favorites.map((fav) => {
+            return <img id="fav-img" src={fav.imgUrl} alt="movie" />;
+          })}
+      </div>
+
+      <div className="user-watchlist">
+        <div>Watch List</div>
+        {users
+          .filter((user) => {
+            return match.params.user === user.name;
+          })[0]
+          .watchList.map((movie) => {
+            return <img id="fav-img" src={movie.imgUrl} alt="movie" />;
+          })}
+      </div>
     </div>
   );
 };

@@ -20,6 +20,8 @@ const UserSchema = new Schema({
     default: Date.now,
   },
   friends: [String],
+  favorites: [{ title: String, imgUrl: String }],
+  watchList: [{ title: String, imgUrl: String }],
 });
 
 UserSchema.index({ name: 'text' });

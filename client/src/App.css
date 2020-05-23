@@ -615,6 +615,21 @@ button.btn:active {
   right: 0;
 }
 
+.user-favorites {
+  width: 20%;
+  position: fixed;
+  top: 200px;
+  right: 0;
+  z-index: -2;
+}
+
+.user-watchlist {
+  width: 20%;
+  position: fixed;
+  top: 500px;
+  right: 0;
+}
+
 #user-search-link {
   color: black;
 }
@@ -624,6 +639,9 @@ button.btn:active {
   padding: 10px 0;
   padding-left: 10px;
   font-weight: bold;
+  z-index: 2;
+  position: relative;
+  background: #fff;
 }
 
 /* 
@@ -660,4 +678,15 @@ button.btn:active {
   .main {
     grid-column-start: 1;
   }
+}
+
+/* Favorites */
+
+.favorite-container,
+.watchlist-container {
+  display: flex;
+}
+
+#fav-img {
+  width: 40px;
 }

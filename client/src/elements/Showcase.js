@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { register } from '../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
