@@ -690,3 +690,7 @@ button.btn:active {
 #fav-img {
   width: 40px;
 }
+
+.hover:hover {
+  color: gold;
+}

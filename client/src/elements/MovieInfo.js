@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReviewModal from './ReviewModal';
 import MessageModal from './MessageModal';
 import axios from 'axios';
@@ -8,6 +8,8 @@ import { posterSize, imageUrl, backdropSize } from '../config';
 import MovieThumb from '../elements/MovieThumb';
 
 const MovieInfo = ({ movie, user }) => {
+  const [favorite, setFavorite] = useState(false);
+  const [toWatch, setToWatch] = useState(false);
   const {
     backdrop_path,
     poster_path,
@@ -16,6 +18,30 @@ const MovieInfo = ({ movie, user }) => {
     vote_average,
     directors,
   } = movie;
+
+  useEffect(() => {
+    console.log('use effect');
+    for (var i = 0; i < user.favorites.length; i++) {
+      if (user.favorites[i].title === title) {
+        setFavorite(true);
+        return;
+      } else {
+        setFavorite(false);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log('use effect');
+    for (var i = 0; i < user.watchList.length; i++) {
+      if (user.watchList[i].title === title) {
+        setToWatch(true);
+        return;
+      } else {
+        setToWatch(false);
+      }
+    }
+  }, []);
 
   const movieInfoStyle = (backdrop) => ({
     background: backdrop_path
@@ -29,15 +55,49 @@ const MovieInfo = ({ movie, user }) => {
     animation: 'animateMovieinfo 1s',
   });
 
-  const addFavorite = (e) => {
-    // e.preventDefault();
+  const addFavorite = () => {
+    let updateUser;
+    if (favorite) {
+      setFavorite(false);
 
-    const updateUser = {
-      favorites: [
-        ...user.favorites,
-        { title, imgUrl: `${imageUrl}w185${poster_path}` },
-      ],
-    };
+      updateUser = {
+        favorites: [...user.favorites.filter((movie) => movie.title !== title)],
+      };
+    } else {
+      setFavorite(true);
+
+      updateUser = {
+        favorites: [
+          ...user.favorites,
+          { title, imgUrl: `${imageUrl}w185${poster_path}` },
+        ],
+      };
+    }
+
+    axios
+      .put(`/users/${user._id}`, updateUser)
+      .then(() => console.log('user updated!'))
+      .catch((err) => console.log(err));
+  };
+
+  const addToWatch = () => {
+    let updateUser;
+    if (toWatch) {
+      setToWatch(false);
+
+      updateUser = {
+        watchList: [...user.watchList.filter((movie) => movie.title !== title)],
+      };
+    } else {
+      setToWatch(true);
+
+      updateUser = {
+        watchList: [
+          ...user.watchList,
+          { title, imgUrl: `${imageUrl}w185${poster_path}` },
+        ],
+      };
+    }
 
     axios
       .put(`/users/${user._id}`, updateUser)
@@ -45,29 +105,6 @@ const MovieInfo = ({ movie, user }) => {
       .catch((err) => console.log(err));
   };
 
-  const addToWatch = (e) => {
-    // e.preventDefault();
-
-    const updateUser = {
-      watchList: [
-        ...user.watchList,
-        { title, imgUrl: `${imageUrl}w185${poster_path}` },
-      ],
-    };
-
-    console.log(updateUser);
-
-    axios
-      .put(`/users/${user._id}`, updateUser)
-      .then(() => console.log('user updated!'))
-      .catch((err) => console.log(err));
-  };
-  // const renderStar = (number) => (
-  //   <span
-  //     onClick={() => setStar(number)}
-  //     className={review === number ? 'fa fa-star checked' : 'fa fa-star hover'}
-  //   ></span>
-  // );
   return (
     <div className="movieinfo-container" style={movieInfoStyle(backdrop_path)}>
       <div className="movieinfo-content">
@@ -82,13 +119,16 @@ const MovieInfo = ({ movie, user }) => {
         <div className="movieinfo-text">
           <h1>{title}</h1>
           <span
-            className="fa fa-star checked"
+            className={favorite ? 'fa fa-star checked' : 'fa fa-star hover'}
             onClick={() => addFavorite()}
           ></span>
-          <span> Add as Favorite</span>
+          <span>{favorite ? ' Favorite!' : ' Add as Favorite'}</span>
           <div>
-            <i className="fa fa-plus"></i>
-            <span onClick={() => addToWatch()}> Add to Watch List</span>
+            <span
+              className={toWatch ? 'fa fa-plus checked' : 'fa fa-plus hover'}
+              onClick={() => addToWatch()}
+            ></span>
+            <span>{toWatch ? ' On WatchList!' : ' Add to WatchList'}</span>
           </div>
           <h3>Plot</h3>
           <p>{overview}</p>

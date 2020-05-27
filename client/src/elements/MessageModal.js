@@ -51,7 +51,7 @@ const MessageModal = ({ movie: { original_title, poster_path }, user }) => {
 
   return (
     <div>
-      <Button color="primary" onClick={toggle} className="review-movie-btn">
+      <Button color="success" onClick={toggle} className="review-movie-btn">
         Send to Friend
       </Button>
       <Modal isOpen={modal} toggle={toggle} fade={false}>
