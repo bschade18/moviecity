@@ -28,7 +28,7 @@ const SearchBar = () => {
 
   const showFiltered = () => {
     return filtered().map((user) => (
-      <div id="user-search-box">
+      <div id="user-search-box" key={user._id}>
         <Link id="user-search-link" to={`/user/${user.name}`}>
           <div>{user.name}</div>
         </Link>

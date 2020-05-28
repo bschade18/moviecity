@@ -15,17 +15,29 @@ const UserHome = ({ match, user, loadUser }) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
+    let isSubscribed = true;
+
     axios
       .get('/reviews')
-      .then((res) => setmyMovies(res.data.data))
+      .then((res) => {
+        if (isSubscribed) setmyMovies(res.data.data);
+      })
       .catch((err) => console.log(err));
-  });
+
+    return () => (isSubscribed = false);
+  }, []);
 
   useEffect(() => {
+    let isSubscribed = true;
+
     axios
       .get(`/users`)
-      .then((res) => setUsers(res.data))
+      .then((res) => {
+        if (isSubscribed) setUsers(res.data);
+      })
       .catch((err) => console.log(err));
+
+    return () => (isSubscribed = false);
   }, []);
 
   const addFriend = () => {
@@ -112,7 +124,9 @@ const UserHome = ({ match, user, loadUser }) => {
             return match.params.user === user.name;
           })[0]
           .favorites.map((fav) => {
-            return <img id="fav-img" src={fav.imgUrl} alt="movie" />;
+            return (
+              <img id="fav-img" src={fav.imgUrl} alt="movie" key={fav._id} />
+            );
           })}
       </div>
 
@@ -123,7 +137,14 @@ const UserHome = ({ match, user, loadUser }) => {
             return match.params.user === user.name;
           })[0]
           .watchList.map((movie) => {
-            return <img id="fav-img" src={movie.imgUrl} alt="movie" />;
+            return (
+              <img
+                id="fav-img"
+                src={movie.imgUrl}
+                alt="movie"
+                key={movie._id}
+              />
+            );
           })}
       </div>
     </div>

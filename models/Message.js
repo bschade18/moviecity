@@ -13,7 +13,6 @@ const MessageSchema = new Schema({
   movieTitle: {
     type: String,
     required: true,
-    unique: true,
   },
   imageUrl: {
     type: String,

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { logout } from '../actions/auth';
 
-const Sidenav = ({ logout }) => (
+const Sidenav = ({ logout, user }) => (
   <div id="sidenav-container">
     <Link to="/main" className="btn">
       <div className="sn-item">
@@ -25,6 +25,12 @@ const Sidenav = ({ logout }) => (
         <span className="d-block">Search</span>
       </div>
     </Link>
+    <Link to={`/user/${user.name}`} className="btn">
+      <div className="sn-item">
+        <FontAwesome className="fa-user" name="user" size="2x" />
+        <span className="d-block">Profile</span>
+      </div>
+    </Link>
     <button className="btn" onClick={logout}>
       <div className="sn-item">
         <FontAwesome className="fa-sign-out" name="singout" size="2x" />
@@ -36,6 +42,11 @@ const Sidenav = ({ logout }) => (
 
 Sidenav.propTypes = {
   logout: PropTypes.func,
+  user: PropTypes.object,
 };
 
-export default connect(null, { logout })(Sidenav);
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, { logout })(Sidenav);

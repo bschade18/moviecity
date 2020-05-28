@@ -46,7 +46,7 @@ const Messages = ({ user }) => {
       <div id="navigation">
         <div className="navigation-container">
           <div className="navigation-content">
-            <Link to="/">
+            <Link to="/main">
               <p>Home</p>
             </Link>
             <p>|</p>

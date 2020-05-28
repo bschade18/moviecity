@@ -10,17 +10,22 @@ import { logout } from '../../actions/auth';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Main = ({ user, loading, isAuthenticated, logout }) => {
+const Main = ({ user, logout }) => {
   const [myMovies, setmyMovies] = useState(null);
 
   useEffect(() => {
+    let isSubscribed = true;
     axios
       .get('/reviews')
-      .then((res) => setmyMovies(res.data.data))
+      .then((res) => {
+        if (isSubscribed) setmyMovies(res.data.data);
+      })
       .catch((err) => console.log(err));
+
+    return () => (isSubscribed = false);
   }, []);
 
-  if (loading || !isAuthenticated || myMovies === null || !user) {
+  if (myMovies === null || !user) {
     return <Spinner />;
   }
 
@@ -81,16 +86,12 @@ const Main = ({ user, loading, isAuthenticated, logout }) => {
 };
 
 Main.propTypes = {
-  isAuthenticated: PropTypes.bool,
   user: PropTypes.object,
-  loading: PropTypes.bool,
   logout: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
   user: state.auth.user,
-  loading: state.auth.loading,
 });
 
 export default connect(mapStateToProps, { logout })(Main);

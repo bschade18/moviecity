@@ -20,7 +20,6 @@ const MovieInfo = ({ movie, user }) => {
   } = movie;
 
   useEffect(() => {
-    console.log('use effect');
     for (var i = 0; i < user.favorites.length; i++) {
       if (user.favorites[i].title === title) {
         setFavorite(true);
@@ -32,7 +31,6 @@ const MovieInfo = ({ movie, user }) => {
   }, []);
 
   useEffect(() => {
-    console.log('use effect');
     for (var i = 0; i < user.watchList.length; i++) {
       if (user.watchList[i].title === title) {
         setToWatch(true);

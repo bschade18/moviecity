@@ -42,7 +42,7 @@ const ReviewModal = ({ movie, user }) => {
   const renderStar = (number) => (
     <span
       onClick={() => setStar(number)}
-      className={review === number ? 'fa fa-star checked' : 'fa fa-star hover'}
+      className={review >= number ? 'fa fa-star checked' : 'fa fa-star hover'}
     ></span>
   );
   const toggle = () => setModal(!modal);
