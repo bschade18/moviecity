@@ -110,7 +110,19 @@ a {
   /* max-width: 750px; */
   font-size: 1.5rem;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scroll-heading {
+  display: flex;
   align-items: center;
+}
+
+.user-nav {
+  display: flex;
+  flex: 1;
+  margin-top: 10px;
 }
 
 .scroll-nav p {

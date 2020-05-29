@@ -35,8 +35,10 @@ const Main = ({ user, logout }) => {
       <div className="scroll-container">
         <div className="main">
           <div className="scroll-nav">
-            <FontAwesome className="fas fa-building" name="city" size="2x" />
-            <p>MovieCity</p>
+            <div className="scroll-heading">
+              <FontAwesome className="fas fa-building" name="city" size="2x" />
+              <p>MovieCity</p>
+            </div>
           </div>
           <div className="movie-scroll">
             {myMovies
@@ -69,6 +71,12 @@ const Main = ({ user, logout }) => {
               <div className="sn-item">
                 <FontAwesome className="fa-search" name="search" size="2x" />
                 <span className="d-block">Search</span>
+              </div>
+            </Link>
+            <Link to={`/user/${user.name}`} className="btn">
+              <div className="sn-item">
+                <FontAwesome className="fa-user" name="search" size="2x" />
+                <span className="d-block">Profile</span>
               </div>
             </Link>
             <button className="btn" onClick={logout}>

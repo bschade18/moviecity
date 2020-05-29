@@ -55,15 +55,13 @@ const MovieInfo = ({ movie, user }) => {
 
   const addFavorite = () => {
     let updateUser;
-    if (favorite) {
-      setFavorite(false);
+    setFavorite((state) => !state);
 
+    if (favorite) {
       updateUser = {
         favorites: [...user.favorites.filter((movie) => movie.title !== title)],
       };
     } else {
-      setFavorite(true);
-
       updateUser = {
         favorites: [
           ...user.favorites,
@@ -80,14 +78,15 @@ const MovieInfo = ({ movie, user }) => {
 
   const addToWatch = () => {
     let updateUser;
+    setToWatch((state) => !state);
     if (toWatch) {
-      setToWatch(false);
+      // setToWatch(false);
 
       updateUser = {
         watchList: [...user.watchList.filter((movie) => movie.title !== title)],
       };
     } else {
-      setToWatch(true);
+      // setToWatch(true);
 
       updateUser = {
         watchList: [
