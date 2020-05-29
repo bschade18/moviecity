@@ -15,7 +15,6 @@ const SearchBar = () => {
 
   const searchUsers = (e) => {
     const { value } = e.target;
-
     setState(value);
   };
 
@@ -45,11 +44,10 @@ const SearchBar = () => {
           value={state}
           className="form-control"
         />
-        {/* <FontAwesome className="fa-search" name="search" /> */}
       </div>
       <div>
         {state
-          ? filtered().length > 1
+          ? filtered().length > 0
             ? showFiltered()
             : 'No users found'
           : null}
