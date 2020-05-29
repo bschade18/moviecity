@@ -103,6 +103,7 @@ a {
   border-right: 1px solid #e0e0e0;
   border-bottom: 1px solid #e0e0e0;
   position: sticky;
+  z-index: 1;
   top: 0;
   background: #003699;
   color: #fff;
