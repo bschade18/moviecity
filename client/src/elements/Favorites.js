@@ -2,9 +2,7 @@ import React from 'react';
 import MovieThumb from './MovieThumb';
 import NoImage from '../components/images/no_image.jpg';
 
-const Favorites = ({
-  movie: { review, user, imgUrl, movieId, title, comments },
-}) => {
+const Favorites = ({ movie: { imgUrl, movieId, title } }) => {
   return (
     <div id="mainmovies-list">
       <div className="movie-box">

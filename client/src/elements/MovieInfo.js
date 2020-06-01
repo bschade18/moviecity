@@ -28,7 +28,7 @@ const MovieInfo = ({ movie, user }) => {
         setFavorite(false);
       }
     }
-  }, []);
+  }, [user.favorites, title]);
 
   useEffect(() => {
     for (var i = 0; i < user.watchList.length; i++) {
@@ -39,7 +39,7 @@ const MovieInfo = ({ movie, user }) => {
         setToWatch(false);
       }
     }
-  }, []);
+  }, [user.watchList, title]);
 
   const movieInfoStyle = (backdrop) => ({
     background: backdrop_path
@@ -55,17 +55,18 @@ const MovieInfo = ({ movie, user }) => {
 
   const addFavorite = () => {
     let updateUser;
-    setFavorite((state) => !state);
 
     if (favorite) {
+      setFavorite(false);
       updateUser = {
         favorites: [...user.favorites.filter((movie) => movie.title !== title)],
       };
     } else {
+      setFavorite(true);
       updateUser = {
         favorites: [
           ...user.favorites,
-          { title, imgUrl: `${imageUrl}w185${poster_path}` },
+          { title, imgUrl: `${imageUrl}w185${poster_path}`, movieId: movie.id },
         ],
       };
     }
@@ -78,20 +79,18 @@ const MovieInfo = ({ movie, user }) => {
 
   const addToWatch = () => {
     let updateUser;
-    setToWatch((state) => !state);
-    if (toWatch) {
-      // setToWatch(false);
 
+    if (toWatch) {
+      setToWatch(false);
       updateUser = {
         watchList: [...user.watchList.filter((movie) => movie.title !== title)],
       };
     } else {
-      // setToWatch(true);
-
+      setToWatch(true);
       updateUser = {
         watchList: [
           ...user.watchList,
-          { title, imgUrl: `${imageUrl}w185${poster_path}` },
+          { title, imgUrl: `${imageUrl}w185${poster_path}`, movieId: movie.id },
         ],
       };
     }

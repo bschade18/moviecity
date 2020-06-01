@@ -3,19 +3,25 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import DeleteModal from '../../elements/DeleteModal';
 
-const Message = (props) => (
+const Message = ({
+  message: { sender, imageUrl, movieTitle, message, _id },
+}) => (
   <tr>
-    <td>{props.message.sender}</td>
+    <td>{sender}</td>
     <td>
       <img
         className="movie-poster-list-img"
-        src={props.message.imageUrl}
+        src={imageUrl}
         alt="movie poster"
       />
     </td>
-    <td>{props.message.movieTitle}</td>
-    <td>{props.message.message}</td>
+    <td>{movieTitle}</td>
+    <td>{message}</td>
+    <td>
+      <DeleteModal id={_id} />
+    </td>
   </tr>
 );
 
@@ -31,7 +37,7 @@ const Messages = ({ user }) => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [messages]);
 
   const messagesList = () => {
     return messages
@@ -63,6 +69,7 @@ const Messages = ({ user }) => {
                 <th>Movie</th>
                 <th>Title</th>
                 <th>Message</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>{messagesList()}</tbody>

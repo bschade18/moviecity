@@ -34,3 +34,13 @@ exports.createMessage = (req, res, next) => {
     .then(() => res.json('message added!'))
     .catch((err) => res.status(400).json('Error: ' + err));
 };
+
+// @route DELETE /users:id
+// @desc Delete user
+// @access Public
+
+exports.deleteMessage = (req, res, next) => {
+  Message.findByIdAndDelete(req.params.id)
+    .then(() => res.status(200).json('message deleted'))
+    .catch((err) => res.status(404).json('Error: ' + err));
+};

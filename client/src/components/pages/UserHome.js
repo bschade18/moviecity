@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
 import { loadUser, logout } from '../../actions/auth';
 import UserSearch from '../../elements/UserSearch';
 import Favorites from '../../elements/Favorites';
-import Watchlist from '../../elements/Watchlist';
 
 const UserHome = ({ match, user, loadUser }) => {
   const [myMovies, setmyMovies] = useState([]);
