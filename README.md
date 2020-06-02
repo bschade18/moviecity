@@ -2,7 +2,7 @@
 
 > Social Network to search, review, and share movies with friends.
 
-This is a MERN stack application. It is a small social network app that includes authentication, timelines for reviews, favorites, and movie to-watch, and messages for recommending movies to friends.
+This is a MERN stack application. It is a small social network app that includes authentication, timelines for reviews, favorites, and movies to-watch, and messaging for recommending movies to friends.
 
 # Quick Start 🚀
 
