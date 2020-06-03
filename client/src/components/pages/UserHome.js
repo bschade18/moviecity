@@ -43,9 +43,18 @@ const UserHome = ({ match, user, loadUser }) => {
   }, []);
 
   const addFriend = () => {
-    const updateUser = {
-      friends: [...user.friends, match.params.user],
-    };
+    let updateUser;
+    if (!user.friends.includes(match.params.user)) {
+      updateUser = {
+        friends: [...user.friends, match.params.user],
+      };
+    } else {
+      updateUser = {
+        friends: [
+          ...user.friends.filter((friend) => friend !== match.params.user),
+        ],
+      };
+    }
 
     axios
       .put(`/users/${user._id}`, updateUser)
@@ -66,16 +75,21 @@ const UserHome = ({ match, user, loadUser }) => {
               <FontAwesome className="fas fa-building" name="city" size="2x" />
               <p>{match.params.user}</p>
               <button
-                data-hover="Remove Friend"
                 className={
-                  'friend-btn btn btn-success ml-3 ' +
-                  (user.name === match.params.user ? 'd-none' : 'd-block')
+                  'btn ml-3  ' +
+                  (user.name === match.params.user
+                    ? 'd-none '
+                    : 'd-block btn-success ') +
+                  (user.friends.includes(match.params.user)
+                    ? 'friend-btn'
+                    : 'friend-btn-hide')
                 }
-                onClick={(e) => addFriend(e)}
+                onClick={() => addFriend()}
               >
-                {user.friends.includes(match.params.user)
-                  ? 'Friends'
-                  : 'Add Friend'}
+                <span>
+                  {' '}
+                  {user.friends.includes(match.params.user) ? '' : 'Add Friend'}
+                </span>
               </button>
             </div>
             <div className="user-nav">
