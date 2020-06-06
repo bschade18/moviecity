@@ -738,7 +738,7 @@ button.btn:active {
   /* padding: 1rem; */
   margin: 2rem auto;
   width: 800px;
-  overflow: auto;
+
   display: flex;
   flex-direction: column;
   position: relative;
@@ -751,8 +751,10 @@ button.btn:active {
   border-bottom: 1px solid black;
 }
 
-.message-body {
+#message-body {
   padding: 1.5rem;
+  overflow: auto;
+  margin-bottom: 2rem;
 }
 
 .message-text {
@@ -778,10 +780,20 @@ button.btn:active {
   color: black;
 }
 
+.sender-name {
+  align-self: flex-start;
+}
+
 .recipient {
   align-self: flex-end;
   background-color: #28a745;
   color: #fff;
+}
+
+.recipient-name {
+  align-self: center;
+  margin-left: 300px;
+  margin-top: 0.25rem;
 }
 /* .message-text:nth-child(odd) {
   background-color: #007bff;
@@ -798,6 +810,7 @@ button.btn:active {
   left: 0;
   margin: 0.5rem;
   display: flex;
+  background: #fff;
 }
 
 .message-img {
@@ -806,4 +819,9 @@ button.btn:active {
 
 .close-btn {
   align-self: flex-start;
+}
+
+.message-heading-left {
+  display: flex;
+  align-items: center;
 }

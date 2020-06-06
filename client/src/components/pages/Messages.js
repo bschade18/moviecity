@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -53,6 +53,12 @@ const Messages = ({ user }) => {
       });
   }, [messages]);
 
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    if (showMessage) scrollToBottom();
+  }, [message]);
+
   const toggleMessage = (message) => {
     if (showMessage) {
       setShowMessage(false);
@@ -69,6 +75,10 @@ const Messages = ({ user }) => {
       setMovieId(message._id);
       setMovieImg(message.imageUrl);
     }
+  };
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   const messagesList = () => {
@@ -120,6 +130,7 @@ const Messages = ({ user }) => {
       </p>
     ));
   };
+
   return (
     <div>
       <div id="navigation">
@@ -152,10 +163,10 @@ const Messages = ({ user }) => {
         ) : (
           <div className="message-container">
             <div className="message-container-heading">
-              <span>
+              <span className="message-heading-left">
                 <h3>{movieTitle}</h3>
 
-                <img className="message-img" src={movieImg} alt="movie" />
+                <img className="message-img ml-3" src={movieImg} alt="movie" />
               </span>
               <button
                 className="btn btn-primary close-btn"
@@ -164,9 +175,9 @@ const Messages = ({ user }) => {
                 Close
               </button>
             </div>
-            <div className="message-body">
-              <h5>{sender}</h5>
-              <div className="messages">{test()}</div>
+            <div id="message-body">
+              <div className="messages mb-5">{test()}</div>
+              <div ref={messagesEndRef} />
             </div>
             <form className="message-form" onSubmit={onSubmit}>
               <input
