@@ -5,9 +5,10 @@ const {
   getMessage,
   createMessage,
   deleteMessage,
+  updateMessage,
 } = require('../controllers/message');
 
 router.route('/').get(getMessage).post(createMessage);
-router.route('/:id').delete(deleteMessage);
+router.route('/:id').delete(deleteMessage).put(updateMessage);
 
 module.exports = router;

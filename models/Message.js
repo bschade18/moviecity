@@ -19,7 +19,7 @@ const MessageSchema = new Schema({
     required: true,
   },
   message: {
-    type: String,
+    type: [{ name: String, message: String }],
     required: true,
   },
   messageDate: {

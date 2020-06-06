@@ -33,7 +33,7 @@ const MessageModal = ({ movie: { original_title, poster_path }, user }) => {
       sender: user.name,
       recipient,
       movieTitle: original_title,
-      message,
+      message: [{ name: user.name, message: message }],
       messageDate: new Date(),
       imageUrl: `${imageUrl}w185${poster_path}`,
     };

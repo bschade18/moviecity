@@ -730,3 +730,80 @@ button.btn:active {
 .hover:hover {
   color: gold;
 }
+
+.message-container {
+  height: 600px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  /* padding: 1rem; */
+  margin: 2rem auto;
+  width: 800px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.message-container-heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid black;
+}
+
+.message-body {
+  padding: 1.5rem;
+}
+
+.message-text {
+  margin-top: 1.5rem;
+
+  border-radius: 20px;
+  padding: 0.5rem 0.75rem;
+  max-width: 30%;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+}
+.message-text {
+  margin: 0.25rem 1rem;
+  word-wrap: break-word;
+}
+
+.sender {
+  background-color: #dee2e6;
+  align-self: flex-start;
+  color: black;
+}
+
+.recipient {
+  align-self: flex-end;
+  background-color: #28a745;
+  color: #fff;
+}
+/* .message-text:nth-child(odd) {
+  background-color: #007bff;
+}
+.message-text:nth-child(even) {
+  align-self: flex-end;
+  background-color: #28a745;
+} */
+
+.message-form {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 0.5rem;
+  display: flex;
+}
+
+.message-img {
+  width: 50px;
+}
+
+.close-btn {
+  align-self: flex-start;
+}

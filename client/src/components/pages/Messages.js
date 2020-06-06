@@ -7,26 +7,40 @@ import DeleteModal from '../../elements/DeleteModal';
 
 const Message = ({
   message: { sender, imageUrl, movieTitle, message, _id },
-}) => (
-  <tr>
-    <td>{sender}</td>
-    <td>
-      <img
-        className="movie-poster-list-img"
-        src={imageUrl}
-        alt="movie poster"
-      />
-    </td>
-    <td>{movieTitle}</td>
-    <td>{message}</td>
-    <td>
-      <DeleteModal id={_id} />
-    </td>
-  </tr>
-);
+  toggleMessage,
+}) => {
+  return (
+    <tr
+      onClick={() =>
+        toggleMessage({ sender, imageUrl, movieTitle, message, _id })
+      }
+    >
+      <td>{sender}</td>
+      <td>
+        <img
+          className="movie-poster-list-img"
+          src={imageUrl}
+          alt="movie poster"
+        />
+      </td>
+      <td>{movieTitle}</td>
+      <td>{message[0].message}</td>
+      <td>
+        <DeleteModal id={_id} />
+      </td>
+    </tr>
+  );
+};
 
 const Messages = ({ user }) => {
   const [messages, setMessages] = useState([]);
+  const [showMessage, setShowMessage] = useState(false);
+  const [movieTitle, setMovieTitle] = useState('');
+  const [movieId, setMovieId] = useState('');
+  const [movieImg, setMovieImg] = useState('');
+  const [sender, setSender] = useState('');
+  const [message, setMessage] = useState([]);
+  const [text, setText] = useState('');
 
   useEffect(() => {
     axios
@@ -39,14 +53,73 @@ const Messages = ({ user }) => {
       });
   }, [messages]);
 
+  const toggleMessage = (message) => {
+    if (showMessage) {
+      setShowMessage(false);
+      setMovieTitle('');
+      setSender('');
+      setMessage([]);
+      setMovieId('');
+      setMovieImg('');
+    } else {
+      setShowMessage(true);
+      setMovieTitle(message.movieTitle);
+      setSender(message.sender);
+      setMessage(message.message);
+      setMovieId(message._id);
+      setMovieImg(message.imageUrl);
+    }
+  };
+
   const messagesList = () => {
     return messages
-      .filter((currentmessage) => currentmessage.recipient === user.name)
-      .map((currentmessage) => {
-        return <Message message={currentmessage} key={currentmessage._id} />;
+      .filter(
+        (message) =>
+          message.recipient === user.name || message.sender === user.name
+      )
+      .map((message) => {
+        return (
+          <Message
+            toggleMessage={(message) => toggleMessage(message)}
+            message={message}
+            key={message._id}
+          />
+        );
       });
   };
 
+  const onChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    setMessage([...message, { name: user.name, message: text }]);
+    setText('');
+
+    const messages = {
+      message: [...message, { name: user.name, message: text }],
+    };
+
+    console.log(messages);
+    axios
+      .put(`/messages/${movieId}`, messages)
+      .then((res) => console.log(res.data));
+  };
+
+  const test = () => {
+    return message.map((mes) => (
+      <p
+        className={
+          mes.name === sender ? 'message-text sender' : 'message-text recipient'
+        }
+        key={mes.id}
+      >
+        {mes.message}
+      </p>
+    ));
+  };
   return (
     <div>
       <div id="navigation">
@@ -61,20 +134,56 @@ const Messages = ({ user }) => {
         </div>
       </div>
       <div className="container">
-        <div className="table-responsive">
-          <table className="table table-hover mt-5">
-            <thead>
-              <tr>
-                <th>From</th>
-                <th>Movie</th>
-                <th>Title</th>
-                <th>Message</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>{messagesList()}</tbody>
-          </table>
-        </div>
+        {!showMessage ? (
+          <div className="table-responsive">
+            <table className="table table-hover mt-5">
+              <thead>
+                <tr>
+                  <th>From</th>
+                  <th>Movie</th>
+                  <th>Title</th>
+                  <th>Message</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>{messagesList()}</tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="message-container">
+            <div className="message-container-heading">
+              <span>
+                <h3>{movieTitle}</h3>
+
+                <img className="message-img" src={movieImg} alt="movie" />
+              </span>
+              <button
+                className="btn btn-primary close-btn"
+                onClick={toggleMessage}
+              >
+                Close
+              </button>
+            </div>
+            <div className="message-body">
+              <h5>{sender}</h5>
+              <div className="messages">{test()}</div>
+            </div>
+            <form className="message-form" onSubmit={onSubmit}>
+              <input
+                onChange={onChange}
+                type="text"
+                className="message-reply form-control"
+                value={text}
+              />
+              <input
+                className="btn btn-secondary messages-reply-submit ml-1"
+                type="submit"
+                id="submit"
+                value="Reply"
+              />
+            </form>
+          </div>
+        )}
       </div>
     </div>
   );

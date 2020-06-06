@@ -35,12 +35,22 @@ exports.createMessage = (req, res, next) => {
     .catch((err) => res.status(400).json('Error: ' + err));
 };
 
-// @route DELETE /users:id
-// @desc Delete user
+// @route DELETE /messages:id
+// @desc Delete message
 // @access Public
 
 exports.deleteMessage = (req, res, next) => {
   Message.findByIdAndDelete(req.params.id)
     .then(() => res.status(200).json('message deleted'))
+    .catch((err) => res.status(404).json('Error: ' + err));
+};
+
+// @route Update /messsage:id
+// @desc Delete user
+// @access Public
+
+exports.updateMessage = (req, res, next) => {
+  Message.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => res.status(200).json('message updated'))
     .catch((err) => res.status(404).json('Error: ' + err));
 };
