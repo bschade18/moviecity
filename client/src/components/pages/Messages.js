@@ -24,7 +24,7 @@ const Message = ({
         />
       </td>
       <td>{movieTitle}</td>
-      <td>{message[0].message}</td>
+      <td className="movie-table-message">{message[0].message}</td>
       <td>
         <DeleteModal id={_id} />
       </td>
@@ -112,13 +112,12 @@ const Messages = ({ user }) => {
       message: [...message, { name: user.name, message: text }],
     };
 
-    console.log(messages);
     axios
       .put(`/messages/${movieId}`, messages)
       .then((res) => console.log(res.data));
   };
 
-  const test = () => {
+  const renderConvo = () => {
     return message.map((mes) => (
       <p
         className={
@@ -150,10 +149,10 @@ const Messages = ({ user }) => {
             <table className="table table-hover mt-5">
               <thead>
                 <tr>
-                  <th>From</th>
+                  <th>Sender</th>
                   <th>Movie</th>
                   <th>Title</th>
-                  <th>Message</th>
+                  <th className="movie-table-message">Message</th>
                   <th></th>
                 </tr>
               </thead>
@@ -164,9 +163,8 @@ const Messages = ({ user }) => {
           <div className="message-container">
             <div className="message-container-heading">
               <span className="message-heading-left">
-                <h3>{movieTitle}</h3>
-
-                <img className="message-img ml-3" src={movieImg} alt="movie" />
+                <img className="message-img mr-3" src={movieImg} alt="movie" />
+                <h3 className="message-movietitle">{movieTitle}</h3>
               </span>
               <button
                 className="btn btn-primary close-btn"
@@ -176,7 +174,7 @@ const Messages = ({ user }) => {
               </button>
             </div>
             <div id="message-body">
-              <div className="messages mb-5">{test()}</div>
+              <div className="messages mb-5">{renderConvo()}</div>
               <div ref={messagesEndRef} />
             </div>
             <form className="message-form" onSubmit={onSubmit}>
