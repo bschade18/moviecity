@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -23,7 +22,5 @@ const UserSchema = new Schema({
   favorites: [{ title: String, imgUrl: String, movieId: String }],
   watchList: [{ title: String, imgUrl: String, movieId: String }],
 });
-
-UserSchema.index({ name: 'text' });
 
 module.exports = User = mongoose.model('user', UserSchema);

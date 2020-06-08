@@ -2,7 +2,7 @@ let Review = require('../models/Review');
 const ErrorResponse = require('../utils/errorResponse');
 
 // @route GET /reviews
-// @desc Get Reviews
+// @desc get reviews
 // @access Public
 exports.getReviews = async (req, res, next) => {
   try {

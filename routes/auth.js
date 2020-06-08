@@ -4,8 +4,11 @@ const jwt = require('jsonwebtoken');
 const { registerValidation, loginValidation } = require('../validation');
 const bcrypt = require('bcryptjs');
 const auth = require('../middleware/verifyToken');
-
 let User = require('../models/User');
+
+// @route POST auth/register
+// @desc register user
+// @access Public
 
 router.post('/register', (req, res) => {
   const { name, email, password } = req.body;
@@ -51,6 +54,10 @@ router.post('/register', (req, res) => {
     });
   });
 });
+
+// @route POST auth/login
+// @desc login user
+// @access Public
 
 router.post('/login', (req, res) => {
   const { email, password } = req.body;

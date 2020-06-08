@@ -13,12 +13,14 @@ exports.getMessage = (req, res, next) => {
 // @desc Create a message
 // @access Public
 exports.createMessage = (req, res, next) => {
-  const sender = req.body.sender;
-  const recipient = req.body.recipient;
-  const movieTitle = req.body.movieTitle;
-  const message = req.body.message;
-  const messageDate = req.body.messageDate;
-  const imageUrl = req.body.imageUrl;
+  const {
+    sender,
+    recipient,
+    movieTitle,
+    message,
+    messageDate,
+    imageUrl,
+  } = req.body;
 
   const newMessage = new Message({
     sender,
@@ -35,7 +37,7 @@ exports.createMessage = (req, res, next) => {
     .catch((err) => res.status(400).json('Error: ' + err));
 };
 
-// @route DELETE /messages:id
+// @route DELETE /messages/:id
 // @desc Delete message
 // @access Public
 
@@ -45,8 +47,8 @@ exports.deleteMessage = (req, res, next) => {
     .catch((err) => res.status(404).json('Error: ' + err));
 };
 
-// @route Update /messsage:id
-// @desc Delete user
+// @route Update /messsage/:id
+// @desc update message
 // @access Public
 
 exports.updateMessage = (req, res, next) => {
