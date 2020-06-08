@@ -67,8 +67,7 @@ const Navbar = ({ login }) => {
 };
 
 Navbar.propTypes = {
-  authSuccess: PropTypes.func,
-  login: PropTypes.func,
+  login: PropTypes.func.isRequired,
 };
 
 export default connect(null, { login })(Navbar);

@@ -94,8 +94,8 @@ const Main = ({ user, logout }) => {
 };
 
 Main.propTypes = {
-  user: PropTypes.object,
-  logout: PropTypes.func,
+  user: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

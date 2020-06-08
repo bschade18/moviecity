@@ -135,7 +135,7 @@ const Messages = ({ user }) => {
         className={
           mes.name === sender ? 'message-text sender' : 'message-text recipient'
         }
-        key={mes.id}
+        key={mes._id}
       >
         {mes.message}
       </p>
@@ -211,7 +211,7 @@ const Messages = ({ user }) => {
 };
 
 Messages.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

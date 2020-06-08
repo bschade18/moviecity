@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Actor from '../../elements/Actor';
 import Grid from '../../elements/Grid';
 import MovieInfo from '../../elements/MovieInfo';
@@ -30,7 +29,8 @@ const Movie = ({ match, user }) => {
 };
 
 Movie.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

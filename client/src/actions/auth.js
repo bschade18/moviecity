@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import {
   USER_LOADED,
   USER_LOADING,
@@ -11,7 +10,6 @@ import {
 
 // check token & load user
 export const loadUser = () => async (dispatch) => {
-  // user loading
   dispatch({ type: USER_LOADING });
 
   try {
@@ -35,7 +33,6 @@ export const register = ({ name, email, password }) => async (dispatch) => {
   };
 
   const body = JSON.stringify({ name, email, password });
-  console.log(body);
 
   try {
     const res = await axios.post('/auth/register', body, config);
@@ -47,7 +44,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
     dispatch(loadUser());
   } catch (err) {
     console.log(err);
-    // dispatch(setErrors(err.response.data.msg));
+
     dispatch({
       type: REGISTER_FAIL,
     });
@@ -74,7 +71,7 @@ export const login = ({ email, password }) => async (dispatch) => {
 
     dispatch(loadUser());
   } catch (err) {
-    // dispatch(setErrors(err.response.data.msg));
+    console.log(err);
   }
 };
 
