@@ -7,12 +7,12 @@ import DeleteModal from '../../elements/DeleteModal';
 
 const Message = ({
   message: { sender, imageUrl, movieTitle, message, _id },
-  toggleMessage,
+  toggleConvo,
 }) => {
   return (
     <tr
       onClick={() =>
-        toggleMessage({ sender, imageUrl, movieTitle, message, _id })
+        toggleConvo({ sender, imageUrl, movieTitle, message, _id })
       }
     >
       <td>{sender}</td>
@@ -35,12 +35,16 @@ const Message = ({
 const Messages = ({ user }) => {
   const [messages, setMessages] = useState([]);
   const [showMessage, setShowMessage] = useState(false);
-  const [movieTitle, setMovieTitle] = useState('');
-  const [movieId, setMovieId] = useState('');
-  const [movieImg, setMovieImg] = useState('');
-  const [sender, setSender] = useState('');
-  const [message, setMessage] = useState([]);
   const [text, setText] = useState('');
+  const [movie, setMovie] = useState({
+    movieTitle: '',
+    sender: '',
+    message: [],
+    movieId: '',
+    movieImg: '',
+  });
+
+  const { movieTitle, sender, message, movieId, movieImg } = movie;
 
   useEffect(() => {
     axios
@@ -54,26 +58,31 @@ const Messages = ({ user }) => {
   }, [messages]);
 
   const messagesEndRef = useRef(null);
-
   useEffect(() => {
     if (showMessage) scrollToBottom();
+    // eslint-disable-next-line
   }, [message]);
 
-  const toggleMessage = (message) => {
+  const toggleConvo = (convo) => {
+    const { movieTitle, sender, message, _id, imageUrl } = convo;
     if (showMessage) {
       setShowMessage(false);
-      setMovieTitle('');
-      setSender('');
-      setMessage([]);
-      setMovieId('');
-      setMovieImg('');
+      setMovie({
+        movieTitle: '',
+        sender: '',
+        message: [],
+        movieId: '',
+        movieImg: '',
+      });
     } else {
       setShowMessage(true);
-      setMovieTitle(message.movieTitle);
-      setSender(message.sender);
-      setMessage(message.message);
-      setMovieId(message._id);
-      setMovieImg(message.imageUrl);
+      setMovie({
+        movieTitle,
+        sender,
+        message,
+        movieId: _id,
+        movieImg: imageUrl,
+      });
     }
   };
 
@@ -90,7 +99,7 @@ const Messages = ({ user }) => {
       .map((message) => {
         return (
           <Message
-            toggleMessage={(message) => toggleMessage(message)}
+            toggleConvo={(message) => toggleConvo(message)}
             message={message}
             key={message._id}
           />
@@ -105,7 +114,10 @@ const Messages = ({ user }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    setMessage([...message, { name: user.name, message: text }]);
+    setMovie({
+      ...movie,
+      message: [...message, { name: user.name, message: text }],
+    });
     setText('');
 
     const messages = {
@@ -168,7 +180,7 @@ const Messages = ({ user }) => {
               </span>
               <button
                 className="btn btn-primary close-btn"
-                onClick={toggleMessage}
+                onClick={toggleConvo}
               >
                 Close
               </button>
