@@ -1,7 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const colors = require('colors');
-const fileupload = require('express-fileupload');
 const path = require('path');
 const connectDB = require('./config/db');
 const dotenv = require('dotenv');
@@ -16,23 +14,10 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 
-// File uploading
-app.use(fileupload());
-
-// Set static folder
-// again using path module, join files and folders together
-// current directory and then into folder, set public as static folder
-app.use(express.static(path.join(__dirname, 'public')));
-
-const userRouter = require('./routes/user');
-const authRouter = require('./routes/auth');
-const reviewRouter = require('./routes/review');
-const messageRouter = require('./routes/message');
-
-app.use('/users', userRouter);
-app.use('/auth', authRouter);
-app.use('/reviews', reviewRouter);
-app.use('/messages', messageRouter);
+app.use('/users', require('./routes/user'));
+app.use('/auth', require('./routes/auth'));
+app.use('/reviews', require('./routes/review'));
+app.use('/messages', require('./routes/message'));
 
 // server static assets if in production
 if (process.env.NODE_ENV === 'production') {
