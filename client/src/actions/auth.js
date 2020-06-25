@@ -26,6 +26,7 @@ export const loadUser = () => async (dispatch) => {
 
 // register user
 export const register = ({ name, email, password }) => async (dispatch) => {
+  dispatch({ type: USER_LOADING });
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -53,6 +54,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 
 // login user
 export const login = ({ email, password }) => async (dispatch) => {
+  dispatch({ type: USER_LOADING });
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -80,4 +82,14 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT_SUCCESS,
   });
+};
+
+export const updateUser = (updatedUser, user) => async (dispatch) => {
+  try {
+    await axios.put(`/users/${user._id}`, updatedUser);
+
+    dispatch(loadUser());
+  } catch (err) {
+    console.log(err);
+  }
 };

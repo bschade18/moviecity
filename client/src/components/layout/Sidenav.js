@@ -1,13 +1,13 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { Link } from 'react-router-dom';
+import { logout } from '../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { logout } from '../actions/auth';
 
 const Sidenav = ({ logout, user }) => (
   <div id="sidenav-container">
-    <Link to="/main" className="btn">
+    <Link to="/home" className="btn">
       <div className="sn-item">
         <FontAwesome className="fa-home" name="home" size="2x" />
         <span className="d-block">Home</span>
@@ -25,7 +25,7 @@ const Sidenav = ({ logout, user }) => (
         <span className="d-block">Search</span>
       </div>
     </Link>
-    <Link to={`/user/${user.name}`} className="btn">
+    <Link to={`${user.name}`} className="btn">
       <div className="sn-item">
         <FontAwesome className="fa-user" name="user" size="2x" />
         <span className="d-block">Profile</span>

@@ -1,68 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import FontAwesome from 'react-fontawesome';
-import axios from 'axios';
-import MyMovies from '../../elements/MyMovies';
-import Spinner from '../../elements/Spinner';
-import Sidenav from '../../elements/Sidenav';
+import MyMovies from '../home/MyMovies';
+import Spinner from '../layout/Spinner';
+import Sidenav from '../layout/Sidenav';
+import UserSearch from '../elements/UserSearch';
+import Favorites from './Favorites';
+import { loadUser, logout, updateUser } from '../../actions/auth';
+import { getReviews } from '../../actions/review';
+import { getUsers } from '../../actions/users';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { loadUser, logout } from '../../actions/auth';
-import UserSearch from '../../elements/UserSearch';
-import Favorites from '../../elements/Favorites';
 
-const UserHome = ({ match, user, loadUser }) => {
-  const [myMovies, setmyMovies] = useState([]);
-  const [users, setUsers] = useState([]);
+const UserHome = ({
+  match,
+  user,
+  reviews,
+  getReviews,
+  getUsers,
+  users,
+  updateUser,
+}) => {
   const [view, setView] = useState('reviews');
 
   useEffect(() => {
-    let isSubscribed = true;
-
-    axios
-      .get('/reviews')
-      .then((res) => {
-        if (isSubscribed) setmyMovies(res.data.data);
-      })
-      .catch((err) => console.log(err));
-
-    return () => (isSubscribed = false);
-  }, []);
-
-  useEffect(() => {
-    let isSubscribed = true;
-
-    axios
-      .get(`/users`)
-      .then((res) => {
-        if (isSubscribed) setUsers(res.data);
-      })
-      .catch((err) => console.log(err));
-
-    return () => (isSubscribed = false);
+    getReviews();
+    getUsers();
+    // eslint-disable-next-line
   }, []);
 
   const addFriend = () => {
-    let updateUser;
+    let updatedUser;
     if (!user.friends.includes(match.params.user)) {
-      updateUser = {
+      updatedUser = {
         friends: [...user.friends, match.params.user],
       };
     } else {
-      updateUser = {
+      updatedUser = {
         friends: [
           ...user.friends.filter((friend) => friend !== match.params.user),
         ],
       };
     }
 
-    axios
-      .put(`/users/${user._id}`, updateUser)
-      .then(() => loadUser())
-      .catch((err) => console.log(err));
+    updateUser(updatedUser, user);
   };
 
-  if (!myMovies[0] || !users[0]) {
+  if (!reviews[0] || !users[0]) {
     return <Spinner />;
   }
   return (
@@ -124,7 +108,7 @@ const UserHome = ({ match, user, loadUser }) => {
           </div>
           <div className="movie-scroll">
             {view === 'reviews' &&
-              myMovies
+              reviews
                 .filter((movie) => {
                   return match.params.user === movie.user;
                 })
@@ -148,7 +132,7 @@ const UserHome = ({ match, user, loadUser }) => {
                 ))}
           </div>
           <div className="bottom-nav">
-            <Link to="/main" className="btn">
+            <Link to="/home" className="btn">
               <div className="sn-item">
                 <FontAwesome className="fa-home" name="home" size="2x" />
                 <span className="d-block">Home</span>
@@ -194,10 +178,22 @@ UserHome.propTypes = {
   user: PropTypes.object,
   loadUser: PropTypes.func,
   logout: PropTypes.func,
+  reviews: PropTypes.array,
+  getReviews: PropTypes.func,
+  getUsers: PropTypes.func,
+  updateUser: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
+  reviews: state.review.reviews,
+  users: state.user.users,
 });
 
-export default connect(mapStateToProps, { loadUser, logout })(UserHome);
+export default connect(mapStateToProps, {
+  loadUser,
+  logout,
+  getReviews,
+  getUsers,
+  updateUser,
+})(UserHome);

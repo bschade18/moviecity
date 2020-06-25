@@ -1,10 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MovieThumb = ({ image, id, clickable }) => (
   <div className="movie-thumb">
     {clickable ? (
-      <Link to={`/${id}`}>
+      <Link to={`/movie/${id}`}>
         <img className="clickable" src={image} alt="moviethumb" />
       </Link>
     ) : (

@@ -1,22 +1,19 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Provider } from 'react-redux';
-
-import Home from './components/pages/Home';
-import Main from './components/pages/Main';
-import Messages from './components/pages/Messages';
-import Search from './components/pages/Search';
-import Movie from './components/pages/Movie';
-import UserHome from './components/pages/UserHome';
-import Error from './components/Error';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { loadUser } from './actions/auth';
-import setAuthToken from './utils/setAuthToken';
-import PrivateRoute from './routing/PrivateRoute';
-
-import store from './store';
-
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import store from './store';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import PrivateRoute from './routing/PrivateRoute';
+import Landing from './components/landing/Landing';
+import Home from './components/home/Home';
+import Messages from './components/messages/Messages';
+import Search from './components/movie_search/Search';
+import Movie from './components/movie/Movie';
+import UserHome from './components/userhome/UserHome';
+import NotFound from './components/layout/NotFound';
+import setAuthToken from './utils/setAuthToken';
+import { loadUser } from './actions/auth';
 
 const App = () => {
   useEffect(() => {
@@ -26,20 +23,17 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <div>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home}></Route>
-            <PrivateRoute exact path="/main" component={Main} />
-            <PrivateRoute exact path="/user/:user" component={UserHome} />
-            <PrivateRoute exact path="/messages" component={Messages} />
-            <PrivateRoute exact path="/search" component={Search} />
-            <PrivateRoute exact path="/:movieId" component={Movie} />
-
-            <Route component={Error} />
-          </Switch>
-        </Router>
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <PrivateRoute exact path="/home" component={Home} />
+          <PrivateRoute exact path="/messages" component={Messages} />
+          <PrivateRoute exact path="/search" component={Search} />
+          <PrivateRoute exact path="/movie/:movieId" component={Movie} />
+          <PrivateRoute exact path="/:user" component={UserHome} />
+          <Route component={NotFound} />
+        </Switch>
+      </Router>
     </Provider>
   );
 };

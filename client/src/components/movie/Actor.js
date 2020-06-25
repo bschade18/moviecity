@@ -1,7 +1,6 @@
 import React from 'react';
-import { imageUrl, posterSize } from '../config';
-
-import NoImage from '../components/images/no_image.jpg';
+import { imageUrl, posterSize } from '../../config';
+import NoImage from '../../img/no_image.jpg';
 
 const Actor = ({ actor: { name, character, profile_path } }) => (
   <div className="actor-container">

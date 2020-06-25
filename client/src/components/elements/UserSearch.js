@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { getUsers } from '../../actions/users';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const SearchBar = () => {
-  const [state, setState] = useState('');
-  const [users, setUsers] = useState(null);
+const SearchBar = ({ getUsers, users }) => {
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
-    axios
-      .get('/users')
-      .then((res) => setUsers(res.data))
-      .catch((err) => console.log(err));
+    getUsers();
+    // eslint-disable-next-line
   }, []);
 
   const searchUsers = (e) => {
-    const { value } = e.target;
-    setState(value);
+    setSearch(e.target.value);
   };
 
   const filtered = () => {
     return users.filter((user) => {
-      const regex = new RegExp(state, 'gi');
+      const regex = new RegExp(search, 'gi');
       return user.name.match(regex);
     });
   };
@@ -28,7 +26,7 @@ const SearchBar = () => {
   const showFiltered = () => {
     return filtered().map((user) => (
       <div id="user-search-box" key={user._id}>
-        <Link id="user-search-link" to={`/user/${user.name}`}>
+        <Link id="user-search-link" to={`/${user.name}`}>
           <div>{user.name}</div>
         </Link>
       </div>
@@ -41,12 +39,12 @@ const SearchBar = () => {
           type="text"
           placeholder="Find Friends"
           onChange={searchUsers}
-          value={state}
+          value={search}
           className="form-control"
         />
       </div>
       <div>
-        {state
+        {search
           ? filtered().length > 0
             ? showFiltered()
             : 'No users found'
@@ -56,4 +54,13 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+SearchBar.propTypes = {
+  users: PropTypes.array.isRequired,
+  getUsers: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  users: state.user.users,
+});
+
+export default connect(mapStateToProps, { getUsers })(SearchBar);

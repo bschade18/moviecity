@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { register } from '../actions/auth';
+import { register } from '../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import '../App.css';
 
-const Showcase = ({ image, title, register }) => {
+const Showcase = ({ register, image }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -87,9 +86,8 @@ const Showcase = ({ image, title, register }) => {
 };
 
 Showcase.propTypes = {
-  register: PropTypes.func,
+  register: PropTypes.func.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default connect(null, { register })(Showcase);
-
-/* <img src={image} style={{ width: '100%' }} alt="movie-poster" /> */

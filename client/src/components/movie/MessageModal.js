@@ -11,7 +11,7 @@ import {
 } from 'reactstrap';
 
 import axios from 'axios';
-import { imageUrl } from '../config';
+import { imageUrl } from '../../config';
 
 const MessageModal = ({ movie: { original_title, poster_path }, user }) => {
   const [recipient, setRecipient] = useState('');
@@ -33,10 +33,12 @@ const MessageModal = ({ movie: { original_title, poster_path }, user }) => {
       sender: user.name,
       recipient,
       movieTitle: original_title,
-      message: [{ name: user.name, message: message }],
+      conversation: [{ name: user.name, message: message }],
       messageDate: new Date(),
       imageUrl: `${imageUrl}w185${poster_path}`,
     };
+
+    console.log(newMessage);
 
     axios.post('/messages', newMessage).then((res) => console.log(res.data));
 

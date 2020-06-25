@@ -1,6 +1,6 @@
 import React from 'react';
-import MovieThumb from './MovieThumb';
-import NoImage from '../components/images/no_image.jpg';
+import MovieThumb from '../elements/MovieThumb';
+import NoImage from '../../img/no_image.jpg';
 import { Link } from 'react-router-dom';
 
 const MyMovies = ({
@@ -15,7 +15,7 @@ const MyMovies = ({
   };
   return (
     <div id="mainmovies-list">
-      <Link className="user-link" to={`/user/${user}`}>
+      <Link className="user-link" to={`/${user}`}>
         <h6>{user}</h6>
       </Link>
       <div className="movie-box">

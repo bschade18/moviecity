@@ -11,7 +11,7 @@ import {
 } from 'reactstrap';
 
 import axios from 'axios';
-import { imageUrl } from '../config';
+import { imageUrl } from '../../config';
 
 const ReviewModal = ({ movie, user }) => {
   const [review, setReview] = useState(null);

@@ -3,8 +3,8 @@ import ReviewModal from './ReviewModal';
 import MessageModal from './MessageModal';
 import axios from 'axios';
 
-import NoImage from '../components/images/no_image.jpg';
-import { posterSize, imageUrl, backdropSize } from '../config';
+import NoImage from '../../img/no_image.jpg';
+import { posterSize, imageUrl, backdropSize } from '../../config';
 import MovieThumb from '../elements/MovieThumb';
 
 const MovieInfo = ({ movie, user }) => {

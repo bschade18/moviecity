@@ -1,6 +1,6 @@
 import React from 'react';
-import MovieThumb from './MovieThumb';
-import NoImage from '../components/images/no_image.jpg';
+import MovieThumb from '../elements/MovieThumb';
+import NoImage from '../../img/no_image.jpg';
 
 const Favorites = ({ movie: { imgUrl, movieId, title } }) => {
   return (

@@ -1,34 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import FontAwesome from 'react-fontawesome';
-import axios from 'axios';
 import { connect } from 'react-redux';
-import MyMovies from '../../elements/MyMovies';
-import Spinner from '../../elements/Spinner';
-import Sidenav from '../../elements/Sidenav';
-import UserSearch from '../../elements/UserSearch';
+import MyMovies from './MyMovies';
+import Spinner from '../layout/Spinner';
+import Sidenav from '../layout/Sidenav';
+import UserSearch from '../elements/UserSearch';
 import { logout } from '../../actions/auth';
+import { getReviews } from '../../actions/review';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Main = ({ user, logout }) => {
-  const [myMovies, setmyMovies] = useState(null);
-
+const Home = ({ user, logout, getReviews, reviews }) => {
   useEffect(() => {
-    let isSubscribed = true;
-    axios
-      .get('/reviews')
-      .then((res) => {
-        if (isSubscribed) setmyMovies(res.data.data);
-      })
-      .catch((err) => console.log(err));
-
-    return () => (isSubscribed = false);
+    getReviews();
+    // eslint-disable-next-line
   }, []);
 
-  if (myMovies === null || !user) {
+  if (reviews === null || !user) {
     return <Spinner />;
   }
-
   return (
     <div className="main-content">
       <Sidenav />
@@ -41,7 +31,7 @@ const Main = ({ user, logout }) => {
             </div>
           </div>
           <div className="movie-scroll">
-            {myMovies
+            {reviews
               .filter(
                 (movie) =>
                   user.friends.includes(movie.user) || user.name === movie.user
@@ -51,7 +41,7 @@ const Main = ({ user, logout }) => {
               ))}
           </div>
           <div className="bottom-nav">
-            <Link to="/main" className="btn">
+            <Link to="/home" className="btn">
               <div className="sn-item">
                 <FontAwesome className="fa-home" name="home" size="2x" />
                 <span className="d-block">Home</span>
@@ -93,13 +83,17 @@ const Main = ({ user, logout }) => {
   );
 };
 
-Main.propTypes = {
+Home.propTypes = {
   user: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired,
+  getReviews: PropTypes.func,
+  loading: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
+  reviews: state.review.reviews,
+  loading: state.auth.loading,
 });
 
-export default connect(mapStateToProps, { logout })(Main);
+export default connect(mapStateToProps, { logout, getReviews })(Home);

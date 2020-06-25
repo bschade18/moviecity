@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/verifyToken');
 const {
   getMessage,
   createMessage,
@@ -7,7 +8,7 @@ const {
   updateMessage,
 } = require('../controllers/message');
 
-router.route('/').get(getMessage).post(createMessage);
-router.route('/:id').delete(deleteMessage).put(updateMessage);
+router.route('/').get(auth, getMessage).post(auth, createMessage);
+router.route('/:id').delete(auth, deleteMessage).put(auth, updateMessage);
 
 module.exports = router;

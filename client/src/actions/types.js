@@ -4,3 +4,13 @@ export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const USER_LOADED = 'USER_LOADED';
 export const USER_LOADING = 'USER_LOADING';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCESS';
+
+export const GET_REVIEWS = 'GET_REVIEWS';
+
+export const GET_MESSAGES = 'GET_MESSAGES';
+export const SET_CURRENT_MESSAGE = 'SET_CURRENT_MESSAGE';
+export const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
+export const MESSAGES_LOADING = 'MESSAGES_LOADING';
+
+export const GET_USERS = 'GET_USERS';
+export const UPDATE_USER = 'GET_USER';

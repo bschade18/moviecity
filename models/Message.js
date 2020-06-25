@@ -17,7 +17,7 @@ const MessageSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  message: {
+  conversation: {
     type: [{ name: String, message: String }],
     required: true,
   },

@@ -1,9 +1,9 @@
 import React from 'react';
-import Actor from '../../elements/Actor';
-import Grid from '../../elements/Grid';
-import MovieInfo from '../../elements/MovieInfo';
-import Navigation from '../../elements/Navigation';
-import Spinner from '../../elements/Spinner';
+import Actor from './Actor';
+import Grid from './Grid';
+import MovieInfo from './MovieInfo';
+import Navigation from '../layout/Navigation';
+import Spinner from '../layout/Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 

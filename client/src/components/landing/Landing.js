@@ -1,37 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import Showcase from '../../elements/Showcase';
-import Spinner from '../../elements/Spinner';
+import Spinner from '../layout/Spinner';
 import Navbar from '../layout/Navbar';
-import { Redirect } from 'react-router-dom';
+import Showcase from '../elements/Showcase';
 import { imageUrl, backdropSize, popularBaseUrl } from '../../config';
-import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const Home = ({ authSuccess, isAuthenticated }) => {
+const Landing = ({ isAuthenticated }) => {
   const [image, setImage] = useState('');
 
   useEffect(() => {
-    async function getMovie() {
+    const getMovie = async () => {
       const result = await (await fetch(`${popularBaseUrl}&page=1`)).json();
       setImage(result.results[0]);
-    }
+    };
     getMovie();
   }, []);
 
   if (isAuthenticated) {
-    return <Redirect to="/main" />;
+    return <Redirect to="/home" />;
   }
   if (!image) return <Spinner />;
 
   return (
     <div>
-      <Navbar authSuccess={authSuccess} />
+      <Navbar />
       <Showcase image={`${imageUrl}${backdropSize}${image.backdrop_path}`} />
     </div>
   );
 };
 
-Home.propTypes = {
+Landing.propTypes = {
   isAuthenticated: PropTypes.bool,
 };
 
@@ -39,4 +39,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Landing);

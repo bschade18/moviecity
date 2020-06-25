@@ -9,9 +9,6 @@
   --primary-color: #003699;
 }
 
-a {
-  text-decoration: none;
-}
 /* Utility Classes */
 a {
   text-decoration: none;
@@ -722,6 +719,12 @@ button.btn:active {
   padding: 1.5rem;
   border-bottom: 0.5px solid gray;
   z-index: 2;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #message-body {

@@ -18,8 +18,8 @@ const DeleteModal = ({ id }) => {
   };
 
   return (
-    <div>
-      <i onClick={toggle} className="fa fa-trash"></i>
+    <div onClick={toggle}>
+      <i className="fa fa-trash"></i>
       <Modal isOpen={modal} fade={false} toggle={toggle}>
         <ModalHeader>Delete Message?</ModalHeader>
         <ModalBody>

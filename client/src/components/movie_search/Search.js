@@ -6,14 +6,14 @@ import {
   searchBaseUrl,
 } from '../../config';
 
-import Grid from '../../elements/Grid';
-import LoadMoreBtn from '../../elements/LoadMoreBtn';
-import MovieThumb from '../../elements/MovieThumb';
-import SearchBar from '../../elements/SearchBar';
-import Spinner from '../../elements/Spinner';
-import Navigation from '../../elements/Navigation';
+import Grid from '../movie/Grid';
+import LoadMoreBtn from './LoadMoreBtn';
+import MovieThumb from '../elements/MovieThumb';
+import SearchBar from './SearchBar';
+import Spinner from '../layout/Spinner';
+import Navigation from '../layout/Navigation';
 import { useHomeFetch } from '../hooks/useHomeFetch';
-import NoImage from '../images/no_image.jpg';
+import NoImage from '../../img/no_image.jpg';
 
 const Search = () => {
   const [

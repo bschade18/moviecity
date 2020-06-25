@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { login } from '../../actions/auth';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const Navbar = ({ login }) => {
   const [email, setEmail] = useState('');
