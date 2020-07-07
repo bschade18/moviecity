@@ -52,6 +52,12 @@ a {
   min-height: 100px;
 }
 
+.showcase-error-msg {
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+}
+
 .home-img {
   border-radius: 10px;
   width: 31rem;
@@ -702,10 +708,10 @@ button.btn:active {
 }
 
 .message-container {
-  height: 600px;
+  height: 550px;
   border: 0.5px solid gray;
   border-radius: 10px;
-  margin: 2rem auto;
+  margin: 3rem auto;
   width: 700px;
 
   display: flex;
@@ -821,4 +827,11 @@ button.btn:active {
 .message-heading-left {
   display: flex;
   align-items: center;
+}
+
+.alert {
+  padding: 0.8rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  color: #fff;
 }

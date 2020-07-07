@@ -6,7 +6,10 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  LOGIN_FAIL,
 } from './types';
+
+import { setAlert } from './alert';
 
 // check token & load user
 export const loadUser = () => async (dispatch) => {
@@ -37,6 +40,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 
   try {
     const res = await axios.post('/auth/register', body, config);
+    console.log(res);
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -44,7 +48,9 @@ export const register = ({ name, email, password }) => async (dispatch) => {
     });
     dispatch(loadUser());
   } catch (err) {
-    console.log(err);
+    let errors = err.response.data.errors;
+
+    errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
 
     dispatch({
       type: REGISTER_FAIL,
@@ -74,6 +80,9 @@ export const login = ({ email, password }) => async (dispatch) => {
     dispatch(loadUser());
   } catch (err) {
     console.log(err);
+    dispatch({
+      type: LOGIN_FAIL,
+    });
   }
 };
 

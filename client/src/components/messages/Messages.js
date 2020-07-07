@@ -98,7 +98,7 @@ const Messages = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+    if (!text) return;
     // show new message in UI
     setCurrentMessage({
       ...currentMessage,
@@ -129,7 +129,7 @@ const Messages = ({
     ));
   };
 
-  if (!messages.length > 0) {
+  if (!messages.length) {
     return <Spinner />;
   }
   return (

@@ -1,26 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import useFormState from '../hooks/useFormState';
+import Alert from '../layout/Alert';
 import { register } from '../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { setAlert } from '../../actions/alert';
 
-const Showcase = ({ register, image }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    password2: '',
-  });
-
-  const { name, email, password, password2 } = formData;
-
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+const Showcase = ({ register, image, setAlert }) => {
+  const [name, setName] = useFormState('');
+  const [email, setEmail] = useFormState('');
+  const [password, setPassword] = useFormState('');
+  const [password2, setPassword2] = useFormState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     if (password !== password2) {
-      console.log('passwords do not match');
+      setAlert('Passwords do not match', 'danger');
     } else {
       register({ name, email, password });
     }
@@ -42,7 +38,7 @@ const Showcase = ({ register, image }) => {
                 name="name"
                 id="name"
                 placeholder="Name"
-                onChange={onChange}
+                onChange={setName}
               />
             </div>
             <div className="form-group py-1">
@@ -52,7 +48,7 @@ const Showcase = ({ register, image }) => {
                 name="email"
                 id="email"
                 placeholder="Email"
-                onChange={onChange}
+                onChange={setEmail}
               />
             </div>
             <div className="form-group py-1">
@@ -62,7 +58,7 @@ const Showcase = ({ register, image }) => {
                 name="password"
                 id="password"
                 placeholder="New Password"
-                onChange={onChange}
+                onChange={setPassword}
               />
             </div>
             <div className="form-group py-1">
@@ -72,7 +68,7 @@ const Showcase = ({ register, image }) => {
                 name="password2"
                 id="password2"
                 placeholder="Confirm Password"
-                onChange={onChange}
+                onChange={setPassword2}
               />
             </div>
             <button className="btn btn-success btn-block-sm-only" type="submit">
@@ -81,6 +77,7 @@ const Showcase = ({ register, image }) => {
           </form>
         </div>
       </div>
+      <Alert />
     </div>
   );
 };
@@ -88,6 +85,12 @@ const Showcase = ({ register, image }) => {
 Showcase.propTypes = {
   register: PropTypes.func.isRequired,
   image: PropTypes.string.isRequired,
+  setAlert: PropTypes.func.isRequired,
+  alert: PropTypes.array,
 };
 
-export default connect(null, { register })(Showcase);
+const mapStateToProps = (state) => ({
+  alerts: state.alert,
+});
+
+export default connect(mapStateToProps, { register, setAlert })(Showcase);

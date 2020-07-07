@@ -6,8 +6,8 @@ const { registerValidation, loginValidation } = require('../validation');
 exports.register = (req, res, next) => {
   const { name, email, password } = req.body;
   // validate
-  const { error } = registerValidation(req.body);
-  if (error) return res.status(400).json({ msg: error.details[0].message });
+  // const { error } = registerValidation(req.body);
+  // if (error) return res.status(400).json({ msg: error.details[0].message });
 
   // check if user in db
   User.findOne({ email: email }).then((user) => {

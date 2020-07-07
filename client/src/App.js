@@ -11,6 +11,8 @@ import Messages from './components/messages/Messages';
 import Search from './components/movie_search/Search';
 import Movie from './components/movie/Movie';
 import UserHome from './components/userhome/UserHome';
+import LoginFail from './components/auth/LoginFail';
+
 import NotFound from './components/layout/NotFound';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
@@ -26,6 +28,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path="/" component={Landing} />
+          <Route exact path="/loginfail" component={LoginFail} />
           <PrivateRoute exact path="/home" component={Home} />
           <PrivateRoute exact path="/messages" component={Messages} />
           <PrivateRoute exact path="/search" component={Search} />

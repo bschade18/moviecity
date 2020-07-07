@@ -32,7 +32,7 @@ const ReviewModal = ({ movie, user }) => {
     };
 
     axios.post('/reviews', newReview).then((res) => console.log(res.data));
-    setTimeout(() => (window.location = '/main'), 500);
+    setTimeout(() => (window.location = '/home'), 500);
   };
 
   const setStar = (number) => {

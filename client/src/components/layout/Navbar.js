@@ -1,20 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
+import useFormState from '../hooks/useFormState';
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 import { login } from '../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const Navbar = ({ login }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const onChangeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
+const Navbar = ({ login, page }) => {
+  const [email, setEmail] = useFormState('');
+  const [password, setPassword] = useFormState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -33,34 +27,35 @@ const Navbar = ({ login }) => {
           />{' '}
           <span>MovieCity</span>
         </Link>
-
-        <form className="form-inline" onSubmit={onSubmit}>
-          <input
-            className="form-control my-2 mr-sm-2"
-            type="text"
-            placeholder="Email"
-            aria-label="Email"
-            name="email"
-            onChange={onChangeEmail}
-          />
-          <input
-            className="form-control my-2 mr-sm-2"
-            type="password"
-            placeholder="Password"
-            aria-label="Password"
-            name="password"
-            onChange={onChangePassword}
-          />
-          <button
-            className="btn btn-outline-success my-2 my-sm-0 btn-block-sm-only"
-            type="submit"
-          >
-            Log in
-          </button>
-          <div className="collpase navbar-collapse">
-            <ul className="navbar-nav ml-auto"></ul>
-          </div>
-        </form>
+        {page === 'landing' && (
+          <form className="form-inline" onSubmit={onSubmit}>
+            <input
+              className="form-control my-2 mr-sm-2"
+              type="text"
+              placeholder="Email"
+              aria-label="Email"
+              name="email"
+              onChange={setEmail}
+            />
+            <input
+              className="form-control my-2 mr-sm-2"
+              type="password"
+              placeholder="Password"
+              aria-label="Password"
+              name="password"
+              onChange={setPassword}
+            />
+            <button
+              className="btn btn-outline-success my-2 my-sm-0 btn-block-sm-only"
+              type="submit"
+            >
+              Log in
+            </button>
+            <div className="collpase navbar-collapse">
+              <ul className="navbar-nav ml-auto"></ul>
+            </div>
+          </form>
+        )}
       </div>
     </nav>
   );

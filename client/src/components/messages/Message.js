@@ -4,7 +4,6 @@ const Message = ({
   message: { sender, imageUrl, movieTitle, conversation, _id },
   toggleConvo,
 }) => {
-  console.log(conversation);
   return (
     <tr
       onClick={() =>

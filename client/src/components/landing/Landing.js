@@ -6,8 +6,9 @@ import { imageUrl, backdropSize, popularBaseUrl } from '../../config';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
 
-const Landing = ({ isAuthenticated }) => {
+const Landing = ({ isAuthenticated, loading, alerts, setAlert }) => {
   const [image, setImage] = useState('');
 
   useEffect(() => {
@@ -20,12 +21,15 @@ const Landing = ({ isAuthenticated }) => {
 
   if (isAuthenticated) {
     return <Redirect to="/home" />;
+  } else if (!loading && isAuthenticated === false && !alerts.length) {
+    return <Redirect to="/loginfail" />;
   }
+
   if (!image) return <Spinner />;
 
   return (
     <div>
-      <Navbar />
+      <Navbar page="landing" />
       <Showcase image={`${imageUrl}${backdropSize}${image.backdrop_path}`} />
     </div>
   );
@@ -33,10 +37,15 @@ const Landing = ({ isAuthenticated }) => {
 
 Landing.propTypes = {
   isAuthenticated: PropTypes.bool,
+  loading: PropTypes.bool,
+  alerts: PropTypes.array,
+  setAlert: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  loading: state.auth.loading,
+  alerts: state.alert,
 });
 
-export default connect(mapStateToProps)(Landing);
+export default connect(mapStateToProps, { setAlert })(Landing);

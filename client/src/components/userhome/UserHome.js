@@ -154,7 +154,7 @@ const UserHome = ({
                 <span className="d-block">Search</span>
               </div>
             </Link>
-            <Link to={`/user/${user.name}`} className="btn">
+            <Link to={`/${user.name}`} className="btn">
               <div className="sn-item">
                 <FontAwesome className="fa-user" name="search" size="2x" />
                 <span className="d-block">Profile</span>
