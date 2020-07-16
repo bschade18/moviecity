@@ -1,7 +1,14 @@
-import { GET_REVIEWS } from '../actions/types';
+import {
+  GET_REVIEWS,
+  ADD_COMMENT,
+  GET_REVIEW,
+  FETCH_REVIEW,
+} from '../actions/types';
 
 const initialState = {
   reviews: [],
+  review: null,
+  loading: true,
 };
 
 export default function (state = initialState, action) {
@@ -11,6 +18,24 @@ export default function (state = initialState, action) {
       return {
         ...state,
         reviews: payload,
+        loading: false,
+      };
+    case FETCH_REVIEW:
+      return {
+        ...state,
+        loading: true,
+      };
+    case GET_REVIEW:
+      return {
+        ...state,
+        review: payload,
+        loading: false,
+      };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        review: { ...state.review, comments: payload },
+        loading: false,
       };
     default:
       return state;

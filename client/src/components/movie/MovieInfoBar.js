@@ -1,5 +1,5 @@
-// import React from "react";
-// import FontAwesome from "react-fontawesome";
+// import React from 'react';
+// import FontAwesome from 'react-fontawesome';
 
 // const MovieInfoBar = ({ runtime, budget, boxoffice }) => (
 //   <div className="movieinfobar-container">

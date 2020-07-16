@@ -7,6 +7,9 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGIN_FAIL,
+  SET_FAVORITES,
+  SET_WATCHLIST,
+  SET_FRIENDS,
 } from './types';
 
 import { setAlert } from './alert';
@@ -93,12 +96,44 @@ export const logout = () => (dispatch) => {
   });
 };
 
+// update user
 export const updateUser = (updatedUser, user) => async (dispatch) => {
   try {
-    await axios.put(`/users/${user._id}`, updatedUser);
+    const res = await axios.put(`/users/${user._id}`, updatedUser);
 
-    dispatch(loadUser());
+    dispatch({
+      type: SET_FRIENDS,
+      payload: res.data.data.friends,
+    });
   } catch (err) {
     console.log(err);
+  }
+};
+
+// add movie to favorites
+export const setFavorites = (userid, updateUser) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/auth/favorite/${userid}`, updateUser);
+
+    dispatch({
+      type: SET_FAVORITES,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// update user watch list
+export const setWatchList = (userid, updateUser) => async (dispatch) => {
+  try {
+    const res = await axios.put(`/auth/watchlist/${userid}`, updateUser);
+
+    dispatch({
+      type: SET_WATCHLIST,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
   }
 };

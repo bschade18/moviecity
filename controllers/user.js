@@ -3,10 +3,14 @@ let User = require('../models/User');
 // @route GET /users
 // @desc Get Users
 // @access Public
-exports.getUsers = (req, res, next) => {
-  User.find()
-    .then((users) => res.json(users))
-    .catch((err) => res.status(400).json('Error: ' + err));
+exports.getUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+
+    res.json(users);
+  } catch (err) {
+    res.status(400).json('Error: ' + err);
+  }
 };
 
 // @route PUT /users/:id
@@ -18,7 +22,7 @@ exports.updateUser = async (req, res, next) => {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
-    });
+    }).select('-password');
 
     if (!user) {
       return res.status(400).json({

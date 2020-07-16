@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import ReviewModal from './ReviewModal';
 import MessageModal from './MessageModal';
-import axios from 'axios';
-
-import NoImage from '../../img/no_image.jpg';
-import { posterSize, imageUrl, backdropSize } from '../../config';
 import MovieThumb from '../elements/MovieThumb';
+import NoImage from '../../img/no_image.jpg';
+import { setFavorites, setWatchList } from '../../actions/auth';
+import { posterSize, imageUrl, backdropSize } from '../../config';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const MovieInfo = ({ movie, user }) => {
+const MovieInfo = ({ movie, user, setFavorites, setWatchList }) => {
   const [favorite, setFavorite] = useState(false);
   const [toWatch, setToWatch] = useState(false);
   const {
@@ -53,16 +54,18 @@ const MovieInfo = ({ movie, user }) => {
     animation: 'animateMovieinfo 1s',
   });
 
-  const addFavorite = () => {
+  const addFav = () => {
     let updateUser;
 
     if (favorite) {
       setFavorite(false);
+
       updateUser = {
         favorites: [...user.favorites.filter((movie) => movie.title !== title)],
       };
     } else {
       setFavorite(true);
+
       updateUser = {
         favorites: [
           ...user.favorites,
@@ -71,10 +74,7 @@ const MovieInfo = ({ movie, user }) => {
       };
     }
 
-    axios
-      .put(`/users/${user._id}`, updateUser)
-      .then(() => console.log('user updated!'))
-      .catch((err) => console.log(err));
+    setFavorites(user._id, updateUser);
   };
 
   const addToWatch = () => {
@@ -95,10 +95,7 @@ const MovieInfo = ({ movie, user }) => {
       };
     }
 
-    axios
-      .put(`/users/${user._id}`, updateUser)
-      .then(() => console.log('user updated!'))
-      .catch((err) => console.log(err));
+    setWatchList(user._id, updateUser);
   };
 
   return (
@@ -116,7 +113,7 @@ const MovieInfo = ({ movie, user }) => {
           <h1>{title}</h1>
           <span
             className={favorite ? 'fa fa-star checked' : 'fa fa-star hover'}
-            onClick={() => addFavorite()}
+            onClick={() => addFav()}
           ></span>
           <span>{favorite ? ' Favorite!' : ' Add as Favorite'}</span>
           <div>
@@ -155,4 +152,16 @@ const MovieInfo = ({ movie, user }) => {
   );
 };
 
-export default MovieInfo;
+MovieInfo.propTypes = {
+  user: PropTypes.object.isRequired,
+  setFavorites: PropTypes.func,
+  setWatchList: PropTypes.func,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps, { setFavorites, setWatchList })(
+  MovieInfo
+);

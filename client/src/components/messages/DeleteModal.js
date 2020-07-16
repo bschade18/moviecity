@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import axios from 'axios';
+import { deleteMessage } from '../../actions/messages';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const DeleteModal = ({ id }) => {
+const DeleteModal = ({ id, toggleConvo, deleteMessage }) => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => {
     setModal(!modal);
-  };
-
-  const deleteMessage = (id) => {
-    axios.delete(`/messages/${id}`).then((response) => {
-      console.log(response.data);
-    });
-    toggle();
   };
 
   return (
@@ -29,7 +23,7 @@ const DeleteModal = ({ id }) => {
           </Button>{' '}
           <Button
             color="danger"
-            onClick={() => deleteMessage(id)}
+            onClick={() => deleteMessage(id, toggleConvo)}
             className="mt-3"
           >
             Delete
@@ -42,6 +36,8 @@ const DeleteModal = ({ id }) => {
 
 DeleteModal.propTypes = {
   id: PropTypes.string.isRequired,
+  toggleConvo: PropTypes.func.isRequired,
+  deleteMessage: PropTypes.func.isRequired,
 };
 
-export default DeleteModal;
+export default connect(null, { deleteMessage })(DeleteModal);

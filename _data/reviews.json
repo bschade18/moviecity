@@ -1,0 +1,92 @@
+[
+  {
+    "_id": "5e8741db01dbb605eb59605f",
+    "user": "5e569045a5321a0a17d35195",
+    "name": "Bobby Schade",
+    "movieTitle": "Frozen II",
+    "text": "Basically your standard Disney animated movie. Good but not as good as the first.",
+    "review": "3",
+    "imageUrl": "https://image.tmdb.org/t/p/w185/pjeMs3yqRmFL3giJy4PMXWZTTPa.jpg",
+    "movieId": "330457"
+  },
+  {
+    "_id": "5e87422501dbb605eb596060",
+    "user": "5e569045a5321a0a17d35195",
+    "name": "Bobby Schade",
+    "movieTitle": "1917",
+    "text": "Good movie! Shot in a way that make it seem like it was filmed in a single continuous shot; very cool.",
+    "review": "4",
+    "imageUrl": "https://image.tmdb.org/t/p/w185/iZf0KyrE25z1sage4SYFLCCrMi9.jpg",
+    "movieId": "530915"
+  },
+  {
+    "_id": "5e87424e01dbb605eb596061",
+    "user": "5e569045a5321a0a17d35195",
+    "name": "Bobby Schade",
+    "movieTitle": "Knives Out",
+    "text": "Fun, swiftly paced, and highly entertaining. Definitely one of the best of 2019!",
+    "review": "5",
+    "imageUrl": "https://image.tmdb.org/t/p/w185/pThyQovXQrw2m0s9x82twj48Jq4.jpg",
+    "movieId": "546554"
+  },
+  {
+    "_id": "5e87428701dbb605eb596062",
+    "user": "5e569045a5321a0a17d35195",
+    "name": "Bobby Schade",
+    "movieTitle": "Jojo Rabbit",
+    "text": "Surprisingly funny. Kind of has that Wes Anderson style but not as quirky. Thoroughly enjoyed.",
+    "review": "4",
+    "imageUrl": "https://image.tmdb.org/t/p/w185/7GsM4mtM0worCtIVeiQt28HieeN.jpg",
+    "movieId": "515001"
+  },
+  {
+    "_id": "5eb96020c3c65e0017bdc370",
+    "user": "5e569045a5321a0a17d35195",
+    "name": "Bobby Schade",
+    "movieTitle": "The Town",
+    "text": "Equal parts intense and emotional; such a fun ride from start to finish. Highly recommend.",
+    "review": "4",
+    "imageUrl": "https://image.tmdb.org/t/p/w185/9AxWBqQIAYA4WHP25fU5P1sWw06.jpg",
+    "movieId": "23168"
+  },
+  {
+    "_id": "5ebdb2277a606d00172f4916",
+    "user": "5e569045a5321a0a17d35195",
+    "name": "Bobby Schade",
+    "movieTitle": "Mad Max: Fury Road",
+    "text": "Exhilarating - best action movie I've seen in a very long time. Hats off to George Miller for pulling this off.",
+    "review": "5",
+    "imageUrl": "https://image.tmdb.org/t/p/w185/sQuxceRcV3cxKH5CAnAUZe0qFKS.jpg",
+    "movieId": "76341"
+  },
+  {
+    "_id": "5ebeb20d601f8536439d95dc",
+    "user": "5e569045a5321a0a17d35195",
+    "name": "Bobby Schade",
+    "movieTitle": "Inception",
+    "text": "Certain plot elements of this movie can fall apart under scrutiny, but the ambition and novelty of the story is too fun for it to matter.",
+    "review": "4",
+    "imageUrl": "https://image.tmdb.org/t/p/w185/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg",
+    "movieId": "27205"
+  },
+  {
+    "_id": "5ec54d91a17f3904f52c8b3c",
+    "user": "5ec54d84a17f3904f52c8b3b",
+    "name": "Scotty Schade",
+    "movieTitle": "Ford v Ferrari",
+    "text": "Loved it!!",
+    "review": "5",
+    "imageUrl": "https://image.tmdb.org/t/p/w185/6ApDtO7xaWAfPqfi2IARXIzj8QS.jpg",
+    "movieId": "359724"
+  },
+  {
+    "_id": "5f0495f9e6868a099a9f6e96",
+    "user": "5e569045a5321a0a17d35195",
+    "name": "Bobby Schade",
+    "movieTitle": "The King of Staten Island",
+    "text": "I was disappointed by this movie. Not very funny or interesting. There didn't seem to be a coherent narrative. Hate to say it because I'm such a Judd fan and had high expectations.",
+    "review": "2",
+    "imageUrl": "https://image.tmdb.org/t/p/w185/zQFjMmE3K9AX5QrBL1SXIxYQ9jz.jpg",
+    "movieId": "579583"
+  }
+]

@@ -19,6 +19,7 @@ const Movie = ({ match, user }) => {
     <div>
       <Navigation movie={movie.original_title} />
       <MovieInfo movie={movie} user={user} />
+
       <Grid header="Cast">
         {movie.actors.map((actor) => (
           <Actor key={actor.credit_id} actor={actor} />

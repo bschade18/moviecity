@@ -4,6 +4,8 @@ import {
   SET_CURRENT_MESSAGE,
   UPDATE_MESSAGES,
   MESSAGES_LOADING,
+  ADD_MESSAGE,
+  DELETE_MESSAGE,
 } from './types';
 
 export const getMessages = () => async (dispatch) => {
@@ -35,14 +37,53 @@ export const setCurrentMessage = (current) => async (dispatch) => {
 };
 
 export const updateMessages = (messageId, message) => async (dispatch) => {
-  try {
-    const res = await axios.put(`/messages/${messageId}`, message);
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
 
-    console.log(res.data);
+  try {
+    const res = await axios.put(`/messages/${messageId}`, message, config);
+
     dispatch({
       type: UPDATE_MESSAGES,
       payload: res.data,
     });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const addMessage = (messageId, formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  try {
+    const res = await axios.post(`/messages/${messageId}`, formData, config);
+
+    dispatch({
+      type: ADD_MESSAGE,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const deleteMessage = (id, toggleConvo) => async (dispatch) => {
+  try {
+    await axios.delete(`/messages/${id}`);
+
+    dispatch({
+      type: DELETE_MESSAGE,
+      payload: id,
+    });
+
+    toggleConvo();
   } catch (err) {
     console.log(err);
   }

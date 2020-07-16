@@ -7,6 +7,7 @@ import {
   getMessages,
   setCurrentMessage,
   updateMessages,
+  addMessage,
 } from '../../actions/messages';
 import Spinner from '../layout/Spinner';
 import { connect } from 'react-redux';
@@ -18,7 +19,7 @@ const Messages = ({
   messages,
   setCurrentMessage,
   currentMessage,
-  updateMessages,
+  addMessage,
   loading,
 }) => {
   const [showMessage, setShowMessage] = useState(false);
@@ -35,7 +36,7 @@ const Messages = ({
   useEffect(() => {
     getMessages();
     // eslint-disable-next-line
-  }, [text]);
+  }, []);
 
   const messagesEndRef = useRef(null);
   useEffect(() => {
@@ -44,7 +45,6 @@ const Messages = ({
   }, [conversation]);
 
   const toggleConvo = (convo) => {
-    const { movieTitle, sender, conversation, _id, imageUrl } = convo;
     if (showMessage) {
       if (!loading) {
         if (messages) {
@@ -57,8 +57,10 @@ const Messages = ({
             movieImg: '',
           });
         }
+        getMessages();
       }
     } else {
+      const { movieTitle, sender, conversation, _id, imageUrl } = convo;
       setShowMessage(true);
       setCurrentMessage({
         movieTitle,
@@ -74,7 +76,6 @@ const Messages = ({
     messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // display all messages in inbox
   const messagesList = () => {
     return messages
       .filter(
@@ -99,19 +100,8 @@ const Messages = ({
   const onSubmit = (e) => {
     e.preventDefault();
     if (!text) return;
-    // show new message in UI
-    setCurrentMessage({
-      ...currentMessage,
-      conversation: [...conversation, { name: user.name, message: text }],
-    });
 
-    const updatedMessage = {
-      ...currentMessage,
-      conversation: [...conversation, { name: user.name, message: text }],
-    };
-
-    // update DB
-    updateMessages(messageId, updatedMessage);
+    addMessage(messageId, { text });
 
     setText('');
   };
@@ -124,12 +114,12 @@ const Messages = ({
         }
         key={mes._id}
       >
-        {mes.message}
+        {mes.text}
       </p>
     ));
   };
 
-  if (!messages.length) {
+  if (!currentMessage) {
     return <Spinner />;
   }
   return (
@@ -163,6 +153,7 @@ Messages.propTypes = {
   currentMessage: PropTypes.object,
   updateMessages: PropTypes.func,
   loading: PropTypes.bool,
+  addMessage: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
@@ -176,4 +167,5 @@ export default connect(mapStateToProps, {
   getMessages,
   setCurrentMessage,
   updateMessages,
+  addMessage,
 })(Messages);

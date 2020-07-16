@@ -15,7 +15,7 @@ import { imageUrl } from '../../config';
 
 const MessageModal = ({ movie: { original_title, poster_path }, user }) => {
   const [recipient, setRecipient] = useState('');
-  const [message, setMessage] = useState('');
+  const [text, setText] = useState('');
   const [modal, setModal] = useState(false);
   const [users, setUsers] = useState([]);
 
@@ -33,16 +33,13 @@ const MessageModal = ({ movie: { original_title, poster_path }, user }) => {
       sender: user.name,
       recipient,
       movieTitle: original_title,
-      conversation: [{ name: user.name, message: message }],
-      messageDate: new Date(),
+      conversation: [{ name: user.name, text: text }],
       imageUrl: `${imageUrl}w185${poster_path}`,
     };
 
-    console.log(newMessage);
-
     axios.post('/messages', newMessage).then((res) => console.log(res.data));
 
-    setTimeout(() => (window.location = '/main'), 500);
+    setTimeout(() => (window.location = '/home'), 500);
   };
 
   const toggle = () => setModal(!modal);
@@ -90,7 +87,7 @@ const MessageModal = ({ movie: { original_title, poster_path }, user }) => {
                 id="comments"
                 placeholder="Enter comments..."
                 className="mb-3"
-                onChange={(e) => setMessage(e.target.value)}
+                onChange={(e) => setText(e.target.value)}
               />
             </FormGroup>
             <Button color="primary" type="submit" block>

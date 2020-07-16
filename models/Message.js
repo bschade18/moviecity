@@ -17,10 +17,25 @@ const MessageSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  conversation: {
-    type: [{ name: String, message: String }],
-    required: true,
-  },
+  conversation: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+      },
+      text: {
+        type: String,
+        required: true,
+      },
+      name: {
+        type: String,
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
   messageDate: {
     type: Date,
     default: Date.now,

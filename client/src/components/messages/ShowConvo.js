@@ -20,7 +20,7 @@ const ShowConvo = ({
       </span>
       <div className="icons">
         <i className="fa fa-times" onClick={toggleConvo}></i>
-        <DeleteModal id={messageId} />
+        <DeleteModal id={messageId} toggleConvo={toggleConvo} />
       </div>
     </div>
     <div id="message-body">

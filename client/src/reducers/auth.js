@@ -6,6 +6,9 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGIN_FAIL,
+  SET_FAVORITES,
+  SET_WATCHLIST,
+  SET_FRIENDS,
 } from '../actions/types';
 
 const initialState = {
@@ -59,6 +62,21 @@ export default function (state = initialState, action) {
         isAuthenticated: null,
         loading: false,
         user: null,
+      };
+    case SET_FAVORITES:
+      return {
+        ...state,
+        user: { ...state.user, favorites: payload },
+      };
+    case SET_WATCHLIST:
+      return {
+        ...state,
+        user: { ...state.user, watchList: payload },
+      };
+    case SET_FRIENDS:
+      return {
+        ...state,
+        user: { ...state.user, friends: payload },
       };
     default:
       return state;

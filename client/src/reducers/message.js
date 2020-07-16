@@ -3,6 +3,8 @@ import {
   SET_CURRENT_MESSAGE,
   UPDATE_MESSAGES,
   MESSAGES_LOADING,
+  ADD_MESSAGE,
+  DELETE_MESSAGE,
 } from '../actions/types';
 
 const initialState = {
@@ -31,6 +33,18 @@ export default function (state = initialState, action) {
         ...state,
         currentMessage: payload,
         loading: false,
+      };
+    case ADD_MESSAGE:
+      return {
+        ...state,
+        currentMessage: { ...state.currentMessage, conversation: payload },
+      };
+    case DELETE_MESSAGE:
+      return {
+        ...state,
+        messages: state.messages.filter(
+          (message) => message._id !== payload.id
+        ),
       };
     case UPDATE_MESSAGES:
       return {

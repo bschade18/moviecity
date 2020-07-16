@@ -19,7 +19,7 @@ const Message = ({
         />
       </td>
       <td>{movieTitle}</td>
-      <td className="movie-table-message">{conversation[0].message}</td>
+      <td className="movie-table-message">{conversation[0].text}</td>
     </tr>
   );
 };

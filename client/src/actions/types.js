@@ -7,14 +7,22 @@ export const USER_LOADING = 'USER_LOADING';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCESS';
 
 export const GET_REVIEWS = 'GET_REVIEWS';
+export const GET_REVIEW = 'GET_REVIEW';
+export const FETCH_REVIEW = 'FETCH_REVIEW';
 
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const SET_CURRENT_MESSAGE = 'SET_CURRENT_MESSAGE';
 export const UPDATE_MESSAGES = 'UPDATE_MESSAGES';
+export const DELETE_MESSAGE = 'DELETE_MESSAGE';
 export const MESSAGES_LOADING = 'MESSAGES_LOADING';
 
 export const GET_USERS = 'GET_USERS';
-export const UPDATE_USER = 'GET_USER';
+export const SET_FAVORITES = 'SET_FAVORITES';
+export const SET_WATCHLIST = 'SET_WATCHLIST';
+export const SET_FRIENDS = 'SET_FRIENDS';
 
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const ADD_MESSAGE = 'ADD_MESSAGE';

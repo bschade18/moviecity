@@ -2,8 +2,11 @@ const mongoose = require('mongoose');
 
 const ReviewSchema = new mongoose.Schema({
   user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+  },
+  name: {
     type: String,
-    required: true,
   },
   movieTitle: {
     type: String,
@@ -13,7 +16,7 @@ const ReviewSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  comments: {
+  text: {
     type: String,
     required: true,
   },
@@ -29,6 +32,25 @@ const ReviewSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  comments: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+      },
+      text: {
+        type: String,
+        required: true,
+      },
+      name: {
+        type: String,
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
 });
 
 module.exports = Review = mongoose.model('review', ReviewSchema);

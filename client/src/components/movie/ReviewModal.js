@@ -15,19 +15,19 @@ import { imageUrl } from '../../config';
 
 const ReviewModal = ({ movie, user }) => {
   const [review, setReview] = useState(null);
-  const [comments, setComments] = useState('');
+  const [text, setText] = useState('');
   const [modal, setModal] = useState(false);
 
   const onSubmitReview = (e) => {
     e.preventDefault();
 
     const newReview = {
-      user: user.name,
+      // name: user.name,
       movieTitle: movie.original_title,
       review,
-      reviewDate: new Date(),
+      // reviewDate: new Date(),
       imageUrl: `${imageUrl}w185${movie.poster_path}`,
-      comments,
+      text,
       movieId: movie.id,
     };
 
@@ -72,7 +72,7 @@ const ReviewModal = ({ movie, user }) => {
                 id="comments"
                 placeholder="Enter comments..."
                 className="mb-3"
-                onChange={(e) => setComments(e.target.value)}
+                onChange={(e) => setText(e.target.value)}
               />
             </FormGroup>
             <Button color="primary" type="submit" block>

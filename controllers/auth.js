@@ -1,17 +1,16 @@
 let User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { registerValidation, loginValidation } = require('../validation');
 
-exports.register = (req, res, next) => {
+// @route POST auth/register
+// @desc register user
+// @access Public
+exports.register = (req, res) => {
   const { name, email, password } = req.body;
-  // validate
-  // const { error } = registerValidation(req.body);
-  // if (error) return res.status(400).json({ msg: error.details[0].message });
 
-  // check if user in db
-  User.findOne({ email: email }).then((user) => {
-    if (user) return res.status(400).json({ msg: 'User already exists' });
+  User.findOne({ email }).then((user) => {
+    if (user)
+      return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
 
     const newUser = new User({
       name,
@@ -52,15 +51,12 @@ exports.register = (req, res, next) => {
 // @desc login user
 // @access Public
 
-exports.login = (req, res, next) => {
+exports.login = (req, res) => {
   const { email, password } = req.body;
-  //validate
-  const { error } = loginValidation(req.body);
-  if (error) return res.status(400).json({ msg: error.details[0].message });
 
   //check if user in db
   User.findOne({ email }).then((user) => {
-    if (!user) return res.status(400).json({ msg: 'User does not exist' });
+    if (!user) return res.status(400).json({ msg: 'Invalid credentials' });
 
     // check pw
     const secret = process.env.SECRET;
@@ -91,4 +87,40 @@ exports.getUser = (req, res, next) => {
     .select('-password')
     .then((user) => res.json(user))
     .catch((err) => res.status(401).json('Error: ' + err));
+};
+
+// @route    PUT /auth/favorite/:id
+// @desc     update user favorites
+// @access   Private
+exports.addFavorite = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+
+    user.favorites = req.body.favorites;
+
+    const updatedUser = await user.save();
+
+    res.json(updatedUser.favorites);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+};
+
+// @route    PUT /auth/watchlist/:id
+// @desc     update user watchlist
+// @access   Private
+exports.setWatchlist = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+
+    user.watchList = req.body.watchList;
+
+    const updatedUser = await user.save();
+
+    res.json(updatedUser.watchList);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 };
