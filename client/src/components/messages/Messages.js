@@ -124,7 +124,7 @@ const Messages = ({
   }
   return (
     <div>
-      <Navigation page="Inbox" />
+      <Navigation page="Messages" />
       <div className="container">
         {!showMessage ? (
           <Inbox messagesList={messagesList} />

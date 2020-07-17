@@ -4,7 +4,7 @@ const ErrorResponse = require('../utils/errorResponse');
 
 // @route GET /reviews
 // @desc get reviews
-// @access Public
+// @access Private
 exports.getReviews = async (req, res, next) => {
   try {
     const reviews = await Review.find().sort({ reviewDate: -1 });

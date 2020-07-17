@@ -2,7 +2,7 @@ let User = require('../models/User');
 
 // @route GET /users
 // @desc Get Users
-// @access Public
+// @access Private
 exports.getUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -15,9 +15,9 @@ exports.getUsers = async (req, res) => {
 
 // @route PUT /users/:id
 // @desc update user
-// @access Public
+// @access Private
 
-exports.updateUser = async (req, res, next) => {
+exports.updateUser = async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,

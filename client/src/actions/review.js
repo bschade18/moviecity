@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { GET_REVIEWS, ADD_COMMENT, GET_REVIEW, FETCH_REVIEW } from './types';
+import {
+  ADD_REVIEW,
+  GET_REVIEWS,
+  ADD_COMMENT,
+  GET_REVIEW,
+  FETCH_REVIEW,
+} from './types';
 
 export const getReviews = () => async (dispatch) => {
   try {
@@ -11,6 +17,21 @@ export const getReviews = () => async (dispatch) => {
     });
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const addReview = (newReview) => async (dispatch) => {
+  try {
+    const res = await axios.post('/reviews', newReview);
+
+    dispatch({
+      type: ADD_REVIEW,
+      payload: res.data.data,
+    });
+
+    setTimeout(() => (window.location = '/home'), 500);
+  } catch (err) {
+    console.error(err);
   }
 };
 

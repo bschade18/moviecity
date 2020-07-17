@@ -10,10 +10,12 @@ import {
   Input,
 } from 'reactstrap';
 
-import axios from 'axios';
+import { addReview } from '../../actions/review';
 import { imageUrl } from '../../config';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const ReviewModal = ({ movie, user }) => {
+const ReviewModal = ({ movie, user, addReview }) => {
   const [review, setReview] = useState(null);
   const [text, setText] = useState('');
   const [modal, setModal] = useState(false);
@@ -22,17 +24,14 @@ const ReviewModal = ({ movie, user }) => {
     e.preventDefault();
 
     const newReview = {
-      // name: user.name,
       movieTitle: movie.original_title,
       review,
-      // reviewDate: new Date(),
       imageUrl: `${imageUrl}w185${movie.poster_path}`,
       text,
       movieId: movie.id,
     };
 
-    axios.post('/reviews', newReview).then((res) => console.log(res.data));
-    setTimeout(() => (window.location = '/home'), 500);
+    addReview(newReview);
   };
 
   const setStar = (number) => {
@@ -49,7 +48,11 @@ const ReviewModal = ({ movie, user }) => {
 
   return (
     <div>
-      <Button color="success" onClick={toggle} className="review-movie-btn">
+      <Button
+        color="outline-success"
+        onClick={toggle}
+        className="review-movie-btn"
+      >
         Review Movie
       </Button>
       <Modal isOpen={modal} toggle={toggle} fade={false}>
@@ -85,4 +88,8 @@ const ReviewModal = ({ movie, user }) => {
   );
 };
 
-export default ReviewModal;
+ReviewModal.propTypes = {
+  addReview: PropTypes.func,
+};
+
+export default connect(null, { addReview })(ReviewModal);

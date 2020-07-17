@@ -6,6 +6,7 @@ import {
   MESSAGES_LOADING,
   ADD_MESSAGE,
   DELETE_MESSAGE,
+  SEND_MESSAGE,
 } from './types';
 
 export const getMessages = () => async (dispatch) => {
@@ -52,6 +53,27 @@ export const updateMessages = (messageId, message) => async (dispatch) => {
     });
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const sendMessage = (newMessage) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  try {
+    const res = await axios.post('/messages', newMessage, config);
+
+    dispatch({
+      type: SEND_MESSAGE,
+      payload: res.data,
+    });
+
+    setTimeout(() => (window.location = '/home'), 500);
+  } catch (err) {
+    console.error(err);
   }
 };
 

@@ -17,6 +17,7 @@ const Home = ({ user, logout, getReviews, reviews }) => {
   if (reviews === null || !user) {
     return <Spinner />;
   }
+
   return (
     <Fragment>
       <Sidenav />

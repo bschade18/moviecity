@@ -3,6 +3,7 @@ import { getUsers } from '../../actions/users';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import FontAwesome from 'react-fontawesome';
 
 const SearchBar = ({ getUsers, users }) => {
   const [search, setSearch] = useState('');
@@ -16,6 +17,10 @@ const SearchBar = ({ getUsers, users }) => {
     setSearch(e.target.value);
   };
 
+  const clearSearch = () => {
+    setSearch('');
+  };
+
   const filtered = () => {
     return users.filter((user) => {
       const regex = new RegExp(search, 'gi');
@@ -27,20 +32,21 @@ const SearchBar = ({ getUsers, users }) => {
     return filtered().map((user) => (
       <div id="user-search-box" key={user._id}>
         <Link id="user-search-link" to={`/${user.name}`}>
-          <div>{user.name}</div>
+          <div onClick={clearSearch}>{user.name}</div>
         </Link>
       </div>
     ));
   };
   return (
     <div id="user-search">
-      <div>
+      <div className="user-search-content">
+        <FontAwesome className="fa-search-user" name="search" />
         <input
           type="text"
           placeholder="Find Friends"
           onChange={searchUsers}
           value={search}
-          className="form-control"
+          className="form-control user-search-input"
         />
       </div>
       <div>

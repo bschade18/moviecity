@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from 'react';
 
-import { apiKey, apiUrl } from "../../config";
+import { apiKey, apiUrl } from '../../config';
 
-export const useMovieFetch = id => {
+export const useMovieFetch = (id) => {
   const [state, setState] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -19,13 +19,13 @@ export const useMovieFetch = id => {
       const creditsResult = await (await fetch(creditsEndpoint)).json();
 
       const directors = creditsResult.crew.filter(
-        member => member.job === "Director"
+        (member) => member.job === 'Director'
       );
 
       setState({
         ...result,
         actors: creditsResult.cast,
-        directors
+        directors,
       });
     } catch {
       setError(true);

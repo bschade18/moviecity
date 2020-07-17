@@ -5,8 +5,8 @@ const SearchBar = ({ callback }) => {
   const [state, setState] = useState('');
   const timeOut = useRef(null);
 
-  const doSearch = (event) => {
-    const { value } = event.target;
+  const doSearch = (e) => {
+    const { value } = e.target;
 
     clearTimeout(timeOut.current);
     setState(value);
@@ -18,14 +18,14 @@ const SearchBar = ({ callback }) => {
   return (
     <div id="search-bar">
       <div className="search-bar-content">
+        <FontAwesome className="fa-search" name="search" size="2x" />
         <input
           type="text"
-          placeholder="search movie"
+          placeholder="Search Movies"
           onChange={doSearch}
           value={state}
           className="search-input"
         />
-        <FontAwesome className="fa-search" name="search" size="2x" />
       </div>
     </div>
   );

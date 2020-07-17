@@ -2,7 +2,7 @@ let Message = require('../models/Message');
 
 // @route GET /messages
 // @desc Get all messages
-// @access Public
+// @access Private
 exports.getMessage = async (req, res) => {
   try {
     const messages = await Message.find();
@@ -39,7 +39,7 @@ exports.createMessage = async (req, res) => {
     newMessage.conversation.user = req.user.id;
 
     await newMessage.save();
-    res.json('message added!');
+    res.json(newMessage);
   } catch (err) {
     res.status(400).json('Error: ' + err);
   }
@@ -47,7 +47,7 @@ exports.createMessage = async (req, res) => {
 
 // @route DELETE /messages/:id
 // @desc Delete message
-// @access Public
+// @access Private
 
 exports.deleteMessage = async (req, res) => {
   try {

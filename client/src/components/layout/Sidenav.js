@@ -16,7 +16,7 @@ const Sidenav = ({ logout, user }) => (
     <Link to="/messages" className="btn">
       <div className="sn-item">
         <FontAwesome className="fa-envelope" name="envelope" size="2x" />
-        <span className="d-block">Inbox</span>
+        <span className="d-block">Messages</span>
       </div>
     </Link>
     <Link to="/search" className="btn">

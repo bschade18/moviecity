@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Modal,
@@ -10,21 +10,20 @@ import {
   Input,
 } from 'reactstrap';
 
-import axios from 'axios';
+import { sendMessage } from '../../actions/messages';
 import { imageUrl } from '../../config';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const MessageModal = ({ movie: { original_title, poster_path }, user }) => {
+const MessageModal = ({
+  movie: { original_title, poster_path },
+  user,
+  users,
+  sendMessage,
+}) => {
   const [recipient, setRecipient] = useState('');
   const [text, setText] = useState('');
   const [modal, setModal] = useState(false);
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get('/users')
-      .then((res) => setUsers(res.data))
-      .catch((err) => console.log(err));
-  }, []);
 
   const onSubmitMessage = (e) => {
     e.preventDefault();
@@ -37,9 +36,7 @@ const MessageModal = ({ movie: { original_title, poster_path }, user }) => {
       imageUrl: `${imageUrl}w185${poster_path}`,
     };
 
-    axios.post('/messages', newMessage).then((res) => console.log(res.data));
-
-    setTimeout(() => (window.location = '/home'), 500);
+    sendMessage(newMessage);
   };
 
   const toggle = () => setModal(!modal);
@@ -50,7 +47,11 @@ const MessageModal = ({ movie: { original_title, poster_path }, user }) => {
 
   return (
     <div>
-      <Button color="success" onClick={toggle} className="review-movie-btn">
+      <Button
+        color="outline-success"
+        onClick={toggle}
+        className="review-movie-btn"
+      >
         Send to Friend
       </Button>
       <Modal isOpen={modal} toggle={toggle} fade={false}>
@@ -100,4 +101,13 @@ const MessageModal = ({ movie: { original_title, poster_path }, user }) => {
   );
 };
 
-export default MessageModal;
+MessageModal.propTypes = {
+  users: PropTypes.array,
+  sendMessage: PropTypes.func,
+};
+
+const mapStateToProps = (state) => ({
+  users: state.user.users,
+});
+
+export default connect(mapStateToProps, { sendMessage })(MessageModal);

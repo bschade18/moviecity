@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navigation = ({ movie, page }) => (
+const Navigation = ({ page }) => (
   <div id="navigation" className="sticky-top">
     <div className="navigation-container">
       <div className="navigation-content">
@@ -9,7 +9,7 @@ const Navigation = ({ movie, page }) => (
           <p>Home</p>
         </Link>
         <p>|</p>
-        <p>{page === 'Inbox' ? page : movie ? movie : 'Search'}</p>
+        <p>{page}</p>
       </div>
     </div>
   </div>

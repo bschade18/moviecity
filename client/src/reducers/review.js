@@ -1,4 +1,5 @@
 import {
+  ADD_REVIEW,
   GET_REVIEWS,
   ADD_COMMENT,
   GET_REVIEW,
@@ -19,6 +20,11 @@ export default function (state = initialState, action) {
         ...state,
         reviews: payload,
         loading: false,
+      };
+    case ADD_REVIEW:
+      return {
+        ...state,
+        reviews: [...state.reviews, payload],
       };
     case FETCH_REVIEW:
       return {

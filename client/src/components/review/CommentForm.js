@@ -24,7 +24,7 @@ const CommentForm = ({ reviewId, addComment }) => {
           placeholder="Write a comment..."
         />
         <input
-          className="btn btn-secondary messages-reply-submit ml-1"
+          className="btn btn-success messages-reply-submit ml-1"
           type="submit"
           id="submit"
           value="Post"

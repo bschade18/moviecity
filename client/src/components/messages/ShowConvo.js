@@ -35,7 +35,7 @@ const ShowConvo = ({
         value={text}
       />
       <input
-        className="btn btn-secondary messages-reply-submit ml-1"
+        className="btn btn-success messages-reply-submit ml-1"
         type="submit"
         id="submit"
         value="Reply"

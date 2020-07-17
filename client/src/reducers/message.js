@@ -5,6 +5,7 @@ import {
   MESSAGES_LOADING,
   ADD_MESSAGE,
   DELETE_MESSAGE,
+  SEND_MESSAGE,
 } from '../actions/types';
 
 const initialState = {
@@ -26,6 +27,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         messages: payload,
+        loading: false,
+      };
+    case SEND_MESSAGE:
+      return {
+        ...state,
+        messages: [...state.messages, payload],
         loading: false,
       };
     case SET_CURRENT_MESSAGE:

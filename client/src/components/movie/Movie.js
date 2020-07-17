@@ -17,7 +17,7 @@ const Movie = ({ match, user }) => {
 
   return (
     <div>
-      <Navigation movie={movie.original_title} />
+      <Navigation page={movie.original_title} />
       <MovieInfo movie={movie} user={user} />
 
       <Grid header="Cast">

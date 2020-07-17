@@ -241,6 +241,7 @@ button.btn:active {
   font-size: 28px;
   margin: 8px 0;
   border: 0;
+  text-indent: 3rem;
 }
 
 #search-bar .search-input:focus {
@@ -251,7 +252,7 @@ button.btn:active {
   color: #000;
   z-index: 1000;
   position: absolute;
-  right: 2.5rem;
+  left: 1rem;
 }
 
 /* Spinner */
@@ -621,6 +622,20 @@ button.btn:active {
   right: 0;
 }
 
+.user-search-content {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.user-search-input {
+  text-indent: 1.5rem;
+}
+
+.fa-search-user {
+  position: absolute;
+}
+
 .user-favorites {
   width: 20%;
   position: fixed;
@@ -798,6 +813,7 @@ button.btn:active {
 .recipient {
   align-self: flex-end;
   background-color: #28a745;
+  background-color: #003699;
   color: #fff;
 }
 

@@ -5,88 +5,94 @@ const jwt = require('jsonwebtoken');
 // @route POST auth/register
 // @desc register user
 // @access Public
-exports.register = (req, res) => {
+exports.register = async (req, res) => {
   const { name, email, password } = req.body;
 
-  User.findOne({ email }).then((user) => {
-    if (user)
-      return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+  try {
+    let user = await User.findOne({ email });
 
-    const newUser = new User({
+    if (user) {
+      return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+    }
+
+    user = new User({
       name,
       email,
       password,
     });
 
-    // create salt & hash
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
+
+    await user.save();
+
     const secret = process.env.SECRET;
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newUser.password, salt, (err, hash) => {
-        if (err) throw err;
-        newUser.password = hash;
-        newUser.save().then((user) => {
-          jwt.sign(
-            { id: user._id },
-            secret,
-            { expiresIn: 3600 },
-            (err, token) => {
-              if (err) throw err;
-              res.json({
-                token,
-                user: {
-                  id: user._id,
-                  name: user.name,
-                  email: user.email,
-                },
-              });
-            }
-          );
-        });
+
+    jwt.sign({ id: user._id }, secret, { expiresIn: 3600 }, (err, token) => {
+      if (err) throw err;
+      res.json({
+        token,
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+        },
       });
     });
-  });
+  } catch (err) {
+    res.status(500).send('Server Error');
+  }
 };
 
 // @route POST auth/login
 // @desc login user
 // @access Public
 
-exports.login = (req, res) => {
+exports.login = async (req, res) => {
   const { email, password } = req.body;
 
-  //check if user in db
-  User.findOne({ email }).then((user) => {
-    if (!user) return res.status(400).json({ msg: 'Invalid credentials' });
+  try {
+    let user = await User.findOne({ email });
 
-    // check pw
+    if (!user) {
+      return res.status(400).json({ msg: 'Invalid credentials' });
+    }
     const secret = process.env.SECRET;
-    bcrypt.compare(password, user.password).then((isMatch) => {
-      if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
-      // create and assign token
-      jwt.sign({ id: user._id }, secret, { expiresIn: 3600 }, (err, token) => {
-        if (err) throw err;
-        res.json({
-          token,
-          user: {
-            id: user._id,
-            name: user.name,
-            email: user.email,
-          },
-        });
+
+    let isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(400).json({ msg: 'Invalid credentials' });
+    }
+
+    jwt.sign({ id: user._id }, secret, { expiresIn: 3600 }, (err, token) => {
+      if (err) throw err;
+      res.json({
+        token,
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+        },
       });
     });
-  });
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
 };
 
 // @route GET auth/user
 // @desc get user data
 // @access Private
 
-exports.getUser = (req, res, next) => {
-  User.findById(req.user.id)
-    .select('-password')
-    .then((user) => res.json(user))
-    .catch((err) => res.status(401).json('Error: ' + err));
+exports.getUser = async (req, res) => {
+  try {
+    let user = await User.findById(req.user.id).select('-password');
+
+    res.json(user);
+  } catch (err) {
+    res.status(401).json('Error: ' + err);
+  }
 };
 
 // @route    PUT /auth/favorite/:id

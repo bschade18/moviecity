@@ -42,12 +42,18 @@ const Search = () => {
     fetchMovies(endpoint);
   };
   if (error) return <div>Something went wrong</div>;
-  if (!movies[0]) return <Spinner />;
+
   return (
     <div>
-      <Navigation />
+      <Navigation page="Search" />
       <SearchBar callback={searchMovies} />
       <Grid header={search ? 'Search Results' : 'Popular Movies'}>
+        {!movies[0] && (
+          <div>
+            No movies were found in your search. Try another search. Merry
+            Christmas, ya filthy animal.
+          </div>
+        )}
         {movies.map((movie) => (
           <MovieThumb
             key={movie.id}
