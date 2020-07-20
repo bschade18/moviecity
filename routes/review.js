@@ -4,11 +4,11 @@ const auth = require('../middleware/auth');
 const {
   getReviews,
   getReview,
-  postReviews,
+  addReview,
   addComment,
 } = require('../controllers/review');
 
-router.route('/').get(auth, getReviews).post(auth, postReviews);
+router.route('/').get(auth, getReviews).post(auth, addReview);
 
 router.route('/:id').get(auth, getReview);
 

@@ -13,10 +13,27 @@ export const getReviews = () => async (dispatch) => {
 
     dispatch({
       type: GET_REVIEWS,
-      payload: res.data.data,
+      payload: res.data,
     });
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const getReview = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: FETCH_REVIEW,
+    });
+
+    const res = await axios.get(`/reviews/${id}`);
+
+    dispatch({
+      type: GET_REVIEW,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
   }
 };
 
@@ -26,7 +43,7 @@ export const addReview = (newReview) => async (dispatch) => {
 
     dispatch({
       type: ADD_REVIEW,
-      payload: res.data.data,
+      payload: res.data,
     });
 
     setTimeout(() => (window.location = '/home'), 500);
@@ -52,23 +69,6 @@ export const addComment = (reviewId, formData) => async (dispatch) => {
     dispatch({
       type: ADD_COMMENT,
       payload: res.data,
-    });
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-export const getReview = (id) => async (dispatch) => {
-  try {
-    dispatch({
-      type: FETCH_REVIEW,
-    });
-
-    const res = await axios.get(`/reviews/${id}`);
-
-    dispatch({
-      type: GET_REVIEW,
-      payload: res.data.data,
     });
   } catch (err) {
     console.error(err);

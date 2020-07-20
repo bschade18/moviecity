@@ -28,7 +28,7 @@ exports.register = async (req, res) => {
 
     const secret = process.env.SECRET;
 
-    jwt.sign({ id: user._id }, secret, { expiresIn: 3600 }, (err, token) => {
+    jwt.sign({ id: user._id }, secret, { expiresIn: 14400 }, (err, token) => {
       if (err) throw err;
       res.json({
         token,
@@ -77,7 +77,7 @@ exports.login = async (req, res) => {
       });
     });
   } catch (err) {
-    res.status(500).send('Server error');
+    res.status(500).send('Server Error');
   }
 };
 
@@ -91,7 +91,7 @@ exports.getUser = async (req, res) => {
 
     res.json(user);
   } catch (err) {
-    res.status(401).json('Error: ' + err);
+    res.status(401).send('Server Error');
   }
 };
 

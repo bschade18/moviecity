@@ -4,12 +4,12 @@ import NoImage from '../../img/no_image.jpg';
 import { Link } from 'react-router-dom';
 
 const Reviews = ({
-  review: { review, name, imageUrl, movieId, movieTitle, text, _id, comments },
+  review: { rating, name, imageUrl, movieId, movieTitle, text, _id, comments },
 }) => {
   const renderStar = (number) => {
     return (
       <span
-        className={review >= number ? 'fa fa-star checked' : 'd-none'}
+        className={rating >= number ? 'fa fa-star checked' : 'd-none'}
       ></span>
     );
   };

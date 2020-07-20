@@ -2,6 +2,7 @@ const express = require('express');
 const colors = require('colors');
 const path = require('path');
 const connectDB = require('./config/db');
+const errorHandler = require('./middleware/error');
 const dotenv = require('dotenv');
 
 dotenv.config({ path: './config/config.env' });
@@ -18,6 +19,8 @@ app.use('/users', require('./routes/user'));
 app.use('/auth', require('./routes/auth'));
 app.use('/reviews', require('./routes/review'));
 app.use('/messages', require('./routes/message'));
+
+app.use(errorHandler);
 
 // server static assets if in production
 if (process.env.NODE_ENV === 'production') {

@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const ReviewModal = ({ movie, user, addReview }) => {
-  const [review, setReview] = useState(null);
+  const [rating, setRating] = useState(null);
   const [text, setText] = useState('');
   const [modal, setModal] = useState(false);
 
@@ -25,7 +25,7 @@ const ReviewModal = ({ movie, user, addReview }) => {
 
     const newReview = {
       movieTitle: movie.original_title,
-      review,
+      rating,
       imageUrl: `${imageUrl}w185${movie.poster_path}`,
       text,
       movieId: movie.id,
@@ -35,13 +35,13 @@ const ReviewModal = ({ movie, user, addReview }) => {
   };
 
   const setStar = (number) => {
-    setReview(number);
+    setRating(number);
   };
 
   const renderStar = (number) => (
     <span
       onClick={() => setStar(number)}
-      className={review >= number ? 'fa fa-star checked' : 'fa fa-star hover'}
+      className={rating >= number ? 'fa fa-star checked' : 'fa fa-star hover'}
     ></span>
   );
   const toggle = () => setModal(!modal);

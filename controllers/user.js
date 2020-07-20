@@ -1,42 +1,31 @@
 let User = require('../models/User');
+let asyncHandler = require('../middleware/async');
+const ErrorResponse = require('../utils/errorResponse');
 
 // @route GET /users
-// @desc Get Users
+// @desc Get all users
 // @access Private
-exports.getUsers = async (req, res) => {
-  try {
-    const users = await User.find();
+exports.getUsers = asyncHandler(async (req, res, next) => {
+  const users = await User.find();
 
-    res.json(users);
-  } catch (err) {
-    res.status(400).json('Error: ' + err);
-  }
-};
+  res.status(200).json(users);
+});
 
 // @route PUT /users/:id
-// @desc update user
+// @desc Update user
 // @access Private
 
-exports.updateUser = async (req, res) => {
-  try {
-    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    }).select('-password');
+exports.updateUser = asyncHandler(async (req, res, next) => {
+  const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  }).select('-password');
 
-    if (!user) {
-      return res.status(400).json({
-        success: false,
-      });
-    }
-
-    res.status(200).json({
-      success: true,
-      data: user,
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-    });
+  if (!user) {
+    return next(
+      new ErrorResponse(`User not found with id of ${req.params.id}`, 404)
+    );
   }
-};
+
+  res.status(200).json(user);
+});

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import {
   imageUrl,
   posterSize,
@@ -42,18 +42,12 @@ const Search = () => {
     fetchMovies(endpoint);
   };
   if (error) return <div>Something went wrong</div>;
-
+  // if (!movies[0]) return <Spinner />;
   return (
     <div>
       <Navigation page="Search" />
       <SearchBar callback={searchMovies} />
       <Grid header={search ? 'Search Results' : 'Popular Movies'}>
-        {!movies[0] && (
-          <div>
-            No movies were found in your search. Try another search. Merry
-            Christmas, ya filthy animal.
-          </div>
-        )}
         {movies.map((movie) => (
           <MovieThumb
             key={movie.id}
@@ -68,6 +62,18 @@ const Search = () => {
           />
         ))}
       </Grid>
+      {search && !movies[0] && (
+        <Fragment>
+          <h3 className="grid">
+            "..cuz we're going to America - full house boys!!" Jack Dawson,
+            Titanic
+          </h3>
+          <br />
+          <h3 className="grid">
+            Oh, also no movies were found in your search. Try again.
+          </h3>
+        </Fragment>
+      )}
       {loading && <Spinner />}
       {currentPage < totalPages && !loading && (
         <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
