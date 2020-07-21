@@ -727,10 +727,10 @@ button.btn:active {
 }
 
 .message-container {
-  height: 550px;
+  height: 500px;
   border: 0.5px solid gray;
   border-radius: 10px;
-  margin: 3rem auto;
+  margin: 4rem auto;
   width: 700px;
 
   display: flex;

@@ -6,7 +6,6 @@ import ShowConvo from './ShowConvo';
 import {
   getMessages,
   setCurrentMessage,
-  // updateMessages,
   addMessage,
 } from '../../actions/messages';
 import Spinner from '../layout/Spinner';
@@ -151,7 +150,6 @@ Messages.propTypes = {
   getMessages: PropTypes.func,
   setCurrentMessage: PropTypes.func,
   currentMessage: PropTypes.object,
-  // updateMessages: PropTypes.func,
   loading: PropTypes.bool,
   addMessage: PropTypes.func,
 };
@@ -166,6 +164,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getMessages,
   setCurrentMessage,
-  // updateMessages,
   addMessage,
 })(Messages);
