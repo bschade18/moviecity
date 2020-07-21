@@ -31,7 +31,7 @@ exports.getReview = asyncHandler(async (req, res, next) => {
 // @desc Add a review
 // @access Private
 
-exports.addReview = asyncHandler(async (req, res) => {
+exports.addReview = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.user.id).select('-password');
 
   const { text, movieTitle, imageUrl, movieId, rating } = req.body;
@@ -54,7 +54,7 @@ exports.addReview = asyncHandler(async (req, res) => {
 // @route    POST /reviews/comment/:id
 // @desc     Comment on a review
 // @access   Private
-exports.addComment = asyncHandler(async (req, res) => {
+exports.addComment = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.user.id).select('-password');
   const review = await Review.findById(req.params.id);
 
@@ -68,5 +68,5 @@ exports.addComment = asyncHandler(async (req, res) => {
 
   await review.save();
 
-  res.status().json(review.comments);
+  res.status(200).json(review.comments);
 });
