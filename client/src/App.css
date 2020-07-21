@@ -727,7 +727,7 @@ button.btn:active {
 }
 
 .message-container {
-  height: 500px;
+  height: 480px;
   border: 0.5px solid gray;
   border-radius: 10px;
   margin: 4rem auto;
