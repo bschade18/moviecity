@@ -9,10 +9,6 @@ import {
   SEND_MESSAGE,
 } from './types';
 
-// get messages, change set currentmessage to getmessage and change current message to message in state?
-// send message should be add message
-// i think update messages should be update message?
-
 // get all messages
 export const getMessages = () => async (dispatch) => {
   dispatch({
@@ -43,7 +39,6 @@ export const setCurrentMessage = (current) => async (dispatch) => {
   }
 };
 
-// map through messages in state and update the message that matches the id in the payload
 export const updateMessages = (messageId, message) => async (dispatch) => {
   const config = {
     headers: {
@@ -63,7 +58,7 @@ export const updateMessages = (messageId, message) => async (dispatch) => {
   }
 };
 
-// send initial message
+// create and send initial message
 export const sendMessage = (newMessage) => async (dispatch) => {
   const config = {
     headers: {
@@ -85,7 +80,7 @@ export const sendMessage = (newMessage) => async (dispatch) => {
   }
 };
 
-// adds a message onto the current message converation..from the messages page
+// add message to current conversation
 export const addMessage = (messageId, formData) => async (dispatch) => {
   const config = {
     headers: {
@@ -105,7 +100,6 @@ export const addMessage = (messageId, formData) => async (dispatch) => {
   }
 };
 
-// delete a message
 export const deleteMessage = (id, toggleConvo) => async (dispatch) => {
   try {
     await axios.delete(`/messages/${id}`);
