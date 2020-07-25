@@ -5,6 +5,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   email: {
     type: String,
     required: true,
@@ -17,6 +22,10 @@ const UserSchema = new mongoose.Schema({
   register_date: {
     type: Date,
     default: Date.now,
+  },
+  photo: {
+    type: String,
+    default: 'no-photo.jpg',
   },
   friends: [String],
   favorites: [{ title: String, imgUrl: String, movieId: String }],

@@ -4,20 +4,29 @@ import NoImage from '../../img/no_image.jpg';
 import { Link } from 'react-router-dom';
 
 const Reviews = ({
-  review: { rating, name, imageUrl, movieId, movieTitle, text, _id, comments },
+  review: {
+    rating,
+    username,
+    imageUrl,
+    movieId,
+    movieTitle,
+    text,
+    _id,
+    comments,
+    user,
+  },
 }) => {
-  const renderStar = (number) => {
+  const renderStar = (num) => {
     return (
-      <span
-        className={rating >= number ? 'fa fa-star checked' : 'd-none'}
-      ></span>
+      <span className={rating >= num ? 'fa fa-star checked' : 'd-none'}></span>
     );
   };
 
   return (
     <div id="mainmovies-list">
-      <Link className="user-link" to={`/${name}`}>
-        <h6>{name}</h6>
+      <Link className="user-link mb-2" to={`/${user.username}`}>
+        <img src={`/uploads/${user.photo}`} className="user-photo" alt="user" />
+        <h6 className="ml-2 mainmovies-user-name">{username}</h6>
       </Link>
       <div className="movie-box">
         <div className="mymovies-thumb">

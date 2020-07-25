@@ -70,6 +70,8 @@ export const addComment = (reviewId, formData) => async (dispatch) => {
       type: ADD_COMMENT,
       payload: res.data,
     });
+
+    console.log(res.data);
   } catch (err) {
     console.error(err);
   }

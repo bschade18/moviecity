@@ -1,6 +1,6 @@
 import React from 'react';
 import useFormState from '../hooks/useFormState';
-import Navbar from '../layout/Navbar';
+import LandingNav from '../layout/LandingNav';
 import { connect } from 'react-redux';
 import { login } from '../../actions/auth';
 import PropTypes from 'prop-types';
@@ -22,7 +22,7 @@ const LoginFail = ({ login, isAuthenticated }) => {
 
   return (
     <div>
-      <Navbar />
+      <LandingNav />
       <div className="container">
         <div
           id="showcase-container"

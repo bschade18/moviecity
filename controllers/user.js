@@ -11,6 +11,21 @@ exports.getUsers = asyncHandler(async (req, res, next) => {
   res.status(200).json(users);
 });
 
+// @route GET /users/:id
+// @desc Get single user
+// @access Private
+exports.getUser = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    return next(
+      new ErrorResponse(`User not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  res.status(200).json(user);
+});
+
 // @route PUT /users/:id
 // @desc Update user
 // @access Private

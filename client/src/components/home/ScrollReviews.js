@@ -1,32 +1,29 @@
-import React, { Fragment } from 'react';
-import BottomNav from './BottomNav';
-import FontAwesome from 'react-fontawesome';
+import React from 'react';
+import MobileNav from '../layout/MobileNav';
 import Reviews from './Reviews';
 
-const ScrollReviews = ({ reviews, user, logout }) => {
-  return (
-    <Fragment>
-      <div className="main">
-        <div className="scroll-nav">
-          <div className="scroll-heading">
-            <FontAwesome className="fas fa-building" name="city" size="2x" />
-            <p>MovieCity</p>
-          </div>
-        </div>
-        <div className="movie-scroll">
-          {reviews
-            .filter(
-              (review) =>
-                user.friends.includes(review.name) || user.name === review.name
-            )
-            .map((review) => (
-              <Reviews review={review} key={review._id} />
-            ))}
+const ScrollReviews = ({ reviews, user, logout }) => (
+  <div className="scroll-container">
+    <div className="main">
+      <div className="scroll-nav">
+        <div className="scroll-heading">
+          <p className="home-title">MovieCity</p>
         </div>
       </div>
-      <BottomNav user={user} logout={logout} />
-    </Fragment>
-  );
-};
+      <div className="movie-scroll">
+        {reviews
+          .filter(
+            (review) =>
+              user.friends.includes(review.username) ||
+              user.username === review.username
+          )
+          .map((review) => (
+            <Reviews review={review} key={review._id} />
+          ))}
+      </div>
+    </div>
+    <MobileNav user={user} logout={logout} />
+  </div>
+);
 
 export default ScrollReviews;

@@ -18,6 +18,7 @@ const ShowConvo = ({
         <img className="message-img mr-3" src={movieImg} alt="movie" />
         <h3 className="message-movietitle">{movieTitle}</h3>
       </span>
+
       <div className="icons">
         <i className="fa fa-times" onClick={toggleConvo}></i>
         <DeleteModal id={messageId} toggleConvo={toggleConvo} />

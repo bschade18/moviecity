@@ -8,6 +8,7 @@ import { setAlert } from '../../actions/alert';
 
 const Showcase = ({ register, image, setAlert }) => {
   const [name, setName] = useFormState('');
+  const [username, setUserName] = useFormState('');
   const [email, setEmail] = useFormState('');
   const [password, setPassword] = useFormState('');
   const [password2, setPassword2] = useFormState('');
@@ -18,7 +19,7 @@ const Showcase = ({ register, image, setAlert }) => {
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      register({ name, email, password });
+      register({ name, username, email, password });
     }
   };
 
@@ -39,6 +40,16 @@ const Showcase = ({ register, image, setAlert }) => {
                 id="name"
                 placeholder="Name"
                 onChange={setName}
+              />
+            </div>
+            <div className="form-group py-1">
+              <input
+                className="form-control"
+                type="text"
+                name="username"
+                id="username"
+                placeholder="Username"
+                onChange={setUserName}
               />
             </div>
             <div className="form-group py-1">

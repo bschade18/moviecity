@@ -21,24 +21,23 @@ const SearchBar = ({ getUsers, users }) => {
     setSearch('');
   };
 
-  const filtered = () => {
-    return users.filter((user) => {
+  const filtered = () =>
+    users.filter((user) => {
       const regex = new RegExp(search, 'gi');
       return user.name.match(regex);
     });
-  };
 
-  const showFiltered = () => {
-    return filtered().map((user) => (
+  const showFiltered = () =>
+    filtered().map((user) => (
       <div id="user-search-box" key={user._id}>
-        <Link id="user-search-link" to={`/${user.name}`}>
+        <Link id="user-search-link" to={`/${user.username}`}>
           <div onClick={clearSearch}>{user.name}</div>
         </Link>
       </div>
     ));
-  };
+
   return (
-    <div id="user-search">
+    <div id="user-search" className="m-auto">
       <div className="user-search-content">
         <FontAwesome className="fa-search-user" name="search" />
         <input

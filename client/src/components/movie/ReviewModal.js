@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import {
   Button,
   Modal,
@@ -15,7 +15,7 @@ import { imageUrl } from '../../config';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const ReviewModal = ({ movie, user, addReview }) => {
+const ReviewModal = ({ movie, addReview }) => {
   const [rating, setRating] = useState(null);
   const [text, setText] = useState('');
   const [modal, setModal] = useState(false);
@@ -47,7 +47,7 @@ const ReviewModal = ({ movie, user, addReview }) => {
   const toggle = () => setModal(!modal);
 
   return (
-    <div>
+    <Fragment>
       <Button
         color="outline-success"
         onClick={toggle}
@@ -78,18 +78,18 @@ const ReviewModal = ({ movie, user, addReview }) => {
                 onChange={(e) => setText(e.target.value)}
               />
             </FormGroup>
-            <Button color="primary" type="submit" block>
+            <Button className="send-btn" color="primary" type="submit" block>
               Post Review
             </Button>
           </Form>
         </ModalBody>
       </Modal>
-    </div>
+    </Fragment>
   );
 };
 
 ReviewModal.propTypes = {
-  addReview: PropTypes.func,
+  addReview: PropTypes.func.isRequired,
 };
 
 export default connect(null, { addReview })(ReviewModal);

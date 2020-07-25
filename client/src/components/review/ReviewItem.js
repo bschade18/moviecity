@@ -4,7 +4,7 @@ import NoImage from '../../img/no_image.jpg';
 import { Link } from 'react-router-dom';
 
 const ReviewItem = ({
-  review: { review, name, imageUrl, movieId, movieTitle, text, _id },
+  review: { review, name, imageUrl, movieId, movieTitle, text, user, username },
 }) => {
   const renderStar = (number) => {
     return (
@@ -15,9 +15,11 @@ const ReviewItem = ({
   };
   return (
     <div id="mainmovies-list">
-      <Link className="user-link" to={`/${name}`}>
-        <h6>{name}</h6>
+      <Link className="user-link mb-2" to={`/${name}`}>
+        <img src={`/uploads/${user.photo}`} className="user-photo" alt="user" />
+        <h6 className="ml-2 review-item-username">{username}</h6>
       </Link>
+
       <div className="movie-box">
         <div className="mymovies-thumb">
           <MovieThumb

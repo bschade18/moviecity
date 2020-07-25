@@ -1,12 +1,15 @@
 let User = require('../models/User');
+const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const asyncHandler = require('../middleware/async');
+const ErrorResponse = require('../utils/errorResponse');
 
 // @route POST auth/register
 // @desc register user
 // @access Public
 exports.register = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, username, email, password } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -17,6 +20,7 @@ exports.register = async (req, res) => {
 
     user = new User({
       name,
+      username,
       email,
       password,
     });
@@ -35,6 +39,7 @@ exports.register = async (req, res) => {
         user: {
           id: user._id,
           name: user.name,
+          username: user.username,
           email: user.email,
         },
       });
@@ -130,3 +135,54 @@ exports.setWatchlist = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
+// @desc      Upload photo for user
+// @route     PUT /auth/photo
+// @access    Private
+exports.userPhotoUpload = asyncHandler(async (req, res, next) => {
+  let user = await User.findById(req.user.id);
+  // could probably use req.user.id?
+
+  if (!user) {
+    return next(
+      new ErrorResponse(`User not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  if (!req.files) {
+    return next(new ErrorResponse(`Please upload a file`, 400));
+  }
+
+  const file = req.files.file;
+
+  // Make sure the image is a photo
+  if (!file.mimetype.startsWith('image')) {
+    return next(new ErrorResponse(`Please upload an image file`, 400));
+  }
+
+  // Check filesize
+  if (file.size > process.env.MAX_FILE_UPLOAD) {
+    return next(
+      new ErrorResponse(
+        `Please upload an image less than ${process.env.MAX_FILE_UPLOAD}`,
+        400
+      )
+    );
+  }
+
+  // Create custom filename
+  file.name = `photo_${user._id}${path.parse(file.name).ext}`;
+
+  file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async (err) => {
+    if (err) {
+      console.error(err);
+      return next(new ErrorResponse(`Problem with file upload`, 500));
+    }
+
+    user = await User.findByIdAndUpdate(req.user.id, {
+      photo: file.name,
+    }).select('photo');
+
+    res.status(200).json({ filename: file.name, user });
+  });
+});

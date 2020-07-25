@@ -32,7 +32,7 @@ exports.addMessage = asyncHandler(async (req, res, next) => {
 
   const newMessage = {
     text: req.body.text,
-    name: user.name,
+    name: user.username,
     user: req.user.id,
   };
 

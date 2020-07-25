@@ -7,8 +7,13 @@ const ErrorResponse = require('../utils/errorResponse');
 // @desc Get all reviews
 // @access Private
 exports.getReviews = asyncHandler(async (req, res, next) => {
-  const reviews = await Review.find().sort({ reviewDate: -1 });
-
+  const reviews = await Review.find()
+    .sort({ reviewDate: -1 })
+    .populate('user')
+    .populate({
+      path: 'comments.user',
+      select: 'photo',
+    });
   res.status(200).json(reviews);
 });
 
@@ -16,7 +21,12 @@ exports.getReviews = asyncHandler(async (req, res, next) => {
 // @desc Get single review
 // @access Private
 exports.getReview = asyncHandler(async (req, res, next) => {
-  const review = await Review.findById(req.params.id);
+  const review = await Review.findById(req.params.id)
+    .populate('user')
+    .populate({
+      path: 'comments.user',
+      select: 'photo',
+    });
 
   if (!review) {
     return next(
@@ -39,6 +49,7 @@ exports.addReview = asyncHandler(async (req, res, next) => {
   const newReview = new Review({
     name: user.name,
     user: req.user.id,
+    username: user.username,
     text,
     movieTitle,
     imageUrl,
@@ -61,6 +72,7 @@ exports.addComment = asyncHandler(async (req, res, next) => {
   const newComment = {
     text: req.body.text,
     name: user.name,
+    username: user.username,
     user: req.user.id,
   };
 
@@ -68,5 +80,10 @@ exports.addComment = asyncHandler(async (req, res, next) => {
 
   await review.save();
 
-  res.status(200).json(review.comments);
+  const newReview = await Review.findById(req.params.id).populate({
+    path: 'comments.user',
+    select: 'photo',
+  });
+
+  res.status(200).json(newReview.comments);
 });

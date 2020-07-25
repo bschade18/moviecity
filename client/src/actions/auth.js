@@ -4,12 +4,13 @@ import {
   USER_LOADING,
   LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
+  LOGIN_FAIL,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  LOGIN_FAIL,
   SET_FAVORITES,
   SET_WATCHLIST,
   SET_FRIENDS,
+  UPDATE_IMAGE,
 } from './types';
 
 import { setAlert } from './alert';
@@ -31,7 +32,9 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // register user
-export const register = ({ name, email, password }) => async (dispatch) => {
+export const register = ({ name, username, email, password }) => async (
+  dispatch
+) => {
   dispatch({ type: USER_LOADING });
   const config = {
     headers: {
@@ -39,7 +42,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
     },
   };
 
-  const body = JSON.stringify({ name, email, password });
+  const body = JSON.stringify({ name, username, email, password });
 
   try {
     const res = await axios.post('/auth/register', body, config);
@@ -97,7 +100,7 @@ export const logout = () => (dispatch) => {
 };
 
 // update user
-export const updateUser = (updatedUser, user) => async (dispatch) => {
+export const updateUserFriends = (updatedUser, user) => async (dispatch) => {
   try {
     const res = await axios.put(`/users/${user._id}`, updatedUser);
 
@@ -135,5 +138,17 @@ export const setWatchList = (userid, updateUser) => async (dispatch) => {
     });
   } catch (err) {
     console.error(err);
+  }
+};
+
+// update user
+export const updateUserImage = (filename) => (dispatch) => {
+  try {
+    dispatch({
+      type: UPDATE_IMAGE,
+      payload: filename,
+    });
+  } catch (err) {
+    console.log(err);
   }
 };

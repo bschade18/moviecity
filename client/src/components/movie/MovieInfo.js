@@ -54,7 +54,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList }) => {
     animation: 'animateMovieinfo 1s',
   });
 
-  const addFav = () => {
+  const setFav = () => {
     let updateUser;
 
     if (favorite) {
@@ -77,7 +77,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList }) => {
     setFavorites(user._id, updateUser);
   };
 
-  const addToWatch = () => {
+  const setToWatchlist = () => {
     let updateUser;
 
     if (toWatch) {
@@ -113,13 +113,13 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList }) => {
           <h1>{title}</h1>
           <span
             className={favorite ? 'fa fa-star checked' : 'fa fa-star hover'}
-            onClick={() => addFav()}
+            onClick={() => setFav()}
           ></span>
           <span>{favorite ? ' Favorite!' : ' Add as Favorite'}</span>
           <div>
             <span
               className={toWatch ? 'fa fa-plus checked' : 'fa fa-plus hover'}
-              onClick={() => addToWatch()}
+              onClick={() => setToWatchlist()}
             ></span>
             <span>{toWatch ? ' On WatchList!' : ' Add to WatchList'}</span>
           </div>
@@ -154,8 +154,8 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList }) => {
 
 MovieInfo.propTypes = {
   user: PropTypes.object.isRequired,
-  setFavorites: PropTypes.func,
-  setWatchList: PropTypes.func,
+  setFavorites: PropTypes.func.isRequired,
+  setWatchList: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

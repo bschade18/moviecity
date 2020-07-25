@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import {
   Button,
   Modal,
@@ -29,10 +29,10 @@ const MessageModal = ({
     e.preventDefault();
 
     const newMessage = {
-      sender: user.name,
+      sender: user.username,
       recipient,
       movieTitle: original_title,
-      conversation: [{ name: user.name, text: text }],
+      conversation: [{ name: user.username, text: text }],
       imageUrl: `${imageUrl}w185${poster_path}`,
     };
 
@@ -46,7 +46,7 @@ const MessageModal = ({
   };
 
   return (
-    <div>
+    <Fragment>
       <Button
         color="outline-success"
         onClick={toggle}
@@ -70,11 +70,11 @@ const MessageModal = ({
               >
                 <option value="">--Select Friend--</option>
                 {users
-                  .filter((friend) => user.friends.includes(friend.name))
+                  .filter((friend) => user.friends.includes(friend.username))
                   .map((user) => {
                     return (
-                      <option key={user.name} value={user.name}>
-                        {user.name}
+                      <option key={user.username} value={user.username}>
+                        {user.username}
                       </option>
                     );
                   })}
@@ -91,19 +91,19 @@ const MessageModal = ({
                 onChange={(e) => setText(e.target.value)}
               />
             </FormGroup>
-            <Button color="primary" type="submit" block>
+            <Button className="send-btn" color="primary" type="submit" block>
               Send!
             </Button>
           </Form>
         </ModalBody>
       </Modal>
-    </div>
+    </Fragment>
   );
 };
 
 MessageModal.propTypes = {
-  users: PropTypes.array,
-  sendMessage: PropTypes.func,
+  users: PropTypes.array.isRequired,
+  sendMessage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

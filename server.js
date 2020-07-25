@@ -4,6 +4,7 @@ const path = require('path');
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/error');
 const dotenv = require('dotenv');
+const fileupload = require('express-fileupload');
 
 dotenv.config({ path: './config/config.env' });
 
@@ -14,6 +15,12 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
+
+// file upload
+app.use(fileupload());
+
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', require('./routes/user'));
 app.use('/auth', require('./routes/auth'));

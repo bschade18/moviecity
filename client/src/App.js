@@ -13,6 +13,7 @@ import Movie from './components/movie/Movie';
 import UserHome from './components/userhome/UserHome';
 import LoginFail from './components/auth/LoginFail';
 import Review from './components/review/Review';
+import UserProfile from './components/userprofile/UserProfile';
 
 import NotFound from './components/layout/NotFound';
 import setAuthToken from './utils/setAuthToken';
@@ -35,7 +36,13 @@ const App = () => {
           <PrivateRoute exact path="/messages" component={Messages} />
           <PrivateRoute exact path="/search" component={Search} />
           <PrivateRoute exact path="/movie/:movieId" component={Movie} />
-          <PrivateRoute exact path="/:user" component={UserHome} />
+
+          <PrivateRoute
+            exact
+            path="/settings/profile"
+            component={UserProfile}
+          />
+          <PrivateRoute exact path="/:username" component={UserHome} />
           <Route component={NotFound} />
         </Switch>
       </Router>

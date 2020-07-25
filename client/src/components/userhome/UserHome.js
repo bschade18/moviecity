@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import FontAwesome from 'react-fontawesome';
+import React, { useState, useEffect, Fragment } from 'react';
 import Reviews from '../home/Reviews';
 import Spinner from '../layout/Spinner';
 import Sidenav from '../layout/Sidenav';
 import UserSearch from '../elements/UserSearch';
-import Favorites from './Favorites';
-import { loadUser, logout, updateUser } from '../../actions/auth';
+import UserList from './UserList';
+import UserProfile from '../userprofile/UserProfile';
+import MobileNav from '../layout/MobileNav';
+import { updateUserFriends } from '../../actions/auth';
 import { getReviews } from '../../actions/review';
 import { getUsers } from '../../actions/users';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -19,181 +19,146 @@ const UserHome = ({
   getReviews,
   getUsers,
   users,
-  updateUser,
+  updateUserFriends,
 }) => {
-  const [view, setView] = useState('reviews');
+  const [view, setView] = useState('Reviews');
 
   useEffect(() => {
     getReviews();
     getUsers();
-    // eslint-disable-next-line
-  }, []);
+  }, [getReviews, getUsers]);
 
-  const addFriend = () => {
+  const { username } = match.params;
+
+  const toggleFriend = () => {
     let updatedUser;
-    if (!user.friends.includes(match.params.user)) {
+
+    if (user.friends.includes(username)) {
       updatedUser = {
-        friends: [...user.friends, match.params.user],
+        friends: [...user.friends.filter((friend) => friend !== username)],
       };
     } else {
       updatedUser = {
-        friends: [
-          ...user.friends.filter((friend) => friend !== match.params.user),
-        ],
+        friends: [...user.friends, username],
       };
     }
 
-    updateUser(updatedUser, user);
+    updateUserFriends(updatedUser, user);
   };
+
+  const renderNavButton = (listName) => (
+    <div
+      onClick={() => setView(listName)}
+      className={
+        'btn btn-outline-success my-2 my-sm-0 btn-block-sm-only mr-2 ' +
+        (view === listName && 'active')
+      }
+    >
+      {listName}
+    </div>
+  );
 
   if (!reviews[0] || !users[0]) {
     return <Spinner />;
   }
+
   return (
-    <div className="main-content">
+    <Fragment>
       <Sidenav />
       <div className="scroll-container">
         <div className="main">
           <div className="scroll-nav">
             <div className="scroll-heading">
-              <FontAwesome className="fas fa-building" name="city" size="2x" />
-              <p>{match.params.user}</p>
+              <img
+                className="user-photo"
+                src={
+                  users.filter((user) => user.username === username)[0].photo
+                    ? `/uploads/${
+                        users.filter((user) => user.username === username)[0]
+                          .photo
+                      }`
+                    : `/uploads/no-photo.jpg`
+                }
+                alt="user"
+              />
+              <p className="home-title">
+                {users.filter((user) => user.username === username)[0].name}
+              </p>
               <button
                 className={
                   'btn ml-3  ' +
-                  (user.name === match.params.user
+                  (user.username === username
                     ? 'd-none '
                     : 'd-block btn-success ') +
-                  (user.friends.includes(match.params.user)
+                  (user.friends.includes(username)
                     ? 'friend-btn'
                     : 'friend-btn-hide')
                 }
-                onClick={() => addFriend()}
+                onClick={() => toggleFriend()}
               >
                 <span>
                   {' '}
-                  {user.friends.includes(match.params.user) ? '' : 'Add Friend'}
+                  {user.friends.includes(username) ? '' : 'Add Friend'}
                 </span>
               </button>
             </div>
-            <div className="user-nav">
-              <div
-                onClick={() => setView('reviews')}
-                className={
-                  'btn btn-outline-success my-2 my-sm-0 btn-block-sm-only mr-2 ' +
-                  (view === 'reviews' && 'active')
-                }
-              >
-                Reviews
-              </div>
-              <div
-                onClick={() => setView('favorites')}
-                className={
-                  'btn btn-outline-success my-2 my-sm-0 btn-block-sm-only mr-2 ' +
-                  (view === 'favorites' && 'active')
-                }
-              >
-                Favorites
-              </div>
-              <div
-                onClick={() => setView('watchlist')}
-                className={
-                  'btn btn-outline-success my-2 my-sm-0 btn-block-sm-only ' +
-                  (view === 'watchlist' && 'active')
-                }
-              >
-                Watch List
-              </div>
+            <div className="user-nav mt-3">
+              {renderNavButton('Reviews')}
+              {renderNavButton('Favorites')}
+              {renderNavButton('Watchlist')}
+              {user.username === username && renderNavButton('Edit Image')}
             </div>
           </div>
           <div className="movie-scroll">
-            {view === 'reviews' &&
+            {view === 'Reviews' &&
               reviews
                 .filter((review) => {
-                  return match.params.user === review.name;
+                  return username === review.username;
                 })
                 .map((review) => <Reviews review={review} key={review._id} />)}
-            {view === 'favorites' &&
+            {view === 'Favorites' &&
               users
                 .filter((user) => {
-                  return match.params.user === user.name;
+                  return username === user.username;
                 })[0]
-                .favorites.map((fav) => (
-                  <Favorites movie={fav} key={fav._id} />
+                .favorites.map((movie) => (
+                  <UserList movie={movie} key={movie._id} />
                 ))}
 
-            {view === 'watchlist' &&
+            {view === 'Watchlist' &&
               users
                 .filter((user) => {
-                  return match.params.user === user.name;
+                  return username === user.username;
                 })[0]
                 .watchList.map((movie) => (
-                  <Favorites movie={movie} key={movie._id} />
+                  <UserList movie={movie} key={movie._id} />
                 ))}
+            {view === 'Edit Image' && <UserProfile />}
           </div>
-          <div className="bottom-nav">
-            <Link to="/home" className="btn">
-              <div className="sn-item">
-                <FontAwesome className="fa-home" name="home" size="2x" />
-                <span className="d-block">Home</span>
-              </div>
-            </Link>
-            <Link to="/messages" className="btn">
-              <div className="sn-item">
-                <FontAwesome
-                  className="fa-envelope"
-                  name="envelope"
-                  size="2x"
-                />
-                <span className="d-block">Inbox</span>
-              </div>
-            </Link>
-            <Link to="/search" className="btn">
-              <div className="sn-item">
-                <FontAwesome className="fa-search" name="search" size="2x" />
-                <span className="d-block">Search</span>
-              </div>
-            </Link>
-            <Link to={`/${user.name}`} className="btn">
-              <div className="sn-item">
-                <FontAwesome className="fa-user" name="search" size="2x" />
-                <span className="d-block">Profile</span>
-              </div>
-            </Link>
-            <button className="btn" onClick={logout}>
-              <div className="sn-item">
-                <FontAwesome className="fa-sign-out" name="singout" size="2x" />
-                <span className="d-block">Logout</span>
-              </div>
-            </button>
-          </div>
+          <MobileNav />
         </div>
       </div>
       <UserSearch />
-    </div>
+    </Fragment>
   );
 };
 
 UserHome.propTypes = {
-  user: PropTypes.object,
-  loadUser: PropTypes.func,
-  logout: PropTypes.func,
-  reviews: PropTypes.array,
-  getReviews: PropTypes.func,
-  getUsers: PropTypes.func,
-  updateUser: PropTypes.func,
+  user: PropTypes.object.isRequired,
+  reviews: PropTypes.array.isRequired,
+  getReviews: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
+  updateUserFriends: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
-  reviews: state.review.reviews,
   users: state.user.users,
+  reviews: state.review.reviews,
 });
 
 export default connect(mapStateToProps, {
-  loadUser,
-  logout,
   getReviews,
   getUsers,
-  updateUser,
+  updateUserFriends,
 })(UserHome);

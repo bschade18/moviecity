@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Actor from './Actor';
 import Grid from './Grid';
 import MovieInfo from './MovieInfo';
@@ -16,7 +16,7 @@ const Movie = ({ match, user }) => {
   if (loading) return <Spinner />;
 
   return (
-    <div>
+    <Fragment>
       <Navigation page={movie.original_title} />
       <MovieInfo movie={movie} user={user} />
 
@@ -25,7 +25,7 @@ const Movie = ({ match, user }) => {
           <Actor key={actor.credit_id} actor={actor} />
         ))}
       </Grid>
-    </div>
+    </Fragment>
   );
 };
 

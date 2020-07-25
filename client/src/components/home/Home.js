@@ -21,9 +21,7 @@ const Home = ({ user, logout, getReviews, reviews }) => {
   return (
     <Fragment>
       <Sidenav />
-      <div className="scroll-container">
-        <ScrollReviews reviews={reviews} user={user} logout={logout} />
-      </div>
+      <ScrollReviews reviews={reviews} user={user} logout={logout} />
       <UserSearch />
     </Fragment>
   );

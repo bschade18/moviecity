@@ -6,7 +6,7 @@ import { login } from '../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const Navbar = ({ login, page }) => {
+const LandingNav = ({ login, page }) => {
   const [email, setEmail] = useFormState('');
   const [password, setPassword] = useFormState('');
 
@@ -61,8 +61,8 @@ const Navbar = ({ login, page }) => {
   );
 };
 
-Navbar.propTypes = {
+LandingNav.propTypes = {
   login: PropTypes.func.isRequired,
 };
 
-export default connect(null, { login })(Navbar);
+export default connect(null, { login })(LandingNav);

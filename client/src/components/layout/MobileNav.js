@@ -5,16 +5,8 @@ import { logout } from '../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const Sidenav = ({ logout, user }) => (
-  <div id="sidenav-container">
-    <div className="user-sidenav">
-      <img
-        src={`/uploads/${user.photo}`}
-        className="user-photo-sidenav"
-        alt="user"
-      />
-      <div className="ml-2">{user.username}</div>
-    </div>
+const MobileNav = ({ logout, user }) => (
+  <div className="bottom-nav">
     <Link to="/home" className="btn">
       <div className="sn-item">
         <FontAwesome className="fa-home" name="home" size="2x" />
@@ -24,7 +16,7 @@ const Sidenav = ({ logout, user }) => (
     <Link to="/messages" className="btn">
       <div className="sn-item">
         <FontAwesome className="fa-envelope" name="envelope" size="2x" />
-        <span className="d-block">Messages</span>
+        <span className="d-block">Inbox</span>
       </div>
     </Link>
     <Link to="/search" className="btn">
@@ -35,7 +27,7 @@ const Sidenav = ({ logout, user }) => (
     </Link>
     <Link to={`/${user.username}`} className="btn">
       <div className="sn-item">
-        <FontAwesome className="fa-user" name="user" size="2x" />
+        <FontAwesome className="fa-user" name="search" size="2x" />
         <span className="d-block">Profile</span>
       </div>
     </Link>
@@ -48,13 +40,13 @@ const Sidenav = ({ logout, user }) => (
   </div>
 );
 
-Sidenav.propTypes = {
-  logout: PropTypes.func,
-  user: PropTypes.object,
+MobileNav.propTypes = {
+  logout: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { logout })(Sidenav);
+export default connect(mapStateToProps, { logout })(MobileNav);

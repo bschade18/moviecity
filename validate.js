@@ -2,6 +2,7 @@ const { check, validationResult } = require('express-validator');
 
 exports.validateRegister = [
   check('name', 'Please enter your name').not().isEmpty(),
+  check('username', 'Please enter a username').not().isEmpty(),
   check('email', 'Please enter a valid email address').isEmail(),
   check(
     'password',

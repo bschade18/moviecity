@@ -2,7 +2,7 @@ import React from 'react';
 import MovieThumb from '../elements/MovieThumb';
 import NoImage from '../../img/no_image.jpg';
 
-const Favorites = ({ movie: { imgUrl, movieId, title } }) => {
+const UserList = ({ movie: { imgUrl, movieId, title } }) => {
   return (
     <div id="mainmovies-list">
       <div className="movie-box">
@@ -22,4 +22,4 @@ const Favorites = ({ movie: { imgUrl, movieId, title } }) => {
   );
 };
 
-export default Favorites;
+export default UserList;

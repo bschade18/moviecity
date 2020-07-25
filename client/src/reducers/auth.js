@@ -9,6 +9,7 @@ import {
   SET_FAVORITES,
   SET_WATCHLIST,
   SET_FRIENDS,
+  UPDATE_IMAGE,
 } from '../actions/types';
 
 const initialState = {
@@ -77,6 +78,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         user: { ...state.user, friends: payload },
+      };
+    case UPDATE_IMAGE:
+      return {
+        ...state,
+        user: { ...state.user, photo: payload },
       };
     default:
       return state;

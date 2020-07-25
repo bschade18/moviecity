@@ -19,6 +19,7 @@ export const MESSAGES_LOADING = 'MESSAGES_LOADING';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 
 export const GET_USERS = 'GET_USERS';
+export const UPDATE_IMAGE = 'UPDATE_IMAGE';
 export const SET_FAVORITES = 'SET_FAVORITES';
 export const SET_WATCHLIST = 'SET_WATCHLIST';
 export const SET_FRIENDS = 'SET_FRIENDS';
@@ -28,3 +29,6 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
+
+export const GET_USER = 'GET_USER';
+export const FETCH_USER = 'FETCH_USER';

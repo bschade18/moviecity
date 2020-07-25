@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Fragment } from 'react';
 import Message from './Message';
 import Navigation from '../layout/Navigation';
 import Inbox from './Inbox';
@@ -26,10 +26,10 @@ const Messages = ({
 
   const {
     movieTitle,
-    sender,
     conversation,
     messageId,
     movieImg,
+    recipient,
   } = currentMessage;
 
   useEffect(() => {
@@ -54,16 +54,25 @@ const Messages = ({
             conversation: [],
             messageId: '',
             movieImg: '',
+            recipient: '',
           });
         }
         getMessages();
       }
     } else {
-      const { movieTitle, sender, conversation, _id, imageUrl } = convo;
+      const {
+        movieTitle,
+        sender,
+        conversation,
+        _id,
+        imageUrl,
+        recipient,
+      } = convo;
       setShowMessage(true);
       setCurrentMessage({
         movieTitle,
         sender,
+        recipient,
         conversation,
         messageId: _id,
         movieImg: imageUrl,
@@ -75,22 +84,21 @@ const Messages = ({
     messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const messagesList = () => {
-    return messages
+  const messagesList = () =>
+    messages
       .filter(
         (message) =>
-          message.recipient === user.name || message.sender === user.name
+          message.recipient === user.username ||
+          message.sender === user.username
       )
-      .map((message) => {
-        return (
-          <Message
-            toggleConvo={(message) => toggleConvo(message)}
-            message={message}
-            key={message._id}
-          />
-        );
-      });
-  };
+      .map((message) => (
+        <Message
+          toggleConvo={(message) => toggleConvo(message)}
+          message={message}
+          key={message._id}
+          user={user}
+        />
+      ));
 
   const onChange = (e) => {
     setText(e.target.value);
@@ -109,7 +117,9 @@ const Messages = ({
     return conversation.map((mes) => (
       <p
         className={
-          mes.name === sender ? 'message-text sender' : 'message-text recipient'
+          mes.name === user.username
+            ? 'message-text recipient'
+            : 'message-text sender'
         }
         key={mes._id}
       >
@@ -122,7 +132,7 @@ const Messages = ({
     return <Spinner />;
   }
   return (
-    <div>
+    <Fragment>
       <Navigation page="Messages" />
       <div className="container">
         {!showMessage ? (
@@ -130,6 +140,7 @@ const Messages = ({
         ) : (
           <ShowConvo
             movieImg={movieImg}
+            recipient={recipient}
             messageId={messageId}
             toggleConvo={toggleConvo}
             renderConvo={renderConvo}
@@ -141,17 +152,17 @@ const Messages = ({
           />
         )}
       </div>
-    </div>
+    </Fragment>
   );
 };
 
 Messages.propTypes = {
   user: PropTypes.object.isRequired,
-  getMessages: PropTypes.func,
-  setCurrentMessage: PropTypes.func,
-  currentMessage: PropTypes.object,
-  loading: PropTypes.bool,
-  addMessage: PropTypes.func,
+  getMessages: PropTypes.func.isRequired,
+  setCurrentMessage: PropTypes.func.isRequired,
+  currentMessage: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+  addMessage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
