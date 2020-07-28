@@ -2,10 +2,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* font-family: 'Abel', sans-serif; */
-  /* font-family: 'Open Sans', sans-serif; */
   font-family: 'Roboto', sans-serif;
-  /* font-weight: bolder; */
+  font-weight: bolder;
 }
 
 :root {
@@ -74,12 +72,17 @@ a {
 
 /* Main Movies List */
 
+.movie-scroll {
+  border-bottom: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+}
 #mainmovies-list {
   min-height: 200px;
   /* max-width: 750px; */
   border-bottom: 1px solid #e0e0e0;
-  border-right: 1px solid #e0e0e0;
-  border-left: 1px solid #e0e0e0;
+  /* border-right: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;  */
   padding: 1rem;
 }
 
@@ -126,6 +129,12 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.empty-tl-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .scroll-heading {
