@@ -84,14 +84,31 @@ const Messages = ({
     messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const messagesList = () =>
-    messages
-      .filter(
-        (message) =>
-          message.recipient === user.username ||
-          message.sender === user.username
-      )
-      .map((message) => (
+  const messagesList = () => {
+    let filterMessages = messages.filter(
+      (message) =>
+        message.recipient === user.username || message.sender === user.username
+    );
+
+    if (!filterMessages.length && !loading) {
+      return (
+        <Fragment>
+          <tr>
+            <td className="text-center">No messages to display</td>
+          </tr>
+          <tr>
+            <td>
+              <img
+                src="https://www.slashfilm.com/wp/wp-content/images/tommy-boy-contest.jpg"
+                alt="happy gilmore"
+                className="m-auto empty-tl-image"
+              />
+            </td>
+          </tr>
+        </Fragment>
+      );
+    } else {
+      return filterMessages.map((message) => (
         <Message
           toggleConvo={(message) => toggleConvo(message)}
           message={message}
@@ -99,6 +116,8 @@ const Messages = ({
           user={user}
         />
       ));
+    }
+  };
 
   const onChange = (e) => {
     setText(e.target.value);
@@ -128,7 +147,7 @@ const Messages = ({
     ));
   };
 
-  if (!currentMessage) {
+  if (!currentMessage || !messages) {
     return <Spinner />;
   }
   return (

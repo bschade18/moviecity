@@ -4,6 +4,7 @@ import {
   ADD_COMMENT,
   GET_REVIEW,
   FETCH_REVIEW,
+  FETCH_REVIEWS,
 } from '../actions/types';
 
 const initialState = {
@@ -27,6 +28,7 @@ export default function (state = initialState, action) {
         reviews: [...state.reviews, payload],
       };
     case FETCH_REVIEW:
+    case FETCH_REVIEWS:
       return {
         ...state,
         loading: true,

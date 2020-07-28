@@ -17,7 +17,7 @@ const initialState = {
     messageId: '',
     movieImg: '',
   },
-  loading: false,
+  loading: true,
 };
 
 export default function (state = initialState, action) {

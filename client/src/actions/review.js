@@ -5,10 +5,15 @@ import {
   ADD_COMMENT,
   GET_REVIEW,
   FETCH_REVIEW,
+  FETCH_REVIEWS,
 } from './types';
 
 export const getReviews = () => async (dispatch) => {
   try {
+    dispatch({
+      type: FETCH_REVIEWS,
+    });
+
     const res = await axios.get('/reviews');
 
     dispatch({

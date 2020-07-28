@@ -2,14 +2,14 @@ import React, { Fragment } from 'react';
 import MobileNav from '../layout/MobileNav';
 import Reviews from './Reviews';
 
-const ScrollReviews = ({ reviews, user, logout }) => {
+const ScrollReviews = ({ reviews, user, logout, loading }) => {
   const displayReviews = () => {
     let filterReviews = reviews.filter(
       (review) =>
         user.friends.includes(review.username) ||
         user.username === review.username
     );
-    if (!filterReviews.length) {
+    if (!filterReviews.length && !loading) {
       return (
         <Fragment>
           <img

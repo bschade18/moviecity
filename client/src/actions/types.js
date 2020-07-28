@@ -10,6 +10,7 @@ export const ADD_REVIEW = 'ADD_REVIEW';
 export const GET_REVIEWS = 'GET_REVIEWS';
 export const GET_REVIEW = 'GET_REVIEW';
 export const FETCH_REVIEW = 'FETCH_REVIEW';
+export const FETCH_REVIEWS = 'FETCH_REVIEWS';
 
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const SET_CURRENT_MESSAGE = 'SET_CURRENT_MESSAGE';

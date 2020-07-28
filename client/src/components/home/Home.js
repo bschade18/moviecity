@@ -8,7 +8,7 @@ import { getReviews } from '../../actions/review';
 import PropTypes from 'prop-types';
 import ScrollReviews from './ScrollReviews';
 
-const Home = ({ user, logout, getReviews, reviews }) => {
+const Home = ({ user, logout, getReviews, reviews, loading }) => {
   useEffect(() => {
     getReviews();
     // eslint-disable-next-line
@@ -21,7 +21,12 @@ const Home = ({ user, logout, getReviews, reviews }) => {
   return (
     <Fragment>
       <Sidenav />
-      <ScrollReviews reviews={reviews} user={user} logout={logout} />
+      <ScrollReviews
+        reviews={reviews}
+        user={user}
+        logout={logout}
+        loading={loading}
+      />
       <UserSearch />
     </Fragment>
   );
@@ -37,7 +42,7 @@ Home.propTypes = {
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   reviews: state.review.reviews,
-  loading: state.auth.loading,
+  loading: state.review.loading,
 });
 
 export default connect(mapStateToProps, { logout, getReviews })(Home);
