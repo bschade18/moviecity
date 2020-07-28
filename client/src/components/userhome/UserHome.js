@@ -50,7 +50,7 @@ const UserHome = ({
     <div
       onClick={() => setView(listName)}
       className={
-        'btn btn-outline-success my-2 my-sm-0 btn-block-sm-only mr-2 ' +
+        'btn btn-outline-success my-2 mb-md-2 btn-block-sm-only mr-2 ' +
         (view === listName && 'active')
       }
     >

@@ -137,6 +137,7 @@ a {
   display: flex;
   flex: 1;
   margin-top: 10px;
+  flex-wrap: wrap;
 }
 
 .scroll-nav p {
