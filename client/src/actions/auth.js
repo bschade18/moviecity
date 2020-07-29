@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../utils/api';
 import {
   USER_LOADED,
   USER_LOADING,
@@ -18,9 +18,8 @@ import { setAlert } from './alert';
 // check token & load user
 export const loadUser = () => async (dispatch) => {
   dispatch({ type: USER_LOADING });
-
   try {
-    const res = await axios.get('/auth/user');
+    const res = await api.get('/auth/user');
 
     dispatch({
       type: USER_LOADED,
@@ -36,17 +35,16 @@ export const register = ({ name, username, email, password }) => async (
   dispatch
 ) => {
   dispatch({ type: USER_LOADING });
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+  // const config = {
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // };
 
   const body = JSON.stringify({ name, username, email, password });
 
   try {
-    const res = await axios.post('/auth/register', body, config);
-    console.log(res);
+    const res = await api.post('/auth/register', body);
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -67,16 +65,16 @@ export const register = ({ name, username, email, password }) => async (
 // login user
 export const login = ({ email, password }) => async (dispatch) => {
   dispatch({ type: USER_LOADING });
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+  // const config = {
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // };
 
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post('/auth/login', body, config);
+    const res = await api.post('/auth/login', body);
 
     dispatch({
       type: LOGIN_SUCCESS,
@@ -102,7 +100,7 @@ export const logout = () => (dispatch) => {
 // update user
 export const updateUserFriends = (updatedUser, user) => async (dispatch) => {
   try {
-    const res = await axios.put(`/users/${user._id}`, updatedUser);
+    const res = await api.put(`/users/${user._id}`, updatedUser);
 
     dispatch({
       type: SET_FRIENDS,
@@ -116,7 +114,7 @@ export const updateUserFriends = (updatedUser, user) => async (dispatch) => {
 // add movie to favorites
 export const setFavorites = (userid, updateUser) => async (dispatch) => {
   try {
-    const res = await axios.put(`/auth/favorite/${userid}`, updateUser);
+    const res = await api.put(`/auth/favorite/${userid}`, updateUser);
 
     dispatch({
       type: SET_FAVORITES,
@@ -130,7 +128,7 @@ export const setFavorites = (userid, updateUser) => async (dispatch) => {
 // update user watch list
 export const setWatchList = (userid, updateUser) => async (dispatch) => {
   try {
-    const res = await axios.put(`/auth/watchlist/${userid}`, updateUser);
+    const res = await api.put(`/auth/watchlist/${userid}`, updateUser);
 
     dispatch({
       type: SET_WATCHLIST,

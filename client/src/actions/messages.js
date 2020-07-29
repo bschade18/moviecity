@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../utils/api';
 import {
   GET_MESSAGES,
   SET_CURRENT_MESSAGE,
@@ -16,7 +16,7 @@ export const getMessages = () => async (dispatch) => {
   });
 
   try {
-    const res = await axios.get('/messages');
+    const res = await api.get('/messages');
 
     dispatch({
       type: GET_MESSAGES,
@@ -40,14 +40,14 @@ export const setCurrentMessage = (current) => async (dispatch) => {
 };
 
 export const updateMessages = (messageId, message) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+  // const config = {
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // };
 
   try {
-    const res = await axios.put(`/messages/${messageId}`, message, config);
+    const res = await api.put(`/messages/${messageId}`, message);
 
     dispatch({
       type: UPDATE_MESSAGES,
@@ -60,14 +60,14 @@ export const updateMessages = (messageId, message) => async (dispatch) => {
 
 // create and send initial message
 export const sendMessage = (newMessage) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+  // const config = {
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // };
 
   try {
-    const res = await axios.post('/messages', newMessage, config);
+    const res = await api.post('/messages', newMessage);
 
     dispatch({
       type: SEND_MESSAGE,
@@ -82,14 +82,14 @@ export const sendMessage = (newMessage) => async (dispatch) => {
 
 // add message to current conversation
 export const addMessage = (messageId, formData) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+  // const config = {
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // };
 
   try {
-    const res = await axios.post(`/messages/${messageId}`, formData, config);
+    const res = await api.post(`/messages/${messageId}`, formData);
 
     dispatch({
       type: ADD_MESSAGE,
@@ -102,7 +102,7 @@ export const addMessage = (messageId, formData) => async (dispatch) => {
 
 export const deleteMessage = (id, toggleConvo) => async (dispatch) => {
   try {
-    await axios.delete(`/messages/${id}`);
+    await api.delete(`/messages/${id}`);
 
     dispatch({
       type: DELETE_MESSAGE,

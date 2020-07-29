@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../utils/api';
 import {
   ADD_REVIEW,
   GET_REVIEWS,
@@ -14,7 +14,7 @@ export const getReviews = () => async (dispatch) => {
       type: FETCH_REVIEWS,
     });
 
-    const res = await axios.get('/reviews');
+    const res = await api.get('/reviews');
 
     dispatch({
       type: GET_REVIEWS,
@@ -31,7 +31,7 @@ export const getReview = (id) => async (dispatch) => {
       type: FETCH_REVIEW,
     });
 
-    const res = await axios.get(`/reviews/${id}`);
+    const res = await api.get(`/reviews/${id}`);
 
     dispatch({
       type: GET_REVIEW,
@@ -44,7 +44,7 @@ export const getReview = (id) => async (dispatch) => {
 
 export const addReview = (newReview) => async (dispatch) => {
   try {
-    const res = await axios.post('/reviews', newReview);
+    const res = await api.post('/reviews', newReview);
 
     dispatch({
       type: ADD_REVIEW,
@@ -58,18 +58,14 @@ export const addReview = (newReview) => async (dispatch) => {
 };
 
 export const addComment = (reviewId, formData) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
+  // const config = {
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  // };
 
   try {
-    const res = await axios.post(
-      `/reviews/comment/${reviewId}`,
-      formData,
-      config
-    );
+    const res = await api.post(`/reviews/comment/${reviewId}`, formData);
 
     dispatch({
       type: ADD_COMMENT,

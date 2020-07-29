@@ -1,9 +1,9 @@
-import axios from 'axios';
+import api from '../utils/api';
 import { GET_USERS, GET_USER, FETCH_USER } from './types';
 
 export const getUsers = () => async (dispatch) => {
   try {
-    const res = await axios.get('/users');
+    const res = await api.get('/users');
 
     dispatch({
       type: GET_USERS,
@@ -20,7 +20,7 @@ export const getUser = (id) => async (dispatch) => {
       type: FETCH_USER,
     });
 
-    const res = await axios.get(`/users/${id}`);
+    const res = await api.get(`/users/${id}`);
 
     dispatch({
       type: GET_USER,
