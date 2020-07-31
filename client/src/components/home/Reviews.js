@@ -16,14 +16,12 @@ const Reviews = ({
     user,
   },
 }) => {
-  const renderStar = (num) => {
-    return (
-      <span className={rating >= num ? 'fa fa-star checked' : 'd-none'}></span>
-    );
-  };
+  const renderStar = (num) => (
+    <span className={rating >= num ? 'fa fa-star checked' : 'd-none'}></span>
+  );
 
   return (
-    <div id="mainmovies-list">
+    <div className="ReviewItem">
       <Link className="user-link mb-2" to={`/${user.username}`}>
         <img src={`/uploads/${user.photo}`} className="user-photo" alt="user" />
         <h6 className="ml-2 mainmovies-user-name">{username}</h6>

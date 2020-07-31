@@ -49,8 +49,8 @@ const Sidenav = ({ logout, user }) => (
 );
 
 Sidenav.propTypes = {
-  logout: PropTypes.func,
-  user: PropTypes.object,
+  logout: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

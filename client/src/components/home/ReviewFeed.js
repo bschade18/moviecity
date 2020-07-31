@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
-import MobileNav from '../layout/MobileNav';
+import React from 'react';
+import FeedHeader from '../layout/FeedHeader';
 import Reviews from './Reviews';
+import PropTypes from 'prop-types';
 
-const ScrollReviews = ({ reviews, user, logout, loading }) => {
+const ReviewFeed = ({ reviews, user, loading }) => {
   const displayReviews = () => {
     let filterReviews = reviews.filter(
       (review) =>
@@ -11,7 +12,7 @@ const ScrollReviews = ({ reviews, user, logout, loading }) => {
     );
     if (!filterReviews.length && !loading) {
       return (
-        <Fragment>
+        <div>
           <img
             src="https://www.pajiba.com/assets_c/2020/04/Happy-Gilmore-thumb-700x481-224295.png"
             alt="happy gilmore"
@@ -23,7 +24,7 @@ const ScrollReviews = ({ reviews, user, logout, loading }) => {
           <p className="text-center">
             Reviews from you and your friends will display here when you do
           </p>
-        </Fragment>
+        </div>
       );
     } else {
       return filterReviews.map((review) => (
@@ -33,18 +34,17 @@ const ScrollReviews = ({ reviews, user, logout, loading }) => {
   };
 
   return (
-    <div className="scroll-container">
-      <div className="main">
-        <div className="scroll-nav">
-          <div className="scroll-heading">
-            <p className="home-title">MovieCity</p>
-          </div>
-        </div>
-        <div className="movie-scroll">{displayReviews()}</div>
-      </div>
-      <MobileNav user={user} logout={logout} />
+    <div className="ReviewFeed-main">
+      <FeedHeader heading="MovieCity" />
+      {displayReviews()}
     </div>
   );
 };
 
-export default ScrollReviews;
+ReviewFeed.propTypes = {
+  user: PropTypes.object.isRequired,
+  reviews: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
+
+export default ReviewFeed;

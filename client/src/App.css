@@ -72,7 +72,7 @@ a {
 
 /* Main Movies List */
 
-#mainmovies-list {
+.ReviewItem {
   min-height: 200px;
   /* max-width: 750px; */
   border-bottom: 1px solid #e0e0e0;
@@ -81,7 +81,7 @@ a {
   padding: 1rem;
 }
 
-#mainmovies-list:hover {
+.ReviewItem:hover {
   background: rgb(0, 0, 0, 0.01);
 }
 
@@ -149,7 +149,7 @@ a {
   margin: 0 10px;
 }
 
-.scroll-container {
+.display-container {
   display: grid;
   grid-template-columns: 2fr minmax(0, 5.5fr) 2.5fr;
 }
@@ -167,7 +167,7 @@ a {
   display: none;
 }
 
-.main {
+.ReviewFeed-main {
   grid-column-start: 2;
 }
 
@@ -638,7 +638,7 @@ button.btn:active {
   color: gold;
 }
 
-#mainmovies-list .user-link {
+.ReviewItem .user-link {
   display: flex;
   justify-items: center;
   align-items: center;
@@ -726,7 +726,7 @@ button.btn:active {
   #user-search {
     display: none;
   }
-  .scroll-container {
+  .display-container {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     margin-bottom: 6rem;
@@ -738,7 +738,7 @@ button.btn:active {
     width: 100%;
   }
 
-  .main {
+  .ReviewFeed-main {
     grid-column-start: 1;
   }
 }

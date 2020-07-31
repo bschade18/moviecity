@@ -4,7 +4,7 @@ import NoImage from '../../img/no_image.jpg';
 
 const UserList = ({ movie: { imgUrl, movieId, title } }) => {
   return (
-    <div id="mainmovies-list">
+    <div className="ReviewItem">
       <div className="movie-box">
         <div className="mymovies-thumb">
           <MovieThumb

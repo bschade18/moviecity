@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import ReviewItem from './ReviewItem';
 import Spinner from '../layout/Spinner';
 import Sidenav from '../layout/Sidenav';
@@ -21,10 +21,10 @@ const Review = ({ match, review, getReview, loading }) => {
     return <Spinner />;
   }
   return (
-    <div className="main-content">
+    <Fragment>
       <Sidenav />
-      <div className="scroll-container">
-        <div className="main">
+      <div className="display-container">
+        <div className="ReviewFeed-main">
           <div className="scroll-nav">
             <div className="scroll-heading">
               <p>Review</p>
@@ -48,13 +48,13 @@ const Review = ({ match, review, getReview, loading }) => {
         </div>
       </div>
       <UserSearch />
-    </div>
+    </Fragment>
   );
 };
 
 Review.propTypes = {
   getReview: PropTypes.func.isRequired,
-  review: PropTypes.object.isRequired,
+  review: PropTypes.object,
   loading: PropTypes.bool.isRequired,
 };
 

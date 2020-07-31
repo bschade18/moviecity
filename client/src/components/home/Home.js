@@ -1,48 +1,49 @@
-import React, { useEffect, Fragment } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
 import Spinner from '../layout/Spinner';
 import Sidenav from '../layout/Sidenav';
+import ReviewFeed from './ReviewFeed';
 import UserSearch from '../elements/UserSearch';
-import { logout } from '../../actions/auth';
+import MobileNav from '../layout/MobileNav';
 import { getReviews } from '../../actions/review';
+import { getUsers } from '../../actions/users';
 import PropTypes from 'prop-types';
-import ScrollReviews from './ScrollReviews';
+import { connect } from 'react-redux';
 
-const Home = ({ user, logout, getReviews, reviews, loading }) => {
+const Home = ({ user, reviews, reviewsLoading, getReviews, getUsers }) => {
   useEffect(() => {
     getReviews();
-    // eslint-disable-next-line
   }, [getReviews]);
+
+  useEffect(() => {
+    getUsers();
+  }, [getUsers]);
 
   if (reviews === null || !user) {
     return <Spinner />;
   }
 
   return (
-    <Fragment>
+    <div className="display-container">
       <Sidenav />
-      <ScrollReviews
-        reviews={reviews}
-        user={user}
-        logout={logout}
-        loading={loading}
-      />
+      <ReviewFeed user={user} reviews={reviews} loading={reviewsLoading} />
       <UserSearch />
-    </Fragment>
+      <MobileNav />
+    </div>
   );
 };
 
 Home.propTypes = {
   user: PropTypes.object.isRequired,
-  logout: PropTypes.func.isRequired,
-  getReviews: PropTypes.func,
-  loading: PropTypes.bool,
+  reviews: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  getReviews: PropTypes.func.isRequired,
+  getUsers: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   reviews: state.review.reviews,
-  loading: state.review.loading,
+  reviewsLoading: state.review.loading,
 });
 
-export default connect(mapStateToProps, { logout, getReviews })(Home);
+export default connect(mapStateToProps, { getReviews, getUsers })(Home);

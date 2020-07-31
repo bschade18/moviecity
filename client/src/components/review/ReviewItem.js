@@ -14,7 +14,7 @@ const ReviewItem = ({
     );
   };
   return (
-    <div id="mainmovies-list">
+    <div className="ReviewItem">
       <Link className="user-link mb-2" to={`/${name}`}>
         <img src={`/uploads/${user.photo}`} className="user-photo" alt="user" />
         <h6 className="ml-2 review-item-username">{username}</h6>

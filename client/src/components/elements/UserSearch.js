@@ -1,25 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { getUsers } from '../../actions/users';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-const SearchBar = ({ getUsers, users }) => {
+const UserSearch = ({ users }) => {
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
-    getUsers();
-    // eslint-disable-next-line
-  }, []);
+  const searchUsers = (e) => setSearch(e.target.value);
 
-  const searchUsers = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const clearSearch = () => {
-    setSearch('');
-  };
+  const clearSearch = () => setSearch('');
 
   const filtered = () =>
     users.filter((user) => {
@@ -59,13 +49,12 @@ const SearchBar = ({ getUsers, users }) => {
   );
 };
 
-SearchBar.propTypes = {
+UserSearch.propTypes = {
   users: PropTypes.array.isRequired,
-  getUsers: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   users: state.user.users,
 });
 
-export default connect(mapStateToProps, { getUsers })(SearchBar);
+export default connect(mapStateToProps)(UserSearch);

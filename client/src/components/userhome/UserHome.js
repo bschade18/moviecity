@@ -7,6 +7,7 @@ import UserList from './UserList';
 import UserProfile from '../userprofile/UserProfile';
 import MobileNav from '../layout/MobileNav';
 import { updateUserFriends } from '../../actions/auth';
+import { logout } from '../../actions/auth';
 import { getReviews } from '../../actions/review';
 import { getUsers } from '../../actions/users';
 import { connect } from 'react-redux';
@@ -65,8 +66,8 @@ const UserHome = ({
   return (
     <Fragment>
       <Sidenav />
-      <div className="scroll-container">
-        <div className="main">
+      <div className="display-container">
+        <div className="ReviewFeed-main">
           <div className="scroll-nav">
             <div className="scroll-heading">
               <img
@@ -161,4 +162,5 @@ export default connect(mapStateToProps, {
   getReviews,
   getUsers,
   updateUserFriends,
+  logout,
 })(UserHome);
