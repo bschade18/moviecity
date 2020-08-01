@@ -6,6 +6,8 @@ import UserSearch from '../elements/UserSearch';
 import UserList from './UserList';
 import UserProfile from '../userprofile/UserProfile';
 import MobileNav from '../layout/MobileNav';
+import UserNav from './UserNav';
+import FeedHeader from '../layout/FeedHeader';
 import { updateUserFriends } from '../../actions/auth';
 import { logout } from '../../actions/auth';
 import { getReviews } from '../../actions/review';
@@ -64,85 +66,45 @@ const UserHome = ({
   }
 
   return (
-    <Fragment>
+    <div className="display-container">
       <Sidenav />
-      <div className="display-container">
-        <div className="ReviewFeed-main">
-          <div className="scroll-nav">
-            <div className="scroll-heading">
-              <img
-                className="user-photo"
-                src={
-                  users.filter((user) => user.username === username)[0].photo
-                    ? `/uploads/${
-                        users.filter((user) => user.username === username)[0]
-                          .photo
-                      }`
-                    : `/uploads/no-photo.jpg`
-                }
-                alt="user"
-              />
-              <p className="home-title">
-                {users.filter((user) => user.username === username)[0].name}
-              </p>
-              <button
-                className={
-                  'btn ml-3  ' +
-                  (user.username === username
-                    ? 'd-none '
-                    : 'd-block btn-success ') +
-                  (user.friends.includes(username)
-                    ? 'friend-btn'
-                    : 'friend-btn-hide')
-                }
-                onClick={() => toggleFriend()}
-              >
-                <span>
-                  {' '}
-                  {user.friends.includes(username) ? '' : 'Add Friend'}
-                </span>
-              </button>
-            </div>
-            <div className="user-nav mt-3">
-              {renderNavButton('Reviews')}
-              {renderNavButton('Favorites')}
-              {renderNavButton('Watchlist')}
-              {user.username === username && renderNavButton('Edit Image')}
-            </div>
-          </div>
-          <div className="movie-scroll">
-            {view === 'Reviews' &&
-              reviews
-                .filter((review) => {
-                  return username === review.username;
-                })
-                .map((review) => (
-                  <ReviewItem review={review} key={review._id} />
-                ))}
-            {view === 'Favorites' &&
-              users
-                .filter((user) => {
-                  return username === user.username;
-                })[0]
-                .favorites.map((movie) => (
-                  <UserList movie={movie} key={movie._id} />
-                ))}
+      <div className="ReviewFeed-main">
+        <UserNav
+          users={users}
+          user={user}
+          username={username}
+          renderNavButton={renderNavButton}
+          toggleFriend={toggleFriend}
+        />
 
-            {view === 'Watchlist' &&
-              users
-                .filter((user) => {
-                  return username === user.username;
-                })[0]
-                .watchList.map((movie) => (
-                  <UserList movie={movie} key={movie._id} />
-                ))}
-            {view === 'Edit Image' && <UserProfile />}
-          </div>
-          <MobileNav />
-        </div>
+        {view === 'Reviews' &&
+          reviews
+            .filter((review) => {
+              return username === review.username;
+            })
+            .map((review) => <ReviewItem review={review} key={review._id} />)}
+        {view === 'Favorites' &&
+          users
+            .filter((user) => {
+              return username === user.username;
+            })[0]
+            .favorites.map((movie) => (
+              <UserList movie={movie} key={movie._id} />
+            ))}
+
+        {view === 'Watchlist' &&
+          users
+            .filter((user) => {
+              return username === user.username;
+            })[0]
+            .watchList.map((movie) => (
+              <UserList movie={movie} key={movie._id} />
+            ))}
+        {view === 'Edit Image' && <UserProfile />}
       </div>
       <UserSearch />
-    </Fragment>
+      <MobileNav />
+    </div>
   );
 };
 
