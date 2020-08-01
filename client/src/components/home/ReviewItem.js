@@ -4,22 +4,29 @@ import NoImage from '../../img/no_image.jpg';
 import { Link } from 'react-router-dom';
 
 const ReviewItem = ({
-  review: { review, name, imageUrl, movieId, movieTitle, text, user, username },
+  review: {
+    rating,
+    username,
+    imageUrl,
+    movieId,
+    movieTitle,
+    text,
+    _id,
+    comments,
+    user,
+  },
+  page,
 }) => {
-  const renderStar = (number) => {
-    return (
-      <span
-        className={review >= number ? 'fa fa-star checked' : 'd-none'}
-      ></span>
-    );
-  };
+  const renderStar = (num) => (
+    <span className={rating >= num ? 'fa fa-star checked' : 'd-none'}></span>
+  );
+
   return (
     <div className="ReviewItem">
-      <Link className="user-link mb-2" to={`/${name}`}>
+      <Link className="user-link mb-2" to={`/${user.username}`}>
         <img src={`/uploads/${user.photo}`} className="user-photo" alt="user" />
-        <h6 className="ml-2 review-item-username">{username}</h6>
+        <h6 className="ml-2 mainmovies-user-name">{username}</h6>
       </Link>
-
       <div className="movie-box">
         <div className="mymovies-thumb">
           <MovieThumb
@@ -41,6 +48,14 @@ const ReviewItem = ({
           <p className="mainmovies-comments">{text}</p>
         </div>
       </div>
+      {page && (
+        <Link className="review-link" to={`/review/${_id}`}>
+          <i className="far fa-comment-alt"></i>{' '}
+          <span className="comments-length">
+            {comments.length ? comments.length : null}
+          </span>
+        </Link>
+      )}
     </div>
   );
 };

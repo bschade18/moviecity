@@ -29,7 +29,7 @@ const MobileNav = ({ logout, user }) => (
     </Link>
     <button className="btn" onClick={logout}>
       <div className="sn-item">
-        <FontAwesome className="fa-sign-out" name="singout" size="2x" />
+        <FontAwesome className="fa-sign-out" name="signout" size="2x" />
       </div>
     </button>
   </div>

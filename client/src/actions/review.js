@@ -58,12 +58,6 @@ export const addReview = (newReview) => async (dispatch) => {
 };
 
 export const addComment = (reviewId, formData) => async (dispatch) => {
-  // const config = {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // };
-
   try {
     const res = await api.post(`/reviews/comment/${reviewId}`, formData);
 
@@ -71,8 +65,6 @@ export const addComment = (reviewId, formData) => async (dispatch) => {
       type: ADD_COMMENT,
       payload: res.data,
     });
-
-    console.log(res.data);
   } catch (err) {
     console.error(err);
   }

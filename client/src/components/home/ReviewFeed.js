@@ -1,6 +1,6 @@
 import React from 'react';
 import FeedHeader from '../layout/FeedHeader';
-import Reviews from './Reviews';
+import ReviewItem from './ReviewItem';
 import PropTypes from 'prop-types';
 
 const ReviewFeed = ({ reviews, user, loading }) => {
@@ -28,7 +28,7 @@ const ReviewFeed = ({ reviews, user, loading }) => {
       );
     } else {
       return filterReviews.map((review) => (
-        <Reviews review={review} key={review._id} />
+        <ReviewItem review={review} key={review._id} page="Home" />
       ));
     }
   };

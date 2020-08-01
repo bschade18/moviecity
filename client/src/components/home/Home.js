@@ -35,7 +35,7 @@ const Home = ({ user, reviews, reviewsLoading, getReviews, getUsers }) => {
 Home.propTypes = {
   user: PropTypes.object.isRequired,
   reviews: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired,
+  reviewsLoading: PropTypes.bool.isRequired,
   getReviews: PropTypes.func.isRequired,
   getUsers: PropTypes.func.isRequired,
 };

@@ -729,7 +729,7 @@ button.btn:active {
   .display-container {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    margin-bottom: 6rem;
+    margin-bottom: 5rem;
   }
 
   .bottom-nav {

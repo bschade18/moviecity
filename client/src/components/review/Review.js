@@ -1,11 +1,12 @@
 import React, { useEffect, Fragment } from 'react';
-import ReviewItem from './ReviewItem';
+import ReviewItem from '../home/ReviewItem';
 import Spinner from '../layout/Spinner';
 import Sidenav from '../layout/Sidenav';
 import UserSearch from '../elements/UserSearch';
 import CommentItem from './CommentItem';
 import CommentForm from './CommentForm';
 import MobileNav from '../layout/MobileNav';
+import FeedHeader from '../layout/FeedHeader';
 import { getReview } from '../../actions/review';
 
 import { connect } from 'react-redux';
@@ -14,8 +15,7 @@ import PropTypes from 'prop-types';
 const Review = ({ match, review, getReview, loading }) => {
   useEffect(() => {
     getReview(match.params.id);
-    // eslint-disable-next-line
-  }, []);
+  }, [getReview, match.params.id]);
 
   if (loading || review === null) {
     return <Spinner />;
@@ -25,27 +25,18 @@ const Review = ({ match, review, getReview, loading }) => {
       <Sidenav />
       <div className="display-container">
         <div className="ReviewFeed-main">
-          <div className="scroll-nav">
-            <div className="scroll-heading">
-              <p>Review</p>
-            </div>
-          </div>
-          <div className="movie-scroll">
-            <ReviewItem review={review} />
-
-            <div className="comments">
-              {review.comments.map((comment) => (
-                <CommentItem
-                  key={comment._id}
-                  comment={comment}
-                  reviewId={review._id}
-                />
-              ))}
-            </div>
-            <CommentForm reviewId={review._id} />
-          </div>
-          <MobileNav />
+          <FeedHeader heading="Review" />
+          <ReviewItem review={review} />
+          {review.comments.map((comment) => (
+            <CommentItem
+              key={comment._id}
+              comment={comment}
+              reviewId={review._id}
+            />
+          ))}
+          <CommentForm reviewId={review._id} />
         </div>
+        <MobileNav />
       </div>
       <UserSearch />
     </Fragment>
@@ -56,6 +47,7 @@ Review.propTypes = {
   getReview: PropTypes.func.isRequired,
   review: PropTypes.object,
   loading: PropTypes.bool.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

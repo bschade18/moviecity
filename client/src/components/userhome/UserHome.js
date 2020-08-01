@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import Reviews from '../home/Reviews';
+import ReviewItem from '../home/ReviewItem';
 import Spinner from '../layout/Spinner';
 import Sidenav from '../layout/Sidenav';
 import UserSearch from '../elements/UserSearch';
@@ -116,7 +116,9 @@ const UserHome = ({
                 .filter((review) => {
                   return username === review.username;
                 })
-                .map((review) => <Reviews review={review} key={review._id} />)}
+                .map((review) => (
+                  <ReviewItem review={review} key={review._id} />
+                ))}
             {view === 'Favorites' &&
               users
                 .filter((user) => {

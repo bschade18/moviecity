@@ -36,6 +36,7 @@ const CommentForm = ({ reviewId, addComment }) => {
 
 CommentForm.propTypes = {
   addComment: PropTypes.func.isRequired,
+  reviewId: PropTypes.string.isRequired,
 };
 
 export default connect(null, { addComment })(CommentForm);
