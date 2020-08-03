@@ -34,13 +34,11 @@ const Messages = ({
 
   useEffect(() => {
     getMessages();
-    // eslint-disable-next-line
-  }, []);
+  }, [getMessages]);
 
   const messagesEndRef = useRef(null);
   useEffect(() => {
     if (showMessage) scrollToBottom();
-    // eslint-disable-next-line
   }, [conversation]);
 
   const toggleConvo = (convo) => {
