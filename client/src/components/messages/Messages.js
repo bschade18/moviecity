@@ -39,7 +39,7 @@ const Messages = ({
   const messagesEndRef = useRef(null);
   useEffect(() => {
     if (showMessage) scrollToBottom();
-  }, [conversation]);
+  }, [conversation, showMessage]);
 
   const toggleConvo = (convo) => {
     if (showMessage) {

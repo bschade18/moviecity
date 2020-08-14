@@ -2,12 +2,13 @@ import React, { useEffect, useState, Fragment } from 'react';
 import Spinner from '../layout/Spinner';
 import LandingNav from '../layout/LandingNav';
 import Showcase from '../elements/Showcase';
+import { clearAlerts } from '../../actions/alert';
 import { imageUrl, backdropSize, popularBaseUrl } from '../../config';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const Landing = ({ isAuthenticated, loading, alerts }) => {
+const Landing = ({ isAuthenticated, loading, clearAlerts }) => {
   const [image, setImage] = useState('');
 
   useEffect(() => {
@@ -19,8 +20,9 @@ const Landing = ({ isAuthenticated, loading, alerts }) => {
   }, []);
 
   if (isAuthenticated) {
+    clearAlerts();
     return <Redirect to="/home" />;
-  } else if (!loading && isAuthenticated === false && !alerts.length) {
+  } else if (!loading && isAuthenticated === false) {
     return <Redirect to="/loginfail" />;
   }
 
@@ -36,14 +38,13 @@ const Landing = ({ isAuthenticated, loading, alerts }) => {
 
 Landing.propTypes = {
   isAuthenticated: PropTypes.bool,
-  alerts: PropTypes.array,
   loading: PropTypes.bool.isRequired,
+  clearAlerts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
   loading: state.auth.loading,
-  alerts: state.alert,
 });
 
-export default connect(mapStateToProps, {})(Landing);
+export default connect(mapStateToProps, { clearAlerts })(Landing);

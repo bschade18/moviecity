@@ -1,12 +1,11 @@
 import React from 'react';
 import useFormState from '../hooks/useFormState';
-import Alert from '../layout/Alert';
 import { register } from '../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setAlert } from '../../actions/alert';
 
-const Showcase = ({ register, image, setAlert }) => {
+const Showcase = ({ register, image, alerts }) => {
   const [name, setName] = useFormState('');
   const [username, setUserName] = useFormState('');
   const [email, setEmail] = useFormState('');
@@ -16,10 +15,15 @@ const Showcase = ({ register, image, setAlert }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (password !== password2) {
-      setAlert('Passwords do not match', 'danger');
+    register({ name, username, email, password, password2 });
+  };
+
+  const checkAlert = (inputField) => {
+    if (alerts.filter((alert) => alert.param === inputField).length) {
+      const msg = alerts.filter((alert) => alert.param === inputField)[0].msg;
+      return <p className="error">{msg}</p>;
     } else {
-      register({ name, username, email, password });
+      return <p></p>;
     }
   };
 
@@ -31,8 +35,8 @@ const Showcase = ({ register, image, setAlert }) => {
         </div>
         <div className="col-lg-5 ml-lg-5">
           <h3>Create a New Account</h3>
-          <form onSubmit={onSubmit}>
-            <div className="form-group py-1">
+          <form onSubmit={onSubmit} noValidate>
+            <div className="form-group">
               <input
                 className="form-control"
                 type="text"
@@ -41,8 +45,9 @@ const Showcase = ({ register, image, setAlert }) => {
                 placeholder="Name"
                 onChange={setName}
               />
+              {checkAlert('name')}
             </div>
-            <div className="form-group py-1">
+            <div className="form-group">
               <input
                 className="form-control"
                 type="text"
@@ -51,8 +56,9 @@ const Showcase = ({ register, image, setAlert }) => {
                 placeholder="Username"
                 onChange={setUserName}
               />
+              {checkAlert('username')}
             </div>
-            <div className="form-group py-1">
+            <div className="form-group">
               <input
                 className="form-control"
                 type="email"
@@ -61,8 +67,9 @@ const Showcase = ({ register, image, setAlert }) => {
                 placeholder="Email"
                 onChange={setEmail}
               />
+              {checkAlert('email')}
             </div>
-            <div className="form-group py-1">
+            <div className="form-group">
               <input
                 className="form-control"
                 type="password"
@@ -71,8 +78,9 @@ const Showcase = ({ register, image, setAlert }) => {
                 placeholder="New Password"
                 onChange={setPassword}
               />
+              {checkAlert('password')}
             </div>
-            <div className="form-group py-1">
+            <div className="form-group">
               <input
                 className="form-control"
                 type="password"
@@ -81,14 +89,15 @@ const Showcase = ({ register, image, setAlert }) => {
                 placeholder="Confirm Password"
                 onChange={setPassword2}
               />
+              {checkAlert('password2')}
             </div>
+
             <button className="btn btn-success btn-block-sm-only" type="submit">
               Sign Up
             </button>
           </form>
         </div>
       </div>
-      <Alert />
     </div>
   );
 };
@@ -96,12 +105,11 @@ const Showcase = ({ register, image, setAlert }) => {
 Showcase.propTypes = {
   register: PropTypes.func.isRequired,
   image: PropTypes.string.isRequired,
-  setAlert: PropTypes.func.isRequired,
-  alert: PropTypes.array,
+  alerts: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
-  alerts: state.alert,
+  alerts: state.alert.alerts,
 });
 
 export default connect(mapStateToProps, { register, setAlert })(Showcase);

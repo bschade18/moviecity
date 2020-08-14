@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReviewItem from '../home/ReviewItem';
 import Spinner from '../layout/Spinner';
 import Sidenav from '../layout/Sidenav';
@@ -7,7 +7,6 @@ import UserList from './UserList';
 import UserProfile from '../userprofile/UserProfile';
 import MobileNav from '../layout/MobileNav';
 import UserNav from './UserNav';
-import FeedHeader from '../layout/FeedHeader';
 import { updateUserFriends } from '../../actions/auth';
 import { logout } from '../../actions/auth';
 import { getReviews } from '../../actions/review';

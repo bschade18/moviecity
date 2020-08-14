@@ -31,17 +31,16 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // register user
-export const register = ({ name, username, email, password }) => async (
-  dispatch
-) => {
+export const register = ({
+  name,
+  username,
+  email,
+  password,
+  password2,
+}) => async (dispatch) => {
   dispatch({ type: USER_LOADING });
-  // const config = {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // };
 
-  const body = JSON.stringify({ name, username, email, password });
+  const body = JSON.stringify({ name, username, email, password, password2 });
 
   try {
     const res = await api.post('/auth/register', body);
@@ -54,7 +53,7 @@ export const register = ({ name, username, email, password }) => async (
   } catch (err) {
     let errors = err.response.data.errors;
 
-    errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    dispatch(setAlert(errors));
 
     dispatch({
       type: REGISTER_FAIL,
@@ -65,11 +64,6 @@ export const register = ({ name, username, email, password }) => async (
 // login user
 export const login = ({ email, password }) => async (dispatch) => {
   dispatch({ type: USER_LOADING });
-  // const config = {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // };
 
   const body = JSON.stringify({ email, password });
 
