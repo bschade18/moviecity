@@ -27,6 +27,14 @@ const Showcase = ({ register, image, alerts }) => {
     }
   };
 
+  const applyErrorStyle = (inputField) => {
+    if (alerts.filter((alert) => alert.param === inputField).length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <div className="container">
       <div id="showcase-container" className="row align-items-center mt-5">
@@ -38,7 +46,11 @@ const Showcase = ({ register, image, alerts }) => {
           <form onSubmit={onSubmit} noValidate>
             <div className="form-group">
               <input
-                className="form-control"
+                className={
+                  applyErrorStyle('name')
+                    ? 'form-control error-border'
+                    : 'form-control'
+                }
                 type="text"
                 name="name"
                 id="name"
@@ -49,7 +61,11 @@ const Showcase = ({ register, image, alerts }) => {
             </div>
             <div className="form-group">
               <input
-                className="form-control"
+                className={
+                  applyErrorStyle('username')
+                    ? 'form-control error-border'
+                    : 'form-control'
+                }
                 type="text"
                 name="username"
                 id="username"
@@ -60,7 +76,11 @@ const Showcase = ({ register, image, alerts }) => {
             </div>
             <div className="form-group">
               <input
-                className="form-control"
+                className={
+                  applyErrorStyle('email')
+                    ? 'form-control error-border'
+                    : 'form-control'
+                }
                 type="email"
                 name="email"
                 id="email"
@@ -71,7 +91,11 @@ const Showcase = ({ register, image, alerts }) => {
             </div>
             <div className="form-group">
               <input
-                className="form-control"
+                className={
+                  applyErrorStyle('password')
+                    ? 'form-control error-border'
+                    : 'form-control'
+                }
                 type="password"
                 name="password"
                 id="password"
@@ -82,7 +106,11 @@ const Showcase = ({ register, image, alerts }) => {
             </div>
             <div className="form-group">
               <input
-                className="form-control"
+                className={
+                  applyErrorStyle('password2')
+                    ? 'form-control error-border'
+                    : 'form-control'
+                }
                 type="password"
                 name="password2"
                 id="password2"
