@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Message = ({
   message: { sender, imageUrl, movieTitle, conversation, _id, recipient },
@@ -33,5 +34,11 @@ const Message = ({
     </td>
   </tr>
 );
+
+Message.propTypes = {
+  message: PropTypes.object.isRequired,
+  toggleConvo: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+};
 
 export default Message;

@@ -2,6 +2,7 @@ import React from 'react';
 import MovieThumb from '../elements/MovieThumb';
 import NoImage from '../../img/no_image.jpg';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const ReviewItem = ({
   review: {
@@ -31,7 +32,7 @@ const ReviewItem = ({
         <div className="mymovies-thumb">
           <MovieThumb
             image={imageUrl ? imageUrl : NoImage}
-            clickable="true"
+            clickable={true}
             className="mymovies-image"
             id={movieId}
           />
@@ -58,6 +59,10 @@ const ReviewItem = ({
       )}
     </div>
   );
+};
+
+ReviewItem.propTypes = {
+  review: PropTypes.object.isRequired,
 };
 
 export default ReviewItem;

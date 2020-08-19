@@ -1,6 +1,7 @@
 import React from 'react';
 import { imageUrl, posterSize } from '../../config';
 import NoImage from '../../img/no_image.jpg';
+import PropTypes from 'prop-types';
 
 const Actor = ({ actor: { name, character, profile_path } }) => (
   <div className="actor-container">
@@ -13,5 +14,9 @@ const Actor = ({ actor: { name, character, profile_path } }) => (
     <span className="actor-character">{character}</span>
   </div>
 );
+
+Actor.propTypes = {
+  actor: PropTypes.object.isRequired,
+};
 
 export default Actor;

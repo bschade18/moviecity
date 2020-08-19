@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Inbox = ({ messagesList }) => (
   <div className="table-responsive">
@@ -7,5 +8,9 @@ const Inbox = ({ messagesList }) => (
     </table>
   </div>
 );
+
+Inbox.propTypes = {
+  messagesList: PropTypes.func.isRequired,
+};
 
 export default Inbox;

@@ -104,6 +104,8 @@ const MessageModal = ({
 MessageModal.propTypes = {
   users: PropTypes.array.isRequired,
   sendMessage: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  movie: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

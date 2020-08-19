@@ -153,6 +153,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList }) => {
 };
 
 MovieInfo.propTypes = {
+  movie: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   setFavorites: PropTypes.func.isRequired,
   setWatchList: PropTypes.func.isRequired,

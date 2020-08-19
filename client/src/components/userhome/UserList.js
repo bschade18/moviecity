@@ -1,6 +1,7 @@
 import React from 'react';
 import MovieThumb from '../elements/MovieThumb';
 import NoImage from '../../img/no_image.jpg';
+import PropTypes from 'prop-types';
 
 const UserList = ({ movie: { imgUrl, movieId, title } }) => {
   return (
@@ -9,7 +10,7 @@ const UserList = ({ movie: { imgUrl, movieId, title } }) => {
         <div className="mymovies-thumb">
           <MovieThumb
             image={imgUrl ? imgUrl : NoImage}
-            clickable="true"
+            clickable={true}
             className="mymovies-image"
             id={movieId}
           />
@@ -20,6 +21,10 @@ const UserList = ({ movie: { imgUrl, movieId, title } }) => {
       </div>
     </div>
   );
+};
+
+UserList.propTypes = {
+  movie: PropTypes.object.isRequired,
 };
 
 export default UserList;

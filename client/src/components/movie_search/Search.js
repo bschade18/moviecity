@@ -51,7 +51,7 @@ const Search = () => {
         {movies.map((movie) => (
           <MovieThumb
             key={movie.id}
-            clickable
+            clickable={true}
             movieTitle={movie.original_title}
             image={
               movie.poster_path

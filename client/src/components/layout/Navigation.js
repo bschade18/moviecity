@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Navigation = ({ page }) => (
   <div id="navigation" className="sticky-top">
@@ -14,5 +15,9 @@ const Navigation = ({ page }) => (
     </div>
   </div>
 );
+
+Navigation.propTypes = {
+  page: PropTypes.string.isRequired,
+};
 
 export default Navigation;

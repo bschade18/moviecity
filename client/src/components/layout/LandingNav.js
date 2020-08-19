@@ -63,6 +63,7 @@ const LandingNav = ({ login, page }) => {
 
 LandingNav.propTypes = {
   login: PropTypes.func.isRequired,
+  page: PropTypes.string.isRequired,
 };
 
 export default connect(null, { login })(LandingNav);

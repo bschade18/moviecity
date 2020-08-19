@@ -90,6 +90,7 @@ const ReviewModal = ({ movie, addReview }) => {
 
 ReviewModal.propTypes = {
   addReview: PropTypes.func.isRequired,
+  movie: PropTypes.object.isRequired,
 };
 
 export default connect(null, { addReview })(ReviewModal);

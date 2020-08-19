@@ -180,6 +180,7 @@ Messages.propTypes = {
   currentMessage: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   addMessage: PropTypes.func.isRequired,
+  messages: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
