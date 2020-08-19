@@ -11,56 +11,27 @@
 }
 
 /* Utility Classes */
+
 a {
   text-decoration: none;
 }
 
-/* Navbar */
+/* Landing Nav */
 .background-primary {
   background: #003699;
   color: #fff;
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 575px) {
   .btn-block-sm-only {
     display: block;
     width: 100%;
   }
 }
 
-.bobby {
-  padding: 2rem 2rem;
-}
-/* Home */
-
-.home-title {
-  font-weight: 900;
-}
-
+/* Landing Page - Showcase */
 #showcase-container {
   height: 400px;
-}
-
-.showcase-content {
-  max-width: 1280px;
-  padding: 20px;
-  margin: 0 auto;
-}
-
-.showcase-text h1 {
-  /* font-family: 'Abel', sans-serif; */
-  font-size: 48px;
-  color: #fff;
-  z-index: 1;
-  position: absolute;
-  bottom: 40px;
-  min-height: 100px;
-}
-
-.showcase-error-msg {
-  margin: 0;
-  padding: 0;
-  font-size: 1rem;
 }
 
 .home-img {
@@ -68,13 +39,10 @@ a {
   width: 31rem;
 }
 
-/* Main Page */
-
-/* Main Movies List */
+/* Home Page - ReviewItem */
 
 .ReviewItem {
   min-height: 200px;
-  /* max-width: 750px; */
   border-bottom: 1px solid #e0e0e0;
   border-right: 1px solid #e0e0e0;
   border-left: 1px solid #e0e0e0;
@@ -86,7 +54,6 @@ a {
 }
 
 .mainmovies-text {
-  /* font-family: 'Abel', sans-serif; */
   padding: 10px;
   color: black;
   margin-left: 1.5rem;
@@ -101,7 +68,7 @@ a {
 
 /* competing with movie thumb style */
 .mymovies-thumb img {
-  border-radius: 5px;
+  border-radius: 10px !important;
   width: 125px !important;
 }
 
@@ -110,6 +77,7 @@ a {
   padding: 1rem 0;
 }
 
+/* Feed Header */
 .scroll-nav {
   border-left: 1px solid #e0e0e0;
   border-right: 1px solid #e0e0e0;
@@ -126,16 +94,30 @@ a {
   justify-content: center;
 }
 
-.empty-tl-image {
-  max-width: 100%;
-  height: auto;
-  display: block;
+.scroll-nav p {
+  font-size: 1.75rem;
+  margin: 0 10px;
 }
 
 .scroll-heading {
   display: flex;
   align-items: center;
 }
+
+/* Home Page - Review Feed */
+.empty-tl-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Home Page - Home */
+.display-container {
+  display: grid;
+  grid-template-columns: 2fr minmax(0, 5.5fr) 2.5fr;
+}
+
+/* User Home Page - UserNav */
 
 .user-nav {
   display: flex;
@@ -144,16 +126,13 @@ a {
   flex-wrap: wrap;
 }
 
-.scroll-nav p {
-  font-size: 1.75rem;
-  margin: 0 10px;
+/* Home Page - Review Feed */
+
+.ReviewFeed-main {
+  grid-column-start: 2;
 }
 
-.display-container {
-  display: grid;
-  grid-template-columns: 2fr minmax(0, 5.5fr) 2.5fr;
-}
-
+/* Mobile Nav */
 .bottom-nav {
   border-left: 1px solid #e0e0e0;
   border-right: 1px solid #e0e0e0;
@@ -165,10 +144,6 @@ a {
   padding: 1rem;
   font-size: 1.5rem;
   display: none;
-}
-
-.ReviewFeed-main {
-  grid-column-start: 2;
 }
 
 /*Sidenav */
@@ -266,7 +241,6 @@ button.btn:active {
   background-color: #fff;
   border: 1px solid #ced4da;
   border-radius: 40px;
-  /* font-family: 'Abel', sans-serif; */
   font-size: 28px;
   margin: 8px 0;
   border: 0;
@@ -311,7 +285,6 @@ button.btn:active {
 }
 
 .grid-header {
-  /* font-family: 'Abel', sans-serif; */
   font-size: 42px;
 }
 
@@ -388,7 +361,6 @@ button.btn:active {
   cursor: pointer;
   transition: all 0.3s;
   border-radius: 40px;
-  /* font-family: 'Abel', sans-serif; */
   font-size: 28px;
   max-width: 1280px;
   display: block;
@@ -421,7 +393,6 @@ button.btn:active {
 }
 
 #navigation .navigation-content p {
-  /* font-family: 'Abel', sans-serif; */
   font-size: 22px;
   color: #fff;
   padding-right: 10px;
@@ -473,14 +444,12 @@ button.btn:active {
 }
 
 .movieinfo-text {
-  /* font-family: Arial, Helvetica, sans-serif; */
   padding: 20px 40px;
   color: #fff;
   overflow: hidden;
 }
 
 .movieinfo-text h1 {
-  /* font-family: 'Abel', sans-serif; */
   font-size: 44px;
   margin: 0;
 }
@@ -503,7 +472,6 @@ button.btn:active {
 }
 
 .movieinfo-text p {
-  /* font-family: 'Abel', sans-serif; */
   font-size: 18px;
   line-height: 26px;
 }
@@ -554,7 +522,6 @@ button.btn:active {
   background: #1c1c1c;
   padding: 20px;
   box-sizing: border-box;
-  /* font-family: 'Abel', sans-serif; */
   font-size: 20px;
 }
 
@@ -591,7 +558,6 @@ button.btn:active {
 /* Actors Grid */
 
 .actor-container {
-  /* font-family: 'Abel', sans-serif; */
   color: #fff;
   background: #1c1c1c;
   border-radius: 20px;
@@ -1007,8 +973,3 @@ button.btn:active {
 .form-control.success-border {
   border-color: #2ecc71;
 }
-/* .error-border {
-  border-color: #e74c3c;
-} */
-
-/* success #2ecc71 */
