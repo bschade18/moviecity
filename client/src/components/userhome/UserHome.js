@@ -60,6 +60,22 @@ const UserHome = ({
     </div>
   );
 
+  const displayUserList = (userList) => {
+    return users
+      .filter((user) => {
+        return username === user.username;
+      })[0]
+      [userList].map((movie) => <UserList movie={movie} key={movie._id} />);
+  };
+
+  const displayUserReviews = () => {
+    return reviews
+      .filter((review) => {
+        return username === review.username;
+      })
+      .map((review) => <ReviewItem review={review} key={review._id} />);
+  };
+
   if (!reviews[0] || !users[0]) {
     return <Spinner />;
   }
@@ -76,29 +92,9 @@ const UserHome = ({
           toggleFriend={toggleFriend}
         />
 
-        {view === 'Reviews' &&
-          reviews
-            .filter((review) => {
-              return username === review.username;
-            })
-            .map((review) => <ReviewItem review={review} key={review._id} />)}
-        {view === 'Favorites' &&
-          users
-            .filter((user) => {
-              return username === user.username;
-            })[0]
-            .favorites.map((movie) => (
-              <UserList movie={movie} key={movie._id} />
-            ))}
-
-        {view === 'Watchlist' &&
-          users
-            .filter((user) => {
-              return username === user.username;
-            })[0]
-            .watchList.map((movie) => (
-              <UserList movie={movie} key={movie._id} />
-            ))}
+        {view === 'Reviews' && displayUserReviews()}
+        {view === 'Favorites' && displayUserList('favorites')}
+        {view === 'Watchlist' && displayUserList('watchList')}
         {view === 'Edit Image' && <UserProfile />}
       </div>
       <UserSearch />
