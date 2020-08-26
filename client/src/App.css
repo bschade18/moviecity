@@ -969,7 +969,3 @@ button.btn:active {
 .form-control.error-border {
   border-color: #e74c3c;
 }
-
-.form-control.success-border {
-  border-color: #2ecc71;
-}

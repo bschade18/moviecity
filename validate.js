@@ -24,7 +24,7 @@ exports.validateRegister = [
 
 exports.validateLogin = [
   check('email', 'Please enter a valid email address').isEmail(),
-  check('password', 'Password is required').exists(),
+  check('password', 'Password is required').not().isEmpty(),
   (req, res, next) => {
     const errors = validationResult(req);
 

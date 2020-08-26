@@ -91,7 +91,6 @@ const UserHome = ({
           renderNavButton={renderNavButton}
           toggleFriend={toggleFriend}
         />
-
         {view === 'Reviews' && displayUserReviews()}
         {view === 'Favorites' && displayUserList('favorites')}
         {view === 'Watchlist' && displayUserList('watchList')}
