@@ -39,9 +39,9 @@ const Messages = ({
   }, [getMessages]);
 
   const messagesEndRef = useRef(null);
-  useEffect(() => {
-    if (showMessage) scrollToBottom();
-  }, [conversation, showMessage]);
+  // useEffect(() => {
+  //   if (showMessage) scrollToBottom();
+  // }, [conversation, showMessage]);
 
   const toggleConvo = (convo) => {
     if (showMessage) {
@@ -125,6 +125,7 @@ const Messages = ({
     if (!text) return;
 
     addMessage(messageId, { text });
+    scrollToBottom();
 
     setText('');
   };
