@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import ReviewItem from '../home/ReviewItem';
 import Spinner from '../layout/Spinner';
 import Sidenav from '../layout/Sidenav';
@@ -17,23 +17,26 @@ const Review = ({ match, review, getReview, loading }) => {
     getReview(match.params.id);
   }, [getReview, match.params.id]);
 
-  if (loading || review === null) {
-    return <Spinner />;
-  }
   return (
     <div className="display-container">
       <Sidenav />
       <div className="ReviewFeed-main">
         <FeedHeader heading="Review" />
-        <ReviewItem review={review} />
-        {review.comments.map((comment) => (
-          <CommentItem
-            key={comment._id}
-            comment={comment}
-            reviewId={review._id}
-          />
-        ))}
-        <CommentForm reviewId={review._id} />
+        {loading || review === null ? (
+          <Spinner />
+        ) : (
+          <Fragment>
+            <ReviewItem review={review} />
+            {review.comments.map((comment) => (
+              <CommentItem
+                key={comment._id}
+                comment={comment}
+                reviewId={review._id}
+              />
+            ))}
+            <CommentForm reviewId={review._id} />
+          </Fragment>
+        )}
       </div>
       <UserSearch />
       <MobileNav />

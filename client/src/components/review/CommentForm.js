@@ -7,7 +7,7 @@ const CommentForm = ({ reviewId, addComment }) => {
   const [text, setText] = useState('');
 
   return (
-    <div className="review-form mb-5">
+    <div className="review-form">
       <form
         className="comment-form"
         onSubmit={(e) => {

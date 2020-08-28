@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef, Fragment } from 'react';
 import Message from './Message';
-import Navigation from '../layout/Navigation';
-import Inbox from './Inbox';
 import ShowConvo from './ShowConvo';
+import Sidenav from '../layout/Sidenav';
+import FeedHeader from '../layout/FeedHeader';
+import UserSearch from '../elements/UserSearch';
+import MobileNav from '../layout/MobileNav';
 import {
   getMessages,
   setCurrentMessage,
@@ -91,18 +93,15 @@ const Messages = ({
     if (!filterMessages.length && !loading) {
       return (
         <Fragment>
-          <tr>
-            <td className="text-center">No messages to display</td>
-          </tr>
-          <tr>
-            <td>
-              <img
-                src="https://www.slashfilm.com/wp/wp-content/images/tommy-boy-contest.jpg"
-                alt="happy gilmore"
-                className="m-auto empty-tl-image"
-              />
-            </td>
-          </tr>
+          <div className="text-center">No messages to display</div>
+
+          <div>
+            <img
+              src="https://www.slashfilm.com/wp/wp-content/images/tommy-boy-contest.jpg"
+              alt="happy gilmore"
+              className="m-auto empty-tl-image"
+            />
+          </div>
         </Fragment>
       );
     } else {
@@ -149,11 +148,13 @@ const Messages = ({
     return <Spinner />;
   }
   return (
-    <Fragment>
-      <Navigation page="Messages" />
-      <div className="container">
+    <div className="display-container">
+      <Sidenav />
+      <div className="ReviewFeed-main">
+        <FeedHeader heading="Messages" />
+
         {!showMessage ? (
-          <Inbox messagesList={messagesList} />
+          messagesList()
         ) : (
           <ShowConvo
             movieImg={movieImg}
@@ -169,7 +170,9 @@ const Messages = ({
           />
         )}
       </div>
-    </Fragment>
+      <UserSearch />
+      <MobileNav />
+    </div>
   );
 };
 

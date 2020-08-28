@@ -6,7 +6,7 @@ const Message = ({
   toggleConvo,
   user,
 }) => (
-  <tr
+  <div
     onClick={() =>
       toggleConvo({
         sender,
@@ -17,22 +17,23 @@ const Message = ({
         recipient,
       })
     }
+    className="inbox"
   >
-    <td className="message-poster-row">
+    <div className="message-poster-row">
       <img
         className="movie-poster-list-img"
         src={imageUrl}
         alt="movie poster"
       />
-    </td>
+    </div>
 
-    <td className="left-text message-content-row">
+    <div className="left-text message-content-row">
       {movieTitle}{' '}
       <div>
         {user.username === sender ? `with: ${recipient}` : `with: ${sender}`}
       </div>
-    </td>
-  </tr>
+    </div>
+  </div>
 );
 
 Message.propTypes = {

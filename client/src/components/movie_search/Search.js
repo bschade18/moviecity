@@ -11,7 +11,9 @@ import LoadMoreBtn from './LoadMoreBtn';
 import MovieThumb from '../elements/MovieThumb';
 import SearchBar from './SearchBar';
 import Spinner from '../layout/Spinner';
-import Navigation from '../layout/Navigation';
+import MobileNav from '../layout/MobileNav';
+import Sidenav from '../layout/Sidenav';
+import FeedHeader from '../layout/FeedHeader';
 import { useHomeFetch } from '../hooks/useHomeFetch';
 import NoImage from '../../img/no_image.jpg';
 
@@ -44,40 +46,44 @@ const Search = () => {
   if (error) return <div>Something went wrong</div>;
 
   return (
-    <div>
-      <Navigation page="Search" />
-      <SearchBar callback={searchMovies} />
-      <Grid header={search ? 'Search Results' : 'Popular Movies'}>
-        {movies.map((movie) => (
-          <MovieThumb
-            key={movie.id}
-            clickable={true}
-            movieTitle={movie.original_title}
-            image={
-              movie.poster_path
-                ? `${imageUrl}${posterSize}${movie.poster_path}`
-                : NoImage
-            }
-            id={movie.id}
-          />
-        ))}
-      </Grid>
-      {search && !movies[0] && (
-        <Fragment>
-          <h3 className="grid">
-            "..cuz we're going to America - full house boys!!" Jack Dawson,
-            Titanic
-          </h3>
-          <br />
-          <h3 className="grid">
-            Oh, also no movies were found in your search. Try again.
-          </h3>
-        </Fragment>
-      )}
-      {loading && <Spinner />}
-      {currentPage < totalPages && !loading && (
-        <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
-      )}
+    <div className="search-display-container">
+      <Sidenav />
+      <div className="ReviewFeed-main">
+        <FeedHeader heading="Movie Search" />
+        <SearchBar callback={searchMovies} />
+        <Grid header={search ? 'Search Results' : 'Popular Movies'}>
+          {movies.map((movie) => (
+            <MovieThumb
+              key={movie.id}
+              clickable={true}
+              movieTitle={movie.original_title}
+              image={
+                movie.poster_path
+                  ? `${imageUrl}${posterSize}${movie.poster_path}`
+                  : NoImage
+              }
+              id={movie.id}
+            />
+          ))}
+        </Grid>
+        {search && !movies[0] && (
+          <Fragment>
+            <h3 className="grid">
+              "..cuz we're going to America - full house boys!!" Jack Dawson,
+              Titanic
+            </h3>
+            <br />
+            <h3 className="grid">
+              Oh, also no movies were found in your search. Try again.
+            </h3>
+          </Fragment>
+        )}
+        {loading && <Spinner />}
+        {currentPage < totalPages && !loading && (
+          <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+        )}
+      </div>
+      <MobileNav />
     </div>
   );
 };

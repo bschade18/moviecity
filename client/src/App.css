@@ -10,6 +10,11 @@
   --primary-color: #003699;
 }
 
+/* To fix shifting UI when page scroll gets added and removed */
+html {
+  overflow-y: scroll;
+}
+
 /* Utility Classes */
 
 a {
@@ -44,8 +49,6 @@ a {
 .ReviewItem {
   min-height: 200px;
   border-bottom: 1px solid #e0e0e0;
-  border-right: 1px solid #e0e0e0;
-  border-left: 1px solid #e0e0e0;
   padding: 1rem;
 }
 
@@ -79,11 +82,8 @@ a {
 
 /* Feed Header */
 .scroll-nav {
-  border-left: 1px solid #e0e0e0;
-  border-right: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
   position: sticky;
-  z-index: 1;
+  z-index: 100;
   top: 0;
   background: var(--primary-color);
   color: #fff;
@@ -115,6 +115,12 @@ a {
 .display-container {
   display: grid;
   grid-template-columns: 2fr minmax(0, 5.5fr) 2.5fr;
+  margin-bottom: 3rem;
+}
+
+.search-display-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
 }
 
 /* User Home Page - UserNav */
@@ -130,6 +136,9 @@ a {
 
 .ReviewFeed-main {
   grid-column-start: 2;
+  border-bottom: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
 }
 
 /* Mobile Nav */
@@ -195,6 +204,7 @@ button.btn:active {
 
 .movie-poster-list-img {
   width: 75px;
+  border-radius: 5px;
 }
 
 .user-sidenav {
@@ -253,7 +263,7 @@ button.btn:active {
 
 #search-bar .fa-search {
   color: #000;
-  z-index: 1000;
+  z-index: 0;
   position: absolute;
   left: 1rem;
 }
@@ -354,6 +364,7 @@ button.btn:active {
 /* Load More Button */
 .load-more-btn {
   background: var(--primary-color);
+  border: 1px solid var(--primary-color);
   width: 25%;
   min-width: 200px;
   height: 70px;
@@ -682,7 +693,7 @@ button.btn:active {
   content: '';
 }
 
-@media screen and (max-width: 716px) {
+@media screen and (max-width: 800px) {
   #sidenav-container {
     display: none;
   }
@@ -692,7 +703,8 @@ button.btn:active {
   #user-search {
     display: none;
   }
-  .display-container {
+  .display-container,
+  .search-display-container {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     margin-bottom: 5rem;
@@ -706,6 +718,9 @@ button.btn:active {
 
   .ReviewFeed-main {
     grid-column-start: 1;
+  }
+  .message-container {
+    width: 95%;
   }
 }
 
@@ -723,25 +738,51 @@ button.btn:active {
 .hover:hover {
   color: gold;
 }
+/* Inbox */
 
+.inbox {
+  border-bottom: 1px solid rgb(0, 0, 0, 0.05);
+  display: flex;
+  padding: 1.5rem;
+}
+
+.inbox:hover {
+  background-color: rgb(0, 0, 0, 0.01);
+}
+
+/* Show Convo Start */
 .message-container {
-  height: 480px;
+  height: 520px;
   border: 0.5px solid gray;
   border-radius: 10px;
   margin: 4rem auto;
-  width: 700px;
-
+  max-width: 90%;
   display: flex;
   flex-direction: column;
   position: relative;
 }
-
 .message-container-heading {
   display: flex;
   justify-content: space-between;
   padding: 1.5rem;
   border-bottom: 0.5px solid gray;
   z-index: 2;
+}
+
+.message-heading-left {
+  display: flex;
+  align-items: center;
+}
+
+.message-img {
+  width: 50px;
+  border-radius: 5px;
+  position: relative;
+  z-index: 0;
+}
+
+.message-movietitle {
+  font-size: 1.5rem;
 }
 
 .icons {
@@ -756,6 +797,30 @@ button.btn:active {
   margin-bottom: 3rem;
 }
 
+.messages {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-form {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  background: #f4f4f4;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+  border-top: 0.5px solid gray;
+}
+
+/* Show Convo End */
+
+.messages-div {
+  max-width: 500px;
+}
+
 .message-text {
   margin-top: 1.5rem;
 
@@ -764,10 +829,6 @@ button.btn:active {
   max-width: 30%;
 }
 
-.messages {
-  display: flex;
-  flex-direction: column;
-}
 .message-text {
   margin: 0.25rem 1rem;
   word-wrap: break-word;
@@ -777,21 +838,11 @@ button.btn:active {
   width: 7rem;
 }
 
-.table {
-  max-width: 700px !important;
-}
-
 .table-hover tbody tr:hover td {
   background: #f9f9f9;
 }
 
 @media screen and (max-width: 576px) {
-  .message-container {
-    width: 100%;
-    height: 550px;
-    margin: 1rem auto;
-  }
-
   .message-text {
     max-width: 70%;
     margin: 0.25rem 0;
@@ -799,10 +850,6 @@ button.btn:active {
 
   #message-body {
     padding: 1rem 10px;
-  }
-
-  .message-movietitle {
-    font-size: 1.5rem;
   }
 
   .movie-table-message {
@@ -833,30 +880,8 @@ button.btn:active {
   margin-top: 0.25rem;
 }
 
-.message-form {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  display: flex;
-  background: #f4f4f4;
-  padding: 0.5rem 0.75rem;
-  width: 100%;
-  border-radius: 0 0 10px 10px;
-  border-top: 0.5px solid gray;
-}
-
-.message-img {
-  width: 50px;
-}
-
 .close-btn {
   align-self: flex-start;
-}
-
-.message-heading-left {
-  display: flex;
-  align-items: center;
 }
 
 .alert {
@@ -869,8 +894,6 @@ button.btn:active {
 .comment {
   min-height: 75px;
   border-bottom: 1px solid #e0e0e0;
-  border-right: 1px solid #e0e0e0;
-  border-left: 1px solid #e0e0e0;
   padding: 1rem;
 }
 
@@ -903,9 +926,6 @@ button.btn:active {
   background: #f4f4f4;
   padding: 0.5rem 0.75rem;
   width: 100%;
-  border-bottom: 1px solid #e0e0e0;
-  border-right: 1px solid #e0e0e0;
-  border-left: 1px solid #e0e0e0;
 }
 
 .user-name {

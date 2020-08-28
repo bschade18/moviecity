@@ -2,9 +2,11 @@ import React, { Fragment } from 'react';
 import Actor from './Actor';
 import Grid from './Grid';
 import MovieInfo from './MovieInfo';
-import Navigation from '../layout/Navigation';
+import Sidenav from '../layout/Sidenav';
+import FeedHeader from '../layout/FeedHeader';
 import Spinner from '../layout/Spinner';
 import PropTypes from 'prop-types';
+import MobileNav from '../layout/MobileNav';
 import { connect } from 'react-redux';
 
 import { useMovieFetch } from '../hooks/useMovieFetch';
@@ -13,19 +15,28 @@ const Movie = ({ match, user }) => {
   const [movie, loading, error] = useMovieFetch(match.params.movieId);
 
   if (error) return <div>Something went wrong...</div>;
-  if (loading) return <Spinner />;
 
   return (
-    <Fragment>
-      <Navigation page={movie.original_title} />
-      <MovieInfo movie={movie} user={user} />
+    <div className="search-display-container">
+      <Sidenav />
+      <div className="ReviewFeed-main">
+        <FeedHeader heading="Movie" />
 
-      <Grid header="Cast">
-        {movie.actors.map((actor) => (
-          <Actor key={actor.credit_id} actor={actor} />
-        ))}
-      </Grid>
-    </Fragment>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <Fragment>
+            <MovieInfo movie={movie} user={user} loading={loading} />
+            <Grid header="Cast" loading={loading}>
+              {movie.actors.map((actor) => (
+                <Actor key={actor.credit_id} actor={actor} />
+              ))}
+            </Grid>
+          </Fragment>
+        )}
+      </div>
+      <MobileNav />
+    </div>
   );
 };
 
