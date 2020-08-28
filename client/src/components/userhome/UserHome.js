@@ -59,21 +59,19 @@ const UserHome = ({
     </div>
   );
 
-  const displayUserList = (userList) => {
-    return users
+  const displayUserList = (userList) =>
+    users
       .filter((user) => {
         return username === user.username;
       })[0]
       [userList].map((movie) => <UserList movie={movie} key={movie._id} />);
-  };
 
-  const displayUserReviews = () => {
-    return reviews
+  const displayUserReviews = () =>
+    reviews
       .filter((review) => {
         return username === review.username;
       })
       .map((review) => <ReviewItem review={review} key={review._id} />);
-  };
 
   if (!reviews[0] || !users[0]) {
     return <Spinner />;

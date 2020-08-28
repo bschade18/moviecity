@@ -4,6 +4,7 @@ import ShowConvo from './ShowConvo';
 import FeedHeader from '../layout/FeedHeader';
 import AppGrid from '../layout/AppGrid';
 import Feed from '../layout/Feed';
+import NoResults from '../elements/NoResults';
 import {
   getMessages,
   setCurrentMessage,
@@ -81,27 +82,21 @@ const Messages = ({
   };
 
   const messagesList = () => {
-    let filterMessages = messages.filter(
+    const userAndFriendsMessages = messages.filter(
       (message) =>
         message.recipient === user.username || message.sender === user.username
     );
 
-    if (!filterMessages.length && !loading) {
+    if (!userAndFriendsMessages && !loading) {
       return (
-        <Fragment>
-          <div className="text-center">No messages to display</div>
-
-          <div>
-            <img
-              src="https://www.slashfilm.com/wp/wp-content/images/tommy-boy-contest.jpg"
-              alt="happy gilmore"
-              className="m-auto empty-tl-image"
-            />
-          </div>
-        </Fragment>
+        <NoResults
+          image="https://www.slashfilm.com/wp/wp-content/images/tommy-boy-contest.jpg"
+          text1="All because you wanted to save a couple extra pennies..."
+          text2="Messages between you and friends will display here"
+        />
       );
     } else {
-      return filterMessages.map((message) => (
+      return userAndFriendsMessages.map((message) => (
         <Message
           toggleConvo={(message) => toggleConvo(message)}
           message={message}
@@ -112,9 +107,7 @@ const Messages = ({
     }
   };
 
-  const onChange = (e) => {
-    setText(e.target.value);
-  };
+  const onChange = (e) => setText(e.target.value);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -126,8 +119,8 @@ const Messages = ({
     setText('');
   };
 
-  const renderConvo = () => {
-    return conversation.map((mes) => (
+  const renderConvo = () =>
+    conversation.map((mes) => (
       <p
         className={
           mes.name === user.username
@@ -139,7 +132,6 @@ const Messages = ({
         {mes.text}
       </p>
     ));
-  };
 
   if (!currentMessage || !messages) {
     return <Spinner />;

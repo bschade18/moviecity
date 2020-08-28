@@ -41,9 +41,7 @@ const MessageModal = ({
 
   const toggle = () => setModal(!modal);
 
-  const onChangeRecipient = (e) => {
-    setRecipient(e.target.value);
-  };
+  const onChangeRecipient = (e) => setRecipient(e.target.value);
 
   return (
     <Fragment>

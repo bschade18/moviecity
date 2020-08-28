@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import Spinner from '../layout/Spinner';
+import AppGrid from '../layout/AppGrid';
 import ReviewFeed from './ReviewFeed';
+import Spinner from '../layout/Spinner';
 import { getReviews } from '../../actions/review';
 import { getUsers } from '../../actions/users';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
-import AppGrid from '../layout/AppGrid';
 
 const Home = ({ user, reviews, reviewsLoading, getReviews, getUsers }) => {
   useEffect(() => {

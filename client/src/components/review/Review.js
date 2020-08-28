@@ -1,11 +1,8 @@
 import React, { useEffect, Fragment } from 'react';
 import ReviewItem from '../home/ReviewItem';
 import Spinner from '../layout/Spinner';
-import Sidenav from '../layout/Sidenav';
-import UserSearch from '../elements/UserSearch';
 import CommentItem from './CommentItem';
 import CommentForm from './CommentForm';
-import MobileNav from '../layout/MobileNav';
 import FeedHeader from '../layout/FeedHeader';
 import AppGrid from '../layout/AppGrid';
 import Feed from '../layout/Feed';

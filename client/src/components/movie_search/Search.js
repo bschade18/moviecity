@@ -14,6 +14,7 @@ import Spinner from '../layout/Spinner';
 import FeedHeader from '../layout/FeedHeader';
 import AppGrid from '../layout/AppGrid';
 import Feed from '../layout/Feed';
+import NoResults from '../elements/NoResults';
 import { useHomeFetch } from '../hooks/useHomeFetch';
 import NoImage from '../../img/no_image.jpg';
 
@@ -66,16 +67,11 @@ const Search = () => {
           ))}
         </Grid>
         {search && !movies[0] && (
-          <Fragment>
-            <h3 className="grid">
-              "..cuz we're going to America - full house boys!!" Jack Dawson,
-              Titanic
-            </h3>
-            <br />
-            <h3 className="grid">
-              Oh, also no movies were found in your search. Try again.
-            </h3>
-          </Fragment>
+          <NoResults
+            image="https://www.cinelinx.com/wp-content/uploads/2014/02/k2_items_cache_ce28ed525020bb6b16983cbb33e9862d_XL.jpg"
+            text1="You can't bench press your way out of this one"
+            text2="No movies were found in your search. Try again."
+          />
         )}
         {loading && <Spinner />}
         {currentPage < totalPages && !loading && (
