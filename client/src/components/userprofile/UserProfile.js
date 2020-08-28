@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Progress from './Progress';
-import axios from 'axios';
+import api from '../../utils/api';
 import { updateUserImage } from '../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -24,10 +24,7 @@ const UserProfile = ({ updateUserImage, user }) => {
     formData.append('file', file);
 
     try {
-      const res = await axios.put('/auth/photo', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+      const res = await api.put('/auth/photo', formData, {
         onUploadProgress: (progressEvent) => {
           setUploadPercentage(
             parseInt(

@@ -143,7 +143,6 @@ exports.setWatchlist = async (req, res) => {
 // @access    Private
 exports.userPhotoUpload = asyncHandler(async (req, res, next) => {
   let user = await User.findById(req.user.id);
-  // could probably use req.user.id?
 
   if (!user) {
     return next(
