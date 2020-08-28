@@ -10,9 +10,14 @@
   --primary-color: #003699;
 }
 
-/* To fix shifting UI when page scroll gets added and removed */
+/* Fix shifting UI when page scroll gets added and removed */
 html {
   overflow-y: scroll;
+}
+
+/* Fix shifting UI when modal is opened */
+.modal-open[style] {
+  padding-right: 0px !important;
 }
 
 /* Utility Classes */
