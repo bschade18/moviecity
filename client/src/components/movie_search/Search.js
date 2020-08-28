@@ -11,9 +11,9 @@ import LoadMoreBtn from './LoadMoreBtn';
 import MovieThumb from '../elements/MovieThumb';
 import SearchBar from './SearchBar';
 import Spinner from '../layout/Spinner';
-import MobileNav from '../layout/MobileNav';
-import Sidenav from '../layout/Sidenav';
 import FeedHeader from '../layout/FeedHeader';
+import AppGrid from '../layout/AppGrid';
+import Feed from '../layout/Feed';
 import { useHomeFetch } from '../hooks/useHomeFetch';
 import NoImage from '../../img/no_image.jpg';
 
@@ -46,9 +46,8 @@ const Search = () => {
   if (error) return <div>Something went wrong</div>;
 
   return (
-    <div className="search-display-container">
-      <Sidenav />
-      <div className="ReviewFeed-main">
+    <AppGrid component="search">
+      <Feed>
         <FeedHeader heading="Movie Search" />
         <SearchBar callback={searchMovies} />
         <Grid header={search ? 'Search Results' : 'Popular Movies'}>
@@ -82,9 +81,8 @@ const Search = () => {
         {currentPage < totalPages && !loading && (
           <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
         )}
-      </div>
-      <MobileNav />
-    </div>
+      </Feed>
+    </AppGrid>
   );
 };
 export default Search;

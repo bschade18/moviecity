@@ -1,6 +1,7 @@
 import React from 'react';
 import FeedHeader from '../layout/FeedHeader';
 import ReviewItem from './ReviewItem';
+import Feed from '../layout/Feed';
 import PropTypes from 'prop-types';
 
 const ReviewFeed = ({ reviews, user, loading }) => {
@@ -34,10 +35,10 @@ const ReviewFeed = ({ reviews, user, loading }) => {
   };
 
   return (
-    <div className="ReviewFeed-main">
+    <Feed>
       <FeedHeader heading="MovieCity" />
       {displayReviews()}
-    </div>
+    </Feed>
   );
 };
 

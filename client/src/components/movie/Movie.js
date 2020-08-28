@@ -2,11 +2,11 @@ import React, { Fragment } from 'react';
 import Actor from './Actor';
 import Grid from './Grid';
 import MovieInfo from './MovieInfo';
-import Sidenav from '../layout/Sidenav';
 import FeedHeader from '../layout/FeedHeader';
 import Spinner from '../layout/Spinner';
 import PropTypes from 'prop-types';
-import MobileNav from '../layout/MobileNav';
+import AppGrid from '../layout/AppGrid';
+import Feed from '../layout/Feed';
 import { connect } from 'react-redux';
 
 import { useMovieFetch } from '../hooks/useMovieFetch';
@@ -17,9 +17,8 @@ const Movie = ({ match, user }) => {
   if (error) return <div>Something went wrong...</div>;
 
   return (
-    <div className="search-display-container">
-      <Sidenav />
-      <div className="ReviewFeed-main">
+    <AppGrid component="search">
+      <Feed>
         <FeedHeader heading="Movie" />
 
         {loading ? (
@@ -34,9 +33,8 @@ const Movie = ({ match, user }) => {
             </Grid>
           </Fragment>
         )}
-      </div>
-      <MobileNav />
-    </div>
+      </Feed>
+    </AppGrid>
   );
 };
 

@@ -293,6 +293,8 @@ button.btn:active {
   }
 }
 
+/* Grid */
+
 .grid {
   max-width: 1280px;
   margin: 0 auto;
@@ -303,18 +305,18 @@ button.btn:active {
   font-size: 42px;
 }
 
-@media screen and (max-width: 768px) {
-  .grid-header {
-    font-size: 32px;
-    text-align: center;
-  }
-}
-
 .grid-children {
   display: grid;
   grid-template-columns: repeat(5, minmax(100px, 1fr));
   grid-gap: 40px;
   position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .grid-header {
+    font-size: 32px;
+    text-align: center;
+  }
 }
 
 @media screen and (max-width: 1024px) {

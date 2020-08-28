@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ReviewItem from '../home/ReviewItem';
 import Spinner from '../layout/Spinner';
-import Sidenav from '../layout/Sidenav';
-import UserSearch from '../elements/UserSearch';
 import UserList from './UserList';
 import UserProfile from '../userprofile/UserProfile';
-import MobileNav from '../layout/MobileNav';
 import UserNav from './UserNav';
+import AppGrid from '../layout/AppGrid';
+import Feed from '../layout/Feed';
 import { updateUserFriends } from '../../actions/auth';
 import { logout } from '../../actions/auth';
 import { getReviews } from '../../actions/review';
@@ -81,9 +80,8 @@ const UserHome = ({
   }
 
   return (
-    <div className="display-container">
-      <Sidenav />
-      <div className="ReviewFeed-main">
+    <AppGrid>
+      <Feed>
         <UserNav
           users={users}
           user={user}
@@ -95,10 +93,8 @@ const UserHome = ({
         {view === 'Favorites' && displayUserList('favorites')}
         {view === 'Watchlist' && displayUserList('watchList')}
         {view === 'Edit Image' && <UserProfile />}
-      </div>
-      <UserSearch />
-      <MobileNav />
-    </div>
+      </Feed>
+    </AppGrid>
   );
 };
 

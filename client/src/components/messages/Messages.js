@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef, Fragment } from 'react';
 import Message from './Message';
 import ShowConvo from './ShowConvo';
-import Sidenav from '../layout/Sidenav';
 import FeedHeader from '../layout/FeedHeader';
-import UserSearch from '../elements/UserSearch';
-import MobileNav from '../layout/MobileNav';
+import AppGrid from '../layout/AppGrid';
+import Feed from '../layout/Feed';
 import {
   getMessages,
   setCurrentMessage,
@@ -39,9 +38,6 @@ const Messages = ({
   }, [getMessages]);
 
   const messagesEndRef = useRef(null);
-  // useEffect(() => {
-  //   if (showMessage) scrollToBottom();
-  // }, [conversation, showMessage]);
 
   const toggleConvo = (convo) => {
     if (showMessage) {
@@ -149,11 +145,9 @@ const Messages = ({
     return <Spinner />;
   }
   return (
-    <div className="display-container">
-      <Sidenav />
-      <div className="ReviewFeed-main">
+    <AppGrid>
+      <Feed>
         <FeedHeader heading="Messages" />
-
         {!showMessage ? (
           messagesList()
         ) : (
@@ -170,10 +164,8 @@ const Messages = ({
             messagesEndRef={messagesEndRef}
           />
         )}
-      </div>
-      <UserSearch />
-      <MobileNav />
-    </div>
+      </Feed>
+    </AppGrid>
   );
 };
 

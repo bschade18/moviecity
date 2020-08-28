@@ -7,6 +7,8 @@ import CommentItem from './CommentItem';
 import CommentForm from './CommentForm';
 import MobileNav from '../layout/MobileNav';
 import FeedHeader from '../layout/FeedHeader';
+import AppGrid from '../layout/AppGrid';
+import Feed from '../layout/Feed';
 import { getReview } from '../../actions/review';
 
 import { connect } from 'react-redux';
@@ -18,9 +20,8 @@ const Review = ({ match, review, getReview, loading }) => {
   }, [getReview, match.params.id]);
 
   return (
-    <div className="display-container">
-      <Sidenav />
-      <div className="ReviewFeed-main">
+    <AppGrid>
+      <Feed>
         <FeedHeader heading="Review" />
         {loading || review === null ? (
           <Spinner />
@@ -37,10 +38,8 @@ const Review = ({ match, review, getReview, loading }) => {
             <CommentForm reviewId={review._id} />
           </Fragment>
         )}
-      </div>
-      <UserSearch />
-      <MobileNav />
-    </div>
+      </Feed>
+    </AppGrid>
   );
 };
 

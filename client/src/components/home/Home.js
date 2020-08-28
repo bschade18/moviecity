@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import Spinner from '../layout/Spinner';
-import Sidenav from '../layout/Sidenav';
 import ReviewFeed from './ReviewFeed';
-import UserSearch from '../elements/UserSearch';
-import MobileNav from '../layout/MobileNav';
 import { getReviews } from '../../actions/review';
 import { getUsers } from '../../actions/users';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import AppGrid from '../layout/AppGrid';
 
 const Home = ({ user, reviews, reviewsLoading, getReviews, getUsers }) => {
   useEffect(() => {
@@ -23,12 +22,9 @@ const Home = ({ user, reviews, reviewsLoading, getReviews, getUsers }) => {
   }
 
   return (
-    <div className="display-container">
-      <Sidenav />
+    <AppGrid>
       <ReviewFeed user={user} reviews={reviews} loading={reviewsLoading} />
-      <UserSearch />
-      <MobileNav />
-    </div>
+    </AppGrid>
   );
 };
 
