@@ -52,6 +52,35 @@ a {
   color: gold;
 }
 
+/* Buttons */
+
+.btn-outline-success {
+  color: #fff;
+  border-color: #fff;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled).active {
+  background-color: #1d7831;
+  border-color: #1d7831;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled).active,
+.btn-outline-success:not(:disabled):not(.disabled):active,
+.show > .btn-outline-success.dropdown-toggle {
+  background-color: #1d7831;
+  border-color: #1d7831;
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:active,
+.btn-success:visited,
+.btn-outline-success:hover,
+.btn-outline-success:active {
+  background-color: #1d7831;
+  border-color: #1d7831;
+}
+
 /* LoginFail */
 
 .login-fail {
