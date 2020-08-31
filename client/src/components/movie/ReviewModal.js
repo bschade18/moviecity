@@ -48,11 +48,7 @@ const ReviewModal = ({ movie, addReview }) => {
 
   return (
     <Fragment>
-      <Button
-        color="outline-success"
-        onClick={toggle}
-        className="review-movie-btn"
-      >
+      <Button color="success" onClick={toggle} className="review-movie-btn">
         Review Movie
       </Button>
       <Modal isOpen={modal} toggle={toggle} fade={false}>

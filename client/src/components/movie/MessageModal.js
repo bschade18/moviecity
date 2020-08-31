@@ -45,7 +45,7 @@ const MessageModal = ({
 
   return (
     <Fragment>
-      <Button color="outline-success" onClick={toggle}>
+      <Button color="success" onClick={toggle}>
         Send to Friend
       </Button>
       <Modal isOpen={modal} toggle={toggle} fade={false}>

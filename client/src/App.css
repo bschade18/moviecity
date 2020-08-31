@@ -81,6 +81,11 @@ a {
   border-color: #1d7831;
 }
 
+.btn-success:hover {
+  background-color: #338545;
+  border-color: #338545;
+}
+
 /* LoginFail */
 
 .login-fail {
