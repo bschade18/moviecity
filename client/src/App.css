@@ -48,6 +48,10 @@ a {
   color: gold;
 }
 
+.gold:hover {
+  color: gold;
+}
+
 /* LoginFail */
 
 .login-fail {
@@ -75,6 +79,34 @@ a {
 .showcase-movie-img {
   border-radius: 10px;
   width: 31rem;
+}
+
+/* Showcase - Errors */
+.form-group {
+  position: relative;
+  padding-bottom: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.form-group p {
+  color: #e74c3c;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.form-control.error-border {
+  border-color: #e74c3c;
 }
 
 /* ReviewItem */
@@ -119,6 +151,20 @@ a {
 .review-item-link:hover {
   color: black;
   text-decoration: none;
+}
+
+.fa-comment-alt {
+  color: black;
+  text-decoration: none;
+  padding: 7px;
+}
+
+.fa-comment-alt:hover {
+  color: black;
+  text-decoration: none;
+  background: rgba(0, 54, 153, 0.2);
+  padding: 7px;
+  border-radius: 50%;
 }
 
 /* competing with movie thumb style */
@@ -186,6 +232,22 @@ a {
   flex-wrap: wrap;
 }
 
+.friend-btn:before {
+  content: 'Friend';
+}
+
+.friend-btn:hover {
+  background: #dc3545 !important;
+  border-color: #dc3545 !important;
+}
+.friend-btn:hover:before {
+  content: 'Remove Friend?';
+}
+
+.friend-btn-hide:hover:before {
+  content: '';
+}
+
 /* Feed */
 
 .feed {
@@ -233,30 +295,23 @@ a {
   color: var(--primary-color);
 }
 
-a.btn:focus,
-a.btn:active {
+.sidenav a.btn:focus,
+.sidenav a.btn:active {
   outline: none !important;
   box-shadow: none;
 }
 
-button.btn:focus,
-button.btn:active {
+.sidenav button.btn:focus,
+.sidenav button.btn:active {
   outline: none !important;
   box-shadow: none;
 }
 
-.fa-home,
-.fa-envelope,
-.fa-search,
-.fa-sign-out {
+.sidenav .fa-home,
+.sidenav .fa-envelope,
+.sidenav .fa-search,
+.sidenav .fa-sign-out {
   margin: 0 0.5rem;
-}
-
-/* Message */
-
-.message-movie-img {
-  width: 75px;
-  border-radius: 5px;
 }
 
 .sidenav-user {
@@ -269,6 +324,17 @@ button.btn:active {
   width: 30px;
   height: 30px;
   border-radius: 50%;
+}
+
+/* Message */
+
+.message-movie-img {
+  width: 75px;
+  border-radius: 5px;
+}
+
+.message-poster-row {
+  width: 7rem;
 }
 
 /* Searchbar */
@@ -417,7 +483,7 @@ button.btn:active {
   }
 }
 
-/* Load More Button */
+/* LoadMoreBtn */
 .load-more-btn {
   background: var(--primary-color);
   border: 1px solid var(--primary-color);
@@ -438,22 +504,6 @@ button.btn:active {
 
 /* MovieInfo */
 
-@media screen and (max-width: 768px) {
-  .movieinfo {
-    min-height: 600px;
-    height: auto;
-  }
-}
-
-@keyframes animateMovieinfo {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 .movieinfo-content {
   max-width: 1280px;
   min-height: 450px;
@@ -469,6 +519,11 @@ button.btn:active {
 }
 
 @media screen and (max-width: 768px) {
+  .movieinfo {
+    min-height: 600px;
+    height: auto;
+  }
+
   .movieinfo-thumb {
     width: 100%;
   }
@@ -573,7 +628,7 @@ button.btn:active {
 
 /* User Search */
 
-#user-search {
+.user-search {
   width: 24%;
   position: fixed;
   top: 0;
@@ -590,23 +645,9 @@ button.btn:active {
   text-indent: 1.5rem;
 }
 
-.fa-search-user {
+.user-search .fa-search-user {
   position: absolute;
-}
-
-.user-favorites {
-  width: 20%;
-  position: fixed;
-  top: 200px;
-  right: 0;
-  z-index: -2;
-}
-
-.user-watchlist {
-  width: 20%;
-  position: fixed;
-  top: 500px;
-  right: 0;
+  margin: 0 0.5rem;
 }
 
 #user-search-link {
@@ -624,22 +665,6 @@ button.btn:active {
   position: relative;
   background: #fff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
-}
-
-.friend-btn:before {
-  content: 'Friend';
-}
-
-.friend-btn:hover {
-  background: #dc3545 !important;
-  border-color: #dc3545 !important;
-}
-.friend-btn:hover:before {
-  content: 'Remove Friend?';
-}
-
-.friend-btn-hide:hover:before {
-  content: '';
 }
 
 @media screen and (max-width: 800px) {
@@ -673,22 +698,7 @@ button.btn:active {
   }
 }
 
-/* Favorites */
-
-.favorite-container,
-.watchlist-container {
-  display: flex;
-}
-
-#fav-img {
-  width: 40px;
-}
-
-.hover:hover {
-  color: gold;
-}
 /* Message */
-
 .message {
   border-bottom: 1px solid rgb(0, 0, 0, 0.05);
   display: flex;
@@ -772,14 +782,6 @@ button.btn:active {
   max-width: 30%;
 }
 
-.message-poster-row {
-  width: 7rem;
-}
-
-.table-hover tbody tr:hover td {
-  background: #f9f9f9;
-}
-
 @media screen and (max-width: 576px) {
   .show-convo-text {
     max-width: 70%;
@@ -808,31 +810,7 @@ button.btn:active {
   color: #fff;
 }
 
-.close-btn {
-  align-self: flex-start;
-}
-
-.alert {
-  padding: 0.8rem;
-  margin: 1rem 0;
-  opacity: 0.9;
-  color: #fff;
-}
-
-.fa-comment-alt {
-  color: black;
-  text-decoration: none;
-  padding: 7px;
-}
-
-.fa-comment-alt:hover {
-  color: black;
-  text-decoration: none;
-  background: rgba(0, 54, 153, 0.2);
-  padding: 7px;
-  border-radius: 50%;
-}
-
+/* CommentForm */
 .comment-form form {
   display: flex;
   background: #f4f4f4;
@@ -865,46 +843,9 @@ button.btn:active {
   flex-direction: column;
 }
 
-/* User */
-.user-photo {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 0.5px solid #fff;
-}
-
-/* Upload */
+/* UserProfile */
 .upload-btn,
 .send-btn {
   background-color: var(--primary-color) !important;
   color: #fff !important;
-}
-
-/* Alert */
-
-.form-group {
-  position: relative;
-  padding-bottom: 1.5rem;
-  margin-bottom: 0.25rem;
-}
-
-.form-control:focus {
-  border-color: var(--primary-color);
-  outline: 0;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.form-group p {
-  color: #e74c3c;
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.form-control.error-border {
-  border-color: #e74c3c;
 }

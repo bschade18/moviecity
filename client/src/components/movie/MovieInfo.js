@@ -112,13 +112,13 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList }) => {
         <div className="movieinfo-text">
           <h1>{title}</h1>
           <span
-            className={favorite ? 'fa fa-star checked' : 'fa fa-star hover'}
+            className={favorite ? 'fa fa-star checked' : 'fa fa-star gold'}
             onClick={() => setFav()}
           ></span>
           <span>{favorite ? ' Favorite!' : ' Add as Favorite'}</span>
           <div>
             <span
-              className={toWatch ? 'fa fa-plus checked' : 'fa fa-plus hover'}
+              className={toWatch ? 'fa fa-plus checked' : 'fa fa-plus gold'}
               onClick={() => setToWatchlist()}
             ></span>
             <span>{toWatch ? ' On WatchList!' : ' Add to WatchList'}</span>

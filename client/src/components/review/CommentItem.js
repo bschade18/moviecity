@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const CommentItem = ({ comment: { text, user, username } }) => (
   <div className="comment-item p-3">
     <div className="comment-item-content">
-      <img src={`/uploads/${user.photo}`} className="user-photo" alt="user" />
+      <img src={`/uploads/${user.photo}`} className="user-avatar" alt="user" />
       <div className="comment-item-text ml-3">
         <Link className="comment-item-user-link" to={`/${username}`}>
           <h4 className="comment-item-username">{username}</h4>

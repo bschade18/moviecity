@@ -7,15 +7,14 @@ const UserList = ({ movie: { imgUrl, movieId, title } }) => {
   return (
     <div className="review-item">
       <div className="review-item-content">
-        <div className="mymovies-thumb">
+        <div className="review-item-thumb">
           <MovieThumb
             image={imgUrl ? imgUrl : NoImage}
             clickable={true}
-            className="mymovies-image"
             id={movieId}
           />
         </div>
-        <div className="mainmovies-text">
+        <div className="review-item-text">
           <h5>{title}</h5>
         </div>
       </div>
