@@ -8,8 +8,8 @@ const AppGrid = ({ component, children }) => {
     <div
       className={
         component === 'search'
-          ? 'search-display-container'
-          : 'display-container'
+          ? 'app-grid-search-container'
+          : 'app-grid-container'
       }
     >
       <Sidenav />

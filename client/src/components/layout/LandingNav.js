@@ -17,7 +17,7 @@ const LandingNav = ({ login, page }) => {
   };
 
   return (
-    <nav className="navbar navbar-dark background-primary py-3">
+    <nav className="navbar navbar-dark landing-nav py-3">
       <div className="container">
         <Link className="navbar-brand" to="/home" href="#">
           <FontAwesome

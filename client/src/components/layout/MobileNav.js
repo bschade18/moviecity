@@ -6,31 +6,21 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const MobileNav = ({ logout, user }) => (
-  <div className="bottom-nav">
+  <div className="mobile-nav">
     <Link to="/home" className="btn">
-      <div className="sn-item">
-        <FontAwesome className="fa-home" name="home" size="2x" />
-      </div>
+      <FontAwesome className="fa-home" name="home" size="2x" />
     </Link>
     <Link to="/messages" className="btn">
-      <div className="sn-item">
-        <FontAwesome className="fa-envelope" name="envelope" size="2x" />
-      </div>
+      <FontAwesome className="fa-envelope" name="envelope" size="2x" />
     </Link>
     <Link to="/search" className="btn">
-      <div className="sn-item">
-        <FontAwesome className="fa-search" name="search" size="2x" />
-      </div>
+      <FontAwesome className="fa-search" name="search" size="2x" />
     </Link>
     <Link to={`/${user.username}`} className="btn">
-      <div className="sn-item">
-        <FontAwesome className="fa-user" name="search" size="2x" />
-      </div>
+      <FontAwesome className="fa-user" name="search" size="2x" />
     </Link>
     <button className="btn" onClick={logout}>
-      <div className="sn-item">
-        <FontAwesome className="fa-sign-out" name="signout" size="2x" />
-      </div>
+      <FontAwesome className="fa-sign-out" name="signout" size="2x" />
     </button>
   </div>
 );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import Spinner from '../layout/Spinner';
 import LandingNav from '../layout/LandingNav';
-import Showcase from '../elements/Showcase';
+import Showcase from './Showcase';
 import { clearAlerts } from '../../actions/alert';
 import { imageUrl, backdropSize, popularBaseUrl } from '../../config';
 import { Redirect } from 'react-router-dom';

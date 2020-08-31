@@ -7,9 +7,8 @@ const CommentForm = ({ reviewId, addComment }) => {
   const [text, setText] = useState('');
 
   return (
-    <div className="review-form">
+    <div className="comment-form">
       <form
-        className="comment-form"
         onSubmit={(e) => {
           e.preventDefault();
           addComment(reviewId, { text });
@@ -19,12 +18,12 @@ const CommentForm = ({ reviewId, addComment }) => {
         <input
           onChange={(e) => setText(e.target.value)}
           type="text"
-          className="message-reply form-control"
+          className="form-control"
           value={text}
           placeholder="Write a comment..."
         />
         <input
-          className="btn btn-success messages-reply-submit ml-1"
+          className="btn btn-success ml-1"
           type="submit"
           id="submit"
           value="Post"

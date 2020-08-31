@@ -54,16 +54,9 @@ const UserProfile = ({ updateUserImage, user }) => {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <div className="custom-file mb-4">
-          <input
-            type="file"
-            className="custom-file-input"
-            id="customFile"
-            onChange={onChange}
-          />
-          <label className="custom-file-label" htmlFor="customFile">
-            {filename}
-          </label>
+        <div className="mb-4">
+          <input type="file" id="customFile" onChange={onChange} />
+          <label htmlFor="customFile">{filename}</label>
         </div>
         <Progress percentage={uploadPercentage} />
         <input

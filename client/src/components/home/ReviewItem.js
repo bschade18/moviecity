@@ -23,21 +23,24 @@ const ReviewItem = ({
   );
 
   return (
-    <div className="ReviewItem">
-      <Link className="user-link mb-2" to={`/${user.username}`}>
-        <img src={`/uploads/${user.photo}`} className="user-photo" alt="user" />
-        <h6 className="ml-2 mainmovies-user-name">{username}</h6>
+    <div className="review-item">
+      <Link className="review-item-user-link mb-2" to={`/${user.username}`}>
+        <img
+          src={`/uploads/${user.photo}`}
+          className="user-avatar"
+          alt="user"
+        />
+        <h6 className="ml-2 review-item-username">{username}</h6>
       </Link>
-      <div className="movie-box">
-        <div className="mymovies-thumb">
+      <div className="review-item-content">
+        <div className="review-item-thumb">
           <MovieThumb
             image={imageUrl ? imageUrl : NoImage}
             clickable={true}
-            className="mymovies-image"
             id={movieId}
           />
         </div>
-        <div className="mainmovies-text">
+        <div className="review-item-text">
           <h5>{movieTitle}</h5>
           <div className="rating">
             {renderStar(1)}
@@ -46,15 +49,13 @@ const ReviewItem = ({
             {renderStar(4)}
             {renderStar(5)}
           </div>
-          <p className="mainmovies-comments">{text}</p>
+          <p>{text}</p>
         </div>
       </div>
       {page && (
-        <Link className="review-link" to={`/review/${_id}`}>
+        <Link className="review-item-link" to={`/review/${_id}`}>
           <i className="far fa-comment-alt"></i>{' '}
-          <span className="comments-length">
-            {comments.length ? comments.length : null}
-          </span>
+          <span>{comments.length ? comments.length : null}</span>
         </Link>
       )}
     </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Feed = ({ children }) => {
-  return <div className="ReviewFeed-main">{children}</div>;
+  return <div className="feed">{children}</div>;
 };
 
 export default Feed;

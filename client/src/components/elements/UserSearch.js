@@ -40,7 +40,7 @@ const UserSearch = ({ users }) => {
       </div>
       <div>
         {search
-          ? filtered().length > 0
+          ? filtered().length
             ? showFiltered()
             : 'No users found'
           : null}

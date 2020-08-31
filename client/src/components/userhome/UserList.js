@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 
 const UserList = ({ movie: { imgUrl, movieId, title } }) => {
   return (
-    <div className="ReviewItem">
-      <div className="movie-box">
+    <div className="review-item">
+      <div className="review-item-content">
         <div className="mymovies-thumb">
           <MovieThumb
             image={imgUrl ? imgUrl : NoImage}

@@ -99,7 +99,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList }) => {
   };
 
   return (
-    <div className="movieinfo-container" style={movieInfoStyle(backdrop_path)}>
+    <div className="movieinfo" style={movieInfoStyle(backdrop_path)}>
       <div className="movieinfo-content">
         <div className="movieinfo-thumb">
           <MovieThumb
@@ -126,12 +126,12 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList }) => {
           <h3>Plot</h3>
           <p>{overview}</p>
 
-          <div className="rating-director">
+          <div className="movieinfo-rating-director">
             <div>
               <h3>IMDB Rating</h3>
-              <div className="score">{vote_average}</div>
+              <div className="movieinfo-score">{vote_average}</div>
             </div>
-            <div className="director">
+            <div className="movieinfo-director">
               <h3>Director{directors.length > 1 ? 's' : ''}</h3>
               {directors.map((element) => (
                 <p key={element.credit_id}>{element.name}</p>

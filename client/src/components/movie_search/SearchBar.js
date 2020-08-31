@@ -16,7 +16,7 @@ const SearchBar = ({ callback }) => {
     }, 500);
   };
   return (
-    <div id="search-bar">
+    <div className="search-bar">
       <div className="search-bar-content">
         <FontAwesome className="fa-search" name="search" size="2x" />
         <input
@@ -24,7 +24,7 @@ const SearchBar = ({ callback }) => {
           placeholder="Search Movies"
           onChange={doSearch}
           value={state}
-          className="search-input"
+          className="search-bar-input"
         />
       </div>
     </div>

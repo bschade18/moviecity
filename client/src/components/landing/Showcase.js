@@ -37,9 +37,9 @@ const Showcase = ({ register, image, alerts }) => {
 
   return (
     <div className="container">
-      <div id="showcase-container" className="row align-items-center mt-5">
+      <div className="showcase row align-items-center mt-5">
         <div className="col-lg-6 d-none d-lg-block mr-3">
-          <img src={image} alt="movie" className="home-img" />
+          <img src={image} alt="movie" className="showcase-movie-img" />
         </div>
         <div className="col-lg-5 ml-lg-5">
           <h3>Create a New Account</h3>

@@ -24,10 +24,7 @@ const LoginFail = ({ login, isAuthenticated }) => {
     <div>
       <LandingNav />
       <div className="container">
-        <div
-          id="showcase-container"
-          className="d-flex justify-content-center align-items-center"
-        >
+        <div className="login-fail d-flex justify-content-center align-items-center">
           <div className="col-lg-5 ml-lg-5">
             <h3>Log in to MovieCity</h3>
             <p className="text-danger">

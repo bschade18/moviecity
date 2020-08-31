@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Fragment } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Message from './Message';
 import ShowConvo from './ShowConvo';
 import FeedHeader from '../layout/FeedHeader';
@@ -124,8 +124,8 @@ const Messages = ({
       <p
         className={
           mes.name === user.username
-            ? 'message-text recipient'
-            : 'message-text sender'
+            ? 'show-convo-text recipient'
+            : 'show-convo-text sender'
         }
         key={mes._id}
       >

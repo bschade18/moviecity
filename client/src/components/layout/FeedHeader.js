@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 const FeedHeader = ({ heading }) => {
   return (
-    <div className="scroll-nav">
-      <div className="scroll-heading">
-        <p className="home-title">{heading}</p>
+    <div className="feed-header">
+      <div className="feed-header-heading">
+        <p>{heading}</p>
       </div>
     </div>
   );

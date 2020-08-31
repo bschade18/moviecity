@@ -4,7 +4,7 @@ import NoImage from '../../img/no_image.jpg';
 import PropTypes from 'prop-types';
 
 const Actor = ({ actor: { name, character, profile_path } }) => (
-  <div className="actor-container">
+  <div className="actor">
     <img
       className="actor-image"
       src={profile_path ? `${imageUrl}${posterSize}${profile_path}` : NoImage}

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const UserNav = ({ user, users, username, renderNavButton, toggleFriend }) => {
   return (
-    <div className="scroll-nav">
-      <div className="scroll-heading">
+    <div className="feed-header">
+      <div className="feed-header-heading">
         <img
           className="user-photo"
           src={
@@ -16,9 +16,7 @@ const UserNav = ({ user, users, username, renderNavButton, toggleFriend }) => {
           }
           alt="user"
         />
-        <p className="home-title">
-          {users.filter((user) => user.username === username)[0].name}
-        </p>
+        <p>{users.filter((user) => user.username === username)[0].name}</p>
         <button
           className={
             'btn ml-3  ' +

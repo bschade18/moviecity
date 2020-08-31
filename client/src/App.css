@@ -26,8 +26,36 @@ a {
   text-decoration: none;
 }
 
-/* Landing Nav */
-.background-primary {
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 0.5px solid #fff;
+}
+
+/* 5 star rating */
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+  color: gold;
+}
+
+.checked {
+  color: gold;
+}
+
+/* LoginFail */
+
+.login-fail {
+  height: 400px;
+}
+
+/* LandingNav */
+.landing-nav {
   background: var(--primary-color);
   color: #fff;
 }
@@ -39,54 +67,75 @@ a {
   }
 }
 
-/* Landing Page - Showcase */
-#showcase-container {
+/* Showcase */
+.showcase {
   height: 400px;
 }
 
-.home-img {
+.showcase-movie-img {
   border-radius: 10px;
   width: 31rem;
 }
 
-/* Home Page - ReviewItem */
+/* ReviewItem */
 
-.ReviewItem {
+.review-item {
   min-height: 200px;
   border-bottom: 1px solid #e0e0e0;
   padding: 1rem;
 }
 
-.ReviewItem:hover {
+.review-item:hover {
   background: rgb(0, 0, 0, 0.01);
 }
 
-.mainmovies-text {
+.review-item-username {
+  font-weight: bolder;
+}
+
+.review-item-content {
+  display: flex;
+  padding: 1rem 0;
+}
+
+.review-item-text {
   padding: 10px;
   color: black;
   margin-left: 1.5rem;
   word-wrap: break-word;
   overflow: hidden;
 }
-.mainmovies-user-name,
-.user-name,
+
+.comment-item-username,
 .review-item-username {
   font-weight: bolder;
 }
 
+.review-item-link {
+  color: #000;
+  padding: 5px;
+}
+
+.review-item-link:hover {
+  color: black;
+  text-decoration: none;
+}
+
 /* competing with movie thumb style */
-.mymovies-thumb img {
+.review-item-thumb img {
   border-radius: 10px !important;
   width: 125px !important;
 }
 
-.movie-box {
+.review-item .review-item-user-link {
   display: flex;
-  padding: 1rem 0;
+  justify-items: center;
+  align-items: center;
+  color: black;
 }
 
 /* Feed Header */
-.scroll-nav {
+.feed-header {
   position: sticky;
   z-index: 100;
   top: 0;
@@ -99,36 +148,36 @@ a {
   justify-content: center;
 }
 
-.scroll-nav p {
+.feed-header p {
   font-size: 1.75rem;
   margin: 0 10px;
 }
 
-.scroll-heading {
+.feed-header-heading {
   display: flex;
   align-items: center;
 }
 
-/* Home Page - Review Feed */
-.empty-tl-image {
+/* NoResults */
+.no-results-image {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* Home Page - Home */
-.display-container {
+/* AppGrid */
+.app-grid-container {
   display: grid;
   grid-template-columns: 2fr minmax(0, 5.5fr) 2.5fr;
   margin-bottom: 3rem;
 }
 
-.search-display-container {
+.app-grid-search-container {
   display: grid;
   grid-template-columns: 1fr 4fr;
 }
 
-/* User Home Page - UserNav */
+/* UserNav */
 
 .user-nav {
   display: flex;
@@ -137,9 +186,9 @@ a {
   flex-wrap: wrap;
 }
 
-/* Home Page - Review Feed */
+/* Feed */
 
-.ReviewFeed-main {
+.feed {
   grid-column-start: 2;
   border-bottom: 1px solid #e0e0e0;
   border-right: 1px solid #e0e0e0;
@@ -147,7 +196,7 @@ a {
 }
 
 /* Mobile Nav */
-.bottom-nav {
+.mobile-nav {
   border-left: 1px solid #e0e0e0;
   border-right: 1px solid #e0e0e0;
   border-top: 1px solid #e0e0e0;
@@ -162,7 +211,7 @@ a {
 
 /*Sidenav */
 
-#sidenav-container {
+.sidenav {
   margin-top: 60px;
   background: #fff;
   width: 20%;
@@ -172,7 +221,7 @@ a {
   align-items: center;
 }
 
-#sidenav-container .sn-item {
+.sidenav .sidenav-item {
   color: black;
   display: block;
   padding: 0.5rem 1.5rem;
@@ -180,7 +229,7 @@ a {
   outline: none !important;
 }
 
-#sidenav-container .sn-item:hover {
+.sidenav .sidenav-item:hover {
   color: var(--primary-color);
 }
 
@@ -203,22 +252,20 @@ button.btn:active {
   margin: 0 0.5rem;
 }
 
-.movie:hover {
-  background-color: lightgray;
-}
+/* Message */
 
-.movie-poster-list-img {
+.message-movie-img {
   width: 75px;
   border-radius: 5px;
 }
 
-.user-sidenav {
+.sidenav-user {
   position: fixed;
   top: 5px;
   display: flex;
 }
 
-.user-photo-sidenav {
+.sidenav-user-avatar {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -226,12 +273,12 @@ button.btn:active {
 
 /* Searchbar */
 
-#search-bar {
+.search-bar {
   display: flex;
   justify-content: center;
 }
 
-#search-bar .search-bar-content {
+.search-bar .search-bar-content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -246,7 +293,7 @@ button.btn:active {
   margin-bottom: 1.5rem;
 }
 
-#search-bar .search-input {
+.search-bar .search-bar-input {
   display: inline-block;
   padding: 0.2rem 0.75rem;
   width: 98%;
@@ -262,11 +309,11 @@ button.btn:active {
   text-indent: 3rem;
 }
 
-#search-bar .search-input:focus {
+.search-bar .search-bar-input:focus {
   outline: none;
 }
 
-#search-bar .fa-search {
+.search-bar .fa-search {
   color: #000;
   z-index: 0;
   position: absolute;
@@ -343,6 +390,8 @@ button.btn:active {
   }
 }
 
+/* MovieThumb */
+
 .movie-thumb img {
   width: 100%;
   transition: all 0.3s;
@@ -387,46 +436,10 @@ button.btn:active {
   outline: none;
 }
 
-/* Navigation */
-
-#navigation {
-  background: var(--primary-color);
-  color: #fff;
-}
-#navigation .navigation-container {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  max-width: 1140px;
-  width: 100%;
-  margin: auto;
-  height: 4rem;
-  padding: 1rem;
-}
-
-#navigation .navigation-content {
-  display: flex;
-  align-items: center;
-  padding: 0 20px;
-}
-
-#navigation .navigation-content p {
-  font-size: 22px;
-  color: #fff;
-  padding-right: 10px;
-  text-decoration: none;
-  margin-bottom: 0px;
-  border: 0;
-}
-
-#navigation .navigation-content a {
-  text-decoration: none;
-}
-
 /* MovieInfo */
 
 @media screen and (max-width: 768px) {
-  .movieinfo-container {
+  .movieinfo {
     min-height: 600px;
     height: auto;
   }
@@ -494,12 +507,12 @@ button.btn:active {
   line-height: 26px;
 }
 
-.rating-director {
+.movieinfo-rating-director {
   display: flex;
   justify-content: flex-start;
 }
 
-.score {
+.movieinfo-score {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -512,11 +525,11 @@ button.btn:active {
   margin-top: 10px;
 }
 
-.director {
+.movieinfo-director {
   margin: 0 0 0 40px;
 }
 
-.director p {
+.movieinfo-director p {
   margin: 0;
 }
 
@@ -529,53 +542,9 @@ button.btn:active {
   display: flex;
 }
 
-/* Movie Info Bar */
+/* Actor */
 
-.movieinfobar-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  min-height: 100px;
-  height: auto;
-  background: #1c1c1c;
-  padding: 20px;
-  box-sizing: border-box;
-  font-size: 20px;
-}
-
-.movieinfobar-content {
-  max-width: 1280px;
-  width: 100%;
-  margin: 0 auto;
-  color: #fff;
-}
-
-.movieinfobar-content-col {
-  float: left;
-  width: 33.33%;
-  box-sizing: border-box;
-  padding: 10px 20px 0 0;
-}
-
-.movieinfobar-info {
-  padding: 5px 0 0 10px;
-  float: left;
-}
-
-.fa-time,
-.fa-revenue {
-  float: left;
-  margin-top: -4px;
-}
-
-.fa-budget {
-  float: left;
-  margin-top: -3px;
-}
-
-/* Actors Grid */
-
-.actor-container {
+.actor {
   color: #fff;
   background: #1c1c1c;
   border-radius: 20px;
@@ -600,33 +569,6 @@ button.btn:active {
   display: block;
   font-size: 16px;
   margin: 0 0 10px 0;
-}
-
-.poster {
-  border-radius: 5%;
-  width: 300px;
-}
-
-/* 5 star rating */
-
-.rating {
-  unicode-bidi: bidi-override;
-  direction: rtl;
-}
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
-  color: gold;
-}
-
-.checked {
-  color: gold;
-}
-
-.ReviewItem .user-link {
-  display: flex;
-  justify-items: center;
-  align-items: center;
-  color: black;
 }
 
 /* User Search */
@@ -701,32 +643,32 @@ button.btn:active {
 }
 
 @media screen and (max-width: 800px) {
-  #sidenav-container {
+  .sidenav {
     display: none;
   }
-  #sidenav-container .sn-item {
+  .sidenav .sidenav-item {
     display: none;
   }
   #user-search {
     display: none;
   }
-  .display-container,
-  .search-display-container {
+  .app-grid-container,
+  .app-grid-search-container {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     margin-bottom: 5rem;
   }
 
-  .bottom-nav {
+  .mobile-nav {
     display: flex;
     justify-content: space-between;
     width: 100%;
   }
 
-  .ReviewFeed-main {
+  .feed {
     grid-column-start: 1;
   }
-  .message-container {
+  .show-convo {
     width: 95%;
   }
 }
@@ -745,20 +687,20 @@ button.btn:active {
 .hover:hover {
   color: gold;
 }
-/* Inbox */
+/* Message */
 
-.inbox {
+.message {
   border-bottom: 1px solid rgb(0, 0, 0, 0.05);
   display: flex;
   padding: 1.5rem;
 }
 
-.inbox:hover {
+.message:hover {
   background-color: rgb(0, 0, 0, 0.01);
 }
 
-/* Show Convo Start */
-.message-container {
+/* ShowConvo*/
+.show-convo {
   height: 520px;
   border: 0.5px solid gray;
   border-radius: 10px;
@@ -768,7 +710,7 @@ button.btn:active {
   flex-direction: column;
   position: relative;
 }
-.message-container-heading {
+.show-convo-heading {
   display: flex;
   justify-content: space-between;
   padding: 1.5rem;
@@ -776,40 +718,40 @@ button.btn:active {
   z-index: 2;
 }
 
-.message-heading-left {
+.show-convo-heading-left {
   display: flex;
   align-items: center;
 }
 
-.message-img {
+.show-convo-img {
   width: 50px;
   border-radius: 5px;
   position: relative;
   z-index: 0;
 }
 
-.message-movietitle {
+.show-convo-movietitle {
   font-size: 1.5rem;
 }
 
-.icons {
+.show-convo-icons {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-#message-body {
+.show-convo-body {
   padding: 1.5rem;
   overflow: auto;
   margin-bottom: 3rem;
 }
 
-.messages {
+.show-convo-messages {
   display: flex;
   flex-direction: column;
 }
 
-.message-form {
+.show-convo-form {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -822,23 +764,12 @@ button.btn:active {
   border-top: 0.5px solid gray;
 }
 
-/* Show Convo End */
-
-.messages-div {
-  max-width: 500px;
-}
-
-.message-text {
-  margin-top: 1.5rem;
-
+.show-convo-text {
+  margin: 0.25rem 1rem;
+  word-wrap: break-word;
   border-radius: 20px;
   padding: 0.5rem 0.75rem;
   max-width: 30%;
-}
-
-.message-text {
-  margin: 0.25rem 1rem;
-  word-wrap: break-word;
 }
 
 .message-poster-row {
@@ -850,12 +781,12 @@ button.btn:active {
 }
 
 @media screen and (max-width: 576px) {
-  .message-text {
+  .show-convo-text {
     max-width: 70%;
     margin: 0.25rem 0;
   }
 
-  #message-body {
+  .show-convo-body {
     padding: 1rem 10px;
   }
 
@@ -864,27 +795,17 @@ button.btn:active {
   }
 }
 
-.sender {
+.show-convo-text.sender {
   background-color: #dee2e6;
   align-self: flex-start;
   color: black;
 }
 
-.sender-name {
-  align-self: flex-start;
-}
-
-.recipient {
+.show-convo-text.recipient {
   align-self: flex-end;
   background-color: #28a745;
   background-color: var(--primary-color);
   color: #fff;
-}
-
-.recipient-name {
-  align-self: center;
-  margin-left: 300px;
-  margin-top: 0.25rem;
 }
 
 .close-btn {
@@ -896,22 +817,6 @@ button.btn:active {
   margin: 1rem 0;
   opacity: 0.9;
   color: #fff;
-}
-
-.comment {
-  min-height: 75px;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 1rem;
-}
-
-.review-link {
-  color: #000;
-  padding: 5px;
-}
-
-.review-link:hover {
-  color: black;
-  text-decoration: none;
 }
 
 .fa-comment-alt {
@@ -928,19 +833,26 @@ button.btn:active {
   border-radius: 50%;
 }
 
-.comment-form {
+.comment-form form {
   display: flex;
   background: #f4f4f4;
   padding: 0.5rem 0.75rem;
   width: 100%;
 }
 
-.user-name {
+/* CommentItem */
+.comment-item-username {
   color: #000;
   font-size: 1rem;
 }
 
-.comment-user-link:hover {
+.comment-item {
+  min-height: 75px;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1rem;
+}
+
+.comment-item-user-link:hover {
   color: #000;
 }
 

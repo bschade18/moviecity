@@ -17,14 +17,10 @@ const Message = ({
         recipient,
       })
     }
-    className="inbox"
+    className="message"
   >
     <div className="message-poster-row">
-      <img
-        className="movie-poster-list-img"
-        src={imageUrl}
-        alt="movie poster"
-      />
+      <img className="message-movie-img" src={imageUrl} alt="movie poster" />
     </div>
 
     <div className="left-text message-content-row">
