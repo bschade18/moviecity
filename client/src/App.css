@@ -693,7 +693,7 @@ a {
   .feed {
     grid-column-start: 1;
   }
-  .show-convo {
+  .show-chat {
     width: 95%;
   }
 }
@@ -709,8 +709,8 @@ a {
   background-color: rgb(0, 0, 0, 0.01);
 }
 
-/* ShowConvo*/
-.show-convo {
+/* ShowChat*/
+.show-chat {
   height: 520px;
   border: 0.5px solid gray;
   border-radius: 10px;
@@ -720,7 +720,7 @@ a {
   flex-direction: column;
   position: relative;
 }
-.show-convo-heading {
+.show-chat-heading {
   display: flex;
   justify-content: space-between;
   padding: 1.5rem;
@@ -728,40 +728,40 @@ a {
   z-index: 2;
 }
 
-.show-convo-heading-left {
+.show-chat-heading-left {
   display: flex;
   align-items: center;
 }
 
-.show-convo-img {
+.show-chat-img {
   width: 50px;
   border-radius: 5px;
   position: relative;
   z-index: 0;
 }
 
-.show-convo-movietitle {
+.show-chat-movietitle {
   font-size: 1.5rem;
 }
 
-.show-convo-icons {
+.show-chat-icons {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.show-convo-body {
+.show-chat-body {
   padding: 1.5rem;
   overflow: auto;
   margin-bottom: 3rem;
 }
 
-.show-convo-messages {
+.show-chat-messages {
   display: flex;
   flex-direction: column;
 }
 
-.show-convo-form {
+.show-chat-form {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -774,7 +774,7 @@ a {
   border-top: 0.5px solid gray;
 }
 
-.show-convo-text {
+.show-chat-text {
   margin: 0.25rem 1rem;
   word-wrap: break-word;
   border-radius: 20px;
@@ -783,12 +783,12 @@ a {
 }
 
 @media screen and (max-width: 576px) {
-  .show-convo-text {
+  .show-chat-text {
     max-width: 70%;
     margin: 0.25rem 0;
   }
 
-  .show-convo-body {
+  .show-chat-body {
     padding: 1rem 10px;
   }
 
@@ -797,13 +797,13 @@ a {
   }
 }
 
-.show-convo-text.sender {
+.show-chat-text.sender {
   background-color: #dee2e6;
   align-self: flex-start;
   color: black;
 }
 
-.show-convo-text.recipient {
+.show-chat-text.recipient {
   align-self: flex-end;
   background-color: #28a745;
   background-color: var(--primary-color);

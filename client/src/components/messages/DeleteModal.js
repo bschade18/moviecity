@@ -4,7 +4,7 @@ import { deleteMessage } from '../../actions/messages';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const DeleteModal = ({ id, toggleConvo, deleteMessage }) => {
+const DeleteModal = ({ id, toggleChat, deleteMessage }) => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => {
@@ -23,7 +23,7 @@ const DeleteModal = ({ id, toggleConvo, deleteMessage }) => {
           </Button>{' '}
           <Button
             color="danger"
-            onClick={() => deleteMessage(id, toggleConvo)}
+            onClick={() => deleteMessage(id, toggleChat)}
             className="mt-3"
           >
             Delete
@@ -36,7 +36,7 @@ const DeleteModal = ({ id, toggleConvo, deleteMessage }) => {
 
 DeleteModal.propTypes = {
   id: PropTypes.string.isRequired,
-  toggleConvo: PropTypes.func.isRequired,
+  toggleChat: PropTypes.func.isRequired,
   deleteMessage: PropTypes.func.isRequired,
 };
 

@@ -40,12 +40,6 @@ export const setCurrentMessage = (current) => async (dispatch) => {
 };
 
 export const updateMessages = (messageId, message) => async (dispatch) => {
-  // const config = {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // };
-
   try {
     const res = await api.put(`/messages/${messageId}`, message);
 
@@ -60,12 +54,6 @@ export const updateMessages = (messageId, message) => async (dispatch) => {
 
 // create and send initial message
 export const sendMessage = (newMessage) => async (dispatch) => {
-  // const config = {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // };
-
   try {
     const res = await api.post('/messages', newMessage);
 
@@ -82,12 +70,6 @@ export const sendMessage = (newMessage) => async (dispatch) => {
 
 // add message to current conversation
 export const addMessage = (messageId, formData) => async (dispatch) => {
-  // const config = {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // };
-
   try {
     const res = await api.post(`/messages/${messageId}`, formData);
 
@@ -100,7 +82,7 @@ export const addMessage = (messageId, formData) => async (dispatch) => {
   }
 };
 
-export const deleteMessage = (id, toggleConvo) => async (dispatch) => {
+export const deleteMessage = (id, toggleChat) => async (dispatch) => {
   try {
     await api.delete(`/messages/${id}`);
 
@@ -109,7 +91,7 @@ export const deleteMessage = (id, toggleConvo) => async (dispatch) => {
       payload: id,
     });
 
-    toggleConvo();
+    toggleChat();
   } catch (err) {
     console.log(err);
   }

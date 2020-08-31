@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Message from './Message';
-import ShowConvo from './ShowConvo';
+import ShowChat from './ShowChat';
 import FeedHeader from '../layout/FeedHeader';
 import AppGrid from '../layout/AppGrid';
 import Feed from '../layout/Feed';
@@ -40,7 +40,7 @@ const Messages = ({
 
   const messagesEndRef = useRef(null);
 
-  const toggleConvo = (convo) => {
+  const toggleChat = (chat) => {
     if (showMessage) {
       if (!loading) {
         if (messages) {
@@ -64,7 +64,7 @@ const Messages = ({
         _id,
         imageUrl,
         recipient,
-      } = convo;
+      } = chat;
       setShowMessage(true);
       setCurrentMessage({
         movieTitle,
@@ -98,7 +98,7 @@ const Messages = ({
     } else {
       return userAndFriendsMessages.map((message) => (
         <Message
-          toggleConvo={(message) => toggleConvo(message)}
+          toggleChat={(message) => toggleChat(message)}
           message={message}
           key={message._id}
           user={user}
@@ -119,13 +119,13 @@ const Messages = ({
     setText('');
   };
 
-  const renderConvo = () =>
+  const renderChat = () =>
     conversation.map((mes) => (
       <p
         className={
           mes.name === user.username
-            ? 'show-convo-text recipient'
-            : 'show-convo-text sender'
+            ? 'show-chat-text recipient'
+            : 'show-chat-text sender'
         }
         key={mes._id}
       >
@@ -143,12 +143,12 @@ const Messages = ({
         {!showMessage ? (
           messagesList()
         ) : (
-          <ShowConvo
+          <ShowChat
             movieImg={movieImg}
             recipient={recipient}
             messageId={messageId}
-            toggleConvo={toggleConvo}
-            renderConvo={renderConvo}
+            toggleChat={toggleChat}
+            renderChat={renderChat}
             onSubmit={onSubmit}
             onChange={onChange}
             movieTitle={movieTitle}
