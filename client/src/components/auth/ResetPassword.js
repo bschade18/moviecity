@@ -2,12 +2,12 @@ import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import useFormState from '../hooks/useFormState';
 import LandingNav from '../layout/LandingNav';
-import { setAlert } from '../../actions/alert';
+import { setAlert, clearAlerts } from '../../actions/alert';
 import api from '../../utils/api';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const ResetPassword = ({ match, setAlert, alerts }) => {
+const ResetPassword = ({ match, setAlert, alerts, clearAlerts }) => {
   const [password, setPassword] = useFormState('');
   const [password2, setPassword2] = useFormState('');
   const [message, setMessage] = useState('');
@@ -62,7 +62,9 @@ const ResetPassword = ({ match, setAlert, alerts }) => {
                   <h1 className="text-center">{message}</h1>
                 </div>
                 <div className="text-center">
-                  <Link to="/">Login to MovieCity</Link>
+                  <Link to="/" onClick={() => clearAlerts()}>
+                    Login to MovieCity
+                  </Link>
                 </div>
               </Fragment>
             ) : (
@@ -117,6 +119,7 @@ const ResetPassword = ({ match, setAlert, alerts }) => {
 ResetPassword.propTypes = {
   match: PropTypes.object.isRequired,
   setAlert: PropTypes.func.isRequired,
+  clearAlerts: PropTypes.func.isRequired,
   alerts: PropTypes.array,
 };
 
@@ -124,4 +127,6 @@ const mapStateToProps = (state) => ({
   alerts: state.alert.alerts,
 });
 
-export default connect(mapStateToProps, { setAlert })(ResetPassword);
+export default connect(mapStateToProps, { setAlert, clearAlerts })(
+  ResetPassword
+);

@@ -203,7 +203,7 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
 
   await user.save({ validateBeforeSave: false });
 
-  const message = `Click this link to reset password: \n\n ${req.protocol}://rocky-shore-27082.herokuapp.com/account/reset_password/${resetToken}`;
+  const message = `Click the link below to reset your password - if you did not request a password reset, please ignore: \n\n ${req.protocol}://rocky-shore-27082.herokuapp.com/account/reset_password/${resetToken}`;
 
   try {
     await sendEmail({
