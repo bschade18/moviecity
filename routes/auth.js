@@ -10,8 +10,13 @@ const {
   userPhotoUpload,
   forgotPassword,
   resetPassword,
+  findUser,
 } = require('../controllers/auth');
-const { validateRegister, validateLogin } = require('../validate');
+const {
+  validateRegister,
+  validateLogin,
+  validateNewPassword,
+} = require('../validate');
 
 router.route('/register').post(validateRegister, register);
 
@@ -27,6 +32,10 @@ router.route('/photo').put(auth, userPhotoUpload);
 
 router.route('/forgotpassword').post(forgotPassword);
 
-router.route('/resetpassword/:resettoken').put(resetPassword);
+router
+  .route('/resetpassword/:resettoken')
+  .put(validateNewPassword, resetPassword);
+
+router.route('/find').post(findUser);
 
 module.exports = router;

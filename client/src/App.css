@@ -98,6 +98,19 @@ a {
   color: #fff;
 }
 
+.landing-nav form {
+  position: relative;
+  /* border: 1px solid white; */
+  padding: 1rem;
+}
+
+.landing-nav-forgotpw {
+  position: absolute;
+  right: 175px;
+  bottom: 0;
+  color: lightgray;
+}
+
 @media screen and (max-width: 575px) {
   .btn-block-sm-only {
     display: block;

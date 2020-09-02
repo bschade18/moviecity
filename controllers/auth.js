@@ -201,21 +201,14 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
   // Get reset token
   const resetToken = user.getResetPasswordToken();
 
-  console.log(resetToken);
-
   await user.save({ validateBeforeSave: false });
 
-  // Create reset url
-  const resetUrl = `${req.protocol}://${req.get(
-    'host'
-  )}/auth/resetpassword/${resetToken}`;
-
-  const message = `You are receiving this email because you (or someone else) has requested the reset of a password. Please make a PUT request to: \n\n ${resetUrl}`;
+  const message = `Click this link to reset password: \n\n ${req.protocol}://rocky-shore-27082.herokuapp.com/account/reset_password/${resetToken}`;
 
   try {
     await sendEmail({
       email: user.email,
-      subject: 'Password reset token',
+      subject: 'MovieCity password reset request',
       message,
     });
 
@@ -229,8 +222,6 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
 
     return next(new ErrorResponse('Email could not be sent', 500));
   }
-
-  // res.status(200).json(user);
 });
 
 // @desc      Reset password
@@ -258,6 +249,29 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
   user.resetPasswordExpire = undefined;
   await user.save();
 
-  // sendTokenResponse(user, 200, res);
   res.send('password reset');
 });
+
+// @route POST auth/find
+// @desc find user
+// @access Public
+
+exports.findUser = async (req, res) => {
+  const { account } = req.body;
+
+  try {
+    let user = await User.findOne({ email: account });
+
+    if (!user) {
+      user = await User.findOne({ username: account });
+    }
+
+    if (!user) {
+      return res.status(400).json({ msg: 'No user found' });
+    }
+
+    res.send({ user });
+  } catch (err) {
+    res.status(500).send('Server Error');
+  }
+};

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -35,18 +37,18 @@ const UserSchema = new mongoose.Schema({
   resetPasswordExpire: Date,
 });
 
-// Generate and hash password token
-// because this is being call on the user itself, not on the model itself - it's a method - instead of statics
+UserSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    next();
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+});
+
 UserSchema.methods.getResetPasswordToken = function () {
-  // Generate token
-  // random bytes generates random data, pass in number of bytes
-  // this will give us a buffer but we want to format as a string, so do toString('hex')
-  // can look at this further in node docs
   const resetToken = crypto.randomBytes(20).toString('hex');
 
-  // Hash token and set to resetPasswordToken field (in model - above)
-  // this is all in node crypto documentation
-  // this is a method being called on the actual user, so we can access the users fields with "this"
   this.resetPasswordToken = crypto
     .createHash('sha256')
     .update(resetToken)

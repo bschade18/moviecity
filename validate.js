@@ -33,3 +33,23 @@ exports.validateLogin = [
     next();
   },
 ];
+
+exports.validateNewPassword = [
+  check('password', 'Enter a password with 6 or more characters').isLength({
+    min: 6,
+  }),
+  body('password2').custom((value, { req }) => {
+    if (value !== req.body.password) {
+      throw new Error('Passwords do not match');
+    } else {
+      return true;
+    }
+  }),
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty())
+      return res.status(400).json({ errors: errors.array() });
+    next();
+  },
+];

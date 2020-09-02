@@ -11,6 +11,7 @@ import {
   SET_WATCHLIST,
   SET_FRIENDS,
   UPDATE_IMAGE,
+  GET_USER,
 } from './types';
 
 import { setAlert } from './alert';
@@ -142,5 +143,36 @@ export const updateUserImage = (filename) => (dispatch) => {
     });
   } catch (err) {
     console.log(err);
+  }
+};
+
+// find account for password reset
+export const findAccount = (account) => async (dispatch) => {
+  const body = JSON.stringify({ account });
+
+  try {
+    const res = await api.post('/auth/find', body);
+
+    dispatch({
+      type: GET_USER,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// reset password
+export const resetPassword = ({ password, password2, token }) => async (
+  dispatch
+) => {
+  const body = JSON.stringify({ password, password2 });
+
+  try {
+    const res = await api.put(`/auth/resetpassword/${token}`, body);
+  } catch (err) {
+    let errors = err.response.data.errors;
+
+    dispatch(setAlert(errors));
   }
 };

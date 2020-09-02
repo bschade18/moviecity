@@ -37,6 +37,7 @@ const LandingNav = ({ login, page }) => {
               name="email"
               onChange={setEmail}
             />
+
             <input
               className="form-control my-2 mr-sm-2"
               type="password"
@@ -45,6 +46,10 @@ const LandingNav = ({ login, page }) => {
               name="password"
               onChange={setPassword}
             />
+            <Link to="/account/reset_password/start">
+              <small className="landing-nav-forgotpw">Forgot Password?</small>
+            </Link>
+
             <button
               className="btn btn-outline-success my-2 my-sm-0 btn-block-sm-only"
               type="submit"
@@ -63,7 +68,7 @@ const LandingNav = ({ login, page }) => {
 
 LandingNav.propTypes = {
   login: PropTypes.func.isRequired,
-  page: PropTypes.string.isRequired,
+  page: PropTypes.string,
 };
 
 export default connect(null, { login })(LandingNav);

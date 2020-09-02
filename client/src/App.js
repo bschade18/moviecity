@@ -13,6 +13,9 @@ import Movie from './components/movie/Movie';
 import UserHome from './components/userhome/UserHome';
 import LoginFail from './components/auth/LoginFail';
 import Review from './components/review/Review';
+import ResetPassword from './components/auth/ResetPassword';
+import StartResetPassword from './components/auth/StartPasswordReset';
+import SendPasswordReset from './components/auth/SendPasswordReset';
 
 import NotFound from './components/layout/NotFound';
 import setAuthToken from './utils/setAuthToken';
@@ -30,6 +33,21 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/loginfail" component={LoginFail} />
+          <Route
+            exact
+            path="/account/reset_password/start"
+            component={StartResetPassword}
+          />
+          <Route
+            exact
+            path="/account/reset_password/:token"
+            component={ResetPassword}
+          />
+          <Route
+            exact
+            path="/account/send_password_reset"
+            component={SendPasswordReset}
+          />
           <PrivateRoute exact path="/home" component={Home} />
           <PrivateRoute exact path="/review/:id" component={Review} />
           <PrivateRoute exact path="/messages" component={Messages} />
