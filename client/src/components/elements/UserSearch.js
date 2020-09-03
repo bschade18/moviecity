@@ -27,7 +27,7 @@ const UserSearch = ({ users }) => {
     ));
 
   return (
-    <div className="user-search m-auto">
+    <div className="user-search m-auto d-none d-lg-block">
       <div className="user-search-content">
         <FontAwesome className="fa-search-user" name="search" />
         <input

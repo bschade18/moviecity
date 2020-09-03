@@ -169,7 +169,7 @@ export const resetPassword = ({ password, password2, token }) => async (
   const body = JSON.stringify({ password, password2 });
 
   try {
-    const res = await api.put(`/auth/resetpassword/${token}`, body);
+    await api.put(`/auth/resetpassword/${token}`, body);
   } catch (err) {
     let errors = err.response.data.errors;
 

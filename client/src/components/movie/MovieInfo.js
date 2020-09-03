@@ -123,8 +123,11 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList }) => {
             ></span>
             <span>{toWatch ? ' On WatchList!' : ' Add to WatchList'}</span>
           </div>
-          <h3>Plot</h3>
-          <p>{overview}</p>
+
+          <div className="movieinfo-plot">
+            <h3>Plot</h3>
+            <p>{overview}</p>
+          </div>
 
           <div className="movieinfo-rating-director">
             <div>
