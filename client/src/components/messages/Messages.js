@@ -87,7 +87,7 @@ const Messages = ({
         message.recipient === user.username || message.sender === user.username
     );
 
-    if (!userAndFriendsMessages && !loading) {
+    if (!userAndFriendsMessages.length && !loading) {
       return (
         <NoResults
           image="https://www.slashfilm.com/wp/wp-content/images/tommy-boy-contest.jpg"
