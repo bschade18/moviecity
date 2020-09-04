@@ -2,6 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import useFormState from '../hooks/useFormState';
 import LandingNav from '../layout/LandingNav';
+import Alert from '../layout/Alert';
 import { setAlert, clearAlerts } from '../../actions/alert';
 import api from '../../utils/api';
 import { connect } from 'react-redux';
@@ -34,22 +35,9 @@ const ResetPassword = ({ match, setAlert, alerts, clearAlerts }) => {
     }
   };
 
-  const checkAlert = (inputField) => {
-    if (alerts.filter((alert) => alert.param === inputField).length) {
-      const msg = alerts.filter((alert) => alert.param === inputField)[0].msg;
-      return <p className="error">{msg}</p>;
-    } else {
-      return <p></p>;
-    }
-  };
+  const applyErrorStyle = (inputField) =>
+    alerts.filter((alert) => alert.param === inputField).length;
 
-  const applyErrorStyle = (inputField) => {
-    if (alerts.filter((alert) => alert.param === inputField).length) {
-      return true;
-    } else {
-      return false;
-    }
-  };
   return (
     <div>
       <LandingNav />
@@ -85,7 +73,7 @@ const ResetPassword = ({ match, setAlert, alerts, clearAlerts }) => {
                       placeholder="Enter New Password"
                       onChange={setPassword}
                     />
-                    {checkAlert('password')}
+                    <Alert field="password" />
                   </div>
                   <div className="form-group">
                     <input
@@ -100,7 +88,7 @@ const ResetPassword = ({ match, setAlert, alerts, clearAlerts }) => {
                       placeholder="Confirm New Password"
                       onChange={setPassword2}
                     />
-                    {checkAlert('password2')}
+                    <Alert field="password2" />
                   </div>
 
                   <button className="btn btn-success btn-block" type="submit">

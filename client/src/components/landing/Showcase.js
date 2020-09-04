@@ -3,7 +3,7 @@ import useFormState from '../hooks/useFormState';
 import { register } from '../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setAlert } from '../../actions/alert';
+import Alert from '../layout/Alert';
 
 const Showcase = ({ register, image, alerts }) => {
   const [name, setName] = useFormState('');
@@ -18,22 +18,8 @@ const Showcase = ({ register, image, alerts }) => {
     register({ name, username, email, password, password2 });
   };
 
-  const checkAlert = (inputField) => {
-    if (alerts.filter((alert) => alert.param === inputField).length) {
-      const msg = alerts.filter((alert) => alert.param === inputField)[0].msg;
-      return <p className="error">{msg}</p>;
-    } else {
-      return <p></p>;
-    }
-  };
-
-  const applyErrorStyle = (inputField) => {
-    if (alerts.filter((alert) => alert.param === inputField).length > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  const applyErrorStyle = (inputField) =>
+    alerts.filter((alert) => alert.param === inputField).length > 0;
 
   return (
     <div className="container">
@@ -57,7 +43,7 @@ const Showcase = ({ register, image, alerts }) => {
                 placeholder="Name"
                 onChange={setName}
               />
-              {checkAlert('name')}
+              <Alert field="name" />
             </div>
             <div className="form-group">
               <input
@@ -72,7 +58,7 @@ const Showcase = ({ register, image, alerts }) => {
                 placeholder="Username"
                 onChange={setUserName}
               />
-              {checkAlert('username')}
+              <Alert field="username" />
             </div>
             <div className="form-group">
               <input
@@ -87,7 +73,7 @@ const Showcase = ({ register, image, alerts }) => {
                 placeholder="Email"
                 onChange={setEmail}
               />
-              {checkAlert('email')}
+              <Alert field="email" />
             </div>
             <div className="form-group">
               <input
@@ -102,7 +88,7 @@ const Showcase = ({ register, image, alerts }) => {
                 placeholder="New Password"
                 onChange={setPassword}
               />
-              {checkAlert('password')}
+              <Alert field="password" />
             </div>
             <div className="form-group">
               <input
@@ -117,7 +103,7 @@ const Showcase = ({ register, image, alerts }) => {
                 placeholder="Confirm Password"
                 onChange={setPassword2}
               />
-              {checkAlert('password2')}
+              <Alert field="password2" />
             </div>
 
             <button className="btn btn-success btn-block-sm-only" type="submit">
@@ -140,4 +126,4 @@ const mapStateToProps = (state) => ({
   alerts: state.alert.alerts,
 });
 
-export default connect(mapStateToProps, { register, setAlert })(Showcase);
+export default connect(mapStateToProps, { register })(Showcase);
