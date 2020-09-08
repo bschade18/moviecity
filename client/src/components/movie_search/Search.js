@@ -17,6 +17,7 @@ import Feed from '../layout/Feed';
 import NoResults from '../elements/NoResults';
 import { useHomeFetch } from '../hooks/useHomeFetch';
 import NoImage from '../../img/no_image.jpg';
+import NoResultsImage from '../../img/arnold_jingle.jpg';
 
 const Search = () => {
   const [
@@ -68,7 +69,7 @@ const Search = () => {
         </Grid>
         {search && !movies[0] && (
           <NoResults
-            image="https://www.cinelinx.com/wp-content/uploads/2014/02/k2_items_cache_ce28ed525020bb6b16983cbb33e9862d_XL.jpg"
+            image={NoResultsImage}
             text1="You can't bench press your way out of this one"
             text2="No movies were found in your search. Try again."
           />

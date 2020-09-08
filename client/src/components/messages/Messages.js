@@ -13,6 +13,7 @@ import {
 import Spinner from '../layout/Spinner';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import NoResultsImage from '../../img/tommy-boy-car-fire copy.jpg';
 
 const Messages = ({
   user,
@@ -90,7 +91,7 @@ const Messages = ({
     if (!userAndFriendsMessages.length && !loading) {
       return (
         <NoResults
-          image="https://www.slashfilm.com/wp/wp-content/images/tommy-boy-contest.jpg"
+          image={NoResultsImage}
           text1="All because you wanted to save a couple extra pennies..."
           text2="Messages between you and friends will display here"
         />

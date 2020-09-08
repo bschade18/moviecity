@@ -4,6 +4,7 @@ import ReviewItem from './ReviewItem';
 import Feed from '../layout/Feed';
 import NoResults from '../elements/NoResults';
 import PropTypes from 'prop-types';
+import NoResultsImage from '../../img/happy-gilmore.jpg';
 
 const ReviewFeed = ({ reviews, user, loading }) => {
   const displayReviews = () => {
@@ -15,7 +16,7 @@ const ReviewFeed = ({ reviews, user, loading }) => {
     if (!userAndFriendsReviews.length && !loading) {
       return (
         <NoResults
-          image="https://www.pajiba.com/assets_c/2020/04/Happy-Gilmore-thumb-700x481-224295.png"
+          image={NoResultsImage}
           text1="Happy is upset you haven't reviewed any movies yet"
           text2="Reviews from you and your friends will display here when you do"
         />
