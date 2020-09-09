@@ -7,6 +7,7 @@ exports.validateRegister = [
   check('password', 'Enter a password with 6 or more characters').isLength({
     min: 6,
   }),
+  check('password2', 'Password confirmation is required').not().isEmpty(),
   body('password2').custom((value, { req }) => {
     if (value !== req.body.password) {
       throw new Error('Passwords do not match');
