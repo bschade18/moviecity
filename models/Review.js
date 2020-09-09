@@ -34,7 +34,7 @@ const ReviewSchema = new mongoose.Schema({
     default: Date.now,
   },
   movieId: {
-    type: String,
+    type: Number,
     required: true,
   },
   comments: [

@@ -31,8 +31,8 @@ const UserSchema = new mongoose.Schema({
     default: 'no-photo.jpg',
   },
   friends: [String],
-  favorites: [{ title: String, imgUrl: String, movieId: String }],
-  watchList: [{ title: String, imgUrl: String, movieId: String }],
+  favorites: [{ title: String, imgUrl: String, movieId: Number }],
+  watchList: [{ title: String, imgUrl: String, movieId: Number }],
   resetPasswordToken: String,
   resetPasswordExpire: Date,
 });
