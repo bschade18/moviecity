@@ -5,7 +5,12 @@ const FeedHeader = ({ heading, setShowMovieSearch }) => {
   return (
     <div className="feed-header">
       <div className="feed-header-heading">
-        <span onClick={() => setShowMovieSearch(true)}>{heading}</span>
+        <span
+          className="feed-header-movie-search"
+          onClick={() => setShowMovieSearch(true)}
+        >
+          {heading}
+        </span>
         <span
           className="feed-header-user-search"
           onClick={() => setShowMovieSearch(false)}

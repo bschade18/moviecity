@@ -241,9 +241,15 @@ a {
   justify-content: center;
 }
 
-.feed-header span {
+.feed-header span.feed-header-movie-search,
+.feed-header span.feed-header-user-search {
   font-size: 1.75rem;
   margin-left: 10px;
+}
+
+.feed-header p {
+  font-size: 1.75rem;
+  margin: 0 10px;
 }
 
 .feed-header-heading {
