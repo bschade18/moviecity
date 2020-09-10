@@ -241,14 +241,24 @@ a {
   justify-content: center;
 }
 
-.feed-header p {
+.feed-header span {
   font-size: 1.75rem;
-  margin: 0 10px;
+  margin-left: 10px;
 }
 
 .feed-header-heading {
   display: flex;
   align-items: center;
+}
+
+.feed-header-user-search {
+  display: none;
+}
+
+@media screen and (max-width: 400px) {
+  .feed-header span {
+    display: block;
+  }
 }
 
 /* NoResults */
@@ -738,8 +748,14 @@ a {
   .sidenav .sidenav-item {
     display: none;
   }
-  #user-search {
+  .user-search {
     display: none;
+  }
+
+  .user-search-mobile {
+    display: block;
+    position: static;
+    width: 100%;
   }
   .app-grid-container,
   .app-grid-search-container {
@@ -759,6 +775,10 @@ a {
   }
   .show-chat {
     width: 95%;
+  }
+
+  .feed-header-user-search {
+    display: block;
   }
 }
 

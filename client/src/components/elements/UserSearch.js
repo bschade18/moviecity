@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 
-const UserSearch = ({ users }) => {
+const UserSearch = ({ users, view }) => {
   const [search, setSearch] = useState('');
 
   const searchUsers = (e) => setSearch(e.target.value);
@@ -27,7 +27,13 @@ const UserSearch = ({ users }) => {
     ));
 
   return (
-    <div className="user-search m-auto d-none d-lg-block">
+    <div
+      className={
+        view === 'mobile'
+          ? 'user-search m-auto d-lg-block user-search-mobile'
+          : 'user-search m-auto d-lg-block'
+      }
+    >
       <div className="user-search-content">
         <FontAwesome className="fa-search-user" name="search" />
         <input

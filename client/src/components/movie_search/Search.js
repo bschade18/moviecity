@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import {
   imageUrl,
   posterSize,
@@ -18,6 +18,7 @@ import NoResults from '../elements/NoResults';
 import { useHomeFetch } from '../hooks/useHomeFetch';
 import NoImage from '../../img/no_image.jpg';
 import NoResultsImage from '../../img/arnold_jingle.jpg';
+import UserSearch from '../elements/UserSearch';
 
 const Search = () => {
   const [
@@ -28,7 +29,9 @@ const Search = () => {
     },
     fetchMovies,
   ] = useHomeFetch();
+
   const [search, setSearch] = useState('');
+  const [showMovieSearch, setShowMovieSearch] = useState(true);
 
   const searchMovies = (search) => {
     const endpoint = search ? searchBaseUrl + search : popularBaseUrl;
@@ -50,33 +53,43 @@ const Search = () => {
   return (
     <AppGrid component="search">
       <Feed>
-        <FeedHeader heading="Movie Search" />
-        <SearchBar callback={searchMovies} />
-        <Grid header={search ? 'Search Results' : 'Popular Movies'}>
-          {movies.map((movie) => (
-            <MovieThumb
-              key={movie.id}
-              clickable={true}
-              movieTitle={movie.original_title}
-              image={
-                movie.poster_path
-                  ? `${imageUrl}${posterSize}${movie.poster_path}`
-                  : NoImage
-              }
-              id={movie.id}
-            />
-          ))}
-        </Grid>
-        {search && !movies[0] && (
-          <NoResults
-            image={NoResultsImage}
-            text1="You can't bench press your way out of this one"
-            text2="No movies were found in your search. Try again."
-          />
-        )}
-        {loading && <Spinner />}
-        {currentPage < totalPages && !loading && (
-          <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+        <FeedHeader
+          heading="Movie Search"
+          setShowMovieSearch={setShowMovieSearch}
+        />
+
+        {showMovieSearch ? (
+          <Fragment>
+            <SearchBar callback={searchMovies} />
+            <Grid header={search ? 'Search Results' : 'Popular Movies'}>
+              {movies.map((movie) => (
+                <MovieThumb
+                  key={movie.id}
+                  clickable={true}
+                  movieTitle={movie.original_title}
+                  image={
+                    movie.poster_path
+                      ? `${imageUrl}${posterSize}${movie.poster_path}`
+                      : NoImage
+                  }
+                  id={movie.id}
+                />
+              ))}
+            </Grid>
+            {search && !movies[0] && (
+              <NoResults
+                image={NoResultsImage}
+                text1="You can't bench press your way out of this one"
+                text2="No movies were found in your search. Try again."
+              />
+            )}
+            {loading && <Spinner />}
+            {currentPage < totalPages && !loading && (
+              <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+            )}
+          </Fragment>
+        ) : (
+          <UserSearch view="mobile" />
         )}
       </Feed>
     </AppGrid>
