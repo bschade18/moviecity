@@ -43,6 +43,18 @@ exports.addMessage = asyncHandler(async (req, res, next) => {
   res.json(message.conversation);
 });
 
+// @route    PUT /message/:id
+// @desc     Update message
+// @access   Private
+exports.updateMessage = asyncHandler(async (req, res, next) => {
+  const message = await Message.findById(req.params.id);
+  message.conversation = req.body.readConvo;
+
+  await message.save();
+
+  res.json(message.conversation);
+});
+
 // @route DELETE /messages/:id
 // @desc Delete a message
 // @access Private

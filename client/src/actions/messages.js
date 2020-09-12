@@ -2,7 +2,7 @@ import api from '../utils/api';
 import {
   GET_MESSAGES,
   SET_CURRENT_MESSAGE,
-  UPDATE_MESSAGES,
+  UPDATE_MESSAGE,
   MESSAGES_LOADING,
   ADD_MESSAGE,
   DELETE_MESSAGE,
@@ -28,15 +28,11 @@ export const getMessages = () => async (dispatch) => {
 };
 
 // set the current message
-export const setCurrentMessage = (current) => async (dispatch) => {
-  try {
-    dispatch({
-      type: SET_CURRENT_MESSAGE,
-      payload: current,
-    });
-  } catch (err) {
-    console.log(err);
-  }
+export const setCurrentMessage = (current) => (dispatch) => {
+  dispatch({
+    type: SET_CURRENT_MESSAGE,
+    payload: current,
+  });
 };
 
 export const updateMessages = (messageId, message) => async (dispatch) => {
@@ -44,7 +40,7 @@ export const updateMessages = (messageId, message) => async (dispatch) => {
     const res = await api.put(`/messages/${messageId}`, message);
 
     dispatch({
-      type: UPDATE_MESSAGES,
+      type: UPDATE_MESSAGE,
       payload: res.data,
     });
   } catch (err) {

@@ -1,7 +1,7 @@
 import {
   GET_MESSAGES,
   SET_CURRENT_MESSAGE,
-  UPDATE_MESSAGES,
+  UPDATE_MESSAGE,
   MESSAGES_LOADING,
   ADD_MESSAGE,
   DELETE_MESSAGE,
@@ -42,6 +42,7 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case ADD_MESSAGE:
+    case UPDATE_MESSAGE:
       return {
         ...state,
         currentMessage: { ...state.currentMessage, conversation: payload },
@@ -52,16 +53,6 @@ export default function (state = initialState, action) {
         messages: state.messages.filter(
           (message) => message._id !== payload.id
         ),
-      };
-    case UPDATE_MESSAGES:
-      return {
-        ...state,
-        messages: state.messages.map((message) =>
-          message._id === payload.id
-            ? { ...message, conversation: [payload.conversation] }
-            : message
-        ),
-        loading: false,
       };
     case MESSAGES_LOADING:
       return {

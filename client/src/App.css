@@ -377,6 +377,12 @@ a {
   margin: 0 0.5rem;
 }
 
+.sidenav .fa-envelope,
+.mobile-nav .fa-envelope {
+  position: relative;
+  padding: 8px;
+}
+
 .sidenav-user {
   position: fixed;
   top: 5px;
@@ -389,6 +395,24 @@ a {
   border-radius: 50%;
 }
 
+.process-step {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+  background: red;
+  color: #fff;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  line-height: 15px;
+  padding: 8px;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Message */
 
 .message-movie-img {
@@ -396,8 +420,31 @@ a {
   border-radius: 5px;
 }
 
+.message-img-container {
+  position: relative;
+  padding-top: 8px;
+}
+
 .message-poster-row {
   width: 7rem;
+}
+
+.process-step-msg {
+  position: absolute;
+  top: 0;
+  right: 28px;
+  font-size: 14px;
+  background: red;
+  color: #fff;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  line-height: 15px;
+  padding: 8px;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Searchbar */
@@ -773,6 +820,7 @@ a {
   .mobile-nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
   }
 

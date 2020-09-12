@@ -9,6 +9,7 @@ import {
   getMessages,
   setCurrentMessage,
   addMessage,
+  updateMessages,
 } from '../../actions/messages';
 import Spinner from '../layout/Spinner';
 import { connect } from 'react-redux';
@@ -23,6 +24,7 @@ const Messages = ({
   currentMessage,
   addMessage,
   loading,
+  updateMessages,
 }) => {
   const [showMessage, setShowMessage] = useState(false);
   const [text, setText] = useState('');
@@ -75,7 +77,21 @@ const Messages = ({
         messageId: _id,
         movieImg: imageUrl,
       });
+      readMessages(conversation, _id);
     }
+  };
+
+  const readMessages = (convo, id) => {
+    const readConvo = convo.map((convo) => {
+      if (convo.name !== user.username) {
+        convo.read = true;
+        return convo;
+      } else {
+        return convo;
+      }
+    });
+
+    updateMessages(id, { readConvo });
   };
 
   const scrollToBottom = () => {
@@ -170,6 +186,7 @@ Messages.propTypes = {
   loading: PropTypes.bool.isRequired,
   addMessage: PropTypes.func.isRequired,
   messages: PropTypes.array.isRequired,
+  updateMessages: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -183,4 +200,5 @@ export default connect(mapStateToProps, {
   getMessages,
   setCurrentMessage,
   addMessage,
+  updateMessages,
 })(Messages);
