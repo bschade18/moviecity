@@ -49,7 +49,7 @@ export const updateMessages = (messageId, message) => async (dispatch) => {
 };
 
 // create and send initial message
-export const sendMessage = (newMessage) => async (dispatch) => {
+export const sendMessage = (newMessage, history) => async (dispatch) => {
   try {
     const res = await api.post('/messages', newMessage);
 
@@ -58,7 +58,7 @@ export const sendMessage = (newMessage) => async (dispatch) => {
       payload: res.data,
     });
 
-    setTimeout(() => (window.location = '/home'), 500);
+    setTimeout(() => history.push('/home'), 500);
   } catch (err) {
     console.error(err);
   }

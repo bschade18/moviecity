@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import { useMovieFetch } from '../hooks/useMovieFetch';
 
-const Movie = ({ match, user }) => {
+const Movie = ({ match, user, history }) => {
   const [movie, loading, error] = useMovieFetch(match.params.movieId);
 
   if (error) return <div>Something went wrong...</div>;
@@ -25,7 +25,12 @@ const Movie = ({ match, user }) => {
           <Spinner />
         ) : (
           <Fragment>
-            <MovieInfo movie={movie} user={user} loading={loading} />
+            <MovieInfo
+              movie={movie}
+              user={user}
+              loading={loading}
+              history={history}
+            />
             <Grid header="Cast" loading={loading}>
               {movie.actors.map((actor) => (
                 <Actor key={actor.credit_id} actor={actor} />

@@ -8,7 +8,7 @@ import { posterSize, imageUrl, backdropSize } from '../../config';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const MovieInfo = ({ movie, user, setFavorites, setWatchList }) => {
+const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
   const [favorite, setFavorite] = useState(false);
   const [toWatch, setToWatch] = useState(false);
   const {
@@ -143,10 +143,10 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList }) => {
           </div>
           <div className="movieinfo-review-btns">
             <div className="movieinfo-review-btn">
-              <ReviewModal movie={movie} user={user} />
+              <ReviewModal movie={movie} user={user} history={history} />
             </div>
             <div className="movieinfo-review-btn">
-              <MessageModal movie={movie} user={user} />
+              <MessageModal movie={movie} user={user} history={history} />
             </div>
           </div>
         </div>

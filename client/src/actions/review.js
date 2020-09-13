@@ -42,7 +42,7 @@ export const getReview = (id) => async (dispatch) => {
   }
 };
 
-export const addReview = (newReview) => async (dispatch) => {
+export const addReview = (newReview, history) => async (dispatch) => {
   try {
     const res = await api.post('/reviews', newReview);
 
@@ -51,7 +51,7 @@ export const addReview = (newReview) => async (dispatch) => {
       payload: res.data,
     });
 
-    setTimeout(() => (window.location = '/home'), 500);
+    setTimeout(() => history.push('/home'), 500);
   } catch (err) {
     console.error(err);
   }

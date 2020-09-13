@@ -20,6 +20,7 @@ const MessageModal = ({
   user,
   users,
   sendMessage,
+  history,
 }) => {
   const [recipient, setRecipient] = useState('');
   const [text, setText] = useState('');
@@ -36,7 +37,7 @@ const MessageModal = ({
       imageUrl: `${imageUrl}w185${poster_path}`,
     };
 
-    sendMessage(newMessage);
+    sendMessage(newMessage, history);
   };
 
   const toggle = () => setModal(!modal);

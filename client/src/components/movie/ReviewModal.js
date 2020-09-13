@@ -15,7 +15,7 @@ import { imageUrl } from '../../config';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const ReviewModal = ({ movie, addReview }) => {
+const ReviewModal = ({ movie, addReview, history }) => {
   const [rating, setRating] = useState(null);
   const [text, setText] = useState('');
   const [modal, setModal] = useState(false);
@@ -31,7 +31,7 @@ const ReviewModal = ({ movie, addReview }) => {
       movieId: movie.id,
     };
 
-    addReview(newReview);
+    addReview(newReview, history);
   };
 
   const setStar = (number) => {
