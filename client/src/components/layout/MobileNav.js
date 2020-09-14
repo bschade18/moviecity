@@ -38,7 +38,7 @@ const MobileNav = ({ logout, user, getMessages, messages }) => {
       <Link to="/messages" className="btn">
         <FontAwesome className="fa-envelope" name="envelope" size="2x">
           {unreadFromFriends() > 0 && (
-            <div className="process-step">
+            <div className="notification-badge">
               {unreadFromFriends() > 0 && unreadFromFriends()}
             </div>
           )}

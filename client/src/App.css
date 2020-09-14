@@ -395,19 +395,18 @@ a {
   border-radius: 50%;
 }
 
-.process-step {
+.notification-badge {
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 14px;
+  font-size: 10px;
   background: red;
   color: #fff;
   border-radius: 50%;
   height: 20px;
   width: 20px;
-  line-height: 15px;
+  line-height: 5px;
   padding: 8px;
-  border: 1px solid white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -429,19 +428,18 @@ a {
   width: 7rem;
 }
 
-.process-step-msg {
+.notification-badge-msg {
   position: absolute;
   top: 0;
   right: 28px;
-  font-size: 14px;
+  font-size: 10px;
   background: red;
   color: #fff;
   border-radius: 50%;
   height: 20px;
   width: 20px;
-  line-height: 15px;
+  line-height: 5px;
   padding: 8px;
-  border: 1px solid white;
   display: flex;
   justify-content: center;
   align-items: center;

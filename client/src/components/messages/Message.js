@@ -38,7 +38,7 @@ const Message = ({
             alt="movie poster"
           ></img>
           {unreadCount() > 0 && (
-            <div className="process-step-msg">
+            <div className="notification-badge-msg">
               {unreadCount() > 0 && unreadCount()}
             </div>
           )}
