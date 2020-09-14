@@ -5,29 +5,32 @@ import FeedHeader from '../layout/FeedHeader';
 import AppGrid from '../layout/AppGrid';
 import Feed from '../layout/Feed';
 import NoResults from '../elements/NoResults';
+import Spinner from '../layout/Spinner';
 import {
   getMessages,
   setCurrentMessage,
   addMessage,
   updateMessages,
 } from '../../actions/messages';
-import Spinner from '../layout/Spinner';
+
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NoResultsImage from '../../img/tommy-boy-car-fire copy.jpg';
+import useFormState from '../hooks/useFormState';
 
 const Messages = ({
   user,
   getMessages,
   messages,
-  setCurrentMessage,
   currentMessage,
+  setCurrentMessage,
   addMessage,
   loading,
   updateMessages,
 }) => {
-  const [showMessage, setShowMessage] = useState(false);
-  const [text, setText] = useState('');
+  const [showChat, setShowChat] = useState(false);
+  const [text, setText, resetText] = useFormState('');
+  const messagesEndRef = useRef(null);
 
   const {
     movieTitle,
@@ -41,64 +44,7 @@ const Messages = ({
     getMessages();
   }, [getMessages]);
 
-  const messagesEndRef = useRef(null);
-
-  const toggleChat = (chat) => {
-    if (showMessage) {
-      if (!loading) {
-        if (messages) {
-          setShowMessage(false);
-          setCurrentMessage({
-            movieTitle: '',
-            sender: '',
-            conversation: [],
-            messageId: '',
-            movieImg: '',
-            recipient: '',
-          });
-        }
-        getMessages();
-      }
-    } else {
-      const {
-        movieTitle,
-        sender,
-        conversation,
-        _id,
-        imageUrl,
-        recipient,
-      } = chat;
-      setShowMessage(true);
-      setCurrentMessage({
-        movieTitle,
-        sender,
-        recipient,
-        conversation,
-        messageId: _id,
-        movieImg: imageUrl,
-      });
-      readMessages(conversation, _id);
-    }
-  };
-
-  const readMessages = (convo, id) => {
-    const readConvo = convo.map((convo) => {
-      if (convo.name !== user.username) {
-        convo.read = true;
-        return convo;
-      } else {
-        return convo;
-      }
-    });
-
-    updateMessages(id, { readConvo });
-  };
-
-  const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const messagesList = () => {
+  const renderMessagesList = () => {
     const userAndFriendsMessages = messages.filter(
       (message) =>
         message.recipient === user.username || message.sender === user.username
@@ -124,7 +70,36 @@ const Messages = ({
     }
   };
 
-  const onChange = (e) => setText(e.target.value);
+  const toggleChat = (chat) => {
+    if (showChat) {
+      setShowChat(false);
+      getMessages();
+    } else {
+      setShowChat(true);
+      setCurrentMessage({
+        movieTitle: chat.movieTitle,
+        sender: chat.sender,
+        recipient: chat.recipient,
+        conversation: chat.conversation,
+        messageId: chat._id,
+        movieImg: chat.imageUrl,
+      });
+      readMessages(chat.conversation, chat._id);
+    }
+  };
+
+  const readMessages = (chat, messageId) => {
+    const readChat = chat.map((chatMessage) => {
+      if (chatMessage.name !== user.username) {
+        chatMessage.read = true;
+        return chatMessage;
+      } else {
+        return chatMessage;
+      }
+    });
+
+    updateMessages(messageId, { readChat });
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -133,20 +108,23 @@ const Messages = ({
     addMessage(messageId, { text });
     scrollToBottom();
 
-    setText('');
+    resetText('');
+  };
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   const renderChat = () =>
-    conversation.map((mes) => (
+    conversation.map((msg) => (
       <p
         className={
-          mes.name === user.username
-            ? 'show-chat-text recipient'
-            : 'show-chat-text sender'
+          'show-chat-text ' +
+          (msg.name === user.username ? 'recipient' : 'sender')
         }
-        key={mes._id}
+        key={msg._id}
       >
-        {mes.text}
+        {msg.text}
       </p>
     ));
 
@@ -157,9 +135,7 @@ const Messages = ({
     <AppGrid>
       <Feed>
         <FeedHeader heading="Messages" />
-        {!showMessage ? (
-          messagesList()
-        ) : (
+        {showChat ? (
           <ShowChat
             movieImg={movieImg}
             recipient={recipient}
@@ -167,11 +143,13 @@ const Messages = ({
             toggleChat={toggleChat}
             renderChat={renderChat}
             onSubmit={onSubmit}
-            onChange={onChange}
+            setText={setText}
             movieTitle={movieTitle}
             text={text}
             messagesEndRef={messagesEndRef}
           />
+        ) : (
+          renderMessagesList()
         )}
       </Feed>
     </AppGrid>

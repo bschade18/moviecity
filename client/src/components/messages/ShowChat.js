@@ -8,7 +8,7 @@ const ShowChat = ({
   toggleChat,
   renderChat,
   onSubmit,
-  onChange,
+  setText,
   text,
   messagesEndRef,
 }) => (
@@ -30,7 +30,7 @@ const ShowChat = ({
     </div>
     <form className="show-chat-form" onSubmit={onSubmit}>
       <input
-        onChange={onChange}
+        onChange={setText}
         type="text"
         className="form-control"
         value={text}

@@ -48,7 +48,7 @@ exports.addMessage = asyncHandler(async (req, res, next) => {
 // @access   Private
 exports.updateMessage = asyncHandler(async (req, res, next) => {
   const message = await Message.findById(req.params.id);
-  message.conversation = req.body.readConvo;
+  message.conversation = req.body.readChat;
 
   await message.save();
 
