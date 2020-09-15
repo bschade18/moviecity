@@ -278,7 +278,7 @@ a {
 .app-grid-container {
   display: grid;
   grid-template-columns: 2fr minmax(0, 5.5fr) 2.5fr;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .app-grid-search-container {
@@ -329,7 +329,7 @@ a {
   bottom: 0;
   background: white;
   color: black;
-  padding: 1rem;
+  padding: 10px;
   font-size: 1.5rem;
   display: none;
 }
