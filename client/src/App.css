@@ -850,7 +850,7 @@ a {
   height: 520px;
   border: 0.5px solid gray;
   border-radius: 10px;
-  margin: 4rem auto;
+  margin: 3rem auto;
   max-width: 90%;
   display: flex;
   flex-direction: column;
@@ -915,7 +915,7 @@ a {
   word-wrap: break-word;
   border-radius: 20px;
   padding: 0.5rem 0.75rem;
-  max-width: 30%;
+  max-width: 50%;
 }
 
 @media screen and (max-width: 576px) {

@@ -65,7 +65,9 @@ export const sendMessage = (newMessage, history) => async (dispatch) => {
 };
 
 // add message to current conversation
-export const addMessage = (messageId, formData) => async (dispatch) => {
+export const addMessage = (messageId, formData, scrollToBottom) => async (
+  dispatch
+) => {
   try {
     const res = await api.post(`/messages/${messageId}`, formData);
 
@@ -73,6 +75,8 @@ export const addMessage = (messageId, formData) => async (dispatch) => {
       type: ADD_MESSAGE,
       payload: res.data,
     });
+
+    scrollToBottom();
   } catch (err) {
     console.error(err);
   }

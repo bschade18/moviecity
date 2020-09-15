@@ -105,14 +105,13 @@ const Messages = ({
     e.preventDefault();
     if (!text) return;
 
-    addMessage(messageId, { text });
-    scrollToBottom();
+    addMessage(messageId, { text }, scrollToBottom);
 
     resetText('');
   };
 
   const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current.scrollIntoView({ behavior: 'auto' });
   };
 
   const renderChat = () =>
@@ -147,6 +146,7 @@ const Messages = ({
             movieTitle={movieTitle}
             text={text}
             messagesEndRef={messagesEndRef}
+            scrollToBottom={scrollToBottom}
           />
         ) : (
           renderMessagesList()
