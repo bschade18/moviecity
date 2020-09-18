@@ -2,15 +2,20 @@ import React, { useState } from 'react';
 import Progress from './Progress';
 import api from '../../utils/api';
 import { updateUserImage } from '../../actions/auth';
+import { updateUser } from '../../actions/users';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import useFormState from '../hooks/useFormState';
 
-const UserProfile = ({ updateUserImage, user }) => {
+const UserProfile = ({ updateUserImage, user, updateUser }) => {
   const [file, setFile] = useState('');
   const [filename, setFilename] = useState('Choose File');
   const [uploadedFile, setUploadedFile] = useState('');
   const [message, setMessage] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
+
+  const [name, setName] = useFormState(user.name);
+  const [username, setUsername] = useFormState(user.username);
 
   const onChange = (e) => {
     setFile(e.target.files[0]);
@@ -51,6 +56,12 @@ const UserProfile = ({ updateUserImage, user }) => {
     }
   };
 
+  const onSubmitUserChanges = (e) => {
+    e.preventDefault();
+
+    updateUser(user._id, { name, username });
+  };
+
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -85,6 +96,13 @@ const UserProfile = ({ updateUserImage, user }) => {
         </div>
       ) : null}
       {message && <p className="text-center mt-2">{message}</p>}
+      <form onSubmit={onSubmitUserChanges}>
+        <label>Name</label>
+        <input type="text" value={name} onChange={setName} />
+        <label>Username</label>
+        <input type="text" value={username} onChange={setUsername} />
+        <button type="submit">Save</button>
+      </form>
     </div>
   );
 };
@@ -92,10 +110,13 @@ const UserProfile = ({ updateUserImage, user }) => {
 UserProfile.propTypes = {
   updateUserImage: PropTypes.func,
   user: PropTypes.object.isRequired,
+  updateUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { updateUserImage })(UserProfile);
+export default connect(mapStateToProps, { updateUserImage, updateUser })(
+  UserProfile
+);

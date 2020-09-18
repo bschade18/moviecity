@@ -1,5 +1,5 @@
 import api from '../utils/api';
-import { GET_USERS, GET_USER, FETCH_USER } from './types';
+import { GET_USERS, GET_USER, FETCH_USER, UPDATE_USER } from './types';
 
 export const getUsers = () => async (dispatch) => {
   try {
@@ -24,6 +24,21 @@ export const getUser = (id) => async (dispatch) => {
 
     dispatch({
       type: GET_USER,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const updateUser = (id, field) => async (dispatch) => {
+  try {
+    console.log(field);
+    const res = await api.put(`/users/${id}`, field);
+    console.log(res.data);
+
+    dispatch({
+      type: UPDATE_USER,
       payload: res.data,
     });
   } catch (err) {

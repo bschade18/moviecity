@@ -33,3 +33,4 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 
 export const GET_USER = 'GET_USER';
 export const FETCH_USER = 'FETCH_USER';
+export const UPDATE_USER = 'UPDATE_USER';

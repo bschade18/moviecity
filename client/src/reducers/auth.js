@@ -10,6 +10,7 @@ import {
   SET_WATCHLIST,
   SET_FRIENDS,
   UPDATE_IMAGE,
+  UPDATE_USER,
 } from '../actions/types';
 
 const initialState = {
@@ -83,6 +84,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         user: { ...state.user, photo: payload },
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: { ...state.user, ...payload },
       };
     default:
       return state;

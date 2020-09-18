@@ -25,9 +25,10 @@ const UserHome = ({
   const [view, setView] = useState('Reviews');
 
   useEffect(() => {
+    console.log('it worked!!');
     getReviews();
     getUsers();
-  }, [getReviews, getUsers]);
+  }, [getReviews, getUsers, user.name]);
 
   const { username } = match.params;
 
@@ -90,7 +91,7 @@ const UserHome = ({
         {view === 'Reviews' && displayUserReviews()}
         {view === 'Favorites' && displayUserList('favorites')}
         {view === 'Watchlist' && displayUserList('watchList')}
-        {view === 'Edit Image' && <UserProfile />}
+        {view === 'Edit Image' && <UserProfile user={user} />}
       </Feed>
     </AppGrid>
   );
