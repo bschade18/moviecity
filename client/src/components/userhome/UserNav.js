@@ -7,7 +7,7 @@ const UserNav = ({
   username,
   renderNavButton,
   toggleFriend,
-  userId,
+  profileUserId,
 }) => {
   return (
     <div className="feed-header">
@@ -27,8 +27,9 @@ const UserNav = ({
         <button
           className={
             'btn ml-3  ' +
-            (user._id === userId ? 'd-none ' : 'd-block btn-success ') +
-            (user.friends.filter((friend) => friend._id === userId).length
+            (user._id === profileUserId ? 'd-none ' : 'd-block btn-success ') +
+            (user.friends.filter((friend) => friend._id === profileUserId)
+              .length
               ? 'friend-btn'
               : 'friend-btn-hide')
           }
@@ -36,7 +37,8 @@ const UserNav = ({
         >
           <span>
             {' '}
-            {user.friends.filter((friend) => friend._id === userId).length
+            {user.friends.filter((friend) => friend._id === profileUserId)
+              .length
               ? ''
               : 'Add Friend'}
           </span>
@@ -47,7 +49,9 @@ const UserNav = ({
         {renderNavButton('Reviews')}
         {renderNavButton('Favorites')}
         {renderNavButton('Watchlist')}
-        <div>{user._id === userId && renderNavButton('Edit Profile')}</div>
+        <div>
+          {user._id === profileUserId && renderNavButton('Edit Profile')}
+        </div>
       </div>
     </div>
   );

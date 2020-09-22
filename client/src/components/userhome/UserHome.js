@@ -31,27 +31,22 @@ const UserHome = ({
 
   const { username } = match.params;
 
-  const getUserPage = () => {
-    const user = users.filter((user) => user.username === username);
-    return user[0]._id;
+  const profileUserId = () => {
+    return users.find((user) => user.username === username)._id;
   };
 
   const toggleFriend = () => {
-    let userPageId = getUserPage();
-
+    const profileId = profileUserId();
+    const { friends } = user;
     let updatedUser;
 
-    const userFriends = user.friends;
-
-    if (userFriends.filter((friend) => friend._id === userPageId).length) {
+    if (friends.filter((friend) => friend._id === profileId).length) {
       updatedUser = {
-        friends: [
-          ...user.friends.filter((friend) => friend._id !== userPageId),
-        ],
+        friends: [...friends.filter((friend) => friend._id !== profileId)],
       };
     } else {
       updatedUser = {
-        friends: [...user.friends, userPageId],
+        friends: [...friends, profileId],
       };
     }
 
@@ -73,14 +68,14 @@ const UserHome = ({
   const displayUserList = (userList) =>
     users
       .filter((user) => {
-        return user._id === getUserPage();
+        return user._id === profileUserId();
       })[0]
       [userList].map((movie) => <UserList movie={movie} key={movie._id} />);
 
   const displayUserReviews = () =>
     reviews
       .filter((review) => {
-        return review.user._id === getUserPage();
+        return review.user._id === profileUserId();
       })
       .map((review) => <ReviewItem review={review} key={review._id} />);
 
@@ -94,7 +89,7 @@ const UserHome = ({
         <UserNav
           users={users}
           user={user}
-          userId={getUserPage()}
+          profileUserId={profileUserId()}
           username={username}
           renderNavButton={renderNavButton}
           toggleFriend={toggleFriend}
