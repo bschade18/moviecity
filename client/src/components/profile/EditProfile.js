@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import useFormState from '../hooks/useFormState';
 
-const UserProfile = ({ updateUserImage, user, updateUser }) => {
+const EditProfile = ({ updateUserImage, user, updateUser }) => {
   const [file, setFile] = useState('');
   const [filename, setFilename] = useState('Choose File');
   const [uploadedFile, setUploadedFile] = useState('');
@@ -124,7 +124,7 @@ const UserProfile = ({ updateUserImage, user, updateUser }) => {
   );
 };
 
-UserProfile.propTypes = {
+EditProfile.propTypes = {
   updateUserImage: PropTypes.func,
   user: PropTypes.object.isRequired,
   updateUser: PropTypes.func.isRequired,
@@ -135,5 +135,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { updateUserImage, updateUser })(
-  UserProfile
+  EditProfile
 );

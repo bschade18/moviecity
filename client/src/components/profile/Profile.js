@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReviewItem from '../home/ReviewItem';
 import Spinner from '../layout/Spinner';
 import UserList from './UserList';
-import UserProfile from '../userprofile/UserProfile';
+import EditProfile from './EditProfile';
 import UserNav from './UserNav';
 import AppGrid from '../layout/AppGrid';
 import Feed from '../layout/Feed';
@@ -13,7 +13,7 @@ import { getUsers } from '../../actions/users';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const UserHome = ({
+const Profile = ({
   match,
   user,
   reviews,
@@ -97,13 +97,13 @@ const UserHome = ({
         {view === 'Reviews' && displayUserReviews()}
         {view === 'Favorites' && displayUserList('favorites')}
         {view === 'Watchlist' && displayUserList('watchList')}
-        {view === 'Edit Profile' && <UserProfile user={user} />}
+        {view === 'Edit Profile' && <EditProfile user={user} />}
       </Feed>
     </AppGrid>
   );
 };
 
-UserHome.propTypes = {
+Profile.propTypes = {
   user: PropTypes.object.isRequired,
   reviews: PropTypes.array.isRequired,
   getReviews: PropTypes.func.isRequired,
@@ -122,4 +122,4 @@ export default connect(mapStateToProps, {
   getUsers,
   updateUserFriends,
   logout,
-})(UserHome);
+})(Profile);

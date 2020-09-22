@@ -10,7 +10,7 @@ import Home from './components/home/Home';
 import Messages from './components/messages/Messages';
 import Search from './components/movie_search/Search';
 import Movie from './components/movie/Movie';
-import UserHome from './components/userhome/UserHome';
+import Profile from './components/profile/Profile';
 import LoginFail from './components/auth/LoginFail';
 import Review from './components/review/Review';
 import ResetPassword from './components/auth/ResetPassword';
@@ -53,7 +53,7 @@ const App = () => {
           <PrivateRoute exact path="/messages" component={Messages} />
           <PrivateRoute exact path="/search" component={Search} />
           <PrivateRoute exact path="/movie/:movieId" component={Movie} />
-          <PrivateRoute exact path="/:username" component={UserHome} />
+          <PrivateRoute exact path="/:username" component={Profile} />
           <Route component={NotFound} />
         </Switch>
       </Router>
