@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Message = ({
-  message: { sender, imageUrl, movieTitle, conversation, _id, recipient },
+  message: { sender, recipient, imageUrl, movieTitle, conversation, _id },
   toggleChat,
   user,
 }) => {
   const unreadCount = () => {
     let total = 0;
     conversation.forEach((convo) => {
-      if (!convo.read && convo.name !== user.username) {
+      if (!convo.read && convo.user !== user._id) {
         total++;
       }
     });
@@ -38,9 +38,7 @@ const Message = ({
             alt="movie poster"
           ></img>
           {unreadCount() > 0 && (
-            <div className="notification-badge-msg">
-              {unreadCount() > 0 && unreadCount()}
-            </div>
+            <div className="notification-badge-msg">{unreadCount()}</div>
           )}
         </div>
       </div>
@@ -48,7 +46,9 @@ const Message = ({
       <div className="left-text message-content-row">
         {movieTitle}{' '}
         <div>
-          {user.username === sender ? `with: ${recipient}` : `with: ${sender}`}
+          {user._id === sender._id
+            ? `with: ${recipient.username}`
+            : `with: ${sender.username}`}
         </div>
       </div>
     </div>

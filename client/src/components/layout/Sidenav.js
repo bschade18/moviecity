@@ -6,22 +6,22 @@ import { connect } from 'react-redux';
 import { getMessages } from '../../actions/messages';
 import PropTypes from 'prop-types';
 
-const Sidenav = ({ logout, user, getMessages, messages }) => {
+const Sidenav = ({ getMessages, messages, user, logout }) => {
   useEffect(() => {
     getMessages();
   }, [getMessages]);
 
-  const userAndFriendsMessages = () =>
+  const messagesWithFriends = () =>
     messages.filter(
-      (message) =>
-        message.recipient === user.username || message.sender === user.username
+      ({ recipient, sender }) =>
+        recipient._id === user._id || sender._id === user._id
     );
 
   const unreadFromFriends = () => {
     let total = 0;
-    userAndFriendsMessages().forEach((message) =>
+    messagesWithFriends().forEach((message) =>
       message.conversation.forEach((convo) => {
-        if (!convo.read && convo.name !== user.username) {
+        if (!convo.read && convo.user !== user._id) {
           total++;
         }
       })
@@ -50,9 +50,7 @@ const Sidenav = ({ logout, user, getMessages, messages }) => {
         <div className="sidenav-item">
           <FontAwesome className="fa-envelope" name="envelope" size="2x">
             {unreadFromFriends() > 0 && (
-              <div className="notification-badge">
-                {unreadFromFriends() > 0 && unreadFromFriends()}
-              </div>
+              <div className="notification-badge">{unreadFromFriends()}</div>
             )}
           </FontAwesome>
           <span className="d-block">Messages</span>

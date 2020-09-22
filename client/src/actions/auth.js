@@ -99,7 +99,7 @@ export const updateUserFriends = (updatedUser, user) => async (dispatch) => {
 
     dispatch({
       type: SET_FRIENDS,
-      payload: res.data.friends,
+      payload: res.data,
     });
   } catch (err) {
     console.log(err);

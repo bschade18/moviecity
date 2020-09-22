@@ -3,9 +3,7 @@ import DeleteModal from './DeleteModal';
 import PropTypes from 'prop-types';
 
 const ShowChat = ({
-  movieImg,
-  messageId,
-  movieTitle,
+  currentMessage: { movieTitle, imageUrl, _id },
   toggleChat,
   renderChat,
   onSubmit,
@@ -21,13 +19,13 @@ const ShowChat = ({
     <div className="show-chat">
       <div className="show-chat-heading">
         <span className="show-chat-heading-left">
-          <img className="show-chat-img mr-3" src={movieImg} alt="movie" />
+          <img className="show-chat-img mr-3" src={imageUrl} alt="movie" />
           <h3 className="show-chat-movietitle">{movieTitle}</h3>
         </span>
 
         <div className="show-chat-icons">
           <i className="fa fa-times" onClick={toggleChat}></i>
-          <DeleteModal id={messageId} toggleChat={toggleChat} />
+          <DeleteModal id={_id} toggleChat={toggleChat} />
         </div>
       </div>
       <div className="show-chat-body">
@@ -54,9 +52,7 @@ const ShowChat = ({
 };
 
 ShowChat.propTypes = {
-  movieImg: PropTypes.string.isRequired,
-  messageId: PropTypes.string.isRequired,
-  movieTitle: PropTypes.string.isRequired,
+  currentMessage: PropTypes.object.isRequired,
   toggleChat: PropTypes.func.isRequired,
   renderChat: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,

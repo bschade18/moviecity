@@ -255,6 +255,7 @@ a {
 .feed-header-heading {
   display: flex;
   align-items: center;
+  /* justify-content: space-between; */
 }
 
 .feed-header-user-search {

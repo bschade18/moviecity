@@ -91,7 +91,9 @@ exports.login = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    let user = await User.findById(req.user.id).select('-password');
+    let user = await User.findById(req.user.id).select('-password').populate({
+      path: 'friends',
+    });
 
     res.json(user);
   } catch (err) {

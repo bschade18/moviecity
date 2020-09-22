@@ -7,7 +7,7 @@ import { getUsers } from '../../actions/users';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const Home = ({ user, reviews, reviewsLoading, getReviews, getUsers }) => {
+const Home = ({ getReviews, getUsers, reviews, user, reviewsLoading }) => {
   useEffect(() => {
     getReviews();
   }, [getReviews]);
@@ -28,11 +28,11 @@ const Home = ({ user, reviews, reviewsLoading, getReviews, getUsers }) => {
 };
 
 Home.propTypes = {
-  user: PropTypes.object.isRequired,
-  reviews: PropTypes.array.isRequired,
-  reviewsLoading: PropTypes.bool.isRequired,
   getReviews: PropTypes.func.isRequired,
   getUsers: PropTypes.func.isRequired,
+  reviews: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
+  reviewsLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({

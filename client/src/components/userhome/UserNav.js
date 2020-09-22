@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const UserNav = ({ user, users, username, renderNavButton, toggleFriend }) => {
+const UserNav = ({
+  user,
+  users,
+  username,
+  renderNavButton,
+  toggleFriend,
+  userId,
+}) => {
   return (
     <div className="feed-header">
       <div className="feed-header-heading">
@@ -20,19 +27,27 @@ const UserNav = ({ user, users, username, renderNavButton, toggleFriend }) => {
         <button
           className={
             'btn ml-3  ' +
-            (user.username === username ? 'd-none ' : 'd-block btn-success ') +
-            (user.friends.includes(username) ? 'friend-btn' : 'friend-btn-hide')
+            (user._id === userId ? 'd-none ' : 'd-block btn-success ') +
+            (user.friends.filter((friend) => friend._id === userId).length
+              ? 'friend-btn'
+              : 'friend-btn-hide')
           }
           onClick={() => toggleFriend()}
         >
-          <span> {user.friends.includes(username) ? '' : 'Add Friend'}</span>
+          <span>
+            {' '}
+            {user.friends.filter((friend) => friend._id === userId).length
+              ? ''
+              : 'Add Friend'}
+          </span>
         </button>
       </div>
+
       <div className="user-nav mt-3">
         {renderNavButton('Reviews')}
         {renderNavButton('Favorites')}
         {renderNavButton('Watchlist')}
-        {user.username === username && renderNavButton('Edit Image')}
+        <div>{user._id === userId && renderNavButton('Edit Profile')}</div>
       </div>
     </div>
   );

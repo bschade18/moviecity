@@ -5,17 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const ReviewItem = ({
-  review: {
-    rating,
-    username,
-    imageUrl,
-    movieId,
-    movieTitle,
-    text,
-    _id,
-    comments,
-    user,
-  },
+  review: { rating, imageUrl, movieId, movieTitle, text, _id, comments, user },
   page,
 }) => {
   const renderStar = (num) => (
@@ -30,7 +20,7 @@ const ReviewItem = ({
           className="user-avatar"
           alt="user"
         />
-        <h6 className="ml-2 review-item-username">{username}</h6>
+        <h6 className="ml-2 review-item-username">{user.username}</h6>
       </Link>
       <div className="review-item-content">
         <div className="review-item-thumb">
@@ -55,7 +45,7 @@ const ReviewItem = ({
       {page && (
         <Link className="review-item-link" to={`/review/${_id}`}>
           <i className="far fa-comment-alt"></i>{' '}
-          <span>{comments.length ? comments.length : null}</span>
+          <span>{comments.length > 0 && comments.length}</span>
         </Link>
       )}
     </div>

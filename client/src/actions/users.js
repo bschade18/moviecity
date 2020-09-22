@@ -33,9 +33,7 @@ export const getUser = (id) => async (dispatch) => {
 
 export const updateUser = (id, field) => async (dispatch) => {
   try {
-    console.log(field);
     const res = await api.put(`/users/${id}`, field);
-    console.log(res.data);
 
     dispatch({
       type: UPDATE_USER,

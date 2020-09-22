@@ -6,7 +6,7 @@ const ErrorResponse = require('../utils/errorResponse');
 // @desc Get all messages
 // @access Private
 exports.getMessages = asyncHandler(async (req, res, next) => {
-  const messages = await Message.find();
+  const messages = await Message.find().populate('sender recipient');
 
   res.status(200).json(messages);
 });
@@ -15,8 +15,10 @@ exports.getMessages = asyncHandler(async (req, res, next) => {
 // @desc Create a message
 // @access Private
 exports.createMessage = asyncHandler(async (req, res, next) => {
+  req.body.conversation[0].user = req.user.id;
   const message = new Message(req.body);
-  message.conversation.user = req.user.id;
+
+  message.sender = req.user.id;
 
   await message.save();
 

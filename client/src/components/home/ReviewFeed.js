@@ -6,14 +6,16 @@ import NoResults from '../elements/NoResults';
 import PropTypes from 'prop-types';
 import NoResultsImage from '../../img/happy-gilmore.jpg';
 
-const ReviewFeed = ({ reviews, user, loading }) => {
-  const displayReviews = () => {
-    const userAndFriendsReviews = reviews.filter(
-      (review) =>
-        user.friends.includes(review.username) ||
-        user.username === review.username
-    );
-    if (!userAndFriendsReviews.length && !loading) {
+const ReviewFeed = ({ user, reviews, loading }) => {
+  const renderReviews = () => {
+    const userAndFriendsReviews = reviews.filter((review) => {
+      const userFriends = user.friends;
+      return (
+        userFriends.filter((userFriend) => userFriend._id === review.user._id)
+          .length || review.user._id === user._id
+      );
+    });
+    if (!loading && !userAndFriendsReviews.length) {
       return (
         <NoResults
           image={NoResultsImage}
@@ -31,7 +33,7 @@ const ReviewFeed = ({ reviews, user, loading }) => {
   return (
     <Feed>
       <FeedHeader heading="MovieCity" />
-      {displayReviews()}
+      {renderReviews()}
     </Feed>
   );
 };

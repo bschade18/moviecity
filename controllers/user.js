@@ -34,7 +34,11 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
   const user = await User.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
-  }).select('-password');
+  })
+    .select('-password')
+    .populate({
+      path: 'friends',
+    });
 
   if (!user) {
     return next(

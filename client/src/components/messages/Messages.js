@@ -32,14 +32,6 @@ const Messages = ({
   const [text, setText, resetText] = useFormState('');
   const messagesEndRef = useRef(null);
 
-  const {
-    movieTitle,
-    conversation,
-    messageId,
-    movieImg,
-    recipient,
-  } = currentMessage;
-
   useEffect(() => {
     getMessages();
   }, [getMessages]);
@@ -47,7 +39,7 @@ const Messages = ({
   const renderMessagesList = () => {
     const userAndFriendsMessages = messages.filter(
       (message) =>
-        message.recipient === user.username || message.sender === user.username
+        message.recipient._id === user._id || message.sender._id === user._id
     );
 
     if (!userAndFriendsMessages.length && !loading) {
@@ -76,14 +68,7 @@ const Messages = ({
       getMessages();
     } else {
       setShowChat(true);
-      setCurrentMessage({
-        movieTitle: chat.movieTitle,
-        sender: chat.sender,
-        recipient: chat.recipient,
-        conversation: chat.conversation,
-        messageId: chat._id,
-        movieImg: chat.imageUrl,
-      });
+      setCurrentMessage({ ...chat });
       readMessages(chat.conversation, chat._id);
     }
   };
@@ -105,7 +90,7 @@ const Messages = ({
     e.preventDefault();
     if (!text) return;
 
-    addMessage(messageId, { text }, scrollToBottom);
+    addMessage(currentMessage._id, { text }, scrollToBottom);
 
     resetText('');
   };
@@ -115,11 +100,10 @@ const Messages = ({
   };
 
   const renderChat = () =>
-    conversation.map((msg) => (
+    currentMessage.conversation.map((msg) => (
       <p
         className={
-          'show-chat-text ' +
-          (msg.name === user.username ? 'recipient' : 'sender')
+          'show-chat-text ' + (msg.user === user._id ? 'recipient' : 'sender')
         }
         key={msg._id}
       >
@@ -136,14 +120,11 @@ const Messages = ({
         <FeedHeader heading="Messages" />
         {showChat ? (
           <ShowChat
-            movieImg={movieImg}
-            recipient={recipient}
-            messageId={messageId}
             toggleChat={toggleChat}
             renderChat={renderChat}
             onSubmit={onSubmit}
             setText={setText}
-            movieTitle={movieTitle}
+            currentMessage={currentMessage}
             text={text}
             messagesEndRef={messagesEndRef}
             scrollToBottom={scrollToBottom}

@@ -25,23 +25,33 @@ const UserHome = ({
   const [view, setView] = useState('Reviews');
 
   useEffect(() => {
-    console.log('it worked!!');
     getReviews();
     getUsers();
   }, [getReviews, getUsers, user.name]);
 
   const { username } = match.params;
 
+  const getUserPage = () => {
+    const user = users.filter((user) => user.username === username);
+    return user[0]._id;
+  };
+
   const toggleFriend = () => {
+    let userPageId = getUserPage();
+
     let updatedUser;
 
-    if (user.friends.includes(username)) {
+    const userFriends = user.friends;
+
+    if (userFriends.filter((friend) => friend._id === userPageId).length) {
       updatedUser = {
-        friends: [...user.friends.filter((friend) => friend !== username)],
+        friends: [
+          ...user.friends.filter((friend) => friend._id !== userPageId),
+        ],
       };
     } else {
       updatedUser = {
-        friends: [...user.friends, username],
+        friends: [...user.friends, userPageId],
       };
     }
 
@@ -70,7 +80,7 @@ const UserHome = ({
   const displayUserReviews = () =>
     reviews
       .filter((review) => {
-        return username === review.username;
+        return review.user._id === user._id;
       })
       .map((review) => <ReviewItem review={review} key={review._id} />);
 
@@ -84,6 +94,7 @@ const UserHome = ({
         <UserNav
           users={users}
           user={user}
+          userId={getUserPage()}
           username={username}
           renderNavButton={renderNavButton}
           toggleFriend={toggleFriend}
@@ -91,7 +102,7 @@ const UserHome = ({
         {view === 'Reviews' && displayUserReviews()}
         {view === 'Favorites' && displayUserList('favorites')}
         {view === 'Watchlist' && displayUserList('watchList')}
-        {view === 'Edit Image' && <UserProfile user={user} />}
+        {view === 'Edit Profile' && <UserProfile user={user} />}
       </Feed>
     </AppGrid>
   );

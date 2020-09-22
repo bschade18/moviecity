@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 
 const MessageSchema = new mongoose.Schema({
   sender: {
-    type: String,
-    required: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
   },
   recipient: {
-    type: String,
-    required: true,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
   },
   movieTitle: {
     type: String,

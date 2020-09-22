@@ -78,7 +78,7 @@ export default function (state = initialState, action) {
     case SET_FRIENDS:
       return {
         ...state,
-        user: { ...state.user, friends: payload },
+        user: { ...state.user, ...payload },
       };
     case UPDATE_IMAGE:
       return {

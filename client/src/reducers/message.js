@@ -10,13 +10,7 @@ import {
 
 const initialState = {
   messages: [],
-  currentMessage: {
-    movieTitle: '',
-    sender: '',
-    conversation: [],
-    messageId: '',
-    movieImg: '',
-  },
+  currentMessage: {},
   loading: true,
 };
 

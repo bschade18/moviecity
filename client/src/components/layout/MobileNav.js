@@ -6,22 +6,22 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getMessages } from '../../actions/messages';
 
-const MobileNav = ({ logout, user, getMessages, messages }) => {
+const MobileNav = ({ getMessages, messages, user, logout }) => {
   useEffect(() => {
     getMessages();
   }, [getMessages]);
 
-  const userAndFriendsMessages = () =>
+  const messagesWithFriends = () =>
     messages.filter(
-      (message) =>
-        message.recipient === user.username || message.sender === user.username
+      ({ recipient, sender }) =>
+        recipient._id === user._id || sender._id === user._id
     );
 
   const unreadFromFriends = () => {
     let total = 0;
-    userAndFriendsMessages().forEach((message) =>
+    messagesWithFriends().forEach((message) =>
       message.conversation.forEach((convo) => {
-        if (!convo.read && convo.name !== user.username) {
+        if (!convo.read && convo.user !== user._id) {
           total++;
         }
       })
@@ -58,9 +58,10 @@ const MobileNav = ({ logout, user, getMessages, messages }) => {
 };
 
 MobileNav.propTypes = {
-  logout: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
   getMessages: PropTypes.func.isRequired,
+  messages: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

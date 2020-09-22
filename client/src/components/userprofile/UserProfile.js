@@ -65,6 +65,7 @@ const UserProfile = ({ updateUserImage, user, updateUser }) => {
   return (
     <div>
       <form onSubmit={onSubmit}>
+        <label>Profile Picture</label>
         <div className="custom-file mb-4">
           <input
             type="file"
@@ -97,11 +98,27 @@ const UserProfile = ({ updateUserImage, user, updateUser }) => {
       ) : null}
       {message && <p className="text-center mt-2">{message}</p>}
       <form onSubmit={onSubmitUserChanges}>
-        <label>Name</label>
-        <input type="text" value={name} onChange={setName} />
-        <label>Username</label>
-        <input type="text" value={username} onChange={setUsername} />
-        <button type="submit">Save</button>
+        <div className="form-group mt-2">
+          <label>Name</label>
+          <input
+            type="text"
+            className="form-control"
+            value={name}
+            onChange={setName}
+          />
+        </div>
+        <div className="form-group">
+          <label>Username</label>
+          <input
+            type="text"
+            className="form-control"
+            value={username}
+            onChange={setUsername}
+          />
+        </div>
+        <button className="btn btn-success btn-block" type="submit">
+          Save
+        </button>
       </form>
     </div>
   );

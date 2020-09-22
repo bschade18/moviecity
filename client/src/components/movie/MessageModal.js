@@ -18,7 +18,6 @@ import PropTypes from 'prop-types';
 const MessageModal = ({
   movie: { original_title, poster_path },
   user,
-  users,
   sendMessage,
   history,
 }) => {
@@ -28,10 +27,12 @@ const MessageModal = ({
 
   const onSubmitMessage = (e) => {
     e.preventDefault();
+    let messageRecipient = user.friends.filter(
+      (friend) => friend.username === recipient
+    );
 
     const newMessage = {
-      sender: user.username,
-      recipient,
+      recipient: messageRecipient[0]._id,
       movieTitle: original_title,
       conversation: [{ name: user.username, text: text }],
       imageUrl: `${imageUrl}w185${poster_path}`,
@@ -64,15 +65,11 @@ const MessageModal = ({
                 id="recipient"
               >
                 <option value="">--Select Friend--</option>
-                {users
-                  .filter((friend) => user.friends.includes(friend.username))
-                  .map((user) => {
-                    return (
-                      <option key={user.username} value={user.username}>
-                        {user.username}
-                      </option>
-                    );
-                  })}
+                {user.friends.map((friend) => (
+                  <option key={friend._id} value={friend.username}>
+                    {friend.username}
+                  </option>
+                ))}
               </select>
             </FormGroup>
             <FormGroup>
@@ -97,10 +94,10 @@ const MessageModal = ({
 };
 
 MessageModal.propTypes = {
-  users: PropTypes.array.isRequired,
   sendMessage: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   movie: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
