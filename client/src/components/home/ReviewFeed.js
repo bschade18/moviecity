@@ -9,10 +9,10 @@ import NoResultsImage from '../../img/happy-gilmore.jpg';
 const ReviewFeed = ({ user, reviews, loading }) => {
   const renderReviews = () => {
     const userAndFriendsReviews = reviews.filter((review) => {
-      const userFriends = user.friends;
+      const { friends } = user;
       return (
-        userFriends.filter((userFriend) => userFriend._id === review.user._id)
-          .length || review.user._id === user._id
+        friends.filter((friend) => friend._id === review.user._id).length ||
+        review.user._id === user._id
       );
     });
     if (!loading && !userAndFriendsReviews.length) {
