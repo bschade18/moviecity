@@ -73,14 +73,14 @@ const UserHome = ({
   const displayUserList = (userList) =>
     users
       .filter((user) => {
-        return username === user.username;
+        return user._id === getUserPage();
       })[0]
       [userList].map((movie) => <UserList movie={movie} key={movie._id} />);
 
   const displayUserReviews = () =>
     reviews
       .filter((review) => {
-        return review.user._id === user._id;
+        return review.user._id === getUserPage();
       })
       .map((review) => <ReviewItem review={review} key={review._id} />);
 
