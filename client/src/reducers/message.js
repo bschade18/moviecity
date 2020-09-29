@@ -3,7 +3,6 @@ import {
   SET_CURRENT_MESSAGE,
   UPDATE_MESSAGE,
   MESSAGES_LOADING,
-  ADD_MESSAGE,
   DELETE_MESSAGE,
   SEND_MESSAGE,
 } from '../actions/types';
@@ -35,11 +34,10 @@ export default function (state = initialState, action) {
         currentMessage: payload,
         loading: false,
       };
-    case ADD_MESSAGE:
     case UPDATE_MESSAGE:
       return {
         ...state,
-        currentMessage: { ...state.currentMessage, conversation: payload },
+        currentMessage: payload,
       };
     case DELETE_MESSAGE:
       return {

@@ -9,8 +9,7 @@ import Spinner from '../layout/Spinner';
 import {
   getMessages,
   setCurrentMessage,
-  addMessage,
-  updateMessages,
+  updateMessage,
 } from '../../actions/messages';
 
 import { connect } from 'react-redux';
@@ -24,9 +23,8 @@ const Messages = ({
   messages,
   currentMessage,
   setCurrentMessage,
-  addMessage,
   loading,
-  updateMessages,
+  updateMessage,
 }) => {
   const [showChat, setShowChat] = useState(false);
   const [text, setText, resetText] = useFormState('');
@@ -74,8 +72,8 @@ const Messages = ({
   };
 
   const readMessages = (chat, messageId) => {
-    const readChat = chat.map((chatMessage) => {
-      if (chatMessage.name !== user.username) {
+    const conversation = chat.map((chatMessage) => {
+      if (chatMessage.user !== user._id) {
         chatMessage.read = true;
         return chatMessage;
       } else {
@@ -83,14 +81,16 @@ const Messages = ({
       }
     });
 
-    updateMessages(messageId, { readChat });
+    updateMessage(messageId, { conversation });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (!text) return;
 
-    addMessage(currentMessage._id, { text }, scrollToBottom);
+    updateMessage(currentMessage._id, {
+      conversation: [...currentMessage.conversation, { user: user._id, text }],
+    });
 
     resetText('');
   };
@@ -143,9 +143,8 @@ Messages.propTypes = {
   setCurrentMessage: PropTypes.func.isRequired,
   currentMessage: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
-  addMessage: PropTypes.func.isRequired,
   messages: PropTypes.array.isRequired,
-  updateMessages: PropTypes.func.isRequired,
+  updateMessage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -158,6 +157,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getMessages,
   setCurrentMessage,
-  addMessage,
-  updateMessages,
+  updateMessage,
 })(Messages);

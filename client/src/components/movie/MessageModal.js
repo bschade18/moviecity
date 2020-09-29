@@ -33,8 +33,9 @@ const MessageModal = ({
 
     const newMessage = {
       recipient: messageRecipient[0]._id,
+      sender: user._id,
       movieTitle: original_title,
-      conversation: [{ name: user.username, text: text }],
+      conversation: [{ user: user._id, text: text }],
       imageUrl: `${imageUrl}w185${poster_path}`,
     };
 

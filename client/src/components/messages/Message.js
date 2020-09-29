@@ -18,7 +18,7 @@ const Message = ({
   };
   return (
     <div
-      onClick={() =>
+      onClick={() => {
         toggleChat({
           sender,
           imageUrl,
@@ -26,8 +26,8 @@ const Message = ({
           conversation,
           _id,
           recipient,
-        })
-      }
+        });
+      }}
       className="message"
     >
       <div className="message-poster-row">

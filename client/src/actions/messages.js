@@ -4,12 +4,10 @@ import {
   SET_CURRENT_MESSAGE,
   UPDATE_MESSAGE,
   MESSAGES_LOADING,
-  ADD_MESSAGE,
   DELETE_MESSAGE,
   SEND_MESSAGE,
 } from './types';
 
-// get all messages
 export const getMessages = () => async (dispatch) => {
   dispatch({
     type: MESSAGES_LOADING,
@@ -27,7 +25,6 @@ export const getMessages = () => async (dispatch) => {
   }
 };
 
-// set the current message
 export const setCurrentMessage = (current) => (dispatch) => {
   dispatch({
     type: SET_CURRENT_MESSAGE,
@@ -35,20 +32,6 @@ export const setCurrentMessage = (current) => (dispatch) => {
   });
 };
 
-export const updateMessages = (messageId, message) => async (dispatch) => {
-  try {
-    const res = await api.put(`/messages/${messageId}`, message);
-
-    dispatch({
-      type: UPDATE_MESSAGE,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-// create and send initial message
 export const sendMessage = (newMessage, history) => async (dispatch) => {
   try {
     const res = await api.post('/messages', newMessage);
@@ -64,21 +47,16 @@ export const sendMessage = (newMessage, history) => async (dispatch) => {
   }
 };
 
-// add message to current conversation
-export const addMessage = (messageId, formData, scrollToBottom) => async (
-  dispatch
-) => {
+export const updateMessage = (messageId, message) => async (dispatch) => {
   try {
-    const res = await api.post(`/messages/${messageId}`, formData);
+    const res = await api.put(`/messages/${messageId}`, message);
 
     dispatch({
-      type: ADD_MESSAGE,
+      type: UPDATE_MESSAGE,
       payload: res.data,
     });
-
-    scrollToBottom();
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 

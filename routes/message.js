@@ -5,16 +5,11 @@ const {
   getMessages,
   createMessage,
   deleteMessage,
-  addMessage,
   updateMessage,
 } = require('../controllers/message');
 
 router.route('/').get(auth, getMessages).post(auth, createMessage);
 
-router
-  .route('/:id')
-  .post(auth, addMessage)
-  .put(auth, updateMessage)
-  .delete(auth, deleteMessage);
+router.route('/:id').put(auth, updateMessage).delete(auth, deleteMessage);
 
 module.exports = router;
