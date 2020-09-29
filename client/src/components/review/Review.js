@@ -11,7 +11,7 @@ import { getReview } from '../../actions/review';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const Review = ({ match, review, getReview, loading }) => {
+const Review = ({ match, review, getReview, loading, user }) => {
   useEffect(() => {
     getReview(match.params.id);
   }, [getReview, match.params.id]);
@@ -32,7 +32,7 @@ const Review = ({ match, review, getReview, loading }) => {
                 reviewId={review._id}
               />
             ))}
-            <CommentForm reviewId={review._id} />
+            <CommentForm reviewId={review._id} review={review} user={user} />
           </Fragment>
         )}
       </Feed>
@@ -50,6 +50,7 @@ Review.propTypes = {
 const mapStateToProps = (state) => ({
   review: state.review.review,
   loading: state.review.loading,
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, {

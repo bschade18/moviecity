@@ -1,11 +1,11 @@
 import api from '../utils/api';
 import {
-  ADD_REVIEW,
-  GET_REVIEWS,
-  ADD_COMMENT,
-  GET_REVIEW,
-  FETCH_REVIEW,
   FETCH_REVIEWS,
+  FETCH_REVIEW,
+  GET_REVIEWS,
+  GET_REVIEW,
+  ADD_REVIEW,
+  ADD_COMMENT,
 } from './types';
 
 export const getReviews = () => async (dispatch) => {
@@ -59,7 +59,7 @@ export const addReview = (newReview, history) => async (dispatch) => {
 
 export const addComment = (reviewId, formData) => async (dispatch) => {
   try {
-    const res = await api.post(`/reviews/comment/${reviewId}`, formData);
+    const res = await api.put(`/reviews/${reviewId}`, formData);
 
     dispatch({
       type: ADD_COMMENT,

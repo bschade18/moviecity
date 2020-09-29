@@ -15,7 +15,7 @@ import { imageUrl } from '../../config';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const ReviewModal = ({ movie, addReview, history }) => {
+const ReviewModal = ({ movie, addReview, history, user }) => {
   const [rating, setRating] = useState(null);
   const [text, setText] = useState('');
   const [modal, setModal] = useState(false);
@@ -24,6 +24,9 @@ const ReviewModal = ({ movie, addReview, history }) => {
     e.preventDefault();
 
     const newReview = {
+      name: user.name,
+      user: user._id,
+      username: user.username,
       movieTitle: movie.original_title,
       rating,
       imageUrl: `${imageUrl}w185${movie.poster_path}`,
@@ -87,6 +90,7 @@ const ReviewModal = ({ movie, addReview, history }) => {
 ReviewModal.propTypes = {
   addReview: PropTypes.func.isRequired,
   movie: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 export default connect(null, { addReview })(ReviewModal);

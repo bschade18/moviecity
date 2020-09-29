@@ -42,7 +42,7 @@ export default function (state = initialState, action) {
     case ADD_COMMENT:
       return {
         ...state,
-        review: { ...state.review, comments: payload },
+        review: { ...state.review, comments: payload.comments },
         loading: false,
       };
     default:

@@ -1,5 +1,5 @@
-let User = require('../models/User');
-let asyncHandler = require('../middleware/async');
+const User = require('../models/User');
+const asyncHandler = require('../middleware/async');
 const ErrorResponse = require('../utils/errorResponse');
 
 // @route GET /users

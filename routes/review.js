@@ -10,8 +10,6 @@ const {
 
 router.route('/').get(auth, getReviews).post(auth, addReview);
 
-router.route('/:id').get(auth, getReview);
-
-router.route('/comment/:id').post(auth, addComment);
+router.route('/:id').get(auth, getReview).put(auth, addComment);
 
 module.exports = router;

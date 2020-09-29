@@ -1,5 +1,4 @@
-let Review = require('../models/Review');
-let User = require('../models/User');
+const Review = require('../models/Review');
 const asyncHandler = require('../middleware/async');
 const ErrorResponse = require('../utils/errorResponse');
 
@@ -38,52 +37,35 @@ exports.getReview = asyncHandler(async (req, res, next) => {
 });
 
 // @route POST /reviews
-// @desc Add a review
+// @desc Add review
 // @access Private
 
 exports.addReview = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.user.id).select('-password');
-
-  const { text, movieTitle, imageUrl, movieId, rating } = req.body;
-
-  const newReview = new Review({
-    name: user.name,
-    user: req.user.id,
-    username: user.username,
-    text,
-    movieTitle,
-    imageUrl,
-    movieId,
-    rating,
-  });
-
-  const review = await newReview.save();
+  const review = await Review.create(req.body);
 
   res.status(201).json(review);
 });
 
-// @route    POST /reviews/comment/:id
-// @desc     Comment on a review
+// @route    PUT /reviews/:id
+// @desc     Update review, add comment
 // @access   Private
+
 exports.addComment = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.user.id).select('-password');
-  const review = await Review.findById(req.params.id);
+  let review = await Review.findById(req.params.id);
 
-  const newComment = {
-    text: req.body.text,
-    name: user.name,
-    username: user.username,
-    user: req.user.id,
-  };
+  if (!review) {
+    return next(
+      new ErrorResponse(`Review not found with id of ${req.params.id}`, 404)
+    );
+  }
 
-  review.comments.push(newComment);
-
-  await review.save();
-
-  const newReview = await Review.findById(req.params.id).populate({
+  review = await Review.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  }).populate({
     path: 'comments.user',
     select: 'photo',
   });
 
-  res.status(200).json(newReview.comments);
+  res.status(200).json(review);
 });

@@ -3,18 +3,30 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addComment } from '../../actions/review';
 
-const CommentForm = ({ reviewId, addComment }) => {
+const CommentForm = ({ reviewId, addComment, review, user }) => {
   const [text, setText] = useState('');
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    addComment(reviewId, {
+      comments: [
+        ...review.comments,
+        {
+          user: user._id,
+          name: user.name,
+          username: user.username,
+          text,
+        },
+      ],
+    });
+
+    setText('');
+  };
 
   return (
     <div className="comment-form">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          addComment(reviewId, { text });
-          setText('');
-        }}
-      >
+      <form onSubmit={(e) => onSubmit(e)}>
         <input
           onChange={(e) => setText(e.target.value)}
           type="text"
