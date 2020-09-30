@@ -1,10 +1,10 @@
 import {
+  REVIEWS_LOADING,
+  REVIEWS_LOADED,
+  REVIEW_LOADING,
+  REVIEW_LOADED,
   ADD_REVIEW,
-  GET_REVIEWS,
   ADD_COMMENT,
-  GET_REVIEW,
-  FETCH_REVIEW,
-  FETCH_REVIEWS,
 } from '../actions/types';
 
 const initialState = {
@@ -16,7 +16,7 @@ const initialState = {
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case GET_REVIEWS:
+    case REVIEWS_LOADED:
       return {
         ...state,
         reviews: payload,
@@ -27,13 +27,13 @@ export default function (state = initialState, action) {
         ...state,
         reviews: [...state.reviews, payload],
       };
-    case FETCH_REVIEW:
-    case FETCH_REVIEWS:
+    case REVIEWS_LOADING:
+    case REVIEW_LOADING:
       return {
         ...state,
         loading: true,
       };
-    case GET_REVIEW:
+    case REVIEW_LOADED:
       return {
         ...state,
         review: payload,

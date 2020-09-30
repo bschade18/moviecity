@@ -1,10 +1,10 @@
 import {
-  GET_MESSAGES,
-  SET_CURRENT_MESSAGE,
-  UPDATE_MESSAGE,
   MESSAGES_LOADING,
-  DELETE_MESSAGE,
+  MESSAGES_LOADED,
+  SET_CURRENT_MESSAGE,
   SEND_MESSAGE,
+  UPDATE_MESSAGE,
+  DELETE_MESSAGE,
 } from '../actions/types';
 
 const initialState = {
@@ -16,16 +16,15 @@ const initialState = {
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case GET_MESSAGES:
+    case MESSAGES_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+    case MESSAGES_LOADED:
       return {
         ...state,
         messages: payload,
-        loading: false,
-      };
-    case SEND_MESSAGE:
-      return {
-        ...state,
-        messages: [...state.messages, payload],
         loading: false,
       };
     case SET_CURRENT_MESSAGE:
@@ -34,6 +33,13 @@ export default function (state = initialState, action) {
         currentMessage: payload,
         loading: false,
       };
+    case SEND_MESSAGE:
+      return {
+        ...state,
+        messages: [...state.messages, payload],
+        loading: false,
+      };
+
     case UPDATE_MESSAGE:
       return {
         ...state,
@@ -45,11 +51,6 @@ export default function (state = initialState, action) {
         messages: state.messages.filter(
           (message) => message._id !== payload.id
         ),
-      };
-    case MESSAGES_LOADING:
-      return {
-        ...state,
-        loading: true,
       };
     default:
       return state;

@@ -15,7 +15,6 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
   const [uploadPercentage, setUploadPercentage] = useState(0);
 
   const [name, setName] = useFormState(user.name);
-  const [username, setUsername] = useFormState(user.username);
 
   const onChange = (e) => {
     setFile(e.target.files[0]);
@@ -59,7 +58,7 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
   const onSubmitUserChanges = (e) => {
     e.preventDefault();
 
-    updateUser(user._id, { name, username });
+    updateUser(user._id, { name });
   };
 
   return (
@@ -107,15 +106,7 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
             onChange={setName}
           />
         </div>
-        <div className="form-group">
-          <label>Username</label>
-          <input
-            type="text"
-            className="form-control"
-            value={username}
-            onChange={setUsername}
-          />
-        </div>
+
         <button className="btn btn-success btn-block" type="submit">
           Save
         </button>

@@ -1,9 +1,9 @@
 import api from '../utils/api';
 import {
-  FETCH_REVIEWS,
-  FETCH_REVIEW,
-  GET_REVIEWS,
-  GET_REVIEW,
+  REVIEWS_LOADING,
+  REVIEWS_LOADED,
+  REVIEW_LOADING,
+  REVIEW_LOADED,
   ADD_REVIEW,
   ADD_COMMENT,
 } from './types';
@@ -11,13 +11,13 @@ import {
 export const getReviews = () => async (dispatch) => {
   try {
     dispatch({
-      type: FETCH_REVIEWS,
+      type: REVIEWS_LOADING,
     });
 
     const res = await api.get('/reviews');
 
     dispatch({
-      type: GET_REVIEWS,
+      type: REVIEWS_LOADED,
       payload: res.data,
     });
   } catch (err) {
@@ -28,13 +28,13 @@ export const getReviews = () => async (dispatch) => {
 export const getReview = (id) => async (dispatch) => {
   try {
     dispatch({
-      type: FETCH_REVIEW,
+      type: REVIEW_LOADING,
     });
 
     const res = await api.get(`/reviews/${id}`);
 
     dispatch({
-      type: GET_REVIEW,
+      type: REVIEW_LOADED,
       payload: res.data,
     });
   } catch (err) {

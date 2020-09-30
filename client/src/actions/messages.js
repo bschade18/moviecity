@@ -1,11 +1,11 @@
 import api from '../utils/api';
 import {
-  GET_MESSAGES,
-  SET_CURRENT_MESSAGE,
-  UPDATE_MESSAGE,
   MESSAGES_LOADING,
-  DELETE_MESSAGE,
+  MESSAGES_LOADED,
+  SET_CURRENT_MESSAGE,
   SEND_MESSAGE,
+  UPDATE_MESSAGE,
+  DELETE_MESSAGE,
 } from './types';
 
 export const getMessages = () => async (dispatch) => {
@@ -17,7 +17,7 @@ export const getMessages = () => async (dispatch) => {
     const res = await api.get('/messages');
 
     dispatch({
-      type: GET_MESSAGES,
+      type: MESSAGES_LOADED,
       payload: res.data,
     });
   } catch (err) {
