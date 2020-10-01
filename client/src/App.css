@@ -98,23 +98,39 @@ a {
   color: #fff;
 }
 
-.landing-nav form {
+.landing-nav-input-container {
   position: relative;
-  /* border: 1px solid white; */
+}
+
+.landing-nav form {
   padding: 1rem;
 }
 
 .landing-nav-forgotpw {
-  position: absolute;
-  right: 175px;
-  bottom: 0;
   color: lightgray;
+}
+
+.landing-nav-forgotpw:hover {
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 575px) {
   .btn-block-sm-only {
     display: block;
     width: 100%;
+  }
+
+  .landing-nav-input-container {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .landing-nav-forgotpw {
+    position: absolute;
+    bottom: -15px;
+    left: 2px;
   }
 }
 

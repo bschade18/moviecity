@@ -38,17 +38,19 @@ const LandingNav = ({ login, page }) => {
               onChange={setEmail}
             />
 
-            <input
-              className="form-control my-2 mr-sm-2"
-              type="password"
-              placeholder="Password"
-              aria-label="Password"
-              name="password"
-              onChange={setPassword}
-            />
-            <Link to="/account/reset_password/start">
-              <small className="landing-nav-forgotpw">Forgot Password?</small>
-            </Link>
+            <div className="landing-nav-input-container">
+              <input
+                className="form-control my-2 mr-sm-2"
+                type="password"
+                placeholder="Password"
+                aria-label="Password"
+                name="password"
+                onChange={setPassword}
+              />
+              <Link to="/account/reset_password/start">
+                <small className="landing-nav-forgotpw">Forgot Password?</small>
+              </Link>
+            </div>
 
             <button
               className="btn btn-outline-success my-2 my-sm-0 btn-block-sm-only"
