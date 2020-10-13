@@ -6,6 +6,10 @@ import EditProfile from './EditProfile';
 import UserNav from './UserNav';
 import AppGrid from '../layout/AppGrid';
 import Feed from '../layout/Feed';
+import NoResults from '../elements/NoResults';
+import NoFavoritesResultsImage from '../../img/bobslicker.jpg';
+import NoWatchListResultsImage from '../../img/homealone.png';
+import NoReviewsResultsImage from '../../img/liarliar.jpg';
 import { updateUserFriends } from '../../actions/auth';
 import { logout } from '../../actions/auth';
 import { getReviews } from '../../actions/review';
@@ -23,6 +27,10 @@ const Profile = ({
   updateUserFriends,
 }) => {
   const [view, setView] = useState('Reviews');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [view]);
 
   useEffect(() => {
     getReviews();
@@ -65,19 +73,31 @@ const Profile = ({
     </div>
   );
 
-  const displayUserList = (userList) =>
-    users
-      .filter((user) => {
-        return user._id === profileUserId();
-      })[0]
-      [userList].map((movie) => <UserList movie={movie} key={movie._id} />);
+  const displayUserList = (userList, text, img) => {
+    const list = users.filter((user) => {
+      return user._id === profileUserId();
+    })[0][userList];
 
-  const displayUserReviews = () =>
-    reviews
-      .filter((review) => {
-        return review.user._id === profileUserId();
-      })
-      .map((review) => <ReviewItem review={review} key={review._id} />);
+    if (!list.length) {
+      return <NoResults image={img} text1={text} />;
+    } else {
+      return list.map((movie) => <UserList movie={movie} key={movie._id} />);
+    }
+  };
+
+  const displayUserReviews = (img, text) => {
+    const userReviews = reviews.filter((review) => {
+      return review.user._id === profileUserId();
+    });
+
+    if (!userReviews.length) {
+      return <NoResults image={img} text1={text} />;
+    } else {
+      return userReviews.map((review) => (
+        <ReviewItem review={review} key={review._id} />
+      ));
+    }
+  };
 
   if (!reviews[0] || !users[0]) {
     return <Spinner />;
@@ -94,9 +114,29 @@ const Profile = ({
           renderNavButton={renderNavButton}
           toggleFriend={toggleFriend}
         />
-        {view === 'Reviews' && displayUserReviews()}
-        {view === 'Favorites' && displayUserList('favorites')}
-        {view === 'Watchlist' && displayUserList('watchList')}
+        {view === 'Reviews' &&
+          displayUserReviews(
+            NoReviewsResultsImage,
+            user._id === profileUserId()
+              ? 'You have not reviewed any movies'
+              : `${username} has not reviewed any movies`
+          )}
+        {view === 'Favorites' &&
+          displayUserList(
+            'favorites',
+            user._id === profileUserId()
+              ? 'You have not added any favorites'
+              : `${username} has not added any favorites`,
+            NoFavoritesResultsImage
+          )}
+        {view === 'Watchlist' &&
+          displayUserList(
+            'watchList',
+            user._id === profileUserId()
+              ? 'You have not added any movies to your watchlist'
+              : `${username} has not added any movies to their watchlist`,
+            NoWatchListResultsImage
+          )}
         {view === 'Edit Profile' && <EditProfile user={user} />}
       </Feed>
     </AppGrid>
