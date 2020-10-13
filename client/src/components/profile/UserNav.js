@@ -49,9 +49,7 @@ const UserNav = ({
         {renderNavButton('Reviews')}
         {renderNavButton('Favorites')}
         {renderNavButton('Watchlist')}
-        <div>
-          {user._id === profileUserId && renderNavButton('Edit Profile')}
-        </div>
+        {user._id === profileUserId && renderNavButton('Edit Profile')}
       </div>
     </div>
   );
