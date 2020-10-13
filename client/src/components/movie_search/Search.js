@@ -81,6 +81,8 @@ const Search = () => {
                 image={NoResultsImage}
                 text1="You can't bench press your way out of this one"
                 text2="No movies were found in your search. Try again."
+                width="50%"
+                marginTop="0"
               />
             )}
             {loading && <Spinner />}
