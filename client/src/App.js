@@ -20,7 +20,6 @@ import SendPasswordReset from './components/auth/SendPasswordReset';
 import NotFound from './components/layout/NotFound';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
-// test
 
 const App = () => {
   useEffect(() => {
