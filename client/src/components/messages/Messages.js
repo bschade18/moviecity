@@ -14,7 +14,7 @@ import {
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import NoResultsImage from '../../img/tommy-boy-car-fire copy.jpg';
+import NoResultsImage from '../../img/tommy.jpg';
 import useFormState from '../hooks/useFormState';
 
 const Messages = ({

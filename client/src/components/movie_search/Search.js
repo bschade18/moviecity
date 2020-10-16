@@ -17,7 +17,7 @@ import Feed from '../layout/Feed';
 import NoResults from '../elements/NoResults';
 import { useHomeFetch } from '../hooks/useHomeFetch';
 import NoImage from '../../img/no_image.jpg';
-import NoResultsImage from '../../img/arnold_jingle.jpg';
+import NoResultsImage from '../../img/arnold.jpg';
 import UserSearch from '../elements/UserSearch';
 
 const Search = () => {

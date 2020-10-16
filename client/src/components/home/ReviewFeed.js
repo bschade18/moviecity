@@ -4,7 +4,7 @@ import ReviewItem from './ReviewItem';
 import Feed from '../layout/Feed';
 import NoResults from '../elements/NoResults';
 import PropTypes from 'prop-types';
-import NoResultsImage from '../../img/happy-gilmore.jpg';
+import NoResultsImage from '../../img/happy.jpg';
 
 const ReviewFeed = ({ user, reviews, loading }) => {
   const renderReviews = () => {
