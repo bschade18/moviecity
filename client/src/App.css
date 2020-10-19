@@ -30,7 +30,6 @@ a {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 0.5px solid #fff;
 }
 
 /* 5 star rating */
@@ -38,6 +37,7 @@ a {
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;
+  margin-bottom: 6px;
 }
 .rating > span:hover:before,
 .rating > span:hover ~ span:before {
@@ -177,7 +177,7 @@ a {
 .review-item {
   min-height: 200px;
   border-bottom: 1px solid #e0e0e0;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
 }
 
 .review-item:hover {
@@ -190,15 +190,39 @@ a {
 
 .review-item-content {
   display: flex;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
+}
+
+@media screen and (max-width: 576px) {
+  .review-item-content {
+    display: block;
+  }
+
+  .review-item-text {
+    margin-left: 0rem !important;
+    margin-top: 6px;
+    padding-left: 0 !important;
+  }
+
+  .review-item-text p {
+    margin-bottom: 0px;
+  }
 }
 
 .review-item-text {
-  padding: 10px;
+  padding: 0px 10px;
   color: black;
   margin-left: 1.5rem;
   word-wrap: break-word;
   overflow: hidden;
+}
+
+.review-item-text p {
+  display: block;
+}
+
+.review-item-text h5 {
+  margin-bottom: 6px;
 }
 
 .comment-item-username,
@@ -206,28 +230,36 @@ a {
   font-weight: bolder;
 }
 
+.review-item-link-container {
+  margin-top: 8px;
+}
+
 .review-item-link {
   color: #000;
-  padding: 5px;
+  display: inline;
+  text-decoration: none;
+  margin-top: 2px;
+}
+
+.review-item-link span {
+  margin-left: 8px;
+  line-height: 0px;
+  position: relative;
+  top: -1.25px;
 }
 
 .review-item-link:hover {
-  color: black;
   text-decoration: none;
+}
+
+.review-item-link:hover i,
+.review-item-link:hover span {
+  color: var(--primary-color);
 }
 
 .fa-comment-alt {
   color: black;
   text-decoration: none;
-  padding: 7px;
-}
-
-.fa-comment-alt:hover {
-  color: black;
-  text-decoration: none;
-  background: rgba(0, 54, 153, 0.2);
-  padding: 7px;
-  border-radius: 50%;
 }
 
 /* competing with movie thumb style */
@@ -1004,11 +1036,18 @@ a {
   flex-direction: column;
 }
 
-/* UserProfile */
+/* Profile */
 .upload-btn,
 .send-btn {
   background-color: var(--primary-color) !important;
   color: #fff !important;
+}
+
+.user-nav-user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #fff;
 }
 
 /* Custom Scroll Bar*/

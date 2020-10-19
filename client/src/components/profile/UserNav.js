@@ -13,7 +13,7 @@ const UserNav = ({
     <div className="feed-header">
       <div className="feed-header-heading">
         <img
-          className="user-avatar"
+          className="user-nav-user-avatar"
           src={
             users.filter((user) => user.username === username)[0].photo
               ? `/uploads/${

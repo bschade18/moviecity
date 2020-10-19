@@ -38,15 +38,18 @@ const ReviewItem = ({
             {renderStar(3)}
             {renderStar(4)}
             {renderStar(5)}
-          </div>
+          </div> 
           <p>{text}</p>
         </div>
       </div>
       {page && (
+       <div className='review-item-link-container'>
         <Link className="review-item-link" to={`/review/${_id}`}>
           <i className="far fa-comment-alt"></i>{' '}
           <span>{comments.length > 0 && comments.length}</span>
         </Link>
+        </div>
+     
       )}
     </div>
   );
