@@ -26,7 +26,7 @@ const UserNav = ({
         <p>{users.filter((user) => user.username === username)[0].name}</p>
         <button
           className={
-            'btn ml-3  ' +
+            'btn ml-3 btn-pill  ' +
             (user._id === profileUserId ? 'd-none ' : 'd-block btn-success ') +
             (user.friends.filter((friend) => friend._id === profileUserId)
               .length
@@ -45,7 +45,7 @@ const UserNav = ({
         </button>
       </div>
 
-      <div className="user-nav mt-3">
+      <div className="user-nav mt-4">
         {renderNavButton('Reviews')}
         {renderNavButton('Favorites')}
         {renderNavButton('Watchlist')}
