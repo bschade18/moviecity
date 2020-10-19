@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getMessages } from '../../actions/messages';
 
-const MobileNav = ({ getMessages, messages, user, logout }) => {
+const MobileNav = ({ getMessages, messages, user, logout, component }) => {
   useEffect(() => {
     getMessages();
   }, [getMessages]);
@@ -33,10 +33,10 @@ const MobileNav = ({ getMessages, messages, user, logout }) => {
   return (
     <div className="mobile-nav">
       <Link to="/home" className="btn">
-        <FontAwesome className="fa-home" name="home" size="2x" />
+        <FontAwesome className={`fa-home ${component === 'home' && 'primary-color'}`} name="home" size="2x" />
       </Link>
       <Link to="/messages" className="btn">
-        <FontAwesome className="fa-envelope" name="envelope" size="2x">
+        <FontAwesome className={`fa-envelope ${component === 'messages' && 'primary-color'}`}  name="envelope" size="2x">
           {unreadFromFriends() > 0 && (
             <div className="notification-badge">
               {unreadFromFriends() > 0 && unreadFromFriends()}
@@ -45,10 +45,10 @@ const MobileNav = ({ getMessages, messages, user, logout }) => {
         </FontAwesome>
       </Link>
       <Link to="/search" className="btn">
-        <FontAwesome className="fa-search" name="search" size="2x" />
+        <FontAwesome className={`fa-search ${component === 'search' && 'primary-color'}`}  name="search" size="2x" />
       </Link>
       <Link to={`/${user.username}`} className="btn">
-        <FontAwesome className="fa-user" name="search" size="2x" />
+        <FontAwesome className={`fa-user ${component === 'profile' && 'primary-color'}`}  name="search" size="2x" />
       </Link>
       <button className="btn" onClick={logout}>
         <FontAwesome className="fa-sign-out" name="signout" size="2x" />
