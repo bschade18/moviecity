@@ -115,7 +115,7 @@ const Messages = ({
     return <Spinner />;
   }
   return (
-    <AppGrid>
+    <AppGrid component='messages'>
       <Feed>
         <FeedHeader heading="Messages" />
         {showChat ? (

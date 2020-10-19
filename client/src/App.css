@@ -32,6 +32,10 @@ a {
   border-radius: 50%;
 }
 
+.primary-color {
+  color: var(--primary-color);
+}
+
 /* 5 star rating */
 
 .rating {

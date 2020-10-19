@@ -12,7 +12,7 @@ const AppGrid = ({ component, children }) => {
           : 'app-grid-container'
       }
     >
-      <Sidenav />
+      <Sidenav component={component} />
       {children}
       <UserSearch />
       <MobileNav />

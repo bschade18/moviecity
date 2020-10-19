@@ -104,7 +104,7 @@ const Profile = ({
   }
 
   return (
-    <AppGrid>
+    <AppGrid component='profile'>
       <Feed>
         <UserNav
           users={users}

@@ -21,7 +21,7 @@ const Home = ({ getReviews, getUsers, reviews, user, reviewsLoading }) => {
   }
 
   return (
-    <AppGrid>
+    <AppGrid component='home'>
       <ReviewFeed user={user} reviews={reviews} loading={reviewsLoading} />
     </AppGrid>
   );
