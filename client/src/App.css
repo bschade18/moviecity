@@ -318,8 +318,31 @@ a {
 }
 
 @media screen and (max-width: 400px) {
-  .feed-header span {
-    display: block;
+  .feed-header span.feed-header-movie-search,
+  .feed-header span.feed-header-user-search {
+    font-size: 24px;
+  }
+  .feed-header-heading {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .feed-header-vertical-bar {
+    display: none;
+  }
+
+  .feed-header-heading {
+    flex-direction: column;
+  }
+
+  .feed-header-user-search-text {
+    border-top: 1px dotted #fff;
+    padding-top: 4px;
+  }
+
+  .feed-header {
+    padding: 8px;
   }
 }
 

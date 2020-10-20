@@ -15,7 +15,7 @@ const FeedHeader = ({ heading, setShowMovieSearch }) => {
           className="feed-header-user-search"
           onClick={() => setShowMovieSearch(false)}
         >
-          {heading === 'Movie Search' && '| User Search'}
+          {heading === 'Movie Search' && (<><span className='feed-header-vertical-bar'>|</span>{' '}<span className='feed-header-user-search-text'>User Search</span></>)}
         </span>
       </div>
     </div>
