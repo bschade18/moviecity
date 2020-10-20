@@ -10,7 +10,6 @@ import useFormState from '../hooks/useFormState';
 const EditProfile = ({ updateUserImage, user, updateUser }) => {
   const [file, setFile] = useState('');
   const [filename, setFilename] = useState('Choose File');
-  const [uploadedFile, setUploadedFile] = useState('');
   const [message, setMessage] = useState('');
   const [uploadPercentage, setUploadPercentage] = useState(0);
 
@@ -23,7 +22,10 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    // update user name
+    updateUser(user._id, { name });
 
+    // update user photo
     const formData = new FormData();
     formData.append('file', file);
 
@@ -40,8 +42,6 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
 
       const fileName = res.data.filename;
 
-      setUploadedFile(fileName);
-
       updateUserImage(fileName);
 
       setMessage('Success!');
@@ -55,17 +55,11 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
     }
   };
 
-  const onSubmitUserChanges = (e) => {
-    e.preventDefault();
-
-    updateUser(user._id, { name });
-  };
-
   return (
-    <div>
+    <div className="edit-profile">
       <form onSubmit={onSubmit}>
         <label>Profile Picture</label>
-        <div className="custom-file mb-4">
+        <div className="custom-file">
           <input
             type="file"
             className="custom-file-input"
@@ -76,27 +70,23 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
             {filename}
           </label>
         </div>
-        <Progress percentage={uploadPercentage} />
-        <input
-          type="submit"
-          value="Upload"
-          className="btn btn-block mt-4 upload-btn"
-        />
-      </form>
+        {file instanceof File ? (
+          <img
+            className="edit-profile-img"
+            style={{ width: '200px', height: '200px', borderRadius: '50%' }}
+            src={URL.createObjectURL(file)}
+          />
+        ) : (
+          <img
+            className="edit-profile-img"
+            style={{ width: '200px', height: '200px', borderRadius: '50%' }}
+            src={`/uploads/${user.photo}`}
+            alt=""
+          />
+        )}
 
-      {uploadedFile ? (
-        <div className="row mt-5">
-          <div className="m-auto">
-            <img
-              style={{ width: '100%', borderRadius: '50%' }}
-              src={`/uploads/${uploadedFile}`}
-              alt=""
-            />
-          </div>
-        </div>
-      ) : null}
-      {message && <p className="text-center mt-2">{message}</p>}
-      <form onSubmit={onSubmitUserChanges}>
+        <Progress percentage={uploadPercentage} />
+
         <div className="form-group mt-2">
           <label>Name</label>
           <input
@@ -106,11 +96,15 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
             onChange={setName}
           />
         </div>
-
-        <button className="btn btn-success btn-block" type="submit">
-          Save
-        </button>
+        <input
+          type="submit"
+          value="Save"
+          className="btn btn-block mt-4 upload-btn"
+        />
       </form>
+      {message && (
+        <p className="edit-profile-msg text-center mt-2">{message}</p>
+      )}
     </div>
   );
 };
