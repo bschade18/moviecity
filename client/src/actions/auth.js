@@ -137,6 +137,8 @@ export const setWatchList = (userid, updateUser) => async (dispatch) => {
 // update user
 export const updateUserImage = (filename) => (dispatch) => {
   try {
+
+    console.log(filename)
     dispatch({
       type: UPDATE_IMAGE,
       payload: filename,

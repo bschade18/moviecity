@@ -75,6 +75,7 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
             className="edit-profile-img"
             style={{ width: '200px', height: '200px', borderRadius: '50%' }}
             src={URL.createObjectURL(file)}
+            alt='user avatar'
           />
         ) : (
           <img

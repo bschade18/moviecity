@@ -185,51 +185,18 @@ a {
   min-height: 200px;
   border-bottom: 1px solid #e0e0e0;
   padding: 1rem 1.5rem;
+  overflow: auto;
 }
 
 .review-item:hover {
   background: rgb(0, 0, 0, 0.01);
 }
 
-.review-item-username {
-  font-weight: bolder;
-}
-
-.review-item-content {
+.review-item .review-item-user-link {
   display: flex;
-  padding: 0.5rem 0;
-}
-
-@media screen and (max-width: 576px) {
-  .review-item-content {
-    display: block;
-  }
-
-  .review-item-text {
-    margin-left: 0rem !important;
-    margin-top: 6px;
-    padding-left: 0 !important;
-  }
-
-  .review-item-text p {
-    margin-bottom: 0px;
-  }
-}
-
-.review-item-text {
-  padding: 0px 10px;
+  justify-items: center;
+  align-items: center;
   color: black;
-  margin-left: 1.5rem;
-  word-wrap: break-word;
-  overflow: hidden;
-}
-
-.review-item-text p {
-  display: block;
-}
-
-.review-item-text h5 {
-  margin-bottom: 6px;
 }
 
 .comment-item-username,
@@ -237,8 +204,38 @@ a {
   font-weight: bolder;
 }
 
+.review-item-content {
+  padding: 0.5rem 0;
+}
+
+/* competing with movie thumb style */
+.review-item-thumb img {
+  border-radius: 10px !important;
+  width: 125px !important;
+  float: left;
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.review-item .review-item-content p {
+  display: inline;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.review-item .review-item-content h5 {
+  margin-bottom: 6px;
+}
+
+@media screen and (max-width: 400px) {
+  .review-item {
+    padding: 1rem;
+  }
+}
+
 .review-item-link-container {
   margin-top: 8px;
+  clear: left;
 }
 
 .review-item-link {
@@ -247,7 +244,6 @@ a {
   text-decoration: none;
   margin-top: 2px;
 }
-
 .review-item-link span {
   margin-left: 8px;
   line-height: 0px;
@@ -258,7 +254,6 @@ a {
 .review-item-link:hover {
   text-decoration: none;
 }
-
 .review-item-link:hover i,
 .review-item-link:hover span {
   color: var(--primary-color);
@@ -267,19 +262,6 @@ a {
 .fa-comment-alt {
   color: black;
   text-decoration: none;
-}
-
-/* competing with movie thumb style */
-.review-item-thumb img {
-  border-radius: 10px !important;
-  width: 125px !important;
-}
-
-.review-item .review-item-user-link {
-  display: flex;
-  justify-items: center;
-  align-items: center;
-  color: black;
 }
 
 /* Feed Header */

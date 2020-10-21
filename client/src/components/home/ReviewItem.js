@@ -30,26 +30,25 @@ const ReviewItem = ({
             id={movieId}
           />
         </div>
-        <div className="review-item-text">
-          <h5>{movieTitle}</h5>
-          <div className="rating">
-            {renderStar(1)}
-            {renderStar(2)}
-            {renderStar(3)}
-            {renderStar(4)}
-            {renderStar(5)}
-          </div> 
-          <p>{text}</p>
+
+        <h5>{movieTitle}</h5>
+        <div className="rating">
+          {renderStar(1)}
+          {renderStar(2)}
+          {renderStar(3)}
+          {renderStar(4)}
+          {renderStar(5)}
         </div>
+        <p>{text}</p>
       </div>
+
       {page && (
-       <div className='review-item-link-container'>
-        <Link className="review-item-link" to={`/review/${_id}`}>
-          <i className="far fa-comment-alt"></i>{' '}
-          <span>{comments.length > 0 && comments.length}</span>
-        </Link>
+        <div className="review-item-link-container">
+          <Link className="review-item-link" to={`/review/${_id}`}>
+            <i className="far fa-comment-alt"></i>{' '}
+            <span>{comments.length > 0 && comments.length}</span>
+          </Link>
         </div>
-     
       )}
     </div>
   );
