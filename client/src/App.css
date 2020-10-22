@@ -588,7 +588,7 @@ a {
 .grid {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 1.5rem;
 }
 
 .grid-header {
@@ -597,8 +597,15 @@ a {
 
 .grid-children {
   display: grid;
-  grid-template-columns: repeat(5, minmax(100px, 1fr));
+  grid-template-columns: repeat(5, minmax(50px, 1fr));
   grid-gap: 40px;
+  position: relative;
+}
+
+.grid-profile-children {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(50px, 1fr));
+  grid-gap: 20px;
   position: relative;
 }
 
@@ -611,25 +618,32 @@ a {
 
 @media screen and (max-width: 1024px) {
   .grid-children {
-    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    grid-template-columns: repeat(4, minmax(50px, 1fr));
+  }
+
+  .grid-profile-children {
+    grid-template-columns: repeat(4, minmax(50px, 1fr));
   }
 }
 
 @media screen and (max-width: 768px) {
   .grid-children {
-    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    grid-template-columns: repeat(3, minmax(50px, 1fr));
   }
 }
 
 @media screen and (max-width: 600px) {
   .grid-children {
-    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    grid-template-columns: repeat(2, minmax(50px, 1fr));
   }
 }
 
 @media screen and (max-width: 375px) {
   .grid-children {
     grid-template-columns: repeat(1, 1fr);
+  }
+  .grid-profile-children {
+    grid-template-columns: repeat(3, minmax(50px, 1fr));
   }
 }
 
@@ -893,6 +907,7 @@ a {
 
   .feed {
     grid-column-start: 1;
+    border: none;
   }
   .show-chat {
     width: 95%;

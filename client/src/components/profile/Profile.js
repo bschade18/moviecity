@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import ReviewItem from '../home/ReviewItem';
 import Spinner from '../layout/Spinner';
-import UserList from './UserList';
 import EditProfile from './EditProfile';
 import UserNav from './UserNav';
 import AppGrid from '../layout/AppGrid';
+import Grid from '../movie/Grid';
 import Feed from '../layout/Feed';
+import MovieThumb from '../elements/MovieThumb';
 import NoResults from '../elements/NoResults';
 import NoFavoritesResultsImage from '../../img/bobslicker.jpg';
 import NoWatchListResultsImage from '../../img/homealone.jpg';
@@ -81,7 +82,12 @@ const Profile = ({
     if (!list.length) {
       return <NoResults image={img} text1={text} />;
     } else {
-      return list.map((movie) => <UserList movie={movie} key={movie._id} />);
+      return (
+      <Grid component='profile'>
+       {list.map((movie) => <MovieThumb image={movie.imgUrl} id={movie.movieId} key={movie.movieId} clickable={true} />)}
+      </Grid>
+      )
+
     }
   };
 
