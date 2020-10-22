@@ -45,7 +45,7 @@ const UserNav = ({
         </button>
       </div>
 
-      <div className="user-nav mt-4">
+      <div className="user-nav mt-xs-2 mt-sm-4">
         {renderNavButton('Reviews')}
         {renderNavButton('Favorites')}
         {renderNavButton('Watchlist')}

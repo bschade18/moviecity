@@ -66,7 +66,7 @@ const Profile = ({
     <div
       onClick={() => setView(listName)}
       className={
-        'btn btn-outline-success btn-pill my-2 my-sm-0 btn-block-sm-only mr-2 ' +
+        'btn btn-outline-success btn-pill  mr-sm-2 ' +
         (view === listName && 'active')
       }
     >

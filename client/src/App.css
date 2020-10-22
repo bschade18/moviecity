@@ -304,9 +304,6 @@ a {
   .feed-header span.feed-header-user-search {
     font-size: 24px;
   }
-  .feed-header-heading {
-    justify-content: center;
-  }
 }
 
 @media screen and (max-width: 340px) {
@@ -362,6 +359,16 @@ a {
   flex: 1;
   margin-top: 10px;
   flex-wrap: wrap;
+}
+
+@media screen and (max-width: 576px) {
+  .user-nav div {
+    margin-right: 6px;
+  }
+
+  .user-nav div:last-child {
+    margin-right: 0px;
+  }
 }
 
 .friend-btn:before {
@@ -1075,6 +1082,31 @@ a {
   height: 70px;
   border-radius: 50%;
   border: 1px solid #fff;
+}
+
+@media screen and (max-width: 450px) {
+  .user-nav {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .user-nav div {
+    font-size: 14px;
+    margin-right: 6px;
+    margin-right: 5px;
+  }
+
+  .feed-header {
+    padding: 8px;
+    padding: 10px;
+  }
+  .feed-header-heading {
+    justify-content: center;
+  }
+
+  .user-nav-user-avatar {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 /* Edit Profile */
