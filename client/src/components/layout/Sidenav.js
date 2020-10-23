@@ -32,7 +32,7 @@ const Sidenav = ({ getMessages, messages, user, logout, component }) => {
   };
 
   return (
-    <div className="sidenav">
+    <div className='sidenav'>
       <div className="sidenav-user">
         <img
           src={`/uploads/${user.photo}`}

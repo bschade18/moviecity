@@ -111,17 +111,19 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
         </div>
         <div className="movieinfo-text">
           <h1>{title}</h1>
+          <div className='movieinfo-users-lists'>
           <span
             className={favorite ? 'fa fa-star checked' : 'fa fa-star gold'}
             onClick={() => setFav()}
           ></span>
-          <span>{favorite ? ' Favorite!' : ' Add as Favorite'}</span>
-          <div>
+          <span>{favorite ? ' Favorite!!' : ' Favorite'}</span>
+          <span className='movieinfo-watchlist'>
             <span
               className={toWatch ? 'fa fa-plus checked' : 'fa fa-plus gold'}
               onClick={() => setToWatchlist()}
             ></span>
-            <span>{toWatch ? ' On WatchList!' : ' Add to WatchList'}</span>
+            <span>{toWatch ? ' On WatchList!' : ' WatchList'}</span>
+          </span>
           </div>
 
           <div className="movieinfo-plot">
@@ -136,9 +138,11 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
             </div>
             <div className="movieinfo-director">
               <h3>Director{directors.length > 1 ? 's' : ''}</h3>
+              <div className='movieinfo-director-list'>
               {directors.map((element) => (
                 <p key={element.credit_id}>{element.name}</p>
               ))}
+              </div>
             </div>
           </div>
           <div className="movieinfo-review-btns">

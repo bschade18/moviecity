@@ -422,6 +422,12 @@ a {
   align-items: center;
 }
 
+@media screen and (max-width: 900px) {
+  .sidenav {
+    width: 16.67%;
+  }
+}
+
 .sidenav .sidenav-item {
   color: black;
   display: block;
@@ -463,6 +469,14 @@ a {
   position: fixed;
   top: 5px;
   display: flex;
+}
+
+@media screen and (max-width: 900px) {
+  .sidenav-user {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .sidenav-user-avatar {
@@ -539,8 +553,8 @@ a {
   border-radius: 40px;
   position: relative;
   color: #fff;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .search-bar .search-bar-input {
@@ -595,7 +609,7 @@ a {
 .grid {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 1rem 1.5rem;
 }
 
 .grid-header {
@@ -730,8 +744,14 @@ a {
 }
 
 .movieinfo-text h1 {
-  font-size: 44px;
+  font-size: 36px;
+  max-height: 86px;
+  overflow: auto;
   margin: 0;
+}
+
+.movieinfo-watchlist {
+  margin-left: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -746,22 +766,40 @@ a {
 }
 
 @media screen and (min-width: 768px) {
-  .movieinfo-plot {
+  .movieinfo-plot p {
     padding-right: 10px;
     margin-top: 5px;
-    max-height: 160px;
+    max-height: 110px;
     overflow: auto;
+  }
+
+  .movieinfo-director-list {
+    max-height: 30px;
+    padding-right: 10px;
+    overflow: auto;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .movieinfo-text h1 {
+    font-size: 28px;
   }
 }
 
 @media screen and (max-width: 1024px) {
   .movieinfo-text h1 {
-    font-size: 32px;
+    font-size: 24px;
   }
 
   .movieinfo-text {
     padding-top: 20px;
     padding-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 968px) {
+  .movieinfo-text h1 {
+    font-size: 22px;
   }
 }
 
@@ -772,7 +810,7 @@ a {
 }
 
 .movieinfo-text p {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 26px;
   font-weight: normal;
 }
@@ -848,6 +886,21 @@ a {
   position: fixed;
   top: 0;
   right: 0.5%;
+}
+
+@media screen and (max-width: 900px) {
+  .app-grid-container {
+    display: grid;
+    grid-template-columns: 5fr minmax(0, 16.5fr) 8.5fr;
+  }
+  .app-grid-search-container {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+  }
+
+  .user-search {
+    width: 27.3%;
+  }
 }
 
 .user-search-content {
