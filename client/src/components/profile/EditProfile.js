@@ -73,16 +73,14 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
         {file instanceof File ? (
           <img
             className="edit-profile-img"
-            style={{ width: '200px', height: '200px', borderRadius: '50%' }}
             src={URL.createObjectURL(file)}
             alt='user avatar'
           />
         ) : (
           <img
             className="edit-profile-img"
-            style={{ width: '200px', height: '200px', borderRadius: '50%' }}
             src={`/uploads/${user.photo}`}
-            alt=""
+            alt="user avatar"
           />
         )}
 

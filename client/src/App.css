@@ -1170,6 +1170,9 @@ a {
 
 .edit-profile-img {
   margin: 1rem 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
 }
 
 .edit-profile-msg {
@@ -1178,6 +1181,13 @@ a {
 
 .edit-profile label {
   font-weight: bolder;
+}
+
+@media screen and (max-width: 450px) {
+  .edit-profile-img {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 /* Custom Scroll Bar*/
