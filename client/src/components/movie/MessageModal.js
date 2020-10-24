@@ -81,6 +81,7 @@ const MessageModal = ({
                 id="comments"
                 placeholder="Enter comments..."
                 className="mb-3"
+                rows="4"
                 onChange={(e) => setText(e.target.value)}
               />
             </FormGroup>
