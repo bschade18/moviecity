@@ -31,11 +31,13 @@ const Movie = ({ match, user, history }) => {
               loading={loading}
               history={history}
             />
-            <Grid header="Cast" loading={loading}>
-              {movie.actors.map((actor) => (
-                <Actor key={actor.credit_id} actor={actor} />
-              ))}
-            </Grid>
+            <div className="search-grid">
+              <Grid header="Cast" loading={loading}>
+                {movie.actors.map((actor) => (
+                  <Actor key={actor.credit_id} actor={actor} />
+                ))}
+              </Grid>
+            </div>
           </Fragment>
         )}
       </Feed>

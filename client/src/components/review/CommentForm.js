@@ -26,7 +26,14 @@ const CommentForm = ({ reviewId, addComment, review, user }) => {
 
   return (
     <div className="comment-form">
-      <form onSubmit={(e) => onSubmit(e)}>
+      <form
+        className={
+          review.comments.length
+            ? 'comment-form-flat-top'
+            : 'comment-form-rounded-top'
+        }
+        onSubmit={(e) => onSubmit(e)}
+      >
         <input
           onChange={(e) => setText(e.target.value)}
           type="text"

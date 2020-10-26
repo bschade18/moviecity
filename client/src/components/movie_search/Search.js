@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import {
   imageUrl,
   posterSize,
@@ -59,7 +59,7 @@ const Search = () => {
         />
 
         {showMovieSearch ? (
-          <Fragment>
+          <div className="search">
             <SearchBar callback={searchMovies} />
             <Grid header={search ? 'Search Results' : 'Popular Movies'}>
               {movies.map((movie) => (
@@ -89,7 +89,7 @@ const Search = () => {
             {currentPage < totalPages && !loading && (
               <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
             )}
-          </Fragment>
+          </div>
         ) : (
           <UserSearch view="mobile" />
         )}
