@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NoResultsImage from '../../img/tommy.jpg';
 import useFormState from '../hooks/useFormState';
+import Div100vh from 'react-div-100vh';
 
 const Messages = ({
   user,
@@ -115,25 +116,27 @@ const Messages = ({
     return <Spinner />;
   }
   return (
-    <AppGrid component='messages'>
-      <Feed>
-        <FeedHeader heading="Messages" />
-        {showChat ? (
-          <ShowChat
-            toggleChat={toggleChat}
-            renderChat={renderChat}
-            onSubmit={onSubmit}
-            setText={setText}
-            currentMessage={currentMessage}
-            text={text}
-            messagesEndRef={messagesEndRef}
-            scrollToBottom={scrollToBottom}
-          />
-        ) : (
-          renderMessagesList()
-        )}
-      </Feed>
-    </AppGrid>
+    <Div100vh>
+      <AppGrid component="messages">
+        <Feed>
+          <FeedHeader heading="Messages" />
+          {showChat ? (
+            <ShowChat
+              toggleChat={toggleChat}
+              renderChat={renderChat}
+              onSubmit={onSubmit}
+              setText={setText}
+              currentMessage={currentMessage}
+              text={text}
+              messagesEndRef={messagesEndRef}
+              scrollToBottom={scrollToBottom}
+            />
+          ) : (
+            renderMessagesList()
+          )}
+        </Feed>
+      </AppGrid>
+    </Div100vh>
   );
 };
 
