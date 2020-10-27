@@ -1224,6 +1224,12 @@ a {
 }
 
 @media screen and (max-width: 800px) {
+  .user-nav div {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 750px) {
   .sidenav {
     display: none;
   }
@@ -1253,6 +1259,9 @@ a {
     width: 100%;
   }
 
+  .mobile-nav .btn {
+    padding: 0rem 0.75rem;
+  }
   .feed {
     grid-column-start: 1;
     border: none;

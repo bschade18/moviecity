@@ -33,10 +33,18 @@ const MobileNav = ({ getMessages, messages, user, logout, component }) => {
   return (
     <div className="mobile-nav">
       <Link to="/home" className="btn">
-        <FontAwesome className={`fa-home ${component === 'home' && 'primary-color'}`} name="home" size="2x" />
+        <FontAwesome
+          className={`fa-home ${component === 'home' && 'primary-color'}`}
+          name="home"
+        />
       </Link>
       <Link to="/messages" className="btn">
-        <FontAwesome className={`fa-envelope ${component === 'messages' && 'primary-color'}`}  name="envelope" size="2x">
+        <FontAwesome
+          className={`fa-envelope ${
+            component === 'messages' && 'primary-color'
+          }`}
+          name="envelope"
+        >
           {unreadFromFriends() > 0 && (
             <div className="notification-badge">
               {unreadFromFriends() > 0 && unreadFromFriends()}
@@ -45,13 +53,19 @@ const MobileNav = ({ getMessages, messages, user, logout, component }) => {
         </FontAwesome>
       </Link>
       <Link to="/search" className="btn">
-        <FontAwesome className={`fa-search ${component === 'search' && 'primary-color'}`}  name="search" size="2x" />
+        <FontAwesome
+          className={`fa-search ${component === 'search' && 'primary-color'}`}
+          name="search"
+        />
       </Link>
       <Link to={`/${user.username}`} className="btn">
-        <FontAwesome className={`fa-user ${component === 'profile' && 'primary-color'}`}  name="search" size="2x" />
+        <FontAwesome
+          className={`fa-user ${component === 'profile' && 'primary-color'}`}
+          name="search"
+        />
       </Link>
       <button className="btn" onClick={logout}>
-        <FontAwesome className="fa-sign-out" name="signout" size="2x" />
+        <FontAwesome className="fa-sign-out" name="signout" />
       </button>
     </div>
   );
