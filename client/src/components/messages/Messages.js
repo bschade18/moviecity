@@ -116,11 +116,11 @@ const Messages = ({
     return <Spinner />;
   }
   return (
-    <Div100vh>
-      <AppGrid component="messages">
-        <Feed>
-          <FeedHeader heading="Messages" />
-          {showChat ? (
+    <AppGrid component="messages">
+      <Feed>
+        <FeedHeader heading="Messages" />
+        {showChat ? (
+          <Div100vh>
             <ShowChat
               toggleChat={toggleChat}
               renderChat={renderChat}
@@ -131,12 +131,12 @@ const Messages = ({
               messagesEndRef={messagesEndRef}
               scrollToBottom={scrollToBottom}
             />
-          ) : (
-            renderMessagesList()
-          )}
-        </Feed>
-      </AppGrid>
-    </Div100vh>
+          </Div100vh>
+        ) : (
+          renderMessagesList()
+        )}
+      </Feed>
+    </AppGrid>
   );
 };
 
