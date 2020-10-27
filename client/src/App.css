@@ -332,14 +332,34 @@ a {
 /* NoResults */
 
 .no-results {
-  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 1.25rem;
+  margin: 10px 0px;
+  border: 1px solid var(--border-color);
+  padding: 1.5rem 1rem;
+  border-radius: 5px;
+}
+
+.no-results img {
+  width: 80%;
+}
+
+.no-results-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.25rem;
+  margin: 10px 0px;
+  padding: 1.5rem 1rem;
+  border-radius: 5px;
+}
+
+.no-results-search img {
+  width: 50%;
 }
 .no-results-image {
-  margin-top: 1rem;
   border-radius: 5px;
   display: block;
 }
@@ -1169,6 +1189,11 @@ a {
     width: 60px;
     height: 60px;
   }
+
+  .no-results img,
+  .no-results-search img {
+    width: 100%;
+  }
 }
 
 /* Edit Profile */
@@ -1257,7 +1282,9 @@ a {
   }
 
   .edit-profile,
-  .movieinfo {
+  .movieinfo,
+  .no-results,
+  .search {
     margin: 0px;
     border-radius: 0px;
     border: 0;
@@ -1270,7 +1297,6 @@ a {
 
   .review-item,
   .message,
-  .search,
   .search-grid,
   .grid-profile {
     margin: 0px;
