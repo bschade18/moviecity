@@ -16,7 +16,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NoResultsImage from '../../img/tommy.jpg';
 import useFormState from '../hooks/useFormState';
-import Div100vh from 'react-div-100vh';
 
 const Messages = ({
   user,
@@ -120,18 +119,16 @@ const Messages = ({
       <Feed>
         <FeedHeader heading="Messages" />
         {showChat ? (
-          <Div100vh>
-            <ShowChat
-              toggleChat={toggleChat}
-              renderChat={renderChat}
-              onSubmit={onSubmit}
-              setText={setText}
-              currentMessage={currentMessage}
-              text={text}
-              messagesEndRef={messagesEndRef}
-              scrollToBottom={scrollToBottom}
-            />
-          </Div100vh>
+          <ShowChat
+            toggleChat={toggleChat}
+            renderChat={renderChat}
+            onSubmit={onSubmit}
+            setText={setText}
+            currentMessage={currentMessage}
+            text={text}
+            messagesEndRef={messagesEndRef}
+            scrollToBottom={scrollToBottom}
+          />
         ) : (
           renderMessagesList()
         )}
