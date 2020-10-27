@@ -1284,7 +1284,8 @@ a {
   .edit-profile,
   .movieinfo,
   .no-results,
-  .search {
+  .search,
+  .grid-profile {
     margin: 0px;
     border-radius: 0px;
     border: 0;
@@ -1297,8 +1298,7 @@ a {
 
   .review-item,
   .message,
-  .search-grid,
-  .grid-profile {
+  .search-grid {
     margin: 0px;
     border-radius: 0px;
     border-bottom: 1px solid var(--border-color);
