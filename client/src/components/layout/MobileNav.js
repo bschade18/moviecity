@@ -36,6 +36,7 @@ const MobileNav = ({ getMessages, messages, user, logout, component }) => {
         <FontAwesome
           className={`fa-home ${component === 'home' && 'primary-color'}`}
           name="home"
+          size="2x"
         />
       </Link>
       <Link to="/messages" className="btn">
@@ -44,6 +45,7 @@ const MobileNav = ({ getMessages, messages, user, logout, component }) => {
             component === 'messages' && 'primary-color'
           }`}
           name="envelope"
+          size="2x"
         >
           {unreadFromFriends() > 0 && (
             <div className="notification-badge">
@@ -56,16 +58,18 @@ const MobileNav = ({ getMessages, messages, user, logout, component }) => {
         <FontAwesome
           className={`fa-search ${component === 'search' && 'primary-color'}`}
           name="search"
+          size="2x"
         />
       </Link>
       <Link to={`/${user.username}`} className="btn">
         <FontAwesome
           className={`fa-user ${component === 'profile' && 'primary-color'}`}
           name="search"
+          size="2x"
         />
       </Link>
       <button className="btn" onClick={logout}>
-        <FontAwesome className="fa-sign-out" name="signout" />
+        <FontAwesome className="fa-sign-out" name="signout" size="2x" />
       </button>
     </div>
   );
