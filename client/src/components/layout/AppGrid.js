@@ -16,7 +16,7 @@ const AppGrid = ({ component, children, showChat }) => {
     >
       <Sidenav component={component} />
       {children}
-      <UserSearch />
+      {component === 'search' ? null : <UserSearch />}
       {showChat ? null : <MobileNav component={component} />}
     </div>
   );
