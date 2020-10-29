@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, { useEffect } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 import { logout } from '../../actions/auth';
@@ -7,7 +7,6 @@ import { getMessages } from '../../actions/messages';
 import PropTypes from 'prop-types';
 
 const Sidenav = ({ getMessages, messages, user, logout, component }) => {
-
   useEffect(() => {
     getMessages();
   }, [getMessages]);
@@ -32,7 +31,7 @@ const Sidenav = ({ getMessages, messages, user, logout, component }) => {
   };
 
   return (
-    <div className='sidenav'>
+    <div className="sidenav">
       <div className="sidenav-user">
         <img
           src={`/uploads/${user.photo}`}
@@ -43,30 +42,64 @@ const Sidenav = ({ getMessages, messages, user, logout, component }) => {
       </div>
       <Link to="/home" className="btn">
         <div className="sidenav-item">
-          <FontAwesome className={`fa-home ${component === 'home' && 'primary-color'}`} name="home" size="2x" />
-          <span className={`d-block ${component === 'home' && 'primary-color'}`}>Home</span>
+          <FontAwesome
+            className={`fa-home ${component === 'home' && 'primary-color'}`}
+            name="home"
+            size="2x"
+          />
+          <span
+            className={`d-block ${component === 'home' && 'primary-color'}`}
+          >
+            Home
+          </span>
         </div>
       </Link>
       <Link to="/messages" className="btn">
         <div className="sidenav-item">
-          <FontAwesome className={`fa-envelope ${component === 'messages' && 'primary-color'}`}  name="envelope" size="2x">
+          <FontAwesome
+            className={`fa-envelope ${
+              component === 'messages' && 'primary-color'
+            }`}
+            name="envelope"
+            size="2x"
+          >
             {unreadFromFriends() > 0 && (
               <div className="notification-badge">{unreadFromFriends()}</div>
             )}
           </FontAwesome>
-          <span className={`d-block ${component === 'messages' && 'primary-color'}`}>Messages</span>
+          <span
+            className={`d-block ${component === 'messages' && 'primary-color'}`}
+          >
+            Messages
+          </span>
         </div>
       </Link>
       <Link to="/search" className="btn">
         <div className="sidenav-item">
-          <FontAwesome className={`fa-search ${component === 'search' && 'primary-color'}`} name="search" size="2x" />
-          <span className={`d-block ${component === 'search' && 'primary-color'}`}>Search</span>
+          <FontAwesome
+            className={`fa-search ${component === 'search' && 'primary-color'}`}
+            name="search"
+            size="2x"
+          />
+          <span
+            className={`d-block ${component === 'search' && 'primary-color'}`}
+          >
+            Search
+          </span>
         </div>
       </Link>
       <Link to={`/${user.username}`} className="btn">
         <div className="sidenav-item">
-          <FontAwesome className={`fa-user ${component === 'profile' && 'primary-color'}`}  name="user" size="2x" />
-          <span className={`d-block ${component === 'profile' && 'primary-color'}`}>Profile</span>
+          <FontAwesome
+            className={`fa-user ${component === 'profile' && 'primary-color'}`}
+            name="user"
+            size="2x"
+          />
+          <span
+            className={`d-block ${component === 'profile' && 'primary-color'}`}
+          >
+            Profile
+          </span>
         </div>
       </Link>
       <button className="btn" onClick={logout}>
@@ -84,7 +117,7 @@ Sidenav.propTypes = {
   user: PropTypes.object.isRequired,
   messages: PropTypes.array.isRequired,
   getMessages: PropTypes.func.isRequired,
-  component: PropTypes.string.isRequired,
+  component: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({

@@ -1034,12 +1034,11 @@ a {
 
 /* ShowChat*/
 .show-chat {
-  height: 520px;
+  /* height: 520px; */
   border: 0.5px solid gray;
   border: 1px solid var(--border-color);
   border-radius: 5px;
-  margin: 2.5rem auto;
-  margin: 10px auto;
+  margin: 1px auto;
   max-width: 100%;
   display: flex;
   flex-direction: column;
@@ -1312,8 +1311,7 @@ a {
   }
   .show-chat {
     width: 100%;
-    margin: 0px;
-    height: 90vh;
+    margin: 1px;
     border-radius: 0px;
     border-bottom: 0;
   }

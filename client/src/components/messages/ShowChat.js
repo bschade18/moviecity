@@ -11,12 +11,13 @@ const ShowChat = ({
   text,
   scrollToBottom,
   messagesEndRef,
+  height,
 }) => {
   useEffect(() => {
     scrollToBottom();
   }, [scrollToBottom]);
   return (
-    <div className="show-chat">
+    <div className="show-chat" style={{ height: height - 2 }}>
       <div className="show-chat-heading">
         <span className="show-chat-heading-left">
           <img className="show-chat-img mr-3" src={imageUrl} alt="movie" />

@@ -6,6 +6,7 @@ import AppGrid from '../layout/AppGrid';
 import Feed from '../layout/Feed';
 import NoResults from '../elements/NoResults';
 import Spinner from '../layout/Spinner';
+import { useWindowSize } from '../hooks/useWindowSize';
 import {
   getMessages,
   setCurrentMessage,
@@ -29,6 +30,8 @@ const Messages = ({
   const [showChat, setShowChat] = useState(false);
   const [text, setText, resetText] = useFormState('');
   const messagesEndRef = useRef(null);
+
+  const size = useWindowSize();
 
   useEffect(() => {
     getMessages();
@@ -117,11 +120,14 @@ const Messages = ({
   return (
     <AppGrid component="messages" showChat={showChat}>
       <Feed>
-        <FeedHeader
-          heading="Messages"
-          component="messages"
-          showChat={showChat}
-        />
+        {showChat ? null : (
+          <FeedHeader
+            heading="Messages"
+            component="messages"
+            showChat={showChat}
+          />
+        )}
+
         {showChat ? (
           <ShowChat
             toggleChat={toggleChat}
@@ -132,6 +138,7 @@ const Messages = ({
             text={text}
             messagesEndRef={messagesEndRef}
             scrollToBottom={scrollToBottom}
+            height={size.height}
           />
         ) : (
           renderMessagesList()
