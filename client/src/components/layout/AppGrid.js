@@ -3,19 +3,21 @@ import UserSearch from '../elements/UserSearch';
 import MobileNav from '../layout/MobileNav';
 import Sidenav from '../layout/Sidenav';
 
-const AppGrid = ({ component, children }) => {
+const AppGrid = ({ component, children, showChat }) => {
   return (
     <div
       className={
         component === 'search'
           ? 'app-grid-search-container'
+          : showChat
+          ? 'app-grid-container-mobile'
           : 'app-grid-container'
       }
     >
       <Sidenav component={component} />
       {children}
       <UserSearch />
-      <MobileNav component={component} />
+      {showChat ? null : <MobileNav component={component} />}
     </div>
   );
 };
