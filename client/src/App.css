@@ -5,6 +5,12 @@
   font-family: 'Roboto', sans-serif;
 }
 
+body {
+  min-height: 100vh;
+  /* mobile viewport bug fix */
+  min-height: -webkit-fill-available;
+}
+
 :root {
   --primary-color: #003699;
   --border-color: #d6d6d6;
@@ -13,6 +19,7 @@
 /* Fix shifting UI when page scroll gets added and removed */
 html {
   overflow-y: scroll;
+  height: -webkit-fill-available;
 }
 
 /* Fix shifting UI when modal is opened */
@@ -1305,11 +1312,7 @@ a {
   .show-chat {
     width: 100%;
     margin: 0px;
-    height: 100%;
-    height: calc(100vh - 74px);
-    height: -o-calc(100vh - 74px); /* opera */
-    height: -webkit-calc(100vh- 74px); /* google, safari */
-    height: -moz-calc(100vh - 74px); /* firefox */
+    min-height: 100vh;
     border-radius: 0px;
     border-bottom: 0;
   }
@@ -1320,7 +1323,7 @@ a {
 
   .show-chat-form {
     border-radius: 0px;
-    border-bottom: 0;
+    border-bottom: 1px solid var(--border-color);
   }
   .feed-header {
     border-radius: 0px;
@@ -1355,22 +1358,6 @@ a {
   .edit-profile-img {
     width: 150px;
     height: 150px;
-  }
-
-  .show-chat {
-    height: calc(100vh - 62px);
-    height: -o-calc(100vh - 62px); /* opera */
-    height: -webkit-calc(100vh - 62px); /* google, safari */
-    height: -moz-calc(100vh - 62px); /* firefox */
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .show-chat {
-    height: calc(100vh - 56px);
-    height: -o-calc(100vh - 56px); /* opera */
-    height: -webkit-calc(100vh - 56px); /* google, safari */
-    height: -moz-calc(100vh - 56px); /* firefox */
   }
 }
 
