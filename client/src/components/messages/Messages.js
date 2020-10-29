@@ -117,7 +117,11 @@ const Messages = ({
   return (
     <AppGrid component="messages" showChat={showChat}>
       <Feed>
-        {showChat ? null : <FeedHeader heading="Messages" />}
+        <FeedHeader
+          heading="Messages"
+          component="messages"
+          showChat={showChat}
+        />
         {showChat ? (
           <ShowChat
             toggleChat={toggleChat}

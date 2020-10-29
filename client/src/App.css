@@ -5,12 +5,6 @@
   font-family: 'Roboto', sans-serif;
 }
 
-body {
-  min-height: 100vh;
-  /* mobile viewport bug fix */
-  min-height: -webkit-fill-available;
-}
-
 :root {
   --primary-color: #003699;
   --border-color: #d6d6d6;
@@ -275,7 +269,8 @@ a {
 }
 
 /* Feed Header */
-.feed-header {
+.feed-header,
+.feed-header-chat {
   position: sticky;
   z-index: 100;
   top: 0;
@@ -290,12 +285,14 @@ a {
 }
 
 .feed-header span.feed-header-movie-search,
-.feed-header span.feed-header-user-search {
+.feed-header span.feed-header-user-search,
+.feed-header-chat span.feed-header-movie-search {
   font-size: 1.75rem;
   margin-left: 10px;
 }
 
-.feed-header p {
+.feed-header p,
+.feed-header-chat p {
   font-size: 1.75rem;
   margin: 0 10px;
 }
@@ -312,7 +309,8 @@ a {
 
 @media screen and (max-width: 400px) {
   .feed-header span.feed-header-movie-search,
-  .feed-header span.feed-header-user-search {
+  .feed-header span.feed-header-user-search,
+  .feed-header-chat span.feed-header-movie-search {
     font-size: 24px;
   }
 }
@@ -331,7 +329,8 @@ a {
     padding-top: 4px;
   }
 
-  .feed-header {
+  .feed-header,
+  .feed-header-chat {
     padding: 8px;
   }
 }
@@ -1214,10 +1213,12 @@ a {
     margin-right: 5px;
   }
 
-  .feed-header {
+  .feed-header,
+  .feed-header-chat {
     padding: 8px;
     padding: 10px;
   }
+
   .feed-header-heading {
     justify-content: center;
   }
@@ -1312,7 +1313,7 @@ a {
   .show-chat {
     width: 100%;
     margin: 0px;
-    min-height: 100vh;
+    height: 90vh;
     border-radius: 0px;
     border-bottom: 0;
   }
@@ -1327,6 +1328,10 @@ a {
   }
   .feed-header {
     border-radius: 0px;
+  }
+
+  .feed-header-chat {
+    display: none;
   }
 
   .edit-profile,
