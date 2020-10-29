@@ -370,6 +370,11 @@ a {
   grid-template-columns: 2fr minmax(0, 5.5fr) 2.5fr;
 }
 
+.app-grid-container-chat {
+  display: grid;
+  grid-template-columns: 2fr minmax(0, 5.5fr) 2.5fr;
+}
+
 .app-grid-search-container {
   display: grid;
   grid-template-columns: 1fr 4fr;
@@ -961,6 +966,11 @@ a {
     display: grid;
     grid-template-columns: 5fr minmax(0, 16.5fr) 8.5fr;
   }
+  .app-grid-container-chat {
+    display: grid;
+    grid-template-columns: 5fr minmax(0, 16.5fr) 8.5fr;
+  }
+
   .app-grid-search-container {
     display: grid;
     grid-template-columns: 1fr 5fr;
@@ -1272,7 +1282,7 @@ a {
     margin-bottom: 62px;
   }
 
-  .app-grid-container-mobile {
+  .app-grid-container-chat {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     margin-bottom: 0px;

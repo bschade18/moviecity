@@ -10,7 +10,7 @@ const AppGrid = ({ component, children, showChat }) => {
         component === 'search'
           ? 'app-grid-search-container'
           : showChat
-          ? 'app-grid-container-mobile'
+          ? 'app-grid-container-chat'
           : 'app-grid-container'
       }
     >
