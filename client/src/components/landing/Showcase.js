@@ -42,6 +42,7 @@ const Showcase = ({ register, image, alerts }) => {
                 id="name"
                 placeholder="Name"
                 onChange={setName}
+                aria-label="name"
               />
               <Alert field="name" />
             </div>
@@ -57,6 +58,7 @@ const Showcase = ({ register, image, alerts }) => {
                 id="username"
                 placeholder="Username"
                 onChange={setUserName}
+                aria-label="username"
               />
               <Alert field="username" />
             </div>
@@ -72,6 +74,7 @@ const Showcase = ({ register, image, alerts }) => {
                 id="email"
                 placeholder="Email"
                 onChange={setEmail}
+                aria-label="email"
               />
               <Alert field="email" />
             </div>
@@ -87,6 +90,7 @@ const Showcase = ({ register, image, alerts }) => {
                 id="password"
                 placeholder="New Password"
                 onChange={setPassword}
+                aria-label="password"
               />
               <Alert field="password" />
             </div>
@@ -102,6 +106,7 @@ const Showcase = ({ register, image, alerts }) => {
                 id="password2"
                 placeholder="Confirm Password"
                 onChange={setPassword2}
+                aria-label="password2"
               />
               <Alert field="password2" />
             </div>
