@@ -32,11 +32,9 @@ const Showcase = ({ register, image, alerts }) => {
           <form onSubmit={onSubmit} noValidate>
             <div className="form-group">
               <input
-                className={
-                  applyErrorStyle('name')
-                    ? 'form-control error-border'
-                    : 'form-control'
-                }
+                className={`form-control ${
+                  applyErrorStyle('name') && 'error-border'
+                }`}
                 type="text"
                 name="name"
                 id="name"
@@ -48,11 +46,9 @@ const Showcase = ({ register, image, alerts }) => {
             </div>
             <div className="form-group">
               <input
-                className={
-                  applyErrorStyle('username')
-                    ? 'form-control error-border'
-                    : 'form-control'
-                }
+                className={`form-control ${
+                  applyErrorStyle('username') && 'error-border'
+                }`}
                 type="text"
                 name="username"
                 id="username"
@@ -64,11 +60,9 @@ const Showcase = ({ register, image, alerts }) => {
             </div>
             <div className="form-group">
               <input
-                className={
-                  applyErrorStyle('email')
-                    ? 'form-control error-border'
-                    : 'form-control'
-                }
+                className={`form-control ${
+                  applyErrorStyle('email') && 'error-border'
+                }`}
                 type="email"
                 name="email"
                 id="email"
@@ -80,11 +74,9 @@ const Showcase = ({ register, image, alerts }) => {
             </div>
             <div className="form-group">
               <input
-                className={
-                  applyErrorStyle('password')
-                    ? 'form-control error-border'
-                    : 'form-control'
-                }
+                className={`form-control ${
+                  applyErrorStyle('password') && 'error-border'
+                }`}
                 type="password"
                 name="password"
                 id="password"
@@ -96,11 +88,9 @@ const Showcase = ({ register, image, alerts }) => {
             </div>
             <div className="form-group">
               <input
-                className={
-                  applyErrorStyle('password2')
-                    ? 'form-control error-border'
-                    : 'form-control'
-                }
+                className={`form-control ${
+                  applyErrorStyle('password2') && 'error-border'
+                }`}
                 type="password"
                 name="password2"
                 id="password2"
