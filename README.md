@@ -32,7 +32,11 @@ cd client
 npm run build
 ```
 
-## App Info
+## Features
+
+See your and friends reviews displayed in your main feed.
+
+![image info](./img/mc1.jpg)
 
 ### Author
 
