@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   imageUrl,
   posterSize,
@@ -33,6 +33,12 @@ const Search = () => {
   const [search, setSearch] = useState('');
   const [showMovieSearch, setShowMovieSearch] = useState(true);
 
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  });
+
   const searchMovies = (search) => {
     const endpoint = search ? searchBaseUrl + search : popularBaseUrl;
 
@@ -48,6 +54,17 @@ const Search = () => {
 
     fetchMovies(endpoint);
   };
+
+  const handleScroll = () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    if (scrollTop + clientHeight >= scrollHeight - 5) {
+      if (!loading) {
+        loadMoreMovies();
+      }
+    }
+  };
+
   if (error) return <div>Something went wrong</div>;
 
   return (
