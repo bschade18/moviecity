@@ -8,6 +8,8 @@ const UserNav = ({
   renderNavButton,
   toggleFriend,
   profileUserId,
+  userFollowers,
+  userFollowing,
 }) => {
   return (
     <div className="feed-header">
@@ -44,8 +46,14 @@ const UserNav = ({
           </span>
         </button>
       </div>
+      <div className="feed-header-follow">
+        <span>{userFollowing().length}</span>
+        <span>Following</span>
+        <span>{userFollowers().length}</span>
+        <span>Followers</span>
+      </div>
 
-      <div className="user-nav mt-xs-2 mt-sm-4">
+      <div className="user-nav mt-xs-2">
         {renderNavButton('Reviews')}
         {renderNavButton('Favorites')}
         {renderNavButton('Watchlist')}
@@ -61,6 +69,8 @@ UserNav.propTypes = {
   username: PropTypes.string.isRequired,
   renderNavButton: PropTypes.func.isRequired,
   toggleFriend: PropTypes.func.isRequired,
+  userFollowers: PropTypes.func.isRequired,
+  userFollowing: PropTypes.func.isRequired,
 };
 
 export default UserNav;

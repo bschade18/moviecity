@@ -44,6 +44,12 @@ const Profile = ({
     return users.find((user) => user.username === username)._id;
   };
 
+  const userFollowers = () =>
+    users.filter((u) => u.friends.includes(profileUserId()));
+
+  const userFollowing = () =>
+    users.filter((u) => u._id === profileUserId())[0].friends;
+
   const toggleFriend = () => {
     const profileId = profileUserId();
     const { friends } = user;
@@ -83,11 +89,17 @@ const Profile = ({
       return <NoResults image={img} text1={text} />;
     } else {
       return (
-      <Grid component='profile'>
-       {list.map((movie) => <MovieThumb image={movie.imgUrl} id={movie.movieId} key={movie.movieId} clickable={true} />)}
-      </Grid>
-      )
-
+        <Grid component="profile">
+          {list.map((movie) => (
+            <MovieThumb
+              image={movie.imgUrl}
+              id={movie.movieId}
+              key={movie.movieId}
+              clickable={true}
+            />
+          ))}
+        </Grid>
+      );
     }
   };
 
@@ -110,7 +122,7 @@ const Profile = ({
   }
 
   return (
-    <AppGrid component='profile'>
+    <AppGrid component="profile">
       <Feed>
         <UserNav
           users={users}
@@ -119,6 +131,8 @@ const Profile = ({
           username={username}
           renderNavButton={renderNavButton}
           toggleFriend={toggleFriend}
+          userFollowers={userFollowers}
+          userFollowing={userFollowing}
         />
         {view === 'Reviews' &&
           displayUserReviews(
