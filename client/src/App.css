@@ -307,23 +307,35 @@ a {
   display: none;
 }
 
-.feed-header .feed-header-follow {
+.feed-header-follow {
   font-size: 16px;
   margin-top: 10px;
 }
 
-.feed-header .feed-header-follow span {
+.feed-header-follow span {
   margin-left: 6px;
 }
 
-.feed-header .feed-header-follow span:nth-child(odd) {
+.feed-header-follow span:nth-child(odd) {
   font-weight: bolder;
 }
 
-.feed-header .feed-header-follow span:nth-child(even) {
+.feed-header-follow span:nth-child(even) {
   font-weight: lighter;
   color: #f7f9f9;
-  margin-right: 6px;
+}
+
+.feed-header-follow button {
+  color: #fff;
+  padding: 0px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.feed-header-follow button:hover {
+  color: lightgray;
 }
 
 @media screen and (max-width: 400px) {
@@ -1291,6 +1303,21 @@ a {
   font-weight: bolder;
 }
 
+/* Connections */
+.connections {
+  min-height: 75px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 1rem 1.5rem;
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.connections div {
+  margin-left: 10px;
+}
+
 @media screen and (max-width: 800px) {
   .user-nav div {
     font-size: 14px;
@@ -1380,7 +1407,8 @@ a {
 
   .review-item,
   .message,
-  .search-grid {
+  .search-grid,
+  .connections {
     margin: 0px;
     border-radius: 0px;
     border-bottom: 1px solid var(--border-color);

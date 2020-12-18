@@ -6,7 +6,7 @@ const ErrorResponse = require('../utils/errorResponse');
 // @desc Get all users
 // @access Private
 exports.getUsers = asyncHandler(async (req, res, next) => {
-  const users = await User.find();
+  const users = await User.find().populate('friends');
 
   res.status(200).json(users);
 });

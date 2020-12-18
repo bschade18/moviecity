@@ -11,6 +11,7 @@ import NoResults from '../elements/NoResults';
 import NoFavoritesResultsImage from '../../img/bobslicker.jpg';
 import NoWatchListResultsImage from '../../img/homealone.jpg';
 import NoReviewsResultsImage from '../../img/jim.jpg';
+import Connections from './Connections';
 import { updateUserFriends } from '../../actions/auth';
 import { logout } from '../../actions/auth';
 import { getReviews } from '../../actions/review';
@@ -40,15 +41,14 @@ const Profile = ({
 
   const { username } = match.params;
 
-  const profileUserId = () => {
-    return users.find((user) => user.username === username)._id;
-  };
+  const profileUserId = () =>
+    users.find((user) => user.username === username)._id;
 
-  const userFollowers = () =>
-    users.filter((u) => u.friends.includes(profileUserId()));
+  const profileUserFollowers = () =>
+    users.filter((user) => user.friends.some((f) => f._id === profileUserId()));
 
-  const userFollowing = () =>
-    users.filter((u) => u._id === profileUserId())[0].friends;
+  const profileUserFollowing = () =>
+    users.filter((user) => user._id === profileUserId())[0].friends;
 
   const toggleFriend = () => {
     const profileId = profileUserId();
@@ -104,9 +104,9 @@ const Profile = ({
   };
 
   const displayUserReviews = (img, text) => {
-    const userReviews = reviews.filter((review) => {
-      return review.user._id === profileUserId();
-    });
+    const userReviews = reviews.filter(
+      (review) => review.user._id === profileUserId()
+    );
 
     if (!userReviews.length) {
       return <NoResults image={img} text1={text} />;
@@ -131,8 +131,9 @@ const Profile = ({
           username={username}
           renderNavButton={renderNavButton}
           toggleFriend={toggleFriend}
-          userFollowers={userFollowers}
-          userFollowing={userFollowing}
+          followers={profileUserFollowers()}
+          following={profileUserFollowing()}
+          setView={setView}
         />
         {view === 'Reviews' &&
           displayUserReviews(
@@ -158,6 +159,12 @@ const Profile = ({
             NoWatchListResultsImage
           )}
         {view === 'Edit Profile' && <EditProfile user={user} />}
+        {view === 'Followers' && (
+          <Connections connections={profileUserFollowers()} />
+        )}
+        {view === 'Following' && (
+          <Connections connections={profileUserFollowing()} />
+        )}
       </Feed>
     </AppGrid>
   );

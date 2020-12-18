@@ -8,8 +8,9 @@ const UserNav = ({
   renderNavButton,
   toggleFriend,
   profileUserId,
-  userFollowers,
-  userFollowing,
+  followers,
+  following,
+  setView,
 }) => {
   return (
     <div className="feed-header">
@@ -47,10 +48,15 @@ const UserNav = ({
         </button>
       </div>
       <div className="feed-header-follow">
-        <span>{userFollowing().length}</span>
-        <span>Following</span>
-        <span>{userFollowers().length}</span>
-        <span>Followers</span>
+        <button onClick={() => setView('Following')}>
+          <span>{following.length}</span>
+          <span>Following</span>
+        </button>
+
+        <button onClick={() => setView('Followers')}>
+          <span>{followers.length}</span>
+          <span>Followers</span>
+        </button>
       </div>
 
       <div className="user-nav mt-xs-2">
@@ -69,8 +75,8 @@ UserNav.propTypes = {
   username: PropTypes.string.isRequired,
   renderNavButton: PropTypes.func.isRequired,
   toggleFriend: PropTypes.func.isRequired,
-  userFollowers: PropTypes.func.isRequired,
-  userFollowing: PropTypes.func.isRequired,
+  followers: PropTypes.array.isRequired,
+  following: PropTypes.array.isRequired,
 };
 
 export default UserNav;
