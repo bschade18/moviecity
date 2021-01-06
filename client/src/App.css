@@ -1314,6 +1314,17 @@ a {
   align-items: center;
 }
 
+.connections .connections-user-link {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  color: black;
+}
+
+.connections .connections-username {
+  font-weight: bolder;
+}
+
 .connections div {
   margin-left: 10px;
 }
