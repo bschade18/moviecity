@@ -21,7 +21,14 @@ const UserSearch = ({ users, view }) => {
     filtered().map((user) => (
       <div id="user-search-box" key={user._id}>
         <Link id="user-search-link" to={`/${user.username}`}>
-          <div onClick={clearSearch}>{user.name}</div>
+          <img
+            src={`/uploads/${user.photo}`}
+            className="user-avatar-search"
+            alt="user"
+          />
+          <div onClick={clearSearch} className="ml-2">
+            {user.name}
+          </div>
         </Link>
       </div>
     ));

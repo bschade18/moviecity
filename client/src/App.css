@@ -1051,6 +1051,18 @@ a {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
+#user-search-box a {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar-search {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 /* Message */
 .message {
   display: flex;
