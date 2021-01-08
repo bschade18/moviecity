@@ -198,7 +198,7 @@ a {
 }
 
 .review-item .review-item-user-link {
-  display: flex;
+  display: inline-flex;
   justify-items: center;
   align-items: center;
   color: black;
