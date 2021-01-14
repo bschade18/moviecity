@@ -52,11 +52,13 @@ const UserSearch = ({ users, view }) => {
         />
       </div>
       <div>
-        {search
-          ? filtered().length
-            ? showFiltered()
-            : 'No users found'
-          : null}
+        {search ? (
+          filtered().length ? (
+            showFiltered()
+          ) : (
+            <div id="user-search-box">No users found for "{search}"</div>
+          )
+        ) : null}
       </div>
     </div>
   );
