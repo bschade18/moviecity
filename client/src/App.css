@@ -966,6 +966,10 @@ a {
   margin: 0 0 0 40px;
 }
 
+/* .movieinfo-runtime {
+  margin-left: 40px;
+} */
+
 .movieinfo-director p {
   margin: 0;
 }
@@ -1066,7 +1070,16 @@ a {
   z-index: 2;
   position: relative;
   background: #fff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  /* offset x, offset y, blur radius, spread radius, color */
+  box-shadow: -1px 0px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+#user-search-box:last-child {
+  box-shadow: 0px 1px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+#user-search-box:hover {
+  background: rgb(0, 0, 0, 0.01);
 }
 
 #user-search-box a {
