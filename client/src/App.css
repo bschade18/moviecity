@@ -980,23 +980,41 @@ a {
 }
 
 .movieinfo-panel {
-  background: var(--primary-color);
   background: #1c1c1c;
   color: #fff;
   padding: 1rem;
   font-size: 1.5rem;
   display: flex;
-  justify-content: center;
   justify-content: space-around;
   border-radius: 5px;
   margin-top: 10px;
   font-size: 1rem;
 }
+
 .movieinfo-panel-group {
   display: flex;
 }
 .movieinfo-panel-group div:last-child {
   margin-left: 3px;
+}
+
+@media screen and (max-width: 750px) {
+  .movieinfo-panel {
+    margin: 10px 24px 0px 24px;
+    border-radius: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .movieinfo-panel {
+    margin: 0px 20px;
+    margin-top: 10px;
+    flex-direction: column;
+  }
+
+  .movieinfo-panel-group {
+    padding-bottom: 5px;
+  }
 }
 /* Actor */
 

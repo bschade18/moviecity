@@ -22,15 +22,15 @@ const MovieInfoPanel = ({ movie: { runtime, revenue, budget } }) => {
   return (
     <div className="movieinfo-panel">
       <div className="movieinfo-panel-group">
-        <div className="movieinfo-runtime">Runtime:</div>
+        <div>Runtime:</div>
         <div>{convertRuntime()}</div>
       </div>
       <div className="movieinfo-panel-group">
-        <div className="movieinfo-runtime">Box Office:</div>
+        <div>Box Office:</div>
         <div>{convertToUSD(revenue)}</div>
       </div>
       <div className="movieinfo-panel-group">
-        <div className="movieinfo-runtime">Budget:</div>
+        <div>Budget:</div>
         <div>{convertToUSD(budget)}</div>
       </div>
     </div>
