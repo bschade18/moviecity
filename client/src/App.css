@@ -966,10 +966,6 @@ a {
   margin: 0 0 0 40px;
 }
 
-/* .movieinfo-runtime {
-  margin-left: 40px;
-} */
-
 .movieinfo-director p {
   margin: 0;
 }
@@ -983,6 +979,25 @@ a {
   display: flex;
 }
 
+.movieinfo-panel {
+  background: var(--primary-color);
+  background: #1c1c1c;
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+.movieinfo-panel-group {
+  display: flex;
+}
+.movieinfo-panel-group div:last-child {
+  margin-left: 3px;
+}
 /* Actor */
 
 .actor {

@@ -7,6 +7,7 @@ import Spinner from '../layout/Spinner';
 import PropTypes from 'prop-types';
 import AppGrid from '../layout/AppGrid';
 import Feed from '../layout/Feed';
+import MovieInfoPanel from './MovieInfoPanel';
 import { connect } from 'react-redux';
 
 import { useMovieFetch } from '../hooks/useMovieFetch';
@@ -31,6 +32,7 @@ const Movie = ({ match, user, history }) => {
               loading={loading}
               history={history}
             />
+            <MovieInfoPanel movie={movie} />
             <div className="search-grid">
               <Grid header="Cast" loading={loading}>
                 {movie.actors.map((actor) => (
