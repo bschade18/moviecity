@@ -102,16 +102,37 @@ const Messages = ({
     messagesEndRef.current.scrollIntoView({ behavior: 'auto' });
   };
 
+  const nonUserPhoto = () => {
+    if (currentMessage.recipient._id === user._id) {
+      return currentMessage.sender.photo;
+    } else {
+      return currentMessage.recipient.photo;
+    }
+  };
   const renderChat = () =>
     currentMessage.conversation.map((msg) => (
-      <p
+      <div
         className={
-          'show-chat-text ' + (msg.user === user._id ? 'recipient' : 'sender')
+          'msg-container ' + (msg.user === user._id ? 'recipient' : 'sender')
         }
-        key={msg._id}
       >
-        {msg.text}
-      </p>
+        <img
+          alt="user"
+          src={`/uploads/${nonUserPhoto()}`}
+          className={
+            'show-chat-user-avatar ' +
+            (msg.user === user._id && 'sender-avatar')
+          }
+        />
+        <p
+          className={
+            'show-chat-text ' + (msg.user === user._id ? 'recipient' : 'sender')
+          }
+          key={msg._id}
+        >
+          {msg.text}
+        </p>
+      </div>
     ));
 
   if (!currentMessage || !messages) {

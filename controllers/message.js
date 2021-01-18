@@ -36,7 +36,7 @@ exports.updateMessage = asyncHandler(async (req, res, next) => {
   message = await Message.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
-  });
+  }).populate('sender recipient');
 
   res.status(200).json(message);
 });
