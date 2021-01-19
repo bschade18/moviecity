@@ -116,6 +116,7 @@ const Messages = ({
         className={
           'msg-container ' + (msg.user === user._id ? 'recipient' : 'sender')
         }
+        key={msg._id}
       >
         <img
           alt="user"

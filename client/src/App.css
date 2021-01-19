@@ -202,11 +202,6 @@ a {
   right: 0;
 }
 
-/* .block .inner a {
-  pointer-events: all;
-  position:relative;
-} */
-
 .review-item:hover {
   background: rgb(0, 0, 0, 0.01);
 }
