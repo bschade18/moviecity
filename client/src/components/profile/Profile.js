@@ -160,10 +160,24 @@ const Profile = ({
           )}
         {view === 'Edit Profile' && <EditProfile user={user} />}
         {view === 'Followers' && (
-          <Connections connections={profileUserFollowers()} setView={setView} />
+          <Connections
+            connections={profileUserFollowers()}
+            setView={setView}
+            userId={user._id}
+            profileUserId={profileUserId()}
+            username={username}
+            view="followers"
+          />
         )}
         {view === 'Following' && (
-          <Connections connections={profileUserFollowing()} setView={setView} />
+          <Connections
+            connections={profileUserFollowing()}
+            setView={setView}
+            userId={user._id}
+            profileUserId={profileUserId()}
+            username={username}
+            view="following"
+          />
         )}
       </Feed>
     </AppGrid>
