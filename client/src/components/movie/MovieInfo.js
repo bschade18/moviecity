@@ -130,7 +130,6 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
           </div>
 
           <div className="movieinfo-plot">
-            <h3>Plot</h3>
             <p>{overview}</p>
           </div>
 
