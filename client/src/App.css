@@ -191,7 +191,21 @@ a {
   border: 1px solid var(--border-color);
   margin: 10px 0px;
   border-radius: 5px;
+  position: relative;
 }
+
+.review-item .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* .block .inner a {
+  pointer-events: all;
+  position:relative;
+} */
 
 .review-item:hover {
   background: rgb(0, 0, 0, 0.01);
@@ -202,6 +216,8 @@ a {
   justify-items: center;
   align-items: center;
   color: black;
+  pointer-events: all;
+  position: relative;
 }
 
 .review-item .review-item-user-link img {

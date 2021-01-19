@@ -14,6 +14,7 @@ const ReviewItem = ({
 
   return (
     <div className="review-item">
+      <Link className="overlay" to={`/review/${_id}`}></Link>
       <Link className="review-item-user-link mb-2" to={`/${user.username}`}>
         <img
           src={`/uploads/${user.photo}`}
@@ -44,10 +45,8 @@ const ReviewItem = ({
 
       {page && (
         <div className="review-item-link-container">
-          <Link className="review-item-link" to={`/review/${_id}`}>
-            <i className="far fa-comment-alt"></i>{' '}
-            <span>{comments.length > 0 && comments.length}</span>
-          </Link>
+          <i className="far fa-comment-alt"></i>{' '}
+          <span>{comments.length > 0 && comments.length}</span>
         </div>
       )}
     </div>
