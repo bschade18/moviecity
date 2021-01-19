@@ -1,7 +1,6 @@
 import React from 'react';
 import useFormState from '../hooks/useFormState';
 import { Link } from 'react-router-dom';
-import FontAwesome from 'react-fontawesome';
 import { login } from '../../actions/auth';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -20,11 +19,6 @@ const LandingNav = ({ login, page }) => {
     <nav className="navbar navbar-dark landing-nav py-3">
       <div className="container">
         <Link className="navbar-brand" to="/home" href="#">
-          <FontAwesome
-            className="fas fa-building d-none d-md-inline"
-            name="city"
-            size="2x"
-          />{' '}
           <span>MovieCity</span>
         </Link>
         {page === 'landing' && (

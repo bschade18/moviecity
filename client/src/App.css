@@ -108,6 +108,10 @@ a {
   color: #fff;
 }
 
+.landing-nav span {
+  font-size: 1.75rem;
+}
+
 .landing-nav-input-container {
   position: relative;
 }
