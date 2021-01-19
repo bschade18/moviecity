@@ -109,8 +109,9 @@ const Messages = ({
       return currentMessage.recipient.photo;
     }
   };
+
   const renderChat = () =>
-    currentMessage.conversation.map((msg) => (
+    currentMessage.conversation.map((msg, idx, arr) => (
       <div
         className={
           'msg-container ' + (msg.user === user._id ? 'recipient' : 'sender')
@@ -121,7 +122,9 @@ const Messages = ({
           src={`/uploads/${nonUserPhoto()}`}
           className={
             'show-chat-user-avatar ' +
-            (msg.user === user._id && 'sender-avatar')
+            ((msg.user === user._id ||
+              (idx > 0 && arr[idx - 1].user === msg.user)) &&
+              'sender-avatar')
           }
         />
         <p
