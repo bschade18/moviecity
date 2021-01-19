@@ -215,6 +215,11 @@ a {
   position: relative;
 }
 
+.review-item .review-item-thumb .movie-thumb {
+  pointer-events: all;
+  position: relative;
+}
+
 .review-item .review-item-user-link img {
   transition: all 0.3s;
   animation: animateUserAvatar 0.5s;
