@@ -39,11 +39,11 @@ const Connections = ({
   return (
     <>
       {displayConnections(
-        view === 'following'
+        view === 'Following'
           ? NoResultsImageFollowing
           : NoResultsImageFollowers,
 
-        view === 'following'
+        view === 'Following'
           ? userId === profileUserId
             ? 'You are not following anyone'
             : `${username} is not following anyone`

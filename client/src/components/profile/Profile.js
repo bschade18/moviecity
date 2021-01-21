@@ -159,24 +159,18 @@ const Profile = ({
             NoWatchListResultsImage
           )}
         {view === 'Edit Profile' && <EditProfile user={user} />}
-        {view === 'Followers' && (
+        {(view === 'Followers' || view === 'Following') && (
           <Connections
-            connections={profileUserFollowers()}
+            connections={
+              view === 'Followers'
+                ? profileUserFollowers()
+                : view === 'Following' && profileUserFollowing()
+            }
             setView={setView}
             userId={user._id}
             profileUserId={profileUserId()}
             username={username}
-            view="followers"
-          />
-        )}
-        {view === 'Following' && (
-          <Connections
-            connections={profileUserFollowing()}
-            setView={setView}
-            userId={user._id}
-            profileUserId={profileUserId()}
-            username={username}
-            view="following"
+            view={view}
           />
         )}
       </Feed>
@@ -186,10 +180,12 @@ const Profile = ({
 
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
   getReviews: PropTypes.func.isRequired,
   getUsers: PropTypes.func.isRequired,
   updateUserFriends: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
