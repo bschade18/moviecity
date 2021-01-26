@@ -1,7 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FeedHeader = ({ heading, setShowMovieSearch, component, showChat }) => {
+interface FeedHeaderProps {
+  heading: string,
+  setShowMovieSearch: (bool: boolean) => void,
+  component: string,
+  showChat: () => JSX.Element
+  
+}
+
+const FeedHeader = ({ heading, setShowMovieSearch, component, showChat } : FeedHeaderProps) => {
   return (
     <div
       className={

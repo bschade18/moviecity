@@ -1,17 +1,28 @@
 import React from 'react';
 
-const MovieInfoPanel = ({ movie: { runtime, revenue, budget } }) => {
+
+interface MovieInfoPanelProps {
+  movie: {
+    runtime: number,
+    revenue: number,
+    budget: number
+  }
+}
+
+const MovieInfoPanel = ({ movie: { runtime, revenue, budget } } : MovieInfoPanelProps) => {
   const convertRuntime = () => {
     let hours = Math.floor(runtime / 60);
     let minutes = runtime - 60 * hours;
 
+    // @ts-ignore
     hours = hours < 1 ? '' : `${hours}h`;
+     // @ts-ignore
     minutes = minutes < 1 ? '' : `${minutes}m`;
 
     return `${hours} ${minutes}`;
   };
 
-  const convertToUSD = (dollars) => {
+  const convertToUSD = (dollars: number) => {
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
