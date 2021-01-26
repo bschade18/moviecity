@@ -1,13 +1,13 @@
 import React from 'react';
 
-interface noResultsProps {
+interface NoResultsProps {
 image: string,
 text1: string,
 text2?: string,
-component: string
+component?: string
 }
 
-const NoResults: React.FC<noResultsProps> = ({ image, text1, text2, component }) => {
+const NoResults = ({ image, text1, text2, component } : NoResultsProps) => {
   return (
     <div
       className={component === 'Search' ? 'no-results-search' : 'no-results'}

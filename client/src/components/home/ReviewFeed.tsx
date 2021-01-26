@@ -3,10 +3,32 @@ import FeedHeader from '../layout/FeedHeader';
 import ReviewItem from './ReviewItem';
 import Feed from '../layout/Feed';
 import NoResults from '../elements/NoResults';
-import PropTypes from 'prop-types';
 import NoResultsImage from '../../img/happy.jpg';
 
-const ReviewFeed = ({ user, reviews, loading }) => {
+
+interface ReviewFeedProps {
+  loading: boolean,
+  user: {
+    _id: string
+    friends: {
+      _id: string
+    }[]
+  },
+  reviews: {
+  _id: string,
+  user: {
+    _id: string
+  },
+  rating: number,
+  imageUrl: string,
+  movieId: number,
+  movieTitle: string,
+  text: string,
+  comments: {}[]
+  }[]
+}
+
+const ReviewFeed = ({ user, reviews, loading } : ReviewFeedProps) => {
   const renderReviews = () => {
     const userAndFriendsReviews = reviews.filter((review) => {
       const { friends } = user;
@@ -32,16 +54,13 @@ const ReviewFeed = ({ user, reviews, loading }) => {
 
   return (
     <Feed>
+    {/*@ts-ignore*/} 
       <FeedHeader heading="MovieCity" />
       {renderReviews()}
     </Feed>
   );
 };
 
-ReviewFeed.propTypes = {
-  user: PropTypes.object.isRequired,
-  reviews: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired,
-};
+
 
 export default ReviewFeed;
