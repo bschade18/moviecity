@@ -5,6 +5,16 @@ import NoResults from '../elements/NoResults';
 import NoResultsImageFollowers from '../../img/pineapple.jpg';
 import NoResultsImageFollowing from '../../img/superbad.jpg';
 
+
+interface ConnectionsProps {
+  connections: {_id: string, username: string, photo: string}[],
+  setView: () => void,
+  userId: string,
+  profileUserId: string,
+  username: string,
+  view: string
+}
+
 const Connections = ({
   connections,
   setView,
@@ -12,8 +22,8 @@ const Connections = ({
   profileUserId,
   username,
   view,
-}) => {
-  const displayConnections = (img, text) => {
+} : ConnectionsProps) => {
+  const displayConnections = (img : string, text: string) => {
     if (!connections.length) {
       return <NoResults image={img} text1={text} />;
     } else {
@@ -25,6 +35,7 @@ const Connections = ({
             alt="user"
           />
           <Link
+          // @ts-ignore
             onClick={() => setView('Reviews')}
             className="connections-user-link"
             to={`/${username}`}

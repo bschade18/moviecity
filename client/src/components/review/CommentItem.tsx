@@ -1,8 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
-const CommentItem = ({ comment: { text, user, username } }) => (
+interface CommentItemProps {
+  comment : {
+    text: string, 
+    user: {
+      photo: string
+    },
+    username: string
+  }
+
+}
+
+const CommentItem = ({ comment: { text, user, username } } : CommentItemProps) => (
   <div className="comment-item">
     <div className="comment-item-content">
       <img src={`/uploads/${user.photo}`} className="user-avatar" alt="user" />
@@ -18,8 +28,5 @@ const CommentItem = ({ comment: { text, user, username } }) => (
   </div>
 );
 
-CommentItem.propTypes = {
-  comment: PropTypes.object.isRequired,
-};
 
 export default CommentItem;

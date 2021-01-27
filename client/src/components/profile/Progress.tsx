@@ -1,7 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Progress = ({ percentage }) => (
+interface ProgressProps {
+  percentage: number
+}
+
+const Progress = ({ percentage } : ProgressProps ) => (
   <div className="progress">
     <div
       className="progress-bar progress-bar-striped bg-success"
@@ -13,8 +16,5 @@ const Progress = ({ percentage }) => (
   </div>
 );
 
-Progress.propTypes = {
-  percentage: PropTypes.number.isRequired,
-};
 
 export default Progress;
