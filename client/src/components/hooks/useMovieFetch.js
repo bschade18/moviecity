@@ -18,6 +18,9 @@ export const useMovieFetch = (id) => {
       const creditsEndpoint = `${apiUrl}movie/${id}/credits?api_key=${apiKey}`;
       const creditsResult = await (await fetch(creditsEndpoint)).json();
 
+      const videosEndpoint = `${apiUrl}movie/${id}/videos?api_key=${apiKey}`;
+      const videosResult = await (await fetch(videosEndpoint)).json();
+
       const directors = creditsResult.crew.filter(
         (member) => member.job === 'Director'
       );
@@ -26,6 +29,7 @@ export const useMovieFetch = (id) => {
         ...result,
         actors: creditsResult.cast,
         directors,
+        videos: videosResult.results,
       });
     } catch {
       setError(true);

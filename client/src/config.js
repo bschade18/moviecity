@@ -6,6 +6,7 @@ const searchBaseUrl = `${apiUrl}search/movie?api_key=${apiKey}&query=`;
 const popularBaseUrl = `${apiUrl}movie/popular?api_key=${apiKey}`;
 
 const imageUrl = 'https://image.tmdb.org/t/p/';
+const youtubeUrl = 'https://www.youtube.com/embed/';
 
 const backdropSize = 'w1280';
 const posterSize = 'w500';
@@ -18,4 +19,5 @@ export {
   posterSize,
   searchBaseUrl,
   popularBaseUrl,
+  youtubeUrl,
 };
