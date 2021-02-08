@@ -9,7 +9,7 @@ const SendPasswordReset = ({ user }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    sendPasswordResetEmail(user.user.email);
+    sendPasswordResetEmail(user.email);
   };
 
   const sendPasswordResetEmail = async (email) => {
@@ -34,7 +34,7 @@ const SendPasswordReset = ({ user }) => {
               <div>
                 <h1 className="text-center">Check your email!</h1>
                 <p className="text-center mt-3">
-                  We sent an email to {user.user.email}
+                  We sent an email to {user.email}
                 </p>
                 <p className="text-center mt-3">
                   Click the link in the email to reset your password.
@@ -47,7 +47,7 @@ const SendPasswordReset = ({ user }) => {
                 </h4>
                 <div className="text-center mt-3">
                   {' '}
-                  <strong>{user.user.email}</strong>
+                  <strong>{user.email}</strong>
                 </div>
 
                 <form onSubmit={onSubmit}>

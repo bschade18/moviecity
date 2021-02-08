@@ -77,6 +77,7 @@ exports.login = async (req, res) => {
           id: user._id,
           name: user.name,
           email: user.email,
+          username: user.username,
         },
       });
     });
@@ -154,7 +155,7 @@ exports.userPhotoUpload = asyncHandler(async (req, res, next) => {
   }
 
   const file = req.files.file;
-  console.log(file)
+  console.log(file);
 
   // Make sure the image is a photo
   if (!file.mimetype.startsWith('image')) {
@@ -270,7 +271,8 @@ exports.findUser = async (req, res) => {
       return res.status(400).json({ msg: 'No user found' });
     }
 
-    res.send({ user });
+    // res.send({ user });
+    res.send(user);
   } catch (err) {
     res.status(500).send('Server Error');
   }
