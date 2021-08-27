@@ -1,0 +1,130 @@
+.feed-header,
+.feed-header-chat {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.feed-header span.feed-header-movie-search,
+.feed-header span.feed-header-user-search,
+.feed-header-chat span.feed-header-movie-search {
+  font-size: 1.75rem;
+  margin-left: 10px;
+}
+
+.feed-header p,
+.feed-header-chat p {
+  font-size: 1.75rem;
+  margin: 0 10px;
+}
+
+.feed-header-heading {
+  display: flex;
+  align-items: center;
+}
+
+.feed-header-user-search {
+  display: none;
+}
+
+.feed-header-follow {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.feed-header-follow span {
+  margin-left: 6px;
+}
+
+.feed-header-follow span:nth-child(odd) {
+  font-weight: bolder;
+}
+
+.feed-header-follow span:nth-child(even) {
+  font-weight: lighter;
+  color: #f7f9f9;
+}
+
+.feed-header-follow button {
+  color: #fff;
+  padding: 0px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.feed-header-follow button:hover {
+  color: lightgray;
+}
+
+@media screen and (max-width: 750px) {
+  .feed-header-user-search {
+    display: block;
+  }
+  .feed-header {
+    border-radius: 0px;
+  }
+
+  .feed-header-chat {
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: 450px) {
+  .feed-header-follow {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .feed-header,
+  .feed-header-chat {
+    padding: 10px;
+  }
+
+  .feed-header-heading {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .feed-header,
+  .feed-header-chat {
+    padding: 10px 6px;
+  }
+  .feed-header span.feed-header-movie-search,
+  .feed-header span.feed-header-user-search,
+  .feed-header-chat span.feed-header-movie-search {
+    font-size: 24px;
+  }
+}
+
+
+@media screen and (max-width: 340px) {
+  .feed-header-vertical-bar {
+    display: none;
+  }
+
+  .feed-header-heading {
+    flex-direction: column;
+  }
+
+  .feed-header-user-search-text {
+    border-top: 1px dotted #fff;
+    padding-top: 4px;
+  }
+
+  .feed-header,
+  .feed-header-chat {
+    padding: 8px;
+  }
+}

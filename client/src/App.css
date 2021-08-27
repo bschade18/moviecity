@@ -186,222 +186,13 @@ a {
   border-color: #e74c3c;
 }
 
-/* ReviewItem */
-
-.review-item {
-  min-height: 200px;
-  padding: 1rem 1.5rem;
-  overflow: auto;
-  border: 1px solid var(--border-color);
-  margin: 10px 0px;
-  border-radius: 5px;
-  position: relative;
-}
-
-.review-item .overlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-}
-
-.review-item:hover {
-  background: rgb(0, 0, 0, 0.01);
-}
-
-.review-item .review-item-user-link {
-  display: inline-flex;
-  justify-items: center;
-  align-items: center;
-  color: black;
-  pointer-events: all;
-  position: relative;
-}
-
-.review-item .review-item-thumb .movie-thumb {
-  pointer-events: all;
-  position: relative;
-}
-
-.review-item .review-item-user-link img {
-  transition: all 0.3s;
-  animation: animateUserAvatar 0.5s;
-}
-
-.review-item .review-item-user-link img:hover {
-  opacity: 0.9;
-}
-
-@keyframes animateUserAvatar {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.comment-item-username,
-.review-item-username {
+.comment-item-username {
   font-weight: bolder;
-}
-
-.review-item-content {
-  padding: 0.5rem 0;
-}
-
-/* competing with movie thumb style */
-.review-item-thumb img {
-  border-radius: 10px !important;
-  width: 125px !important;
-  float: left;
-  margin-right: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.review-item .review-item-content p {
-  display: inline;
-  word-wrap: break-word;
-  overflow: hidden;
-}
-
-.review-item .review-item-content h5 {
-  margin-bottom: 6px;
-}
-
-@media screen and (max-width: 400px) {
-  .review-item {
-    padding: 1rem;
-  }
-}
-
-.review-item-link-container {
-  margin-top: 8px;
-  clear: left;
-}
-
-.review-item-link {
-  color: #000;
-  display: inline;
-  text-decoration: none;
-  margin-top: 2px;
-}
-.review-item-link span {
-  margin-left: 8px;
-  line-height: 0px;
-  position: relative;
-  top: -1.25px;
-}
-
-.review-item-link:hover {
-  text-decoration: none;
-}
-.review-item-link:hover i,
-.review-item-link:hover span {
-  color: var(--primary-color);
 }
 
 .fa-comment-alt {
   color: black;
   text-decoration: none;
-}
-
-/* Feed Header */
-.feed-header,
-.feed-header-chat {
-  position: sticky;
-  z-index: 100;
-  top: 0;
-  background: var(--primary-color);
-  color: #fff;
-  padding: 1rem;
-  font-size: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 5px;
-}
-
-.feed-header span.feed-header-movie-search,
-.feed-header span.feed-header-user-search,
-.feed-header-chat span.feed-header-movie-search {
-  font-size: 1.75rem;
-  margin-left: 10px;
-}
-
-.feed-header p,
-.feed-header-chat p {
-  font-size: 1.75rem;
-  margin: 0 10px;
-}
-
-.feed-header-heading {
-  display: flex;
-  align-items: center;
-}
-
-.feed-header-user-search {
-  display: none;
-}
-
-.feed-header-follow {
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-.feed-header-follow span {
-  margin-left: 6px;
-}
-
-.feed-header-follow span:nth-child(odd) {
-  font-weight: bolder;
-}
-
-.feed-header-follow span:nth-child(even) {
-  font-weight: lighter;
-  color: #f7f9f9;
-}
-
-.feed-header-follow button {
-  color: #fff;
-  padding: 0px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  outline: inherit;
-}
-
-.feed-header-follow button:hover {
-  color: lightgray;
-}
-
-@media screen and (max-width: 400px) {
-  .feed-header span.feed-header-movie-search,
-  .feed-header span.feed-header-user-search,
-  .feed-header-chat span.feed-header-movie-search {
-    font-size: 24px;
-  }
-}
-
-@media screen and (max-width: 340px) {
-  .feed-header-vertical-bar {
-    display: none;
-  }
-
-  .feed-header-heading {
-    flex-direction: column;
-  }
-
-  .feed-header-user-search-text {
-    border-top: 1px dotted #fff;
-    padding-top: 4px;
-  }
-
-  .feed-header,
-  .feed-header-chat {
-    padding: 8px;
-  }
 }
 
 /* NoResults */
@@ -437,22 +228,6 @@ a {
 .no-results-image {
   border-radius: 5px;
   display: block;
-}
-
-/* AppGrid */
-.app-grid-container {
-  display: grid;
-  grid-template-columns: 2fr minmax(0, 5.5fr) 2.5fr;
-}
-
-.app-grid-container-chat {
-  display: grid;
-  grid-template-columns: 2fr minmax(0, 5.5fr) 2.5fr;
-}
-
-.app-grid-search-container {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
 }
 
 /* UserNav */
@@ -1136,20 +911,6 @@ a {
 }
 
 @media screen and (max-width: 900px) {
-  .app-grid-container {
-    display: grid;
-    grid-template-columns: 5fr minmax(0, 16.5fr) 8.5fr;
-  }
-  .app-grid-container-chat {
-    display: grid;
-    grid-template-columns: 5fr minmax(0, 16.5fr) 8.5fr;
-  }
-
-  .app-grid-search-container {
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-  }
-
   .user-search {
     width: 27.3%;
   }
@@ -1413,23 +1174,13 @@ a {
 }
 
 @media screen and (max-width: 450px) {
-  .user-nav,
-  .feed-header-follow {
+  .user-nav{
     margin-left: auto;
     margin-right: auto;
   }
   .user-nav div {
     font-size: 14px;
     margin-right: 5px;
-  }
-
-  .feed-header,
-  .feed-header-chat {
-    padding: 10px;
-  }
-
-  .feed-header-heading {
-    justify-content: center;
   }
 
   .user-nav-user-avatar {
@@ -1446,11 +1197,6 @@ a {
 @media screen and (max-width: 400px) {
   .user-nav div {
     margin-right: 3px;
-  }
-
-  .feed-header,
-  .feed-header-chat {
-    padding: 10px 6px;
   }
 }
 
@@ -1530,19 +1276,7 @@ a {
     position: static;
     width: 100%;
   }
-  .app-grid-container,
-  .app-grid-search-container {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    margin-bottom: 62px;
-  }
-
-  .app-grid-container-chat {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    margin-bottom: 0px;
-  }
-
+ 
   .mobile-nav {
     display: flex;
     justify-content: space-between;
@@ -1564,21 +1298,13 @@ a {
     border-bottom: 0;
   }
 
-  .feed-header-user-search {
-    display: block;
-  }
+ 
 
   .show-chat-form {
     border-radius: 0px;
     border-bottom: 1px solid var(--border-color);
   }
-  .feed-header {
-    border-radius: 0px;
-  }
-
-  .feed-header-chat {
-    display: none;
-  }
+ 
 
   .edit-profile,
   .movieinfo,
@@ -1595,7 +1321,6 @@ a {
     border-top: 0;
   }
 
-  .review-item,
   .message,
   .search-grid,
   .connections {

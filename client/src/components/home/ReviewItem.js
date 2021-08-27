@@ -1,3 +1,4 @@
+import '../../styles/ReviewItem.css';
 import React from 'react';
 import MovieThumb from '../elements/MovieThumb';
 import NoImage from '../../img/no_image.jpg';

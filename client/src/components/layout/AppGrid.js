@@ -1,3 +1,4 @@
+import '../../styles/AppGrid.css';
 import React from 'react';
 import UserSearch from '../elements/UserSearch';
 import MobileNav from '../layout/MobileNav';

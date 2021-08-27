@@ -1,0 +1,124 @@
+
+/* ReviewItem */
+
+.review-item {
+  min-height: 200px;
+  padding: 1rem 1.5rem;
+  overflow: auto;
+  border: 1px solid var(--border-color);
+  margin: 10px 0px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.review-item .overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.review-item:hover {
+  background: rgb(0, 0, 0, 0.01);
+}
+
+.review-item .review-item-user-link {
+  display: inline-flex;
+  justify-items: center;
+  align-items: center;
+  color: black;
+  pointer-events: all;
+  position: relative;
+}
+
+.review-item .review-item-thumb .movie-thumb {
+  pointer-events: all;
+  position: relative;
+}
+
+.review-item .review-item-user-link img {
+  transition: all 0.3s;
+  animation: animateUserAvatar 0.5s;
+}
+
+.review-item .review-item-user-link img:hover {
+  opacity: 0.9;
+}
+
+@keyframes animateUserAvatar {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.review-item-username {
+  font-weight: bolder;
+}
+
+.review-item-content {
+  padding: 0.5rem 0;
+}
+
+/* competing with movie thumb style */
+.review-item-thumb img {
+  border-radius: 10px !important;
+  width: 125px !important;
+  float: left;
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.review-item .review-item-content p {
+  display: inline;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.review-item .review-item-content h5 {
+  margin-bottom: 6px;
+}
+
+@media screen and (max-width: 750px) {
+  .review-item {
+    margin: 0px;
+    border-radius: 0px;
+    border-bottom: 1px solid var(--border-color);
+    border-top: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .review-item {
+    padding: 1rem;
+  }
+}
+
+.review-item-link-container {
+  margin-top: 8px;
+  clear: left;
+}
+
+.review-item-link {
+  color: #000;
+  display: inline;
+  text-decoration: none;
+  margin-top: 2px;
+}
+.review-item-link span {
+  margin-left: 8px;
+  line-height: 0px;
+  position: relative;
+  top: -1.25px;
+}
+
+.review-item-link:hover {
+  text-decoration: none;
+}
+.review-item-link:hover i,
+.review-item-link:hover span {
+  color: var(--primary-color);
+}
