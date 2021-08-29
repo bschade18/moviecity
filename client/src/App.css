@@ -166,55 +166,6 @@ a {
   border-radius: 5px;
 }
 
-/* Searchbar */
-
-.search-bar {
-  display: flex;
-  justify-content: center;
-}
-
-.search-bar .search-bar-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 1280px;
-  width: 90%;
-  background: #353535;
-  margin: 0 auto;
-  border-radius: 40px;
-  position: relative;
-  color: #fff;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.search-bar .search-bar-input {
-  display: inline-block;
-  padding: 0.2rem 0.75rem;
-  width: 98%;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  border: 1px solid #ced4da;
-  border-radius: 40px;
-  font-size: 28px;
-  margin: 8px 0;
-  border: 0;
-  text-indent: 3rem;
-}
-
-.search-bar .search-bar-input:focus {
-  outline: none;
-}
-
-.search-bar .fa-search {
-  color: #000;
-  z-index: 0;
-  position: absolute;
-  left: 1rem;
-}
-
 /* Spinner */
 .spinner {
   border: 5px solid #f3f3f3;
@@ -232,33 +183,6 @@ a {
   }
   100% {
     transform: rotate(360deg);
-  }
-}
-
-/* MovieThumb */
-
-.movie-thumb img {
-  width: 100%;
-  transition: all 0.3s;
-  object-fit: cover;
-  border-radius: 20px;
-  animation: animateMovieThumb 0.5s;
-}
-
-.movie-thumb img:hover {
-  opacity: 0.9;
-}
-
-.movie-thumb img .clickable {
-  cursor: pointer;
-}
-
-@keyframes animateMovieThumb {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }
 
@@ -280,116 +204,6 @@ a {
   padding: 0 20px;
   outline: none;
 }
-
-/* Actor */
-
-.actor {
-  color: #fff;
-  background: #1c1c1c;
-  border-radius: 20px;
-  padding: 5px;
-  text-align: center;
-}
-.actor-image {
-  display: block;
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 15px;
-}
-
-.actor-name {
-  display: block;
-  font-size: 18px;
-  margin: 10px 0 0 0;
-}
-
-.actor-character {
-  display: block;
-  font-size: 16px;
-  margin: 0 0 10px 0;
-}
-
-/* User Search */
-
-.user-search {
-  width: 24%;
-  position: fixed;
-  top: 0;
-  right: 0.5%;
-}
-
-@media screen and (max-width: 900px) {
-  .user-search {
-    width: 27.3%;
-  }
-}
-
-.user-search-content {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.user-search-input {
-  text-indent: 1.5rem;
-}
-
-.user-search .fa-search-user {
-  position: absolute;
-  margin: 0 0.5rem;
-}
-
-#user-search-link {
-  color: black;
-}
-
-#user-search-box {
-  border-bottom: 1px solid var(--border-color);
-  border-left: 1px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
-  padding: 10px 0;
-  padding-left: 10px;
-  font-weight: bold;
-  z-index: 2;
-  position: relative;
-  background: #fff;
-  /* offset x, offset y, blur radius, spread radius, color */
-  box-shadow: -1px 0px 6px 0 rgba(0, 0, 0, 0.1);
-}
-
-#user-search-box:last-child {
-  box-shadow: 0px 1px 6px 0 rgba(0, 0, 0, 0.1);
-}
-
-#user-search-box:hover {
-  background: rgb(0, 0, 0, 0.01);
-}
-
-#user-search-box a {
-  display: flex;
-  align-items: center;
-}
-
-.user-avatar-search {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-/* Message */
-/* .message {
-  display: flex;
-  padding: 1rem;
-  margin: 10px 0px;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-}
-
-.message:hover {
-  background-color: rgb(0, 0, 0, 0.01);
-} */
 
 /* ShowChat*/
 .show-chat {
@@ -538,34 +352,6 @@ a {
   color: #fff !important;
 }
 
-/* Edit Profile */
-
-.edit-profile {
-  margin: 10px 0px;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-}
-
-.edit-profile form {
-  padding: 1rem;
-}
-
-.edit-profile-img {
-  margin: 1rem 0;
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.edit-profile-msg {
-  font-size: 20px;
-}
-
-.edit-profile label {
-  font-weight: bolder;
-}
-
 /* Connections */
 .connections {
   min-height: 75px;
@@ -593,16 +379,6 @@ a {
 }
 
 @media screen and (max-width: 750px) {
-  .user-search {
-    display: none;
-  }
-
-  .user-search-mobile {
-    display: block;
-    position: static;
-    width: 100%;
-  }
-
   .show-chat {
     width: 100%;
     margin: 1px;
@@ -615,7 +391,6 @@ a {
     border-bottom: 1px solid var(--border-color);
   }
 
-  .edit-profile,
   .no-results,
   .search,
   .grid-profile {
@@ -630,13 +405,6 @@ a {
     border-radius: 0px;
     border-bottom: 1px solid var(--border-color);
     border-top: 0;
-  }
-}
-
-@media screen and (max-width: 450px) {
-  .edit-profile-img {
-    width: 150px;
-    height: 150px;
   }
 }
 

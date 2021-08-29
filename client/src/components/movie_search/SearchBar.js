@@ -1,3 +1,4 @@
+import '../../styles/SearchBar.css';
 import React, { useState, useRef } from 'react';
 import FontAwesome from 'react-fontawesome';
 

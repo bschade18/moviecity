@@ -1,3 +1,4 @@
+import '../../styles/Actor.css';
 import React from 'react';
 import { imageUrl, posterSize } from '../../config';
 import NoImage from '../../img/no_image.jpg';

@@ -1,3 +1,4 @@
+import '../../styles/EditProfile.css';
 import React, { useState } from 'react';
 import Progress from './Progress';
 import api from '../../utils/api';
