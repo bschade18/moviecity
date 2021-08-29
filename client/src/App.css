@@ -152,39 +152,6 @@ a {
   align-items: center;
 }
 
-/* Message */
-
-.message-movie-img {
-  width: 50px;
-  border-radius: 5px;
-}
-
-.message-img-container {
-  position: relative;
-  padding-top: 8px;
-}
-
-.message-poster-row {
-  width: 7rem;
-}
-
-.notification-badge-msg {
-  position: absolute;
-  top: 0;
-  right: 52px;
-  font-size: 10px;
-  background: red;
-  color: #fff;
-  border-radius: 50%;
-  height: 20px;
-  width: 20px;
-  line-height: 5px;
-  padding: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 /* Search */
 
 .search {
@@ -268,78 +235,6 @@ a {
   }
 }
 
-/* Grid */
-
-.grid {
-  max-width: 1280px;
-  margin: 10px auto;
-  padding: 1rem 1.5rem;
-}
-
-.grid-profile {
-  max-width: 1280px;
-  margin: 10px auto;
-  padding: 1rem 1.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-}
-
-.grid-header {
-  font-size: 42px;
-}
-
-.grid-children {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(50px, 1fr));
-  grid-gap: 40px;
-  position: relative;
-}
-
-.grid-profile-children {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(50px, 1fr));
-  grid-gap: 20px;
-  position: relative;
-}
-
-@media screen and (max-width: 768px) {
-  .grid-header {
-    font-size: 32px;
-    text-align: center;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .grid-children {
-    grid-template-columns: repeat(4, minmax(50px, 1fr));
-  }
-
-  .grid-profile-children {
-    grid-template-columns: repeat(4, minmax(50px, 1fr));
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .grid-children {
-    grid-template-columns: repeat(3, minmax(50px, 1fr));
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .grid-children {
-    grid-template-columns: repeat(2, minmax(50px, 1fr));
-  }
-}
-
-@media screen and (max-width: 375px) {
-  .grid-children {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  .grid-profile-children {
-    grid-template-columns: repeat(3, minmax(50px, 1fr));
-  }
-}
-
 /* MovieThumb */
 
 .movie-thumb img {
@@ -386,245 +281,6 @@ a {
   outline: none;
 }
 
-/* MovieInfo */
-
-.movieinfo {
-  margin-top: 10px;
-  border-radius: 5px;
-}
-
-.movieinfo-content {
-  max-width: 1280px;
-  min-height: 450px;
-  margin: 0 auto;
-  background: rgb(0, 0, 0, 0.7);
-  border-radius: 20px;
-  position: relative;
-}
-
-.movieinfo-plot p {
-  margin-top: 10px;
-}
-
-.movieinfo-thumb {
-  width: 300px;
-  float: left;
-}
-
-.movieinfo-text {
-  padding: 20px 40px;
-  color: #fff;
-  overflow: hidden;
-}
-
-.movieinfo-text h1 {
-  font-size: 36px;
-  max-height: 86px;
-  overflow: auto;
-  margin: 0;
-}
-
-.movieinfo-watchlist {
-  margin-left: 10px;
-}
-
-.movie-videos {
-  border: 1px solid var(--border-color);
-  margin: 10px 0px;
-  border-radius: 5px;
-  padding: 1rem 1.5rem;
-}
-
-.movie-videos-container {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}
-
-.movie-videos-title {
-  font-weight: bolder;
-  width: 400px;
-  overflow-y: hidden;
-  height: 20px;
-}
-
-.movie-video-dimensions {
-  width: 400px;
-  height: 226px;
-}
-
-@media screen and (max-width: 750px) {
-  .movie-videos {
-    border: 0;
-  }
-
-  .movie-video-dimensions {
-    width: 560px;
-    height: 315px;
-  }
-  .movie-videos-title {
-    width: 560px;
-  }
-
-  .movie-videos-container {
-    border: 0;
-  }
-}
-
-@media screen and (max-width: 650px) {
-  .movie-video-dimensions {
-    width: 100%;
-  }
-  .movie-videos-title {
-    width: 100%;
-  }
-
-  .movie-videos {
-    padding: 0rem;
-  }
-  .movie-videos-container {
-    display: block;
-  }
-
-  .movie-videos h1 {
-    text-align: center;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .movieinfo {
-    min-height: 600px;
-    height: auto;
-  }
-
-  .movieinfo-thumb {
-    width: 100%;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .movieinfo-plot p {
-    padding-right: 10px;
-    margin-top: 5px;
-    max-height: 110px;
-    overflow: auto;
-  }
-
-  .movieinfo-director-list {
-    max-height: 30px;
-    padding-right: 10px;
-    overflow: auto;
-  }
-}
-
-@media screen and (max-width: 1140px) {
-  .movieinfo-text h1 {
-    font-size: 28px;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .movieinfo-text h1 {
-    font-size: 24px;
-  }
-
-  .movieinfo-text {
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-}
-
-@media screen and (max-width: 968px) {
-  .movieinfo-text h1 {
-    font-size: 22px;
-  }
-}
-
-.movieinfo-text h3 {
-  font-size: 18px;
-  line-height: 0;
-  margin-top: 30px;
-}
-
-.movieinfo-text p {
-  font-size: 16px;
-  line-height: 26px;
-  font-weight: normal;
-  margin-top: 1rem;
-}
-
-.movieinfo-rating-director {
-  display: flex;
-  justify-content: flex-start;
-}
-
-.movieinfo-score {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  background: #fff;
-  color: #000;
-  font-weight: 800;
-  border-radius: 25px;
-  margin-top: 10px;
-}
-
-.movieinfo-director {
-  margin: 0 0 0 40px;
-}
-
-.movieinfo-director p {
-  margin: 0;
-}
-
-.movieinfo-review-btn {
-  margin-top: 20px;
-  margin-right: 0.5rem;
-}
-
-.movieinfo-review-btns {
-  display: flex;
-}
-
-.movieinfo-panel {
-  background: #1c1c1c;
-  color: #fff;
-  padding: 1rem;
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: space-around;
-  border-radius: 5px;
-  margin-top: 10px;
-  font-size: 1rem;
-}
-
-.movieinfo-panel-group {
-  display: flex;
-}
-.movieinfo-panel-group div:last-child {
-  margin-left: 3px;
-}
-
-@media screen and (max-width: 750px) {
-  .movieinfo-panel {
-    margin: 10px 24px 0px 24px;
-    border-radius: 20px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .movieinfo-panel {
-    margin: 0px 20px;
-    margin-top: 10px;
-    flex-direction: column;
-  }
-
-  .movieinfo-panel-group {
-    padding-bottom: 5px;
-  }
-}
 /* Actor */
 
 .actor {
@@ -723,7 +379,7 @@ a {
 }
 
 /* Message */
-.message {
+/* .message {
   display: flex;
   padding: 1rem;
   margin: 10px 0px;
@@ -733,7 +389,7 @@ a {
 
 .message:hover {
   background-color: rgb(0, 0, 0, 0.01);
-}
+} */
 
 /* ShowChat*/
 .show-chat {
@@ -840,10 +496,6 @@ a {
 
   .show-chat-body {
     padding: 1rem 10px;
-  }
-
-  .movie-table-message {
-    display: none;
   }
 }
 
@@ -964,7 +616,6 @@ a {
   }
 
   .edit-profile,
-  .movieinfo,
   .no-results,
   .search,
   .grid-profile {
@@ -973,7 +624,6 @@ a {
     border: 0;
   }
 
-  .message,
   .search-grid,
   .connections {
     margin: 0px;

@@ -1,3 +1,4 @@
+import '../../styles/Movie.css';
 import React, { Fragment } from 'react';
 import Actor from './Actor';
 import Grid from './Grid';

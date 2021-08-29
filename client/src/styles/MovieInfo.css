@@ -1,0 +1,186 @@
+.movieinfo {
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.movieinfo-content {
+  max-width: 1280px;
+  min-height: 450px;
+  margin: 0 auto;
+  background: rgb(0, 0, 0, 0.7);
+  border-radius: 20px;
+  position: relative;
+}
+
+.movieinfo-plot p {
+  margin-top: 10px;
+}
+
+.movieinfo-thumb {
+  width: 300px;
+  float: left;
+}
+
+.movieinfo-text {
+  padding: 20px 40px;
+  color: #fff;
+  overflow: hidden;
+}
+
+.movieinfo-text h1 {
+  font-size: 36px;
+  max-height: 86px;
+  overflow: auto;
+  margin: 0;
+}
+
+.movieinfo-watchlist {
+  margin-left: 10px;
+}
+
+
+
+@media screen and (max-width: 750px) {
+  .movieinfo {
+    margin: 0px;
+    border-radius: 0px;
+    border: 0;
+  }
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .movieinfo {
+    min-height: 600px;
+    height: auto;
+  }
+
+  .movieinfo-thumb {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .movieinfo-plot p {
+    padding-right: 10px;
+    margin-top: 5px;
+    max-height: 110px;
+    overflow: auto;
+  }
+
+  .movieinfo-director-list {
+    max-height: 30px;
+    padding-right: 10px;
+    overflow: auto;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .movieinfo-text h1 {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .movieinfo-text h1 {
+    font-size: 24px;
+  }
+
+  .movieinfo-text {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 968px) {
+  .movieinfo-text h1 {
+    font-size: 22px;
+  }
+}
+
+.movieinfo-text h3 {
+  font-size: 18px;
+  line-height: 0;
+  margin-top: 30px;
+}
+
+.movieinfo-text p {
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: normal;
+  margin-top: 1rem;
+}
+
+.movieinfo-rating-director {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.movieinfo-score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: #fff;
+  color: #000;
+  font-weight: 800;
+  border-radius: 25px;
+  margin-top: 10px;
+}
+
+.movieinfo-director {
+  margin: 0 0 0 40px;
+}
+
+.movieinfo-director p {
+  margin: 0;
+}
+
+.movieinfo-review-btn {
+  margin-top: 20px;
+  margin-right: 0.5rem;
+}
+
+.movieinfo-review-btns {
+  display: flex;
+}
+
+.movieinfo-panel {
+  background: #1c1c1c;
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.movieinfo-panel-group {
+  display: flex;
+}
+.movieinfo-panel-group div:last-child {
+  margin-left: 3px;
+}
+
+@media screen and (max-width: 750px) {
+  .movieinfo-panel {
+    margin: 10px 24px 0px 24px;
+    border-radius: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .movieinfo-panel {
+    margin: 0px 20px;
+    margin-top: 10px;
+    flex-direction: column;
+  }
+
+  .movieinfo-panel-group {
+    padding-bottom: 5px;
+  }
+}

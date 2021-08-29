@@ -1,3 +1,4 @@
+import '../../styles/MovieInfo.css';
 import React, { useState, useEffect } from 'react';
 import ReviewModal from './ReviewModal';
 import MessageModal from './MessageModal';

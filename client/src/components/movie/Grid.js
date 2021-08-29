@@ -1,3 +1,4 @@
+import '../../styles/Grid.css';
 import React from 'react';
 
 const Grid = ({ header, children, component }) => (
