@@ -1,0 +1,44 @@
+.landing-nav {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.landing-nav span {
+  font-size: 1.75rem;
+}
+
+.landing-nav-input-container {
+  position: relative;
+}
+
+.landing-nav form {
+  padding: 1rem;
+}
+
+.landing-nav-forgotpw {
+  color: lightgray;
+}
+
+.landing-nav-forgotpw:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 575px) {
+  .btn-block-sm-only {
+    display: block;
+    width: 100%;
+  }
+
+  .landing-nav-input-container {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .landing-nav-forgotpw {
+    position: absolute;
+    bottom: -15px;
+    left: 2px;
+  }
+}

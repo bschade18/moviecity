@@ -1,0 +1,67 @@
+.user-nav {
+  display: flex;
+  flex: 1;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.user-nav-user-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #fff;
+}
+
+@media screen and (max-width: 800px) {
+  .user-nav div {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .user-nav div {
+    margin-right: 6px;
+  }
+
+  .user-nav div:last-child {
+    margin-right: 0px;
+  }
+}
+
+.friend-btn:before {
+  content: 'Friend';
+}
+
+.friend-btn:hover {
+  background: #dc3545 !important;
+  border-color: #dc3545 !important;
+}
+.friend-btn:hover:before {
+  content: 'Remove Friend?';
+}
+
+.friend-btn-hide:hover:before {
+  content: '';
+}
+
+@media screen and (max-width: 450px) {
+  .user-nav{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .user-nav div {
+    font-size: 14px;
+    margin-right: 5px;
+  }
+
+  .user-nav-user-avatar {
+    width: 60px;
+    height: 60px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .user-nav div {
+    margin-right: 3px;
+  }
+}

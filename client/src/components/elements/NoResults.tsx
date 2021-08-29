@@ -1,3 +1,4 @@
+import '../../styles/NoResults.css';
 import React from 'react';
 
 interface NoResultsProps {

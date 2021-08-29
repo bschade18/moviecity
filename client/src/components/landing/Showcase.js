@@ -1,3 +1,4 @@
+import '../../styles/Showcase.css';
 import React from 'react';
 import useFormState from '../hooks/useFormState';
 import { register } from '../../actions/auth';

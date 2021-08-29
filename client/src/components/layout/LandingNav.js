@@ -1,3 +1,4 @@
+import '../../styles/LandingNav.css';
 import React from 'react';
 import useFormState from '../hooks/useFormState';
 import { Link } from 'react-router-dom';
