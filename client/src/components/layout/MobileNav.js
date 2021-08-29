@@ -1,3 +1,4 @@
+import '../../styles/MobileNav.css';
 import React, { useEffect } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';

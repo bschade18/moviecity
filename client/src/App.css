@@ -102,8 +102,6 @@ a {
   height: 400px;
 }
 
-
-
 /* Showcase - Errors */
 .form-group {
   position: relative;
@@ -135,121 +133,6 @@ a {
 .fa-comment-alt {
   color: black;
   text-decoration: none;
-}
-
-
-
-
-
-/* Mobile Nav */
-.mobile-nav {
-  border-left: 1px solid var(--border-color);
-  border-right: 1px solid var(--border-color);
-  border-top: 1px solid var(--border-color);
-  position: fixed;
-  bottom: 0;
-  background: white;
-  color: black;
-  padding: 10px;
-  font-size: 1.5rem;
-  display: none;
-}
-
-.mobile-nav .notification-badge {
-  position: absolute;
-  top: 3px;
-  right: 0;
-  font-size: 10px;
-  background: red;
-  color: #fff;
-  border-radius: 50%;
-  height: 18px;
-  width: 18px;
-  line-height: 5px;
-  padding: 6px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.mobile-nav .btn {
-  font-size: 12px;
-}
-
-/*Sidenav */
-
-.sidenav {
-  margin-top: 60px;
-  background: #fff;
-  width: 20%;
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-@media screen and (max-width: 900px) {
-  .sidenav {
-    width: 16.67%;
-  }
-}
-
-.sidenav .sidenav-item {
-  color: black;
-  display: block;
-  padding: 0.5rem 1.5rem;
-  border-radius: 25px;
-  outline: none !important;
-}
-
-.sidenav .sidenav-item:hover {
-  color: var(--primary-color);
-}
-
-.sidenav a.btn:focus,
-.sidenav a.btn:active {
-  outline: none !important;
-  box-shadow: none;
-}
-
-.sidenav button.btn:focus,
-.sidenav button.btn:active {
-  outline: none !important;
-  box-shadow: none;
-}
-
-.sidenav .fa-home,
-.sidenav .fa-envelope,
-.sidenav .fa-search,
-.sidenav .fa-sign-out {
-  margin: 0 0.5rem;
-}
-
-.sidenav .fa-envelope,
-.mobile-nav .fa-envelope {
-  position: relative;
-  padding: 8px;
-}
-
-.sidenav-user {
-  position: fixed;
-  top: 5px;
-  display: flex;
-}
-
-@media screen and (max-width: 900px) {
-  .sidenav-user {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-.sidenav-user-avatar {
-  width: 30px;
-  height: 30px;
-  object-fit: cover;
-  border-radius: 50%;
 }
 
 .notification-badge {
@@ -1003,7 +886,6 @@ a {
   color: #fff !important;
 }
 
-
 /* Edit Profile */
 
 .edit-profile {
@@ -1059,12 +941,6 @@ a {
 }
 
 @media screen and (max-width: 750px) {
-  .sidenav {
-    display: none;
-  }
-  .sidenav .sidenav-item {
-    display: none;
-  }
   .user-search {
     display: none;
   }
@@ -1073,17 +949,6 @@ a {
     display: block;
     position: static;
     width: 100%;
-  }
- 
-  .mobile-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-
-  .mobile-nav .btn {
-    padding: 0rem 0.75rem;
   }
 
   .show-chat {
@@ -1097,7 +962,6 @@ a {
     border-radius: 0px;
     border-bottom: 1px solid var(--border-color);
   }
- 
 
   .edit-profile,
   .movieinfo,

@@ -1,0 +1,81 @@
+.sidenav {
+  margin-top: 60px;
+  background: #fff;
+  width: 20%;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidenav-user-avatar {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 900px) {
+  .sidenav {
+    width: 16.67%;
+  }
+
+  .sidenav-user {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .sidenav {
+    display: none;
+  }
+  .sidenav .sidenav-item {
+    display: none;
+  }
+}
+
+.sidenav .sidenav-item {
+  color: black;
+  display: block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  outline: none !important;
+}
+
+.sidenav .sidenav-item:hover {
+  color: var(--primary-color);
+}
+
+.sidenav a.btn:focus,
+.sidenav a.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.sidenav button.btn:focus,
+.sidenav button.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.sidenav .fa-home,
+.sidenav .fa-envelope,
+.sidenav .fa-search,
+.sidenav .fa-sign-out {
+  margin: 0 0.5rem;
+}
+
+.sidenav .fa-envelope {
+  position: relative;
+  padding: 8px;
+}
+
+.sidenav-user {
+  position: fixed;
+  top: 5px;
+  display: flex;
+}
+
+
