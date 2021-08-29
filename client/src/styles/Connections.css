@@ -1,0 +1,33 @@
+.connections {
+  min-height: 75px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 1rem 1.5rem;
+  margin: 10px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.connections .connections-user-link {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  color: black;
+}
+
+.connections .connections-username {
+  font-weight: bolder;
+}
+
+.connections div {
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 750px) {
+  .connections {
+    margin: 0px;
+    border-radius: 0px;
+    border-bottom: 1px solid var(--border-color);
+    border-top: 0;
+  }
+}

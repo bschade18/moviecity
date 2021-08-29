@@ -1,3 +1,4 @@
+import '../../styles/Search.css';
 import React, { useState, useEffect } from 'react';
 import {
   imageUrl,

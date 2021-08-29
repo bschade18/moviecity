@@ -1,3 +1,4 @@
+import '../../styles/ShowChat.css';
 import React, { useEffect } from 'react';
 import DeleteModal from './DeleteModal';
 import PropTypes from 'prop-types';

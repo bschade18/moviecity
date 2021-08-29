@@ -1,0 +1,18 @@
+.comment-form form {
+  display: flex;
+  background: #f4f4f4;
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+}
+
+.comment-form-rounded-top {
+  border-radius: 5px;
+}
+
+.comment-form-flat-top {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}

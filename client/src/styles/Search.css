@@ -1,0 +1,5 @@
+.search {
+  border: 1px solid var(--border-color);
+  margin: 10px 0px;
+  border-radius: 5px;
+}
