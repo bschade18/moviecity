@@ -96,12 +96,6 @@ a {
   border-color: #338545;
 }
 
-/* LoginFail */
-
-.login-fail {
-  height: 400px;
-}
-
 /* Showcase - Errors */
 .form-group {
   position: relative;
@@ -152,73 +146,6 @@ a {
   align-items: center;
 }
 
-.search-grid {
-  border: 1px solid var(--border-color);
-  margin: 10px 0px;
-  border-radius: 5px;
-}
-
-/* LoadMoreBtn */
-.load-more-btn {
-  background: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  width: 25%;
-  min-width: 200px;
-  height: 70px;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.3s;
-  border-radius: 40px;
-  font-size: 28px;
-  max-width: 1280px;
-  display: block;
-  margin: 20px auto;
-  padding: 0 20px;
-  outline: none;
-}
-
-.msg-container {
-  margin: 0.25rem 0rem;
-  max-width: 60%;
-  display: flex;
-}
-
-.msg-container.sender {
-  align-self: flex-start;
-}
-
-.msg-container.recipient {
-  align-self: flex-end;
-}
-
-.show-chat-user-avatar {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.sender-avatar {
-  visibility: hidden;
-}
-
-@media screen and (max-width: 576px) {
-  .msg-container {
-    max-width: 70%;
-    margin: 0.25rem 0;
-  }
-}
-
-.show-chat-text.sender {
-  background-color: #dee2e6;
-  color: black;
-  margin-left: 4px;
-}
-
-.show-chat-text.recipient {
-  background-color: var(--primary-color);
-  color: #fff;
-}
 
 /* Profile */
 .upload-btn,
@@ -229,7 +156,6 @@ a {
 
 @media screen and (max-width: 750px) {
   .no-results,
-  .search,
   .grid-profile {
     margin: 0px;
     border-radius: 0px;

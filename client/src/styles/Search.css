@@ -3,3 +3,11 @@
   margin: 10px 0px;
   border-radius: 5px;
 }
+
+@media screen and (max-width: 750px) {
+  .search {
+    margin: 0px;
+    border-radius: 0px;
+    border: 0;
+  }
+}

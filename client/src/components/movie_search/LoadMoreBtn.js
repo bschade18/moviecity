@@ -1,3 +1,4 @@
+import '../../styles/LoadMoreBtn.css';
 import React from 'react';
 
 const LoadMoreBtn = ({ text, callback }) => (

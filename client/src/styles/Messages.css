@@ -1,0 +1,43 @@
+.msg-container {
+  margin: 0.25rem 0rem;
+  max-width: 60%;
+  display: flex;
+}
+
+.msg-container.sender {
+  align-self: flex-start;
+}
+
+.msg-container.recipient {
+  align-self: flex-end;
+}
+
+.show-chat-text.sender {
+  background-color: #dee2e6;
+  color: black;
+  margin-left: 4px;
+}
+
+.show-chat-text.recipient {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.show-chat-user-avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+.sender-avatar {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 576px) {
+  .msg-container {
+    max-width: 70%;
+    margin: 0.25rem 0;
+  }
+}

@@ -1,3 +1,4 @@
+import '../../styles/LoginFail.css';
 import React from 'react';
 import useFormState from '../hooks/useFormState';
 import LandingNav from '../layout/LandingNav';

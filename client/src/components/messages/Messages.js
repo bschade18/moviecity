@@ -1,3 +1,4 @@
+import '../../styles/Messages.css';
 import React, { useState, useEffect, useRef } from 'react';
 import Message from './Message';
 import ShowChat from './ShowChat';
