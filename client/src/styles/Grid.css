@@ -30,6 +30,14 @@
   position: relative;
 }
 
+@media screen and (max-width: 750px) { 
+  .grid-profile {
+    margin: 0px;
+    border-radius: 0px;
+    border: 0;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .grid-header {
     font-size: 32px;

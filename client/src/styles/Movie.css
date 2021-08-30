@@ -30,6 +30,13 @@
 }
 
 @media screen and (max-width: 750px) {
+  .search-grid {
+    margin: 0px;
+    border-radius: 0px;
+    border-bottom: 1px solid var(--border-color);
+    border-top: 0;
+  }
+  
   .movie-videos {
     border: 0;
   }

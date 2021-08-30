@@ -31,6 +31,14 @@
   display: block;
 }
 
+@media screen and (max-width: 750px) {
+  .no-results {
+    margin: 0px;
+    border-radius: 0px;
+    border: 0;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .no-results img,
   .no-results-search img {
