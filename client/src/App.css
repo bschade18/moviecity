@@ -94,20 +94,22 @@ a {
 /* 5 star rating */
 
 .rating {
-  unicode-bidi: bidi-override;
-  direction: rtl;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
   margin-bottom: 6px;
+  cursor: pointer;
 }
-.rating > span:hover:before,
+
 .rating > span:hover ~ span:before {
   color: gold;
 }
 
-.checked {
+.fill-star {
   color: gold;
 }
 
-.gold:hover {
+.empty-star:hover {
   color: gold;
 }
 

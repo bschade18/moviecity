@@ -9,7 +9,7 @@ import {
   Label,
   Input,
 } from 'reactstrap';
-
+import Rating from './Rating';
 import { addReview } from '../../actions/review';
 import { imageUrl } from '../../config';
 import { connect } from 'react-redux';
@@ -37,16 +37,6 @@ const ReviewModal = ({ movie, addReview, history, user }) => {
     addReview(newReview, history);
   };
 
-  const setStar = (number) => {
-    setRating(number);
-  };
-
-  const renderStar = (number) => (
-    <span
-      onClick={() => setStar(number)}
-      className={rating >= number ? 'fa fa-star checked' : 'fa fa-star gold'}
-    ></span>
-  );
   const toggle = () => setModal(!modal);
 
   return (
@@ -58,14 +48,7 @@ const ReviewModal = ({ movie, addReview, history, user }) => {
         <ModalHeader toggle={toggle}>Review Movie</ModalHeader>
         <ModalBody>
           <Form onSubmit={onSubmitReview}>
-            <div className="rating">
-              {renderStar(5)}
-              {renderStar(4)}
-              {renderStar(3)}
-              {renderStar(2)}
-              {renderStar(1)}
-            </div>
-
+            <Rating setRating={setRating} rating={rating} />
             <FormGroup>
               <Label for="name">Comments</Label>
               <Input
