@@ -1,0 +1,30 @@
+.review-item .review-item-user-link {
+  display: inline-flex;
+  justify-items: center;
+  align-items: center;
+  color: black;
+  pointer-events: all;
+  position: relative;
+}
+
+.review-item .review-item-user-link img {
+  transition: all 0.3s;
+  animation: animateUserAvatar 0.5s;
+}
+
+.review-item .review-item-user-link img:hover {
+  opacity: 0.9;
+}
+
+@keyframes animateUserAvatar {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.review-item-username {
+  font-weight: bolder;
+}
