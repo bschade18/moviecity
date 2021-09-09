@@ -117,13 +117,13 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
           </h1>
           <div className="movieinfo-users-lists">
             <span
-              className={favorite ? 'fa fa-star checked' : 'fa fa-star gold'}
+              className={'fa fa-star ' + (favorite ? 'fill-color' : 'empty')}
               onClick={() => setFav()}
             ></span>
             <span>{favorite ? ' Favorite!!' : ' Favorite'}</span>
             <span className="movieinfo-watchlist">
               <span
-                className={toWatch ? 'fa fa-plus checked' : 'fa fa-plus gold'}
+                className={'fa fa-plus ' + (toWatch ? 'fill-color' : 'empty')}
                 onClick={() => setToWatchlist()}
               ></span>
               <span>{toWatch ? ' On WatchList!' : ' WatchList'}</span>

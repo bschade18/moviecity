@@ -4,7 +4,7 @@ const ReviewItemRating = ({ rating }) => {
   const renderStars = () => {
     const stars = [];
     for (let i = 0; i < rating; i++) {
-      stars.push(<span className={'fa fa-star fill-star'}></span>);
+      stars.push(<span className={'fa fa-star fill-color'}></span>);
     }
     return stars;
   };
