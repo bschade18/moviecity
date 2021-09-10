@@ -1,16 +1,17 @@
 import '../../styles/UserNav.css';
 import React from 'react';
+import NavButton from './NavButton';
 import PropTypes from 'prop-types';
 
 const UserNav = ({
   user,
   users,
   username,
-  renderNavButton,
   toggleFriend,
   profileUserId,
   followers,
   following,
+  view,
   setView,
 }) => {
   return (
@@ -61,10 +62,12 @@ const UserNav = ({
       </div>
 
       <div className="user-nav mt-xs-2">
-        {renderNavButton('Reviews')}
-        {renderNavButton('Favorites')}
-        {renderNavButton('Watchlist')}
-        {user._id === profileUserId && renderNavButton('Edit Profile')}
+        <NavButton listName="Reviews" view={view} setView={setView} />
+        <NavButton listName="Favorites" view={view} setView={setView} />
+        <NavButton listName="Watchlist" view={view} setView={setView} />
+        {user._id === profileUserId && (
+          <NavButton listName="Edit Profile" view={view} setView={setView} />
+        )}
       </div>
     </div>
   );

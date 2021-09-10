@@ -68,18 +68,6 @@ const Profile = ({
     updateUserFriends(updatedUser, user);
   };
 
-  const renderNavButton = (listName) => (
-    <div
-      onClick={() => setView(listName)}
-      className={
-        'btn btn-outline-success btn-pill  mr-sm-2 ' +
-        (view === listName && 'active')
-      }
-    >
-      {listName}
-    </div>
-  );
-
   const displayUserList = (userList, text, img) => {
     const list = users.filter((user) => {
       return user._id === profileUserId();
@@ -129,10 +117,10 @@ const Profile = ({
           user={user}
           profileUserId={profileUserId()}
           username={username}
-          renderNavButton={renderNavButton}
           toggleFriend={toggleFriend}
           followers={profileUserFollowers()}
           following={profileUserFollowing()}
+          view={view}
           setView={setView}
         />
         {view === 'Reviews' &&
