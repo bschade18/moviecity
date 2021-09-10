@@ -2,7 +2,7 @@ import '../../styles/ChatInput.css';
 import React from 'react';
 
 const ChatInput = ({ onSubmit, setText, text }) => (
-  <form className="show-chat-form" onSubmit={onSubmit}>
+  <form className="chat-input" onSubmit={onSubmit}>
     <input
       onChange={setText}
       type="text"

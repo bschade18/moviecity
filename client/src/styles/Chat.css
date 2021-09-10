@@ -1,4 +1,4 @@
-.show-chat {
+.chat {
   border: 0.5px solid gray;
   border: 1px solid var(--border-color);
   border-radius: 5px;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 750px) {
-  .show-chat {
+  .chat {
     width: 100%;
     margin: 1px;
     border-radius: 0px;

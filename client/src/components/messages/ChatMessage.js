@@ -19,16 +19,16 @@ const ChatMessage = ({ msg, user, idx, arr, currentMessage }) => {
   };
 
   return (
-    <div className={`msg-container ${msgClassName}`} key={msg._id}>
+    <div className={`chat-message ${msgClassName}`} key={msg._id}>
       <img
         alt="user"
         src={`/uploads/${nonUserProfilePhoto()}`}
         className={
-          'show-chat-user-avatar ' +
+          'chat-message-user-photo ' +
           ((msgSentByUser || prevMsgSentBySameUser) && 'hide-user-photo')
         }
       />
-      <p className={`show-chat-text ${msgClassName}`} key={msg._id}>
+      <p className={`chat-message-text ${msgClassName}`} key={msg._id}>
         {msg.text}
       </p>
     </div>

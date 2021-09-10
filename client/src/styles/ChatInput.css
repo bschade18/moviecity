@@ -1,4 +1,4 @@
-.show-chat-form {
+.chat-input {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 750px) {
-  .show-chat-form {
+  .chat-input {
     border-radius: 0px;
     border-bottom: 1px solid var(--border-color);
   }

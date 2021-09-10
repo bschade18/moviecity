@@ -20,7 +20,7 @@ const Chat = ({
     scrollToBottom();
   }, [scrollToBottom]);
   return (
-    <div className="show-chat" style={{ height: height - 2 }}>
+    <div className="chat" style={{ height: height - 2 }}>
       <ChatHeader
         imageUrl={currentMessage.imageUrl}
         movieTitle={currentMessage.movieTitle}

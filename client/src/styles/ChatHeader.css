@@ -1,4 +1,4 @@
-.show-chat-heading {
+.chat-header {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
@@ -6,23 +6,23 @@
   z-index: 2;
 }
 
-.show-chat-heading-left {
+.chat-header-left {
   display: flex;
   align-items: center;
 }
 
-.show-chat-img {
+.chat-header-movie-poster {
   width: 50px;
   border-radius: 5px;
   position: relative;
   z-index: 0;
 }
 
-.show-chat-movietitle {
+.chat-header-movietitle {
   font-size: 1.5rem;
 }
 
-.show-chat-icons {
+.chat-header-icons {
   display: flex;
   flex-direction: column;
   justify-content: space-between;

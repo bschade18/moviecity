@@ -1,32 +1,32 @@
-.msg-container {
+.chat-message {
   margin: 0.25rem 0rem;
   max-width: 60%;
   display: flex;
 }
 
-.msg-container.sender {
+.chat-message.sender {
   align-self: flex-start;
 }
 
-.msg-container.recipient {
+.chat-message.recipient {
   align-self: flex-end;
 }
 
 @media screen and (max-width: 576px) {
-  .msg-container {
+  .chat-message {
     max-width: 70%;
     margin: 0.25rem 0;
   }
 }
 
-.show-chat-text {
+.chat-message-text {
   margin: 0px;
   word-wrap: break-word;
   border-radius: 20px;
   padding: 0.5rem 0.75rem;
 }
 
-.show-chat-user-avatar {
+.chat-message-user-photo {
   width: 40px;
   height: 40px;
   object-fit: cover;
@@ -37,13 +37,13 @@
   visibility: hidden;
 }
 
-.show-chat-text.sender {
+.chat-message-text.sender {
   background-color: #dee2e6;
   color: black;
   margin-left: 4px;
 }
 
-.show-chat-text.recipient {
+.chat-message-text.recipient {
   background-color: var(--primary-color);
   color: #fff;
 }
