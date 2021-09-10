@@ -1,32 +1,38 @@
 import '../../styles/ChatMessage.css';
 import React from 'react';
 
-const ChatMessage = ({ msg, user, nonUserPhoto, idx, arr }) => (
-  <div
-    className={
-      'msg-container ' + (msg.user === user._id ? 'recipient' : 'sender')
+const ChatMessage = ({ msg, user, idx, arr, currentMessage }) => {
+  const msgSentByUser = msg.user === user._id;
+  const prevMsgSentBySameUser = idx > 0 && arr[idx - 1].user === msg.user;
+  const msgClassName = msgSentByUser ? 'recipient' : 'sender';
+
+  const nonUserProfilePhoto = () => {
+    const userIsRecipient = currentMessage.recipient._id === user._id;
+    const senderProfilePhoto = currentMessage.sender.photo;
+    const recipientProfilePhoto = currentMessage.recipient.photo;
+
+    if (userIsRecipient) {
+      return senderProfilePhoto;
+    } else {
+      return recipientProfilePhoto;
     }
-    key={msg._id}
-  >
-    <img
-      alt="user"
-      src={`/uploads/${nonUserPhoto()}`}
-      className={
-        'show-chat-user-avatar ' +
-        ((msg.user === user._id ||
-          (idx > 0 && arr[idx - 1].user === msg.user)) &&
-          'sender-avatar')
-      }
-    />
-    <p
-      className={
-        'show-chat-text ' + (msg.user === user._id ? 'recipient' : 'sender')
-      }
-      key={msg._id}
-    >
-      {msg.text}
-    </p>
-  </div>
-);
+  };
+
+  return (
+    <div className={`msg-container ${msgClassName}`} key={msg._id}>
+      <img
+        alt="user"
+        src={`/uploads/${nonUserProfilePhoto()}`}
+        className={
+          'show-chat-user-avatar ' +
+          ((msgSentByUser || prevMsgSentBySameUser) && 'hide-user-photo')
+        }
+      />
+      <p className={`show-chat-text ${msgClassName}`} key={msg._id}>
+        {msg.text}
+      </p>
+    </div>
+  );
+};
 
 export default ChatMessage;

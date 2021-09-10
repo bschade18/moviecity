@@ -2,13 +2,13 @@ import '../../styles/ChatBody.css';
 import React from 'react';
 import ChatMessage from './ChatMessage';
 
-const ChatBody = ({ currentMessage, messagesEndRef, user, nonUserPhoto }) => (
+const ChatBody = ({ currentMessage, messagesEndRef, user }) => (
   <div className="show-chat-body">
     <div className="show-chat-messages">
       {currentMessage.conversation.map((msg, idx, arr) => (
         <ChatMessage
+          currentMessage={currentMessage}
           user={user}
-          nonUserPhoto={nonUserPhoto}
           msg={msg}
           idx={idx}
           arr={arr}

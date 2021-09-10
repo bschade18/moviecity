@@ -1,4 +1,3 @@
-import '../../styles/Messages.css';
 import React, { useState, useEffect, useRef } from 'react';
 import Chat from './Chat';
 import FeedHeader from '../layout/FeedHeader';
@@ -74,14 +73,6 @@ const Messages = ({
     messagesEndRef.current.scrollIntoView({ behavior: 'auto' });
   };
 
-  const nonUserPhoto = () => {
-    if (currentMessage.recipient._id === user._id) {
-      return currentMessage.sender.photo;
-    } else {
-      return currentMessage.recipient.photo;
-    }
-  };
-
   if (!currentMessage || !messages) {
     return <Spinner />;
   }
@@ -106,7 +97,6 @@ const Messages = ({
             messagesEndRef={messagesEndRef}
             scrollToBottom={scrollToBottom}
             height={size.height}
-            nonUserPhoto={nonUserPhoto}
           />
         ) : (
           <MessageList

@@ -15,7 +15,6 @@ const Chat = ({
   messagesEndRef,
   height,
   user,
-  nonUserPhoto,
 }) => {
   useEffect(() => {
     scrollToBottom();
@@ -30,7 +29,6 @@ const Chat = ({
       />
       <ChatBody
         user={user}
-        nonUserPhoto={nonUserPhoto}
         currentMessage={currentMessage}
         messagesEndRef={messagesEndRef}
       />
@@ -48,7 +46,6 @@ Chat.propTypes = {
   scrollToBottom: PropTypes.func.isRequired,
   messagesEndRef: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
-  nonUserPhoto: PropTypes.string.isRequired,
 };
 
 export default Chat;
