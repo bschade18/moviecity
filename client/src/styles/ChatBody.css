@@ -1,0 +1,16 @@
+.show-chat-body {
+  padding: 1rem;
+  overflow: auto;
+  margin-bottom: 3rem;
+}
+
+.show-chat-messages {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 576px) {
+  .show-chat-body {
+    padding: 1rem 10px;
+  }
+}

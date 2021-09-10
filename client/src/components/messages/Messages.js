@@ -1,22 +1,19 @@
 import '../../styles/Messages.css';
 import React, { useState, useEffect, useRef } from 'react';
-import Message from './Message';
-import ShowChat from './ShowChat';
+import Chat from './Chat';
 import FeedHeader from '../layout/FeedHeader';
 import AppGrid from '../layout/AppGrid';
 import Feed from '../layout/Feed';
-import NoResults from '../elements/NoResults';
 import Spinner from '../layout/Spinner';
+import MessageList from './MessageList';
 import { useWindowSize } from '../hooks/useWindowSize';
 import {
   getMessages,
   setCurrentMessage,
   updateMessage,
 } from '../../actions/messages';
-
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import NoResultsImage from '../../img/tommy.jpg';
 import useFormState from '../hooks/useFormState';
 
 const Messages = ({
@@ -37,32 +34,6 @@ const Messages = ({
   useEffect(() => {
     getMessages();
   }, [getMessages]);
-
-  const renderMessagesList = () => {
-    const userAndFriendsMessages = messages.filter(
-      (message) =>
-        message.recipient._id === user._id || message.sender._id === user._id
-    );
-
-    if (!userAndFriendsMessages.length && !loading) {
-      return (
-        <NoResults
-          image={NoResultsImage}
-          text1="All because you wanted to save a couple extra pennies..."
-          text2="Messages between you and friends will display here"
-        />
-      );
-    } else {
-      return userAndFriendsMessages.map((message) => (
-        <Message
-          toggleChat={(message) => toggleChat(message)}
-          message={message}
-          key={message._id}
-          user={user}
-        />
-      ));
-    }
-  };
 
   const toggleChat = (chat) => {
     if (showChat) {
@@ -111,53 +82,23 @@ const Messages = ({
     }
   };
 
-  const renderChat = () =>
-    currentMessage.conversation.map((msg, idx, arr) => (
-      <div
-        className={
-          'msg-container ' + (msg.user === user._id ? 'recipient' : 'sender')
-        }
-        key={msg._id}
-      >
-        <img
-          alt="user"
-          src={`/uploads/${nonUserPhoto()}`}
-          className={
-            'show-chat-user-avatar ' +
-            ((msg.user === user._id ||
-              (idx > 0 && arr[idx - 1].user === msg.user)) &&
-              'sender-avatar')
-          }
-        />
-        <p
-          className={
-            'show-chat-text ' + (msg.user === user._id ? 'recipient' : 'sender')
-          }
-          key={msg._id}
-        >
-          {msg.text}
-        </p>
-      </div>
-    ));
-
   if (!currentMessage || !messages) {
     return <Spinner />;
   }
   return (
     <AppGrid component="messages" showChat={showChat}>
       <Feed>
-        {showChat ? null : (
+        {!showChat && (
           <FeedHeader
             heading="Messages"
             component="messages"
             showChat={showChat}
           />
         )}
-
         {showChat ? (
-          <ShowChat
+          <Chat
+            user={user}
             toggleChat={toggleChat}
-            renderChat={renderChat}
             onSubmit={onSubmit}
             setText={setText}
             currentMessage={currentMessage}
@@ -165,9 +106,15 @@ const Messages = ({
             messagesEndRef={messagesEndRef}
             scrollToBottom={scrollToBottom}
             height={size.height}
+            nonUserPhoto={nonUserPhoto}
           />
         ) : (
-          renderMessagesList()
+          <MessageList
+            messages={messages}
+            loading={loading}
+            user={user}
+            toggleChat={toggleChat}
+          />
         )}
       </Feed>
     </AppGrid>

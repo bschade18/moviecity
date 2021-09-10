@@ -1,0 +1,19 @@
+.show-chat-form {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  background: #f4f4f4;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  border-top: 1px solid var(--border-color);
+}
+
+@media screen and (max-width: 750px) {
+  .show-chat-form {
+    border-radius: 0px;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
