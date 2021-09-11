@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import ReviewItem from '../home/ReviewItem';
 import Spinner from '../layout/Spinner';
 import EditProfile from './EditProfile';
 import UserNav from './UserNav';
 import AppGrid from '../layout/AppGrid';
-import Grid from '../movie/Grid';
 import Feed from '../layout/Feed';
-import MovieThumb from '../elements/MovieThumb';
-import NoResults from '../elements/NoResults';
+import ProfileUserReviews from './ProfileUserReviews';
+import ProfileUserList from './ProfileUserList';
 import NoFavoritesResultsImage from '../../img/bobslicker.jpg';
 import NoWatchListResultsImage from '../../img/homealone.jpg';
 import NoReviewsResultsImage from '../../img/jim.jpg';
@@ -68,43 +66,6 @@ const Profile = ({
     updateUserFriends(updatedUser, user);
   };
 
-  const displayUserList = (userList, text, img) => {
-    const list = users.filter((user) => {
-      return user._id === profileUserId();
-    })[0][userList];
-
-    if (!list.length) {
-      return <NoResults image={img} text1={text} />;
-    } else {
-      return (
-        <Grid component="profile">
-          {list.map((movie) => (
-            <MovieThumb
-              image={movie.imgUrl}
-              id={movie.movieId}
-              key={movie.movieId}
-              clickable={true}
-            />
-          ))}
-        </Grid>
-      );
-    }
-  };
-
-  const displayUserReviews = (img, text) => {
-    const userReviews = reviews.filter(
-      (review) => review.user._id === profileUserId()
-    );
-
-    if (!userReviews.length) {
-      return <NoResults image={img} text1={text} />;
-    } else {
-      return userReviews.map((review) => (
-        <ReviewItem review={review} key={review._id} />
-      ));
-    }
-  };
-
   if (!reviews[0] || !users[0]) {
     return <Spinner />;
   }
@@ -123,29 +84,44 @@ const Profile = ({
           view={view}
           setView={setView}
         />
-        {view === 'Reviews' &&
-          displayUserReviews(
-            NoReviewsResultsImage,
-            user._id === profileUserId()
-              ? 'You have not reviewed any movies'
-              : `${username} has not reviewed any movies`
-          )}
-        {view === 'Favorites' &&
-          displayUserList(
-            'favorites',
-            user._id === profileUserId()
-              ? 'You have not added any favorites'
-              : `${username} has not added any favorites`,
-            NoFavoritesResultsImage
-          )}
-        {view === 'Watchlist' &&
-          displayUserList(
-            'watchList',
-            user._id === profileUserId()
-              ? 'You have not added any movies to your watchlist'
-              : `${username} has not added any movies to their watchlist`,
-            NoWatchListResultsImage
-          )}
+        {view === 'Reviews' && (
+          <ProfileUserReviews
+            img={NoReviewsResultsImage}
+            profileUserId={profileUserId}
+            reviews={reviews}
+            text={
+              user._id === profileUserId()
+                ? 'You have not added any favorites'
+                : `${username} has not added any favorites`
+            }
+          />
+        )}
+        {view === 'Favorites' && (
+          <ProfileUserList
+            userList="favorites"
+            users={users}
+            profileUserId={profileUserId}
+            img={NoFavoritesResultsImage}
+            text={
+              user._id === profileUserId()
+                ? 'You have not added any favorites'
+                : `${username} has not added any favorites`
+            }
+          />
+        )}
+        {view === 'Watchlist' && (
+          <ProfileUserList
+            userList="watchList"
+            users={users}
+            profileUserId={profileUserId}
+            img={NoWatchListResultsImage}
+            text={
+              user._id === profileUserId()
+                ? 'You have not added any favorites'
+                : `${username} has not added any favorites`
+            }
+          />
+        )}
         {view === 'Edit Profile' && <EditProfile user={user} />}
         {(view === 'Followers' || view === 'Following') && (
           <Connections
