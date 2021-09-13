@@ -25,7 +25,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
 
   useEffect(() => {
     for (var i = 0; i < user.favorites.length; i++) {
-      if (user.favorites[i].title === title) {
+      if (user.favorites[i].movieId === id) {
         setFavorite(true);
         return;
       } else {
@@ -64,7 +64,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
       setFavorite(false);
 
       updateUser = {
-        favorites: [...user.favorites.filter((movie) => movie.title !== title)],
+        favorites: [...user.favorites.filter((movie) => movie.movieId !== id)],
       };
     } else {
       setFavorite(true);
