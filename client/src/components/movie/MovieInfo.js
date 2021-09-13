@@ -20,6 +20,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
     vote_average,
     directors,
     release_date,
+    id,
   } = movie;
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
 
   useEffect(() => {
     for (var i = 0; i < user.watchList.length; i++) {
-      if (user.watchList[i].title === title) {
+      if (user.watchList[i].movieId === id) {
         setToWatch(true);
         return;
       } else {
@@ -71,7 +72,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
       updateUser = {
         favorites: [
           ...user.favorites,
-          { title, imgUrl: `${imageUrl}w185${poster_path}`, movieId: movie.id },
+          { title, imgUrl: `${imageUrl}w185${poster_path}`, movieId: id },
         ],
       };
     }
@@ -85,14 +86,14 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
     if (toWatch) {
       setToWatch(false);
       updateUser = {
-        watchList: [...user.watchList.filter((movie) => movie.title !== title)],
+        watchList: [...user.watchList.filter((movie) => movie.movieId !== id)],
       };
     } else {
       setToWatch(true);
       updateUser = {
         watchList: [
           ...user.watchList,
-          { title, imgUrl: `${imageUrl}w185${poster_path}`, movieId: movie.id },
+          { title, imgUrl: `${imageUrl}w185${poster_path}`, movieId: id },
         ],
       };
     }
@@ -123,9 +124,12 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
             <span>{favorite ? ' Favorite!!' : ' Favorite'}</span>
             <span className="movieinfo-watchlist">
               <span
-                className={'fa fa-plus ' + (toWatch ? 'fill-color' : 'empty')}
+                className={
+                  'fa ' + (toWatch ? 'fa-check fill-color' : 'fa-plus empty')
+                }
                 onClick={() => setToWatchlist()}
               ></span>
+
               <span>{toWatch ? ' On WatchList!' : ' WatchList'}</span>
             </span>
           </div>
