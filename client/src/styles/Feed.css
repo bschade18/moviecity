@@ -1,10 +1,12 @@
 .feed {
   grid-column-start: 2;
+  margin-top: 4px;
 }
 
 @media screen and (max-width: 750px) {
   .feed {
     grid-column-start: 1;
     border: none;
+    margin-top: 0;
   }
 }
