@@ -15,6 +15,15 @@
   text-indent: 1.5rem;
 }
 
+.user-search-results {
+  max-height: 50vh;
+  overflow-y: scroll;
+  border-radius: 0.25rem;
+  border-bottom: 1px solid var(--border-color);
+  /* offset x, offset y, blur radius, spread radius, color */
+  box-shadow: -1px 0px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
 .user-search .fa-search-user {
   position: absolute;
   margin: 0 0.5rem;
@@ -25,7 +34,6 @@
 }
 
 #user-search-box {
-  border-bottom: 1px solid var(--border-color);
   border-left: 1px solid var(--border-color);
   border-right: 1px solid var(--border-color);
   padding: 10px 0;
@@ -34,12 +42,6 @@
   z-index: 2;
   position: relative;
   background: #fff;
-  /* offset x, offset y, blur radius, spread radius, color */
-  box-shadow: -1px 0px 6px 0 rgba(0, 0, 0, 0.1);
-}
-
-#user-search-box:last-child {
-  box-shadow: 0px 1px 6px 0 rgba(0, 0, 0, 0.1);
 }
 
 #user-search-box:hover {

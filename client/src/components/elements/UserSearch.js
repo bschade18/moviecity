@@ -57,7 +57,7 @@ const UserSearch = ({ users, getUsers, view }) => {
           className="form-control user-search-input"
         />
       </div>
-      <div>
+      <div className={search && 'user-search-results'}>
         {search ? (
           filtered().length ? (
             showFiltered()
