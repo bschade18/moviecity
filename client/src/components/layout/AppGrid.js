@@ -4,23 +4,21 @@ import UserSearch from '../elements/UserSearch';
 import MobileNav from '../layout/MobileNav';
 import Sidenav from '../layout/Sidenav';
 
-const AppGrid = ({ component, children, showChat }) => {
-  return (
-    <div
-      className={
-        component === 'search'
-          ? 'app-grid-search-container'
-          : showChat
-          ? 'app-grid-container-chat'
-          : 'app-grid-container'
-      }
-    >
-      <Sidenav component={component} />
-      {children}
-      {component === 'search' ? null : <UserSearch />}
-      {showChat ? null : <MobileNav component={component} />}
-    </div>
-  );
-};
+const AppGrid = ({ component, children, showChat }) => (
+  <div
+    className={
+      component === 'search'
+        ? 'app-grid-search'
+        : showChat
+        ? 'app-grid-chat'
+        : 'app-grid'
+    }
+  >
+    <Sidenav component={component} />
+    {children}
+    {component !== 'search' && <UserSearch />}
+    {!showChat && <MobileNav component={component} />}
+  </div>
+);
 
 export default AppGrid;
