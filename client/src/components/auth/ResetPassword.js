@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import useFormState from '../hooks/useFormState';
 import LandingNav from '../layout/LandingNav';
 import Alert from '../layout/Alert';
+import { applyErrorStyle } from '../../utils/errors';
 import { setAlert, clearAlerts } from '../../actions/alert';
 import api from '../../utils/api';
 import { connect } from 'react-redux';
@@ -35,9 +36,6 @@ const ResetPassword = ({ match, setAlert, alerts, clearAlerts }) => {
     }
   };
 
-  const applyErrorStyle = (inputField) =>
-    alerts.filter((alert) => alert.param === inputField).length;
-
   return (
     <div>
       <LandingNav />
@@ -63,7 +61,7 @@ const ResetPassword = ({ match, setAlert, alerts, clearAlerts }) => {
                   <div className="form-group">
                     <input
                       className={
-                        applyErrorStyle('password')
+                        applyErrorStyle('password', alerts)
                           ? 'form-control error-border'
                           : 'form-control'
                       }
@@ -78,7 +76,7 @@ const ResetPassword = ({ match, setAlert, alerts, clearAlerts }) => {
                   <div className="form-group">
                     <input
                       className={
-                        applyErrorStyle('password2')
+                        applyErrorStyle('password2', alerts)
                           ? 'form-control error-border'
                           : 'form-control'
                       }

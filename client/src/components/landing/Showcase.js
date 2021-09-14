@@ -3,6 +3,7 @@ import React from 'react';
 import useFormState from '../hooks/useFormState';
 import { register } from '../../actions/auth';
 import { connect } from 'react-redux';
+import { applyErrorStyle } from '../../utils/errors';
 import PropTypes from 'prop-types';
 import Alert from '../layout/Alert';
 
@@ -19,9 +20,6 @@ const Showcase = ({ register, image, alerts }) => {
     register({ name, username, email, password, password2 });
   };
 
-  const applyErrorStyle = (inputField) =>
-    alerts.filter((alert) => alert.param === inputField).length > 0;
-
   return (
     <div className="container">
       <div className="showcase row align-items-center mt-5">
@@ -34,7 +32,7 @@ const Showcase = ({ register, image, alerts }) => {
             <div className="form-group">
               <input
                 className={`form-control ${
-                  applyErrorStyle('name') && 'error-border'
+                  applyErrorStyle('name', alerts) && 'error-border'
                 }`}
                 type="text"
                 name="name"
@@ -48,7 +46,7 @@ const Showcase = ({ register, image, alerts }) => {
             <div className="form-group">
               <input
                 className={`form-control ${
-                  applyErrorStyle('username') && 'error-border'
+                  applyErrorStyle('username', alerts) && 'error-border'
                 }`}
                 type="text"
                 name="username"
@@ -62,7 +60,7 @@ const Showcase = ({ register, image, alerts }) => {
             <div className="form-group">
               <input
                 className={`form-control ${
-                  applyErrorStyle('email') && 'error-border'
+                  applyErrorStyle('email', alerts) && 'error-border'
                 }`}
                 type="email"
                 name="email"
@@ -76,7 +74,7 @@ const Showcase = ({ register, image, alerts }) => {
             <div className="form-group">
               <input
                 className={`form-control ${
-                  applyErrorStyle('password') && 'error-border'
+                  applyErrorStyle('password', alerts) && 'error-border'
                 }`}
                 type="password"
                 name="password"
@@ -90,7 +88,7 @@ const Showcase = ({ register, image, alerts }) => {
             <div className="form-group">
               <input
                 className={`form-control ${
-                  applyErrorStyle('password2') && 'error-border'
+                  applyErrorStyle('password2', alerts) && 'error-border'
                 }`}
                 type="password"
                 name="password2"
