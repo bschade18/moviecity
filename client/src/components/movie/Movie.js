@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import AppGrid from '../layout/AppGrid';
 import Feed from '../layout/Feed';
 import MovieInfoPanel from './MovieInfoPanel';
-import { youtubeUrl } from '../../config';
+import MovieVideos from './MovieVideos';
 import { connect } from 'react-redux';
 
 import { useMovieFetch } from '../hooks/useMovieFetch';
@@ -34,24 +34,7 @@ const Movie = ({ match, user, history }) => {
               history={history}
             />
             <MovieInfoPanel movie={movie} />
-            <div className="movie-videos">
-              <h1>Trailers & Clips</h1>
-              <div className="movie-videos-container">
-                {movie.videos.map((video) => (
-                  <div className="m-3">
-                    <p className="movie-videos-title">{video.name}</p>
-                    <iframe
-                      className="movie-video-dimensions"
-                      title={video.name}
-                      src={`${youtubeUrl}${video.key}`}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <MovieVideos videos={movie.videos} />
             <div className="search-grid">
               <Grid header="Cast" loading={loading}>
                 {movie.actors.map((actor) => (
