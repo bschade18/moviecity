@@ -152,7 +152,7 @@ Profile.propTypes = {
   users: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
   getReviews: PropTypes.func.isRequired,
-  reviews: PropTypes.bool,
+  reviewsLoading: PropTypes.bool,
   getUsers: PropTypes.func.isRequired,
   updateUserFriends: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
