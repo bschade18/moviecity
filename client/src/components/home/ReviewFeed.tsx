@@ -1,6 +1,6 @@
 import React from 'react';
 import FeedHeader from '../layout/FeedHeader';
-import Reviews from './Reviews';
+import ReviewItem from './ReviewItem';
 import Feed from '../layout/Feed';
 import NoResults from '../elements/NoResults';
 import NoResultsImage from '../../img/happy.jpg';
@@ -48,7 +48,9 @@ const ReviewFeed = ({ user, reviews, loading }: ReviewFeedProps) => {
           text2="Reviews from you and your friends will display here when you do"
         />
       ) : (
-        <Reviews userAndFriendsReviews={userAndFriendsReviews} />
+        userAndFriendsReviews.map((review) => (
+          <ReviewItem review={review} key={review._id} page="Home" />
+        ))
       )}
     </Feed>
   );
