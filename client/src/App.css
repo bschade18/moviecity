@@ -96,7 +96,7 @@ a {
 .rating {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: start;
+  justify-content: flex-end;
   margin-bottom: 6px;
   cursor: pointer;
 }

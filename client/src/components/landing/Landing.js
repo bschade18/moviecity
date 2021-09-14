@@ -1,4 +1,5 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import api from '../../utils/api';
 import Spinner from '../layout/Spinner';
 import LandingNav from '../layout/LandingNav';
 import Showcase from './Showcase';
@@ -9,14 +10,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const Landing = ({ isAuthenticated, loading, clearAlerts }) => {
-  const [image, setImage] = useState('');
+  const [showcaseImage, setShowcaseImage] = useState('');
 
   useEffect(() => {
-    const getMovie = async () => {
-      const result = await (await fetch(`${popularBaseUrl}&page=1`)).json();
-      setImage(result.results[0]);
+    const getShowcaseImage = async () => {
+      const { data } = await api.get(`${popularBaseUrl}&page=1`);
+      setShowcaseImage(data.results[0]);
     };
-    getMovie();
+    getShowcaseImage();
   }, []);
 
   if (isAuthenticated) {
@@ -26,12 +27,14 @@ const Landing = ({ isAuthenticated, loading, clearAlerts }) => {
     return <Redirect to="/loginfail" />;
   }
 
-  if (!image) return <Spinner />;
+  if (!showcaseImage) return <Spinner />;
 
   return (
     <Fragment>
       <LandingNav page="landing" />
-      <Showcase image={`${imageUrl}${backdropSize}${image.backdrop_path}`} />
+      <Showcase
+        image={`${imageUrl}${backdropSize}${showcaseImage.backdrop_path}`}
+      />
     </Fragment>
   );
 };
