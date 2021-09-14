@@ -57,7 +57,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
     animation: 'animateMovieinfo 1s',
   });
 
-  const setFav = () => {
+  const toggleFavorite = () => {
     let updateUser;
 
     if (favorite) {
@@ -82,7 +82,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
     setFavorites(user._id, updateUser);
   };
 
-  const setToWatchlist = () => {
+  const toggleWatchList = () => {
     let updateUser;
 
     if (toWatch) {
@@ -123,7 +123,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
           <div className="movieinfo-users-lists">
             <span
               className={'fa fa-star ' + (favorite ? 'fill-color' : 'empty')}
-              onClick={() => setFav()}
+              onClick={() => toggleFavorite()}
             ></span>
             <span>{favorite ? ' Favorite!!' : ' Favorite'}</span>
             <span className="movieinfo-watchlist">
@@ -131,7 +131,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
                 className={
                   'fa ' + (toWatch ? 'fa-check fill-color' : 'fa-plus empty')
                 }
-                onClick={() => setToWatchlist()}
+                onClick={() => toggleWatchList()}
               ></span>
 
               <span>{toWatch ? ' On WatchList!' : ' WatchList'}</span>
