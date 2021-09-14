@@ -56,14 +56,12 @@ const ResetPassword = ({ match, setAlert, alerts, clearAlerts }) => {
             ) : (
               <Fragment>
                 <h3>Reset Password</h3>
-
                 <form onSubmit={onSubmit}>
                   <div className="form-group">
                     <input
                       className={
-                        applyErrorStyle('password', alerts)
-                          ? 'form-control error-border'
-                          : 'form-control'
+                        'form-control ' + applyErrorStyle('password', alerts) &&
+                        'error-border'
                       }
                       type="password"
                       name="password"
@@ -76,9 +74,8 @@ const ResetPassword = ({ match, setAlert, alerts, clearAlerts }) => {
                   <div className="form-group">
                     <input
                       className={
-                        applyErrorStyle('password2', alerts)
-                          ? 'form-control error-border'
-                          : 'form-control'
+                        'form-control ' +
+                          applyErrorStyle('password2', alerts) && 'error-border'
                       }
                       type="password"
                       name="password2"
