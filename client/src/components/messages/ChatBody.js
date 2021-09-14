@@ -7,6 +7,7 @@ const ChatBody = ({ currentMessage, messagesEndRef, user }) => (
     <div className="chat-body-messages">
       {currentMessage.conversation.map((msg, idx, arr) => (
         <ChatMessage
+          key={msg._id}
           currentMessage={currentMessage}
           user={user}
           msg={msg}

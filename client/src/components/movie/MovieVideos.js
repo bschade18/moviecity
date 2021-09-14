@@ -6,7 +6,7 @@ const MovieVideos = ({ videos }) => (
     <h1>Trailers & Clips</h1>
     <div className="movie-videos-container">
       {videos.map((video) => (
-        <div className="m-3">
+        <div className="m-3" key={video.id}>
           <p className="movie-videos-title">{video.name}</p>
           <iframe
             className="movie-video-dimensions"

@@ -77,7 +77,6 @@ UserNav.propTypes = {
   user: PropTypes.object.isRequired,
   users: PropTypes.array.isRequired,
   username: PropTypes.string.isRequired,
-  renderNavButton: PropTypes.func.isRequired,
   toggleFriend: PropTypes.func.isRequired,
   followers: PropTypes.array.isRequired,
   following: PropTypes.array.isRequired,
