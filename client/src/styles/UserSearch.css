@@ -58,6 +58,12 @@
   border-radius: 50%;
 }
 
+@media screen and (max-width: 900px) {
+  .user-search {
+    width: 27.3%;
+  }
+}
+
 @media screen and (max-width: 750px) {
   .user-search {
     display: none;
@@ -67,11 +73,5 @@
     display: block;
     position: static;
     width: 100%;
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .user-search {
-    width: 27.3%;
   }
 }
