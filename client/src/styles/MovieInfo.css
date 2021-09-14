@@ -34,11 +34,13 @@
   margin: 0;
 }
 
+.movieinfo-users-lists .fa {
+  cursor: pointer;
+}
+
 .movieinfo-watchlist {
   margin-left: 10px;
 }
-
-
 
 @media screen and (max-width: 750px) {
   .movieinfo {
@@ -47,8 +49,6 @@
     border: 0;
   }
 }
-
-
 
 @media screen and (max-width: 768px) {
   .movieinfo {
