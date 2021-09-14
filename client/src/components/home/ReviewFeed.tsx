@@ -2,6 +2,7 @@ import React from 'react';
 import FeedHeader from '../layout/FeedHeader';
 import ReviewItem from './ReviewItem';
 import Feed from '../layout/Feed';
+import Spinner from '../layout/Spinner';
 import NoResults from '../elements/NoResults';
 import NoResultsImage from '../../img/happy.jpg';
 
@@ -40,8 +41,11 @@ const ReviewFeed = ({ user, reviews, loading }: ReviewFeedProps) => {
   return (
     <Feed>
       {/*@ts-ignore*/}
+
       <FeedHeader heading="MovieCity" />
-      {!loading && userAndFriendsReviews.length === 0 ? (
+      {loading ? (
+        <Spinner />
+      ) : !loading && userAndFriendsReviews.length === 0 ? (
         <NoResults
           image={NoResultsImage}
           text1="Happy is upset you haven't reviewed any movies yet"

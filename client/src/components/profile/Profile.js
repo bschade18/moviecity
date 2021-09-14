@@ -21,6 +21,7 @@ const Profile = ({
   match,
   user,
   reviews,
+  reviewsLoading,
   getReviews,
   getUsers,
   users,
@@ -84,17 +85,21 @@ const Profile = ({
           view={view}
           setView={setView}
         />
-        {view === 'Reviews' && (
-          <ProfileUserReviews
-            img={NoReviewsResultsImage}
-            profileUserId={profileUserId}
-            reviews={reviews}
-            text={
-              user._id === profileUserId()
-                ? 'You have not added any favorites'
-                : `${username} has not added any favorites`
-            }
-          />
+        {reviewsLoading ? (
+          <Spinner />
+        ) : (
+          view === 'Reviews' && (
+            <ProfileUserReviews
+              img={NoReviewsResultsImage}
+              profileUserId={profileUserId}
+              reviews={reviews}
+              text={
+                user._id === profileUserId()
+                  ? 'You have not added any favorites'
+                  : `${username} has not added any favorites`
+              }
+            />
+          )
         )}
         {view === 'Favorites' && (
           <ProfileUserList
@@ -147,6 +152,7 @@ Profile.propTypes = {
   users: PropTypes.array.isRequired,
   reviews: PropTypes.array.isRequired,
   getReviews: PropTypes.func.isRequired,
+  reviews: PropTypes.bool,
   getUsers: PropTypes.func.isRequired,
   updateUserFriends: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
@@ -156,6 +162,7 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
   users: state.user.users,
   reviews: state.review.reviews,
+  reviewsLoading: state.review.loading,
 });
 
 export default connect(mapStateToProps, {

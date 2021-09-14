@@ -2,6 +2,7 @@ import React from 'react';
 import NoResults from '../elements/NoResults';
 import NoResultsImage from '../../img/tommy.jpg';
 import Message from './Message';
+import Spinner from '../layout/Spinner';
 
 const MessageList = ({ messages, loading, user, toggleChat }) => {
   const userAndFriendsMessages = messages.filter(
@@ -10,7 +11,9 @@ const MessageList = ({ messages, loading, user, toggleChat }) => {
   );
   return (
     <div>
-      {!loading && userAndFriendsMessages.length === 0 ? (
+      {loading ? (
+        <Spinner />
+      ) : !loading && userAndFriendsMessages.length === 0 ? (
         <NoResults
           image={NoResultsImage}
           text1="All because you wanted to save a couple extra pennies..."
