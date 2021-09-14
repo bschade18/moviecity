@@ -40,6 +40,17 @@ const Search = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   });
 
+  const resetDefaultView = () => {
+    if (!showMovieSearch) {
+      setShowMovieSearch(window.innerWidth > 750);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', resetDefaultView);
+    return () => window.removeEventListener('resize', resetDefaultView);
+  });
+
   const searchMovies = (search) => {
     const endpoint = search ? searchBaseUrl + search : popularBaseUrl;
 
@@ -82,6 +93,7 @@ const Search = () => {
             <Grid header={search ? 'Search Results' : 'Popular Movies'}>
               {movies.map((movie) => (
                 <MovieThumb
+                  id={movie.id}
                   key={movie.id}
                   clickable={true}
                   movieTitle={movie.original_title}
@@ -90,7 +102,6 @@ const Search = () => {
                       ? `${imageUrl}${posterSize}${movie.poster_path}`
                       : NoImage
                   }
-                  id={movie.id}
                 />
               ))}
             </Grid>
