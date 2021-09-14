@@ -20,30 +20,30 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
     vote_average,
     directors,
     release_date,
-    id,
+    id: movieId,
   } = movie;
 
   useEffect(() => {
-    for (var i = 0; i < user.favorites.length; i++) {
-      if (user.favorites[i].movieId === id) {
+    for (const movie of user.favorites) {
+      if (movie.movieId === movieId) {
         setFavorite(true);
-        return;
+        break;
       } else {
         setFavorite(false);
       }
     }
-  }, [user.favorites, title]);
+  }, [user.favorites, movieId]);
 
   useEffect(() => {
-    for (var i = 0; i < user.watchList.length; i++) {
-      if (user.watchList[i].movieId === id) {
+    for (const movie of user.watchList) {
+      if (movie.movieId === movieId) {
         setToWatch(true);
-        return;
+        break;
       } else {
         setToWatch(false);
       }
     }
-  }, [user.watchList, title]);
+  }, [user.watchList, movieId]);
 
   const movieInfoStyle = (backdrop) => ({
     background: backdrop_path
@@ -64,7 +64,9 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
       setFavorite(false);
 
       updateUser = {
-        favorites: [...user.favorites.filter((movie) => movie.movieId !== id)],
+        favorites: [
+          ...user.favorites.filter((movie) => movie.movieId !== movieId),
+        ],
       };
     } else {
       setFavorite(true);
@@ -72,7 +74,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
       updateUser = {
         favorites: [
           ...user.favorites,
-          { title, imgUrl: `${imageUrl}w185${poster_path}`, movieId: id },
+          { title, imgUrl: `${imageUrl}w185${poster_path}`, movieId: movieId },
         ],
       };
     }
@@ -86,14 +88,16 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
     if (toWatch) {
       setToWatch(false);
       updateUser = {
-        watchList: [...user.watchList.filter((movie) => movie.movieId !== id)],
+        watchList: [
+          ...user.watchList.filter((movie) => movie.movieId !== movieId),
+        ],
       };
     } else {
       setToWatch(true);
       updateUser = {
         watchList: [
           ...user.watchList,
-          { title, imgUrl: `${imageUrl}w185${poster_path}`, movieId: id },
+          { title, imgUrl: `${imageUrl}w185${poster_path}`, movieId: movieId },
         ],
       };
     }
