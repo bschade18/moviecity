@@ -19,7 +19,7 @@ const UserSearch = ({ users, getUsers, view }) => {
 
   const filtered = () =>
     users.filter((user) => {
-      const regex = new RegExp(search, 'gi');
+      const regex = new RegExp(search.trim(), 'gi');
       return user.name.match(regex);
     });
 
