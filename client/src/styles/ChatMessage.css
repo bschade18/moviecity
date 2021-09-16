@@ -12,18 +12,12 @@
   align-self: flex-end;
 }
 
-@media screen and (max-width: 576px) {
-  .chat-message {
-    max-width: 70%;
-    margin: 0.25rem 0;
-  }
-}
-
 .chat-message-text {
   margin: 0px;
   word-wrap: break-word;
   border-radius: 20px;
   padding: 0.5rem 0.75rem;
+  width: fit-content;
 }
 
 .chat-message-user-photo {
@@ -46,4 +40,35 @@
 .chat-message-text.recipient {
   background-color: var(--primary-color);
   color: #fff;
+}
+
+.chat-message-with-timestamp {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-message-timestamp {
+  margin: 1px 0 0 10px;
+  font-size: 11px;
+  color: #a0a0a0;
+  font-weight: bold;
+}
+
+.hide-timestamp {
+  display: none;
+}
+
+.left {
+  align-items: flex-start;
+}
+
+.right {
+  align-items: flex-end;
+}
+
+@media screen and (max-width: 576px) {
+  .chat-message {
+    max-width: 70%;
+    margin: 0.25rem 0;
+  }
 }
