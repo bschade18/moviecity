@@ -95,8 +95,8 @@ const Profile = ({
               reviews={reviews}
               text={
                 user._id === profileUserId()
-                  ? 'You have not added any favorites'
-                  : `${username} has not added any favorites`
+                  ? 'You have not added any reviews'
+                  : `${username} has not added any reviews`
               }
             />
           )
@@ -122,8 +122,8 @@ const Profile = ({
             img={NoWatchListResultsImage}
             text={
               user._id === profileUserId()
-                ? 'You have not added any favorites'
-                : `${username} has not added any favorites`
+                ? 'You have not added any movies to your watch list'
+                : `${username} has no movies on the watch list`
             }
           />
         )}
