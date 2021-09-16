@@ -22,6 +22,8 @@ const Chat = ({
   return (
     <div className="chat" style={{ height: height - 6 }}>
       <ChatHeader
+        user={user}
+        currentMessage={currentMessage}
         imageUrl={currentMessage.imageUrl}
         movieTitle={currentMessage.movieTitle}
         toggleChat={toggleChat}
