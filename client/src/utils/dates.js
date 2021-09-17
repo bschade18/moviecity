@@ -11,12 +11,12 @@ export const todayOrYesterday = (date) => {
   const today = new Date();
   const otherDt = new Date(date);
   if (
-    otherDt.getMonth() == today.getMonth() &&
-    otherDt.getFullYear() == today.getFullYear()
+    otherDt.getMonth() === today.getMonth() &&
+    otherDt.getFullYear() === today.getFullYear()
   ) {
-    if (otherDt.getDate() == today.getDate()) {
+    if (otherDt.getDate() === today.getDate()) {
       return 'Today';
-    } else if (otherDt.getDate() + 1 == today.getDate()) {
+    } else if (otherDt.getDate() + 1 === today.getDate()) {
       return 'Yesterday';
     }
   } else {
