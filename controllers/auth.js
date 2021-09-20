@@ -155,14 +155,11 @@ exports.userPhotoUpload = asyncHandler(async (req, res, next) => {
   }
 
   const file = req.files.file;
-  console.log(file);
 
-  // Make sure the image is a photo
   if (!file.mimetype.startsWith('image')) {
     return next(new ErrorResponse(`Please upload an image file`, 400));
   }
 
-  // Check filesize
   if (file.size > process.env.MAX_FILE_UPLOAD) {
     return next(
       new ErrorResponse(
@@ -172,7 +169,6 @@ exports.userPhotoUpload = asyncHandler(async (req, res, next) => {
     );
   }
 
-  // Create custom filename
   file.name = `photo_${user._id}${path.parse(file.name).ext}`;
 
   file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async (err) => {
@@ -199,7 +195,6 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse('There is no user with that email', 404));
   }
 
-  // Get reset token
   const resetToken = user.getResetPasswordToken();
 
   await user.save({ validateBeforeSave: false });
@@ -229,7 +224,6 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
 // @route     PUT /auth/resetpassword/:resettoken
 // @access    Public
 exports.resetPassword = asyncHandler(async (req, res, next) => {
-  // Get hashed token
   const resetPasswordToken = crypto
     .createHash('sha256')
     .update(req.params.resettoken)
@@ -244,7 +238,6 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse('Invalid token', 400));
   }
 
-  // Set new password
   user.password = req.body.password;
   user.resetPasswordToken = undefined;
   user.resetPasswordExpire = undefined;
@@ -271,7 +264,6 @@ exports.findUser = async (req, res) => {
       return res.status(400).json({ msg: 'No user found' });
     }
 
-    // res.send({ user });
     res.send(user);
   } catch (err) {
     res.status(500).send('Server Error');
