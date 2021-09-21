@@ -39,17 +39,15 @@ exports.getReview = asyncHandler(async (req, res, next) => {
 // @route POST /reviews
 // @desc Add review
 // @access Private
-
 exports.addReview = asyncHandler(async (req, res, next) => {
   const review = await Review.create(req.body);
 
   res.status(201).json(review);
 });
 
-// @route    PUT /reviews/:id
-// @desc     Update review, add comment
+// @route    POST /reviews/:id/comment
+// @desc     Add comment to review
 // @access   Private
-
 exports.addComment = asyncHandler(async (req, res, next) => {
   let review = await Review.findById(req.params.id);
 

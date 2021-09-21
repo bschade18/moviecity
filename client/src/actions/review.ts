@@ -16,7 +16,6 @@ import {
 } from './interfaces';
 import { Dispatch } from 'redux';
 
-
 export const getReviews = () => async (dispatch: Dispatch) => {
   try {
     dispatch({
@@ -67,18 +66,20 @@ export const addReview = (newReview, history) => async (dispatch: Dispatch) => {
   }
 };
 
-export const addComment = (
-  reviewId: string,
-  formData: { comments: Comment[] }
-) => async (dispatch: Dispatch) => {
-  try {
-    const res = await api.put<Review>(`/reviews/${reviewId}`, formData);
+export const addComment =
+  (reviewId: string, formData: { comments: Comment[] }) =>
+  async (dispatch: Dispatch) => {
+    try {
+      const res = await api.post<Review>(
+        `/reviews/${reviewId}/comment`,
+        formData
+      );
 
-    dispatch<AddCommentAction>({
-      type: ADD_COMMENT,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.error(err);
-  }
-};
+      dispatch<AddCommentAction>({
+        type: ADD_COMMENT,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
