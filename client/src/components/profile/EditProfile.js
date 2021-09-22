@@ -41,9 +41,7 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
         },
       });
 
-      const fileName = res.data.filename;
-
-      updateUserImage(fileName);
+      updateUserImage(res.data);
 
       setMessage('Success!');
     } catch (err) {
@@ -75,7 +73,7 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
           <img
             className="edit-profile-img"
             src={URL.createObjectURL(file)}
-            alt='user avatar'
+            alt="user avatar"
           />
         ) : (
           <img

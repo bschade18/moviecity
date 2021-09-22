@@ -113,7 +113,7 @@ exports.addFavorite = async (req, res) => {
 
     const updatedUser = await user.save();
 
-    res.json(updatedUser.favorites);
+    res.json(updatedUser);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -131,7 +131,7 @@ exports.setWatchlist = async (req, res) => {
 
     const updatedUser = await user.save();
 
-    res.json(updatedUser.watchList);
+    res.json({ watchList: updatedUser.watchList });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -181,7 +181,7 @@ exports.userPhotoUpload = asyncHandler(async (req, res, next) => {
       photo: file.name,
     }).select('photo');
 
-    res.status(200).json({ filename: file.name, user });
+    res.status(200).json({ photo: file.name });
   });
 });
 

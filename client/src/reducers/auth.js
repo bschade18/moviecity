@@ -65,27 +65,11 @@ export default function (state = initialState, action) {
         loading: false,
         user: null,
       };
-    case SET_FAVORITES:
-      return {
-        ...state,
-        user: { ...state.user, favorites: payload },
-      };
-    case SET_WATCHLIST:
-      return {
-        ...state,
-        user: { ...state.user, watchList: payload },
-      };
     case SET_FRIENDS:
-      return {
-        ...state,
-        user: { ...state.user, ...payload },
-      };
-    case UPDATE_IMAGE:
-      return {
-        ...state,
-        user: { ...state.user, photo: payload },
-      };
     case UPDATE_USER:
+    case SET_FAVORITES:
+    case SET_WATCHLIST:
+    case UPDATE_IMAGE:
       return {
         ...state,
         user: { ...state.user, ...payload },

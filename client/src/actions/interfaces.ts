@@ -72,7 +72,7 @@ export interface SetWatchListAction {
 
 export interface UpdateImageAction {
   type: string;
-  payload: string;
+  payload: object;
 }
 
 export interface GetUserAction {
