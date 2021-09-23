@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const path = require('path');
 const asyncHandler = require('../middleware/async');
 const ErrorResponse = require('../utils/errorResponse');
 
@@ -47,4 +48,52 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
   }
 
   res.status(200).json(user);
+});
+
+// @desc      Upload photo for user
+// @route     PUT /users/:id/photo
+// @access    Private
+exports.userPhotoUpload = asyncHandler(async (req, res, next) => {
+  console.log('did i make it here');
+  let user = await User.findById(req.user.id);
+
+  if (!user) {
+    return next(
+      new ErrorResponse(`User not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  if (!req.files) {
+    return next(new ErrorResponse(`Please upload a file`, 400));
+  }
+
+  const file = req.files.file;
+
+  if (!file.mimetype.startsWith('image')) {
+    return next(new ErrorResponse(`Please upload an image file`, 400));
+  }
+
+  if (file.size > process.env.MAX_FILE_UPLOAD) {
+    return next(
+      new ErrorResponse(
+        `Please upload an image less than ${process.env.MAX_FILE_UPLOAD}`,
+        400
+      )
+    );
+  }
+
+  file.name = `photo_${user._id}${path.parse(file.name).ext}`;
+
+  file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async (err) => {
+    if (err) {
+      console.error(err);
+      return next(new ErrorResponse(`Problem with file upload`, 500));
+    }
+
+    user = await User.findByIdAndUpdate(req.user.id, {
+      photo: file.name,
+    }).select('photo');
+
+    res.status(200).json({ photo: file.name });
+  });
 });

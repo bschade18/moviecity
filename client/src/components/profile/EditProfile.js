@@ -1,6 +1,6 @@
 import '../../styles/EditProfile.css';
 import React, { useState } from 'react';
-import { updateUserPhoto } from '../../actions/auth';
+import { updateUserPhoto } from '../../actions/users';
 import { updateUser } from '../../actions/users';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -27,7 +27,7 @@ const EditProfile = ({ user, updateUser, updateUserPhoto }) => {
     const formData = new FormData();
     formData.append('file', file);
 
-    updateUserPhoto(formData, setMessage);
+    updateUserPhoto(formData, setMessage, user._id);
   };
 
   return (

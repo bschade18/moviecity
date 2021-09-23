@@ -7,7 +7,6 @@ import {
   LOGIN_FAIL,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  UPDATE_USER_PHOTO,
   GET_USER,
 } from './types';
 
@@ -19,7 +18,6 @@ import {
   LoginProps,
   UserWithToken,
   LoginSuccessAction,
-  UpdateUserPhotoAction,
   GetUserAction,
   ResetPasswordProps,
 } from './interfaces';
@@ -94,35 +92,10 @@ export const login =
     }
   };
 
-export const logout = () => (dispatch: Dispatch) => {
+export const logout = () => (dispatch: Dispatch) =>
   dispatch({
     type: LOGOUT_SUCCESS,
   });
-};
-
-// update user
-export const updateUserPhoto =
-  (formData: object, setMessage: (message: string) => void) =>
-  async (dispatch: Dispatch) => {
-    try {
-      const res = await api.put('/auth/photo', formData);
-
-      dispatch<UpdateUserPhotoAction>({
-        type: UPDATE_USER_PHOTO,
-        payload: res.data,
-      });
-
-      setMessage('Success!');
-    } catch (err) {
-      // @ts-ignore
-      if (err.response.status === 500) {
-        setMessage('There was a problem with the server');
-      } else {
-        // @ts-ignore
-        setMessage(err.response.data.error);
-      }
-    }
-  };
 
 export const findAccount = (account: string) => async (dispatch: Dispatch) => {
   const body = JSON.stringify({ account });

@@ -28,8 +28,6 @@ router.route('/favorite/:id').put(auth, addFavorite);
 
 router.route('/watchlist/:id').put(auth, setWatchlist);
 
-router.route('/photo').put(auth, userPhotoUpload);
-
 router.route('/forgotpassword').post(forgotPassword);
 
 router
