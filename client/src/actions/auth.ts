@@ -7,7 +7,7 @@ import {
   LOGIN_FAIL,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  UPDATE_IMAGE,
+  UPDATE_USER_PHOTO,
   GET_USER,
 } from './types';
 
@@ -19,7 +19,7 @@ import {
   LoginProps,
   UserWithToken,
   LoginSuccessAction,
-  UpdateImageAction,
+  UpdateUserPhotoAction,
   GetUserAction,
   ResetPasswordProps,
 } from './interfaces';
@@ -59,6 +59,7 @@ export const register =
       // @ts-ignore
       dispatch(loadUser());
     } catch (err) {
+      // @ts-ignore
       let errors = err.response.data.errors;
       // @ts-ignore
       dispatch(setAlert(errors));
@@ -100,11 +101,28 @@ export const logout = () => (dispatch: Dispatch) => {
 };
 
 // update user
-export const updateUserImage = (newPhoto: object) => (dispatch: Dispatch) =>
-  dispatch<UpdateImageAction>({
-    type: UPDATE_IMAGE,
-    payload: newPhoto,
-  });
+export const updateUserPhoto =
+  (formData: object, setMessage: (message: string) => void) =>
+  async (dispatch: Dispatch) => {
+    try {
+      const res = await api.put('/auth/photo', formData);
+
+      dispatch<UpdateUserPhotoAction>({
+        type: UPDATE_USER_PHOTO,
+        payload: res.data,
+      });
+
+      setMessage('Success!');
+    } catch (err) {
+      // @ts-ignore
+      if (err.response.status === 500) {
+        setMessage('There was a problem with the server');
+      } else {
+        // @ts-ignore
+        setMessage(err.response.data.error);
+      }
+    }
+  };
 
 export const findAccount = (account: string) => async (dispatch: Dispatch) => {
   const body = JSON.stringify({ account });
@@ -129,6 +147,7 @@ export const resetPassword =
     try {
       await api.put(`/auth/resetpassword/${token}`, body);
     } catch (err) {
+      // @ts-ignore
       let errors = err.response.data.errors;
 
       // @ts-ignore

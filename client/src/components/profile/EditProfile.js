@@ -1,18 +1,15 @@
 import '../../styles/EditProfile.css';
 import React, { useState } from 'react';
-import Progress from './Progress';
-import api from '../../utils/api';
-import { updateUserImage } from '../../actions/auth';
+import { updateUserPhoto } from '../../actions/auth';
 import { updateUser } from '../../actions/users';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import useFormState from '../hooks/useFormState';
 
-const EditProfile = ({ user, updateUser, updateUserImage }) => {
+const EditProfile = ({ user, updateUser, updateUserPhoto }) => {
   const [file, setFile] = useState('');
   const [filename, setFilename] = useState('Choose File');
   const [message, setMessage] = useState('');
-  const [uploadPercentage, setUploadPercentage] = useState(0);
 
   const [name, setName] = useFormState(user.name);
 
@@ -30,27 +27,7 @@ const EditProfile = ({ user, updateUser, updateUserImage }) => {
     const formData = new FormData();
     formData.append('file', file);
 
-    try {
-      const res = await api.put('/auth/photo', formData, {
-        onUploadProgress: (progressEvent) => {
-          setUploadPercentage(
-            parseInt(
-              Math.round((progressEvent.loaded * 100) / progressEvent.total)
-            )
-          );
-        },
-      });
-
-      updateUserImage(res.data);
-
-      setMessage('Success!');
-    } catch (err) {
-      if (err.response.status === 500) {
-        setMessage('There was a problem with the server');
-      } else {
-        setMessage(err.response.data.error);
-      }
-    }
+    updateUserPhoto(formData, setMessage);
   };
 
   return (
@@ -81,9 +58,6 @@ const EditProfile = ({ user, updateUser, updateUserImage }) => {
             alt="user avatar"
           />
         )}
-
-        <Progress percentage={uploadPercentage} />
-
         <div className="form-group mt-2">
           <label>Name</label>
           <input
@@ -109,12 +83,13 @@ const EditProfile = ({ user, updateUser, updateUserImage }) => {
 EditProfile.propTypes = {
   user: PropTypes.object.isRequired,
   updateUser: PropTypes.func.isRequired,
+  updateUserPhoto: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { updateUser, updateUserImage })(
+export default connect(mapStateToProps, { updateUser, updateUserPhoto })(
   EditProfile
 );

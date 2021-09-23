@@ -7,7 +7,7 @@ import {
   REGISTER_FAIL,
   LOGIN_FAIL,
   UPDATE_USER,
-  UPDATE_IMAGE,
+  UPDATE_USER_PHOTO,
 } from '../actions/types';
 
 const initialState = {
@@ -63,7 +63,7 @@ export default function (state = initialState, action) {
         user: null,
       };
     case UPDATE_USER:
-    case UPDATE_IMAGE:
+    case UPDATE_USER_PHOTO:
       return {
         ...state,
         user: { ...state.user, ...payload },

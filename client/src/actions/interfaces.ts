@@ -55,7 +55,7 @@ export interface RegisterSuccessAction {
   payload: UserWithToken;
 }
 
-export interface UpdateImageAction {
+export interface UpdateUserPhotoAction {
   type: string;
   payload: object;
 }
