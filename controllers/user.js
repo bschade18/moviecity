@@ -30,7 +30,6 @@ exports.getUser = asyncHandler(async (req, res, next) => {
 // @route PUT /users/:id
 // @desc Update user
 // @access Private
-
 exports.updateUser = asyncHandler(async (req, res, next) => {
   const user = await User.findByIdAndUpdate(req.params.id, req.body, {
     new: true,

@@ -14,7 +14,6 @@ exports.getMessages = asyncHandler(async (req, res, next) => {
 // @route POST /messages
 // @desc Create message
 // @access Private
-
 exports.createMessage = asyncHandler(async (req, res, next) => {
   const message = await Message.create(req.body);
 
@@ -44,7 +43,6 @@ exports.updateMessage = asyncHandler(async (req, res, next) => {
 // @route DELETE /messages/:id
 // @desc Delete message
 // @access Private
-
 exports.deleteMessage = asyncHandler(async (req, res, next) => {
   const message = await Message.findByIdAndDelete(req.params.id);
 
