@@ -50,7 +50,6 @@ exports.register = async (req, res) => {
 // @route POST auth/login
 // @desc login user
 // @access Public
-
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -88,7 +87,6 @@ exports.login = async (req, res) => {
 // @route GET auth/user
 // @desc get user data
 // @access Private
-
 exports.getUser = async (req, res) => {
   try {
     let user = await User.findById(req.user.id).select('-password').populate({
@@ -98,42 +96,6 @@ exports.getUser = async (req, res) => {
     res.json(user);
   } catch (err) {
     res.status(401).send('Server Error');
-  }
-};
-
-// @route    PUT /auth/favorite/:id
-// @desc     update user favorites
-// @access   Private
-exports.addFavorite = async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select('-password');
-
-    user.favorites = req.body.favorites;
-
-    const updatedUser = await user.save();
-
-    res.json(updatedUser);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
-  }
-};
-
-// @route    PUT /auth/watchlist/:id
-// @desc     update user watchlist
-// @access   Private
-exports.setWatchlist = async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select('-password');
-
-    user.watchList = req.body.watchList;
-
-    const updatedUser = await user.save();
-
-    res.json({ watchList: updatedUser.watchList });
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
   }
 };
 
@@ -201,7 +163,6 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 // @route POST auth/find
 // @desc find user
 // @access Public
-
 exports.findUser = async (req, res) => {
   const { account } = req.body;
 

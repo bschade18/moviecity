@@ -5,9 +5,6 @@ const {
   register,
   login,
   getUser,
-  addFavorite,
-  setWatchlist,
-  userPhotoUpload,
   forgotPassword,
   resetPassword,
   findUser,
@@ -23,10 +20,6 @@ router.route('/register').post(validateRegister, register);
 router.route('/login').post(validateLogin, login);
 
 router.route('/user').get(auth, getUser);
-
-router.route('/favorite/:id').put(auth, addFavorite);
-
-router.route('/watchlist/:id').put(auth, setWatchlist);
 
 router.route('/forgotpassword').post(forgotPassword);
 
