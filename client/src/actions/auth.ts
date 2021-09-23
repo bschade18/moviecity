@@ -7,9 +7,6 @@ import {
   LOGIN_FAIL,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  SET_FAVORITES,
-  SET_WATCHLIST,
-  SET_FRIENDS,
   UPDATE_IMAGE,
   GET_USER,
 } from './types';
@@ -22,9 +19,6 @@ import {
   LoginProps,
   UserWithToken,
   LoginSuccessAction,
-  SetFriendsAction,
-  SetFavoritesAction,
-  SetWatchListAction,
   UpdateImageAction,
   GetUserAction,
   ResetPasswordProps,
@@ -106,59 +100,12 @@ export const logout = () => (dispatch: Dispatch) => {
 };
 
 // update user
-export const updateUserFriends =
-  (updatedUser: object, user: { _id: string }) =>
-  async (dispatch: Dispatch) => {
-    try {
-      const res = await api.put<User>(`/users/${user._id}`, updatedUser);
-
-      dispatch<SetFriendsAction>({
-        type: SET_FRIENDS,
-        payload: res.data,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-// add movie to favorites
-export const setFavorites =
-  (userid: string, updateUser: object) => async (dispatch: Dispatch) => {
-    try {
-      const res = await api.put<User>(`/auth/favorite/${userid}`, updateUser);
-
-      dispatch<SetFavoritesAction>({
-        type: SET_FAVORITES,
-        payload: res.data,
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-// update user watch list
-export const setWatchList =
-  (userid: string, updateUser: object) => async (dispatch: Dispatch) => {
-    try {
-      const res = await api.put<User>(`/auth/watchlist/${userid}`, updateUser);
-
-      dispatch<SetWatchListAction>({
-        type: SET_WATCHLIST,
-        payload: res.data,
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-// update user
 export const updateUserImage = (newPhoto: object) => (dispatch: Dispatch) =>
   dispatch<UpdateImageAction>({
     type: UPDATE_IMAGE,
     payload: newPhoto,
   });
 
-// find account for password reset
 export const findAccount = (account: string) => async (dispatch: Dispatch) => {
   const body = JSON.stringify({ account });
 
@@ -174,7 +121,6 @@ export const findAccount = (account: string) => async (dispatch: Dispatch) => {
   }
 };
 
-// reset password
 export const resetPassword =
   ({ password, password2, token }: ResetPasswordProps) =>
   async (dispatch: Dispatch) => {

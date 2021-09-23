@@ -4,12 +4,12 @@ import ReviewModal from './ReviewModal';
 import MessageModal from './MessageModal';
 import MovieThumb from '../elements/MovieThumb';
 import NoImage from '../../img/no_image.jpg';
-import { setFavorites, setWatchList } from '../../actions/auth';
+import { updateUser } from '../../actions/users';
 import { posterSize, imageUrl, backdropSize } from '../../config';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
+const MovieInfo = ({ movie, user, updateUser, history }) => {
   const [favorite, setFavorite] = useState(false);
   const [toWatch, setToWatch] = useState(false);
   const {
@@ -58,12 +58,12 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
   });
 
   const toggleFavorite = () => {
-    let updateUser;
+    let updatedUser;
 
     if (favorite) {
       setFavorite(false);
 
-      updateUser = {
+      updatedUser = {
         favorites: [
           ...user.favorites.filter((movie) => movie.movieId !== movieId),
         ],
@@ -71,7 +71,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
     } else {
       setFavorite(true);
 
-      updateUser = {
+      updatedUser = {
         favorites: [
           ...user.favorites,
           { title, imgUrl: `${imageUrl}w185${poster_path}`, movieId: movieId },
@@ -79,22 +79,22 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
       };
     }
 
-    setFavorites(user._id, updateUser);
+    updateUser(user._id, updatedUser);
   };
 
   const toggleWatchList = () => {
-    let updateUser;
+    let updatedUser;
 
     if (toWatch) {
       setToWatch(false);
-      updateUser = {
+      updatedUser = {
         watchList: [
           ...user.watchList.filter((movie) => movie.movieId !== movieId),
         ],
       };
     } else {
       setToWatch(true);
-      updateUser = {
+      updatedUser = {
         watchList: [
           ...user.watchList,
           { title, imgUrl: `${imageUrl}w185${poster_path}`, movieId: movieId },
@@ -102,7 +102,7 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
       };
     }
 
-    setWatchList(user._id, updateUser);
+    updateUser(user._id, updatedUser);
   };
 
   return (
@@ -173,14 +173,13 @@ const MovieInfo = ({ movie, user, setFavorites, setWatchList, history }) => {
 MovieInfo.propTypes = {
   movie: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
-  setFavorites: PropTypes.func.isRequired,
-  setWatchList: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { setFavorites, setWatchList })(
-  MovieInfo
-);
+export default connect(mapStateToProps, {
+  updateUser,
+})(MovieInfo);

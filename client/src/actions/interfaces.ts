@@ -55,21 +55,6 @@ export interface RegisterSuccessAction {
   payload: UserWithToken;
 }
 
-export interface SetFriendsAction {
-  type: string;
-  payload: User;
-}
-
-export interface SetFavoritesAction {
-  type: string;
-  payload: User;
-}
-
-export interface SetWatchListAction {
-  type: string;
-  payload: User;
-}
-
 export interface UpdateImageAction {
   type: string;
   payload: object;

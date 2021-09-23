@@ -10,7 +10,7 @@ import NoFavoritesResultsImage from '../../img/bobslicker.jpg';
 import NoWatchListResultsImage from '../../img/homealone.jpg';
 import NoReviewsResultsImage from '../../img/jim.jpg';
 import Connections from './Connections';
-import { updateUserFriends } from '../../actions/auth';
+import { updateUser } from '../../actions/users';
 import { logout } from '../../actions/auth';
 import { getReviews } from '../../actions/review';
 import { getUsers } from '../../actions/users';
@@ -25,7 +25,7 @@ const Profile = ({
   getReviews,
   getUsers,
   users,
-  updateUserFriends,
+  updateUser,
 }) => {
   const [view, setView] = useState('Reviews');
 
@@ -64,7 +64,7 @@ const Profile = ({
       };
     }
 
-    updateUserFriends(updatedUser, user);
+    updateUser(user._id, updatedUser);
   };
 
   if (!reviews[0] || !users[0]) {
@@ -154,7 +154,7 @@ Profile.propTypes = {
   getReviews: PropTypes.func.isRequired,
   reviewsLoading: PropTypes.bool,
   getUsers: PropTypes.func.isRequired,
-  updateUserFriends: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
 };
 
@@ -168,6 +168,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getReviews,
   getUsers,
-  updateUserFriends,
+  updateUser,
   logout,
 })(Profile);

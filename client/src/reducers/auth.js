@@ -6,11 +6,8 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGIN_FAIL,
-  SET_FAVORITES,
-  SET_WATCHLIST,
-  SET_FRIENDS,
-  UPDATE_IMAGE,
   UPDATE_USER,
+  UPDATE_IMAGE,
 } from '../actions/types';
 
 const initialState = {
@@ -65,10 +62,7 @@ export default function (state = initialState, action) {
         loading: false,
         user: null,
       };
-    case SET_FRIENDS:
     case UPDATE_USER:
-    case SET_FAVORITES:
-    case SET_WATCHLIST:
     case UPDATE_IMAGE:
       return {
         ...state,

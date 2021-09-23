@@ -8,9 +8,6 @@ export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCESS';
-export const SET_FRIENDS = 'SET_FRIENDS';
-export const SET_FAVORITES = 'SET_FAVORITES';
-export const SET_WATCHLIST = 'SET_WATCHLIST';
 export const UPDATE_USER = 'UPDATE_USER';
 export const UPDATE_IMAGE = 'UPDATE_IMAGE';
 

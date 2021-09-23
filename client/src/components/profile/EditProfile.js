@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import useFormState from '../hooks/useFormState';
 
-const EditProfile = ({ updateUserImage, user, updateUser }) => {
+const EditProfile = ({ user, updateUser, updateUserImage }) => {
   const [file, setFile] = useState('');
   const [filename, setFilename] = useState('Choose File');
   const [message, setMessage] = useState('');
@@ -45,7 +45,6 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
 
       setMessage('Success!');
     } catch (err) {
-      console.log(err);
       if (err.response.status === 500) {
         setMessage('There was a problem with the server');
       } else {
@@ -108,7 +107,6 @@ const EditProfile = ({ updateUserImage, user, updateUser }) => {
 };
 
 EditProfile.propTypes = {
-  updateUserImage: PropTypes.func,
   user: PropTypes.object.isRequired,
   updateUser: PropTypes.func.isRequired,
 };
@@ -117,6 +115,6 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps, { updateUserImage, updateUser })(
+export default connect(mapStateToProps, { updateUser, updateUserImage })(
   EditProfile
 );
