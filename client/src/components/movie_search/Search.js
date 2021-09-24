@@ -113,7 +113,7 @@ const Search = () => {
                 component="Search"
               />
             )}
-            {loading && <Spinner />}
+            {loading && movies[0] && <Spinner />}
             {currentPage < totalPages && !loading && (
               <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
             )}
