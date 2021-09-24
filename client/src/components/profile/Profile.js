@@ -28,6 +28,7 @@ const Profile = ({
   updateUser,
 }) => {
   const [view, setView] = useState('Reviews');
+  const { username } = match.params;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -38,7 +39,9 @@ const Profile = ({
     getUsers();
   }, [getReviews, getUsers, user.name]);
 
-  const { username } = match.params;
+  useEffect(() => {
+    setView('Reviews');
+  }, [username]);
 
   const profileUserId = () =>
     users.find((user) => user.username === username)._id;
