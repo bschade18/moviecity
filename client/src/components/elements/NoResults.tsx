@@ -10,8 +10,10 @@ interface NoResultsProps {
 
 const NoResults = ({ component, text1, text2, image }: NoResultsProps) => (
   <div className={component === 'Search' ? 'no-results-search' : 'no-results'}>
-    <p className="text-center mt-2">{text1}</p>
-    <p className="text-center">{text2}</p>
+    <div>
+      <p className="text-center my-2">{text1}</p>
+      <p className="text-center">{text2}</p>
+    </div>
     <img src={image} alt="no results" className="no-results-image" />
   </div>
 );
