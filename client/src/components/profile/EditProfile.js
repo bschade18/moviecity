@@ -20,14 +20,17 @@ const EditProfile = ({ user, updateUser, updateUserPhoto }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    // update user name
-    updateUser(user._id, { name });
 
-    // update user photo
-    const formData = new FormData();
-    formData.append('file', file);
+    if (name !== user.name) {
+      updateUser(user._id, { name });
+    }
 
-    updateUserPhoto(formData, setMessage, user._id);
+    if (file) {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      updateUserPhoto(formData, setMessage, user._id);
+    }
   };
 
   return (
