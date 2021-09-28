@@ -53,6 +53,7 @@ const ReviewModal = ({ movie, addReview, history, user }) => {
               <Label for="name">Comments</Label>
               <Input
                 type="textarea"
+                value={text}
                 name="comments"
                 id="comments"
                 placeholder="Enter comments..."
