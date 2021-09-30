@@ -5,22 +5,28 @@ import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
 import store from '../store';
 import Showcase from '../components/landing/Showcase';
+import faker from 'faker';
 
-test('submitting the form calls onSubmit with name, username, email, pw, and pw2 ', () => {
-  let submittedData;
-  const onSubmit = (data) => (submittedData = data);
+function buildRegisterForm(overrides) {
+  return {
+    name: faker.name.firstName() + ' ' + faker.name.lastName(),
+    username: faker.internet.userName(),
+    email: faker.internet.email(),
+    password: faker.internet.password(),
+    password2: this.password,
+    ...overrides,
+  };
+}
+test('submitting the form calls register with name, username, email, pw, and pw2 ', () => {
+  const mockRegister = jest.fn();
 
   render(
     <Provider store={store}>
-      <Showcase onSubmit={onSubmit} image="showcase image" />
+      <Showcase register={mockRegister} image="showcase image" />
     </Provider>
   );
 
-  const name = 'coolio schade';
-  const username = 'coolioboolio123';
-  const email = 'cooooooolio123@gmail.com';
-  const password = 'password123';
-  const password2 = 'password123';
+  const { name, username, email, password, password2 } = buildRegisterForm();
 
   userEvent.type(screen.getByPlaceholderText(/Name/), name);
   userEvent.type(screen.getByRole('textbox', { name: /username/i }), username);
@@ -29,11 +35,14 @@ test('submitting the form calls onSubmit with name, username, email, pw, and pw2
   userEvent.type(screen.getByPlaceholderText(/confirm password/i), password2);
   userEvent.click(screen.getByRole('button', { name: /sign up/i }));
 
-  expect(submittedData).toEqual({
-    name,
-    username,
-    email,
-    password,
-    password2,
-  });
+  expect(mockRegister).toHaveBeenCalledTimes(1);
+  expect(mockRegister).toHaveBeenCalledWith(
+    expect.objectContaining({
+      name,
+      username,
+      email,
+      password,
+      password2,
+    })
+  );
 });

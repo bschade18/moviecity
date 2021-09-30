@@ -7,21 +7,14 @@ import store from '../store';
 import ReviewModal from '../components/movie/ReviewModal';
 
 test('submitting the review form calls onSubmit with rating and review text', () => {
-  let submittedData;
-  const onSubmitReview = (data) => (submittedData = data);
+  const addReview = jest.fn();
 
   const movie = { title: 'liar liar' };
   const user = { name: 'Bobby' };
 
   render(
     <Provider store={store}>
-      <ReviewModal
-        onSubmit={onSubmitReview}
-        addReview={() => {}}
-        movie={movie}
-        user={user}
-        rating={3}
-      />
+      <ReviewModal addReview={() => {}} movie={movie} user={user} rating={3} />
     </Provider>
   );
 
@@ -31,7 +24,8 @@ test('submitting the review form calls onSubmit with rating and review text', ()
   userEvent.type(screen.getByPlaceholderText(/enter comments/i), review);
   userEvent.click(screen.getByRole('button', { name: /post review/i }));
 
-  expect(submittedData).toEqual({
+  expect(addReview).toHaveBeenCalledTimes(1);
+  expect(addReview).toHaveBeenCalledWith({
     review,
   });
 });

@@ -16,7 +16,7 @@ test('typing in user search form correctly sets the form value', () => {
 
   const search = 'bobby';
 
-  let input = screen.getByRole('textbox');
+  const input = screen.getByRole('textbox');
   userEvent.type(screen.getByRole('textbox'), search);
 
   expect(search).toEqual(input.value);
