@@ -1,6 +1,6 @@
 .landing-nav {
   background: var(--primary-color);
-  color: #fff;
+  color: var(--white);
 }
 
 .landing-nav span {
@@ -16,7 +16,7 @@
 }
 
 .landing-nav-forgotpw {
-  color: lightgray;
+  color: var(--gray83);
 }
 
 .landing-nav-forgotpw:hover {

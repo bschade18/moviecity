@@ -30,7 +30,7 @@
 }
 
 #user-search-link {
-  color: black;
+  color: var(--pure-black);
 }
 
 #user-search-box {
@@ -41,7 +41,7 @@
   font-weight: bold;
   z-index: 2;
   position: relative;
-  background: #fff;
+  background: var(--white);
 }
 
 #user-search-box:hover {

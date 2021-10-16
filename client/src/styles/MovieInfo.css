@@ -23,7 +23,7 @@
 
 .movieinfo-text {
   padding: 20px 40px;
-  color: #fff;
+  color: var(--white);
   overflow: hidden;
 }
 
@@ -123,8 +123,8 @@
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  background: #fff;
-  color: #000;
+  background: var(--white);
+  color: var(--pure-black);
   font-weight: 800;
   border-radius: 25px;
   margin-top: 10px;
@@ -148,8 +148,8 @@
 }
 
 .movieinfo-panel {
-  background: #1c1c1c;
-  color: #fff;
+  background: var(--black-lighten11);
+  color: var(--white);
   padding: 1rem;
   font-size: 1.5rem;
   display: flex;

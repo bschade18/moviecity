@@ -1,5 +1,4 @@
 .chat {
-  border: 0.5px solid gray;
   border: 1px solid var(--border-color);
   border-radius: 5px;
   margin: 1px auto;

@@ -33,13 +33,13 @@
 
 .chat-message-text.sender {
   background-color: #dee2e6;
-  color: black;
+  color: var(--pure-black);
   margin-left: 4px;
 }
 
 .chat-message-text.recipient {
   background-color: var(--primary-color);
-  color: #fff;
+  color: var(--white);
 }
 
 .chat-message-with-timestamp {
@@ -50,7 +50,7 @@
 .chat-message-timestamp {
   margin: 1px 0 0 10px;
   font-size: 11px;
-  color: #a0a0a0;
+  color: hsl(0, 0%, 63%);
   font-weight: bold;
 }
 

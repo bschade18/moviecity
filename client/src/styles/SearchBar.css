@@ -13,7 +13,7 @@
   margin: 0 auto;
   border-radius: 40px;
   position: relative;
-  color: #fff;
+  color: var(--white);
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
@@ -25,7 +25,7 @@
   font-size: 1rem;
   line-height: 1.5;
   color: #495057;
-  background-color: #fff;
+  background-color: var(--white);
   border: 1px solid #ced4da;
   border-radius: 40px;
   font-size: 28px;
@@ -39,7 +39,7 @@
 }
 
 .search-bar .fa-search {
-  color: #000;
+  color: var(--pure-black);
   z-index: 0;
   position: absolute;
   left: 1rem;

@@ -38,7 +38,7 @@
 }
 
 .review-item-link {
-  color: #000;
+  color: var(--pure-black);
   display: inline;
   text-decoration: none;
   margin-top: 2px;

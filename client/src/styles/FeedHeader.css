@@ -4,7 +4,7 @@
   z-index: 100;
   top: 0;
   background: var(--primary-color);
-  color: #fff;
+  color: var(--white);
   padding: 1rem;
   font-size: 1.5rem;
   display: flex;
@@ -50,11 +50,11 @@
 
 .feed-header-follow span:nth-child(even) {
   font-weight: lighter;
-  color: #f7f9f9;
+  color: var(--white);
 }
 
 .feed-header-follow button {
-  color: #fff;
+  color: var(--white);
   padding: 0px;
   background: none;
   border: none;
@@ -63,7 +63,7 @@
 }
 
 .feed-header-follow button:hover {
-  color: lightgray;
+  color: var(--gray83);
 }
 
 @media screen and (max-width: 750px) {
@@ -78,7 +78,6 @@
     display: none;
   }
 }
-
 
 @media screen and (max-width: 450px) {
   .feed-header-follow {
@@ -108,7 +107,6 @@
   }
 }
 
-
 @media screen and (max-width: 340px) {
   .feed-header-vertical-bar {
     display: none;
@@ -119,7 +117,7 @@
   }
 
   .feed-header-user-search-text {
-    border-top: 1px dotted #fff;
+    border-top: 1px dotted var(--white);
     padding-top: 4px;
   }
 

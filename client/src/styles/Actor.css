@@ -1,6 +1,6 @@
 .actor {
-  color: #fff;
-  background: #1c1c1c;
+  color: var(--white);
+  background: var(--black-lighten11);
   border-radius: 20px;
   padding: 5px;
   text-align: center;

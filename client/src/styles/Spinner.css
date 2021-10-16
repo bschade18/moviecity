@@ -1,5 +1,5 @@
 .spinner {
-  border: 5px solid #f3f3f3;
+  border: 5px solid var(--gray95);
   border-top: 5px solid #16d47b;
   border-radius: 50%;
   width: 30px;

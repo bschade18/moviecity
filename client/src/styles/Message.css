@@ -30,7 +30,7 @@
   right: 52px;
   font-size: 10px;
   background: red;
-  color: #fff;
+  color: var(--white);
   border-radius: 50%;
   height: 20px;
   width: 20px;

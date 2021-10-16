@@ -8,6 +8,15 @@
 :root {
   --primary-color: #003699;
   --border-color: #d6d6d6;
+  --danger: #e74c3c;
+  --pure-black: #000;
+  --black-lighten11: hsl(0, 0%, 11%);
+  --white: #fff;
+  --gold: gold;
+  --green: #1d7831;
+  --green90: #338545;
+  --gray95: hsl(0, 0%, 95%);
+  --gray83: hsl(0, 0%, 83%);
 }
 
 /* Fix shifting UI when page scroll gets added and removed */
@@ -56,7 +65,7 @@ a {
 }
 
 .form-group p {
-  color: #e74c3c;
+  color: var(--danger);
   margin: 0;
   padding: 0;
   font-size: 14px;
@@ -66,11 +75,11 @@ a {
 }
 
 .form-control.error-border {
-  border-color: #e74c3c;
+  border-color: var(--danger);
 }
 
 .fa-comment-alt {
-  color: black;
+  color: var(--pure-black);
   text-decoration: none;
 }
 
@@ -80,7 +89,7 @@ a {
   right: 0;
   font-size: 10px;
   background: red;
-  color: #fff;
+  color: var(--white);
   border-radius: 50%;
   height: 20px;
   width: 20px;
@@ -102,34 +111,34 @@ a {
 }
 
 .rating > span:hover ~ span:before {
-  color: gold;
+  color: var(--gold);
 }
 
 .fill-color {
-  color: gold;
+  color: var(--gold);
 }
 
 .empty:hover {
-  color: gold;
+  color: var(--gold);
 }
 
 /* Buttons */
 
 .btn-outline-success {
-  color: #fff;
-  border-color: #fff;
+  color: var(--white);
+  border-color: var(--white);
 }
 
 .btn-outline-success:not(:disabled):not(.disabled).active {
-  background-color: #1d7831;
-  border-color: #1d7831;
+  background-color: #6c8d73;
+  border-color: var(--green);
 }
 
 .btn-outline-success:not(:disabled):not(.disabled).active,
 .btn-outline-success:not(:disabled):not(.disabled):active,
 .show > .btn-outline-success.dropdown-toggle {
-  background-color: #1d7831;
-  border-color: #1d7831;
+  background-color: var(--green);
+  border-color: var(--green);
 }
 
 .btn-success,
@@ -138,32 +147,32 @@ a {
 .btn-success:visited,
 .btn-outline-success:hover,
 .btn-outline-success:active {
-  background-color: #1d7831;
-  border-color: #1d7831;
+  background-color: var(--green);
+  border-color: var(--green);
 }
 
 .btn-success:hover {
-  background-color: #338545;
-  border-color: #338545;
+  background-color: var(--green90);
+  border-color: var(--green90);
 }
 
 .upload-btn,
 .send-btn {
   background-color: var(--primary-color) !important;
-  color: #fff !important;
+  color: var(--white) !important;
 }
 
 /* Custom Scroll Bar*/
 ::-webkit-scrollbar-track {
   --webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #f5f5f5;
+  background-color: var(--gray95);
 }
 
 ::-webkit-scrollbar {
   width: 6px;
-  background-color: #f5f5f5;
+  background-color: var(--gray95);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: lightgray;
+  background-color: var(--gray83);
 }
