@@ -23,7 +23,7 @@ const Landing = ({ isAuthenticated, loading, clearAlerts }) => {
   if (isAuthenticated) {
     clearAlerts();
     return <Redirect to="/home" />;
-  } else if (!loading && isAuthenticated === false) {
+  } else if (!loading && !isAuthenticated) {
     return <Redirect to="/loginfail" />;
   }
 

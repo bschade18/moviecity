@@ -85,7 +85,6 @@ export const login =
       // @ts-ignore
       dispatch(loadUser());
     } catch (err) {
-      console.log(err);
       dispatch({
         type: LOGIN_FAIL,
       });
